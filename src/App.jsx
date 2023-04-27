@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import Header from "./components/Header/Header";
+// import Header from "./components/Header/Header";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <h1 className="text-gray font-bold">God is on your side</h1>
+      <h1>hfdjshf</h1>
+      <Header />
     </>
   );
 }
