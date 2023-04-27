@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-gray font-bold">God is on your side</h1>
+      <h1 className="text-gray font">God is on your side</h1>
     </>
   );
 }
