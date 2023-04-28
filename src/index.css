@@ -120,3 +120,41 @@
     }
   }
 }
+
+.glass__effect {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.8px);
+  -webkit-backdrop-filter: blur(2.8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+ul {
+  list-style-type: none;
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.sub-menu {
+  @apply hidden w-64 py-10 cursor-pointer;
+}
+
+.menu-bar li:hover .sub-menu {
+  @apply absolute block gap-5 py-3 mt-2 text-center text-black cursor-pointer w-fit;
+}
+
+.menu-bar .li:hover .sub-menu ul {
+  @apply flex flex-col;
+}
+
+.menu-bar .li:hover .sub-menu ul li:hover {
+  @apply text-black bg-white;
+}
+.menu-bar .li:hover .sub-menu ul li {
+  @apply py-2;
+}
