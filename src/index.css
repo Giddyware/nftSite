@@ -141,7 +141,7 @@ li {
 }
 
 .sub-menu {
-  @apply hidden w-64 py-10 cursor-pointer;
+  @apply hidden w-80 py-10 cursor-pointer;
 }
 
 .menu-bar li:hover .sub-menu {
@@ -149,12 +149,45 @@ li {
 }
 
 .menu-bar .li:hover .sub-menu ul {
-  @apply flex flex-col;
+  @apply flex flex-col items-start px-4 gap-0;
 }
 
 .menu-bar .li:hover .sub-menu ul li:hover {
-  @apply text-black bg-white;
+  @apply text-black bg-[grey] w-full;
 }
 .menu-bar .li:hover .sub-menu ul li {
-  @apply py-2;
+@apply py-5 rounded-lg w-full
 }
+
+
+@font-face {
+  font-family: 'Aileron';
+  src: url('./font/aileron/Aileron-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./font/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Source-Sans";
+  src: url("./font/source-sans-pro/SourceSansPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./font/Roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "lato";
+  src: url("./font/lato/Lato2OFLWeb/Lato/fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "latomedium";
+  src: url("./font/lato/Lato2OFLWeb/Lato/fonts/Lato-Medium.ttf");
+}
+
+
