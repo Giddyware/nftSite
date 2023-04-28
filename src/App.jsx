@@ -3,19 +3,21 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import background from "./assets/background.jpg";
 import Cards from "./components/Cards/Cards";
-
-// import Header from "./components/Header/Header";
+import Categories from "./components/Category/Categories";
+import TableHead from "./components/tableHead/tableHead";
+import Collection from "./Container/Collection";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div style={{ backgroundImage: `url(${background})`  }}>
-        <Header />
-      </div>
+    <div className="h-screen" style={{ backgroundImage: `url(${background})`, "backdrop-filter": "blur(5px)" }}>
+      <Header />
+      <Categories />
+      <Collection />
       <Cards />
-    </>
+    </div>
+
   );
 }
 
