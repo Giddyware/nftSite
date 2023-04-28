@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import background from "./assets/background.jpg";
+import Cards from "./components/Cards/Cards";
 import Categories from "./components/Category/Categories";
 import TableHead from "./components/tableHead/tableHead";
 import Collection from "./Container/Collection";
-// import Header from "./components/Header/Header";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,7 +15,9 @@ function App() {
       <Header />
       <Categories />
       <Collection />
+      <Cards />
     </div>
+
   );
 }
 
