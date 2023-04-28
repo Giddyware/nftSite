@@ -1,10 +1,14 @@
-import HiSearch from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 
 const Search = () => {
   return (
-    <div>
-      {/* <HiSearch /> */}
-      <input type="text" placeholder="Search items, collections and accounts" />
+    <div className="flex items-center gap-4 glass__effect bg-inherit">
+      <HiSearch size={"20px"} color="white" />
+      <input
+        type="text"
+        placeholder="Search items, collections and accounts"
+        className="text-3xl text-white bg-transparent"
+      />
     </div>
   );
 };
