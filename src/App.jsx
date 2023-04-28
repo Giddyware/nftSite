@@ -11,13 +11,20 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="h-screen" style={{ backgroundImage: `url(${background})`, "backdrop-filter": "blur(5px)" }}>
-      <Header />
-      <Categories />
+    <div className="h-screen">
+      <div
+        className=""
+        style={{
+          backgroundImage: `url(${background})`,
+          "backdrop-filter": "blur(5px)",
+        }}
+      >
+        <Header />
+        <Categories />
+      </div>
       <Collection />
       <Cards />
     </div>
-
   );
 }
 
