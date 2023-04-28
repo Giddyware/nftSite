@@ -7,7 +7,7 @@ const DropDown = () => {
       <div className="menu-bar">
         <li className="p-10 li bg-inherit">
           <p> Drops </p>
-          <div className="w-64 sub-menu">
+          <div className="w-80 sub-menu">
             <DropDownBox values={["Featured", "Learn More"]} />
           </div>
         </li>
@@ -15,9 +15,9 @@ const DropDown = () => {
 
       <div className="menu-bar">
         <li className="p-10 li bg-inherit">
-          <p> Statsi </p>
-          <div className="w-64 py-10 sub-menu">
-            <DropDownBox values={["Rakings", "Activity"]} />
+          <p> Stats </p>
+          <div className="w-80 py-10 sub-menu">
+            <DropDownBox values={["Ratings", "Activity"]} />
           </div>
         </li>
       </div>
