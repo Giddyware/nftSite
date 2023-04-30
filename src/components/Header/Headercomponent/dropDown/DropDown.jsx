@@ -3,7 +3,7 @@ import Dropitems from "./Dropitems";
 
 const DropDown = () => {
   return (
-    <div className="flex items-center gap-5 text-3xl ">
+    <div className=" items-center gap-5 md:text-3xl hidden md:flex">
       <div className="menu-bar">
         <li className="p-10 li bg-inherit">
           <p> Drops </p>

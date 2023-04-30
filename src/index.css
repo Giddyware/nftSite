@@ -121,6 +121,8 @@
   }
 }
 
+
+
 .glass__effect {
   padding: 12px;
   background: rgba(255, 255, 255, 0.28);
@@ -129,6 +131,12 @@
   backdrop-filter: blur(2.8px);
   -webkit-backdrop-filter: blur(2.8px);
   border: 1px solid rgba(255, 255, 255, 0.25);
+}
+@media (max-width: 640px) {
+  .glass__effect {
+    padding: 6px;
+    
+  }
 }
 
 ul {
@@ -158,6 +166,22 @@ li {
 .menu-bar .li:hover .sub-menu ul li {
 @apply py-5 rounded-lg w-full
 }
+
+.wallet-menu-bar {
+  cursor: pointer;
+}
+
+.wallet-sub-menu{
+  @apply hidden w-fit py-10 cursor-pointer
+}
+.wallet-menu-bar li:hover .wallet-sub-menu {
+  @apply absolute block gap-5 py-3  right-0 text-center text-black cursor-pointer w-fit;
+}
+
+.wallet-menu-bar .li:hover .wallet-sub-menu ul {
+  @apply flex flex-col items-start px-4 gap-14 py-10;
+}
+
 
 
 @font-face {
@@ -191,3 +215,15 @@ li {
 }
 
 
+body{
+  padding-top: 0px;
+box-sizing: border-box;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  height: 100%;
+/* background-color: red; */
+}
