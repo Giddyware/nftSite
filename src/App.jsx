@@ -8,6 +8,11 @@ import TableHead from "./components/tableHead/tableHead";
 import Collection from "./Container/Collection";
 import ConnectWallet from "./components/UI/ConnectWallet";
 import Overlay from "./components/UI/Overlay";
+import Login from "./components/Login/Login";
+import RegisterForm from "./components/Register/Register";
+import Auth from "./Container/Auth";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Home from "./pages/Home";
 
 
 function App() {
@@ -19,24 +24,20 @@ function App() {
     setShowmodal((prev) => !prev)
 }
 
-  return (
-    <div className="h-screen w-full relative">
-      <Overlay show={showModal} clear={ModalStatus}/>
-      <ConnectWallet show={showModal} modalStatus={ModalStatus} />
-      <div
-        className=""
-        style={{
-          backgroundImage: `url(${background})`,
-          "backdrop-filter": "blur(5px)",
-        }}
-      >
-        <Header  showModal={ModalStatus}/>
-        <Categories />
-      </div>
-      <Collection />
-      <Cards />
-    </div>
-  );
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/auth",
+      element: <Auth />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
+
 }
 
 export default App;
