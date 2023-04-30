@@ -6,26 +6,27 @@ import Cards from "./components/Cards/Cards";
 import Categories from "./components/Category/Categories";
 import TableHead from "./components/tableHead/tableHead";
 import Collection from "./Container/Collection";
+import Login from "./components/Login/Login";
+import RegisterForm from "./components/Register/Register";
+import Auth from "./Container/Auth";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   const [count, setCount] = useState(0);
 
-  return (
-    <div className="h-screen">
-      <div
-        className=""
-        style={{
-          backgroundImage: `url(${background})`,
-          "backdrop-filter": "blur(5px)",
-        }}
-      >
-        <Header />
-        <Categories />
-      </div>
-      <Collection />
-      <Cards />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/auth",
+      element: <Auth />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
