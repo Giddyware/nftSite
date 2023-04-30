@@ -13,7 +13,7 @@ const RegisterForm = () => {
   return (
     <FormProvider {...methods}>
       <form
-        className="w-full max-w-[40rem] h-[60%] rounded-3xl  px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 border-[1px] outline-slate-700 outline-4"
+        className="w-full max-w-[40rem] rounded-3xl  px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 border-[1px] outline-slate-700 outline-4"
         // onSubmit={methods.handleSubmit(onSubmit)}
       >
         <fieldset className="grid grid-cols-6 gap-8">

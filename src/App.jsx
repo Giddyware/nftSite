@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import background from "./assets/background.jpg";
@@ -14,17 +13,7 @@ import Auth from "./Container/Auth";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 
-
 function App() {
-  const [count, setCount] = useState(0);
-  const [showModal, setShowmodal] = useState(false)
-
-  const ModalStatus = () => {
-    console.log("wroking")
-    setShowmodal((prev) => !prev)
-}
-
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -37,7 +26,6 @@ function App() {
   ]);
 
   return <RouterProvider router={router} />;
-
 }
 
 export default App;
