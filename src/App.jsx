@@ -6,14 +6,24 @@ import Cards from "./components/Cards/Cards";
 import Categories from "./components/Category/Categories";
 import TableHead from "./components/tableHead/tableHead";
 import Collection from "./Container/Collection";
+import ConnectWallet from "./components/UI/ConnectWallet";
+import Overlay from "./components/UI/Overlay";
 import Login from "./components/Login/Login";
 import RegisterForm from "./components/Register/Register";
 import Auth from "./Container/Auth";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 
+
 function App() {
   const [count, setCount] = useState(0);
+  const [showModal, setShowmodal] = useState(false)
+
+  const ModalStatus = () => {
+    console.log("wroking")
+    setShowmodal((prev) => !prev)
+}
+
 
   const router = createBrowserRouter([
     {
@@ -27,6 +37,7 @@ function App() {
   ]);
 
   return <RouterProvider router={router} />;
+
 }
 
 export default App;
