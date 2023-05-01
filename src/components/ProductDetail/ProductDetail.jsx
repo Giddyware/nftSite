@@ -16,6 +16,7 @@ import Image9 from "../../assets/nft/nft9.jpg";
 import Image10 from "../../assets/nft/nft10.png";
 import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
+// import Detailtext from './DetailText/DetailText'
 
 
 const coll = [
@@ -90,9 +91,9 @@ const ProductDetail = () => {
         </div>
         
         <Activity />
-        <div className='border-soolid border-[#eee] border-[1px] rounded-[14px] mt-20'>
+        <div className='border-solid border-[#eee] border-[1px] rounded-[14px] mt-20 '>
           <p className='font-poppins text-3xl p-12 font-bold'>More On Collection</p>
-        <div className='grid grid-cols-4 gap-12 bg-blue-50 mb-10 w-full overflow-x-scroll'>
+        <div className='grid grid-cols-4 gap-20 bg-blue-50 mb-10 w-full overflow-x-scroll'>
         {
           coll.map((lec) => <ColllectionCard {...lec}/>)
         }
