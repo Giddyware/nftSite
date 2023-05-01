@@ -226,21 +226,17 @@ html {
 /* background-color: red; */
 }
 
-<<<<<<< HEAD
-
-
-
-.collectioncard:hover img  {
-  transform: scale(1.2, 1.3);
+.collectioncard:hover img {
+    transform: scale(1.2, 1.2);
+    transition: all 0.7s ease-in;
 }
 
-.collectioncard img {
-  transition: all 0.7s;
-}
+
 .collectioncard button {
-  @apply  h-0 overflow-hidden
+  height: 0;
 }
 .collectioncard:hover button {
-  @apply h-10;
-  transition: all 0.5s
+    height: 35px;
+    transition: all 0.7s ease-in;
+
 }
