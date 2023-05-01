@@ -12,12 +12,14 @@ import RegisterForm from "./components/Register/Register";
 import Auth from "./Container/Auth";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CollectionPage from "./pages/CollectionPage";
+
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/*",
       element: <Home />,
     },
     {
@@ -25,9 +27,15 @@ function App() {
       element: <Auth />,
     },
     {
+
+    path: "/product",
+    element: <ProductDetail />
+    },
+     {
       path: "/collection/mew",
       element: <CollectionPage />,
     },
+
   ]);
 
   return <RouterProvider router={router} />;
