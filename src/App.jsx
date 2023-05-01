@@ -12,6 +12,7 @@ import RegisterForm from "./components/Register/Register";
 import Auth from "./Container/Auth";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
+import CollectionPage from "./pages/CollectionPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/auth",
       element: <Auth />,
+    },
+    {
+      path: "/collection/mew",
+      element: <CollectionPage />,
     },
   ]);
 

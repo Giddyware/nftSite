@@ -2,14 +2,14 @@ import React from 'react'
 
 const TableHead = () => {
   return (
-    <div className='flex justify-between font-poppins w-full text-3xl items-center pt-4 px-5 text-3xl border-b pb-0'>
-        <div className='flex gap-4 items-center h-full mt-auto'>
-            <div className=' pb-4 h-full border-colapse'>Trending</div>
+    <div className='flex items-center justify-between w-full px-5 pt-4 pb-0 text-3xl border-b font-poppins'>
+        <div className='flex items-center h-full gap-4 mt-auto'>
+            <div className='h-full pb-4 border-colapse'>Trending</div>
             <div className='pb-4'>Top</div>
         </div>
-        <div className='flex items-center pb-4 gap-4'>
+        <div className='flex items-center gap-4 pb-4'>
         <div className='flex gap-4 rounded-2xl border-solid border-[1px] border-[grey] '>
-            <p className='bg-blue-100 flex items-center px-4 rounded-l-2xl'>1h</p>
+            <p className='flex items-center px-4 bg-blue-100 rounded-l-2xl'>1h</p>
             <p className='px-4 py-4'>6h</p>
             <p className='px-4 py-4'>24h</p>
             <p className='px-4 py-4'>7d</p>
