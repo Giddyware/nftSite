@@ -226,3 +226,20 @@ html {
 /* background-color: red; */
 }
 
+
+
+
+.collectioncard:hover img  {
+  transform: scale(1.2, 1.3);
+}
+
+.collectioncard img {
+  transition: all 0.7s;
+}
+.collectioncard button {
+  @apply  h-0 overflow-hidden
+}
+.collectioncard:hover button {
+  @apply h-10;
+  transition: all 0.5s
+}
