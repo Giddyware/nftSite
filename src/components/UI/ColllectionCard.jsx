@@ -12,7 +12,6 @@ const ColllectionCard = ({image, name, num, price}) => {
             <p>{name} <span>{num}</span></p>
             <div>{price}</div>
         </div>
-        <div className='px-7 text-[#eee]'>
         <div className='px-7 text-[#eee] mb-5'>
             Last Sale: 0.69eth
         </div>
@@ -21,7 +20,6 @@ const ColllectionCard = ({image, name, num, price}) => {
         <div className='flex flex-1 text-white pb items-center'> <div className='w-full text-center pt-3'> Buy Now </div></div> <div className='border-l-solid border-l-[1px] border-2-[black] px-2 h-full justify-center' >
             <div className='flex items-center'><BsCart color='white' fontStyle={'bold'} /> </div> </div>
         </button>
-    </div>
     </div>
   )
 }
