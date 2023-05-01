@@ -17,8 +17,8 @@ const ColllectionCard = ({image, name, num, price}) => {
             Last Sale: 0.69eth
         </div>
 
-        <button className='bg-blue-500  rounded-b-[12px] flex absolute bottom-0 w-full'>
-        <div className='flex flex-1 text-white pb items-center'> <div className='w-full text-center'> Buy Now </div></div> <div className='border-l-solid border-l-[1px] border-l-[black] px-2 h-full justify-center' >
+        <button className='bg-blue-500  rounded-b-[12px] flex absolute bottom-0 w-full px-8'>
+        <div className='flex flex-1 text-white pb items-center'> <div className='w-full text-center pt-3'> Buy Now </div></div> <div className='border-l-solid border-l-[1px] border-2-[black] px-2 h-full justify-center' >
             <div className='flex items-center'><BsCart color='white' fontStyle={'bold'} /> </div> </div>
         </button>
     </div>
