@@ -123,8 +123,6 @@
   }
 }
 
-
-
 .glass__effect {
   padding: 12px;
   background: rgba(255, 255, 255, 0.28);
@@ -137,7 +135,6 @@
 @media (max-width: 640px) {
   .glass__effect {
     padding: 6px;
-    
   }
 }
 
@@ -151,7 +148,7 @@ li {
 }
 
 .sub-menu {
-  @apply hidden w-80 py-10 cursor-pointer;
+  @apply hidden py-10 cursor-pointer w-80;
 }
 
 .menu-bar li:hover .sub-menu {
@@ -159,29 +156,29 @@ li {
 }
 
 .menu-bar .li:hover .sub-menu ul {
-  @apply flex flex-col items-start px-4 gap-0;
+  @apply flex flex-col items-start gap-0 px-4;
 }
 
 .menu-bar .li:hover .sub-menu ul li:hover {
   @apply text-black bg-[grey] w-full;
 }
 .menu-bar .li:hover .sub-menu ul li {
-  @apply py-5 rounded-lg w-full;
+  @apply w-full py-5 rounded-lg;
 }
 
 .wallet-menu-bar {
   cursor: pointer;
 }
 
-.wallet-sub-menu{
-  @apply hidden w-fit py-10 cursor-pointer
+.wallet-sub-menu {
+  @apply hidden w-fit py-10 cursor-pointer;
 }
 .wallet-menu-bar li:hover .wallet-sub-menu {
-  @apply absolute block gap-5 py-3  right-0 text-center text-black cursor-pointer w-fit;
+  @apply absolute right-0 block gap-5 py-3 text-center text-black cursor-pointer w-fit;
 }
 
 .wallet-menu-bar .li:hover .wallet-sub-menu ul {
-  @apply flex flex-col items-start px-4 gap-14 py-10;
+  @apply flex flex-col items-start px-4 py-10 gap-14;
 }
 
 @font-face {
@@ -213,9 +210,9 @@ li {
   font-family: "latomedium";
   src: url("./font/lato/Lato2OFLWeb/Lato/fonts/Lato-Medium.ttf");
 }
-body{
+body {
   padding-top: 0px;
-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
@@ -223,20 +220,18 @@ html {
   margin: 0;
   box-sizing: border-box;
   height: 100%;
-/* background-color: red; */
+  /* background-color: red; */
 }
 
 .collectioncard:hover img {
-    transform: scale(1.2, 1.2);
-    transition: all 0.7s ease-in;
+  transform: scale(1.2, 1.2);
+  transition: all 0.7s ease-in;
 }
-
 
 .collectioncard button {
   height: 0;
 }
 .collectioncard:hover button {
-    height: 35px;
-    transition: all 0.7s ease-in;
-
+  height: 35px;
+  transition: all 0.1s ease-in;
 }
