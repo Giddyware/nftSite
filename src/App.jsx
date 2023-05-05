@@ -14,7 +14,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CollectionPage from "./pages/CollectionPage";
-
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,15 +27,17 @@ function App() {
       element: <Auth />,
     },
     {
-
-    path: "/product",
-    element: <ProductDetail />
+      path: "/product",
+      element: <ProductDetail />,
     },
-     {
+    {
       path: "/collection/mew",
       element: <CollectionPage />,
     },
-
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
+    },
   ]);
 
   return <RouterProvider router={router} />;

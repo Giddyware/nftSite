@@ -192,8 +192,8 @@ const Dashboard = () => {
         </div>
 
         <DashboardCard />
-        <div className="flex flex-col gap-5 my-10 mx-3">
-          <div className="w-full border-b pb-4">
+        <div className="flex flex-col gap-5 mx-3 my-10">
+          <div className="w-full pb-4 border-b">
             <div className="flex justify-between">
               {/* TODO: Add the logo of the coin */}
               <p>logo ETH</p>
@@ -224,9 +224,6 @@ const Dashboard = () => {
             <DashboardTable />
           </div>
         </div>
-
-
-        
       </div>
     </div>
   );
