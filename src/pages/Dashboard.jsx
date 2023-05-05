@@ -15,6 +15,20 @@ import {
 } from "@mui/material";
 
 import avatar from "../assets/avatar.png";
+import Card from "./../components/Cards/Card";
+
+import Image1 from "./../assets/nft/nft1.jpg";
+import Image2 from "./../assets/nft/nft2.jpg";
+import Image3 from "./../assets/nft/nft3.jpg";
+import Image4 from "./../assets/nft/nft4.jpg";
+import Image5 from "./../assets/nft/nft5.jpg";
+import Image6 from "./../assets/nft/nft6.jpg";
+import Image7 from "./../assets/nft/nft7.jpg";
+import Image8 from "./../assets/nft/nft8.png";
+import Image9 from "./../assets/nft/nft9.jpg";
+import Image10 from "./../assets/nft/nft10.png";
+import Image11 from "./../assets/nft/nft11.jpg";
+import Image12 from "./../assets/nft/nft12.jpg";
 
 const DashboardLinks = ({ name, icon }) => {
   return (
@@ -42,15 +56,153 @@ const DashboardCard = () => {
   );
 };
 
-function createData(id, transaction, atm, date, status) {
+function createTransactionData(id, transaction, atm, date, status) {
   return { transaction, atm, date, status };
 }
 
-const rows = [
-  createData(1, "deposit", 5, 2, "completed"),
-  createData(2, "withdrawal", -4, 2, "pending"),
-  createData(3, "mint", -2, 5, "cancelled"),
+const transactionRows = [
+  createTransactionData(1, "deposit", 5, 2, "completed"),
+  createTransactionData(2, "withdrawal", -4, 2, "pending"),
+  createTransactionData(3, "mint", -2, 5, "cancelled"),
 ];
+
+function createSalesData(id, transaction, nftName, from, to, atm, status) {
+  return { transaction, nftName, from, to, atm, status };
+}
+
+const SalesRows = [
+  createSalesData(1, "buy", "JK94ejk8", "zac", "Rob", -500, "completed"),
+  createSalesData(2, "sell", "jkcxs8jk4", "white", "Bill", 292, "pending"),
+  createSalesData(3, "mint", "jkds8r4k", "bell", "josh", -648, "cancelled"),
+];
+
+const data = [
+  {
+    id: "18932",
+    imgUrl: Image1,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "18293",
+    imgUrl: Image2,
+    floor: 1.2,
+    totalVolume: 138933,
+  },
+  {
+    id: "83229",
+    imgUrl: Image3,
+    floor: 0.8,
+    totalVolume: 1289233,
+  },
+  {
+    id: "5236",
+    imgUrl: Image4,
+    floor: 0.5,
+    totalVolume: 45233,
+  },
+  {
+    id: "87483",
+    imgUrl: Image5,
+    floor: 0.822,
+    totalVolume: 483233,
+  },
+  {
+    id: "3249",
+    imgUrl: Image6,
+    floor: 0.323,
+    totalVolume: 75843,
+  },
+  {
+    id: "1493",
+    imgUrl: Image7,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "1823",
+    imgUrl: Image8,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "18430",
+    imgUrl: Image9,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "1hjd3",
+    imgUrl: Image10,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "1jkdx",
+    imgUrl: Image11,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "189i34j",
+    imgUrl: Image12,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+];
+
+const RecentSalesTable = () => {
+  return (
+    <TableContainer className="bg-[hsla(0,_0%,_20%,_1)] px-10 py-5 rounded-3xl">
+      <Table aria-label="dashboard-table" className="rounded">
+        <TableHead className="bg-black rounded ">
+          <TableRow className="rounded">
+            <TableCell className="text-white border-none">
+              Transaction
+            </TableCell>
+            <TableCell className="text-white border-none">NFT name</TableCell>
+            <TableCell className="text-white border-none">From</TableCell>
+            <TableCell className="text-white border-none">To</TableCell>
+            <TableCell className="text-white border-none">Amount</TableCell>
+            <TableCell className="text-white border-none">Status</TableCell>
+          </TableRow>
+        </TableHead>
+
+        <TableBody className="">
+          {SalesRows.map(
+            ({ id, transaction, nftName, from, to, atm, status }) => (
+              <TableRow className="" key={id}>
+                <TableCell className="text-white capitalize">
+                  {transaction}
+                </TableCell>
+                <TableCell className="text-white capitalize">
+                  {nftName}
+                </TableCell>
+                <TableCell className="text-white">{from}</TableCell>
+                <TableCell className="text-white">{to}</TableCell>
+                <TableCell className="text-white">{atm} ETH</TableCell>
+
+                <TableCell
+                  className={`capitalize ${
+                    status === "pending"
+                      ? "text-[hsla(28,_87%,_62%,_1)]"
+                      : status === "completed"
+                      ? "text-[hsla(84,_100%,_44%,_1)]"
+                      : status === "cancelled"
+                      ? "text-[hsla(0,_79%,_63%,_1)]"
+                      : "undefined"
+                  }`}
+                >
+                  {status}
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
 
 const DashboardTable = () => {
   return (
@@ -68,7 +220,7 @@ const DashboardTable = () => {
         </TableHead>
 
         <TableBody className="">
-          {rows.map(({ id, transaction, atm, date, status }) => (
+          {transactionRows.map(({ id, transaction, atm, date, status }) => (
             <TableRow className="" key={id}>
               <TableCell className="text-white capitalize">
                 {transaction === "withdrawal" ? (
@@ -192,8 +344,8 @@ const Dashboard = () => {
         </div>
 
         <DashboardCard />
-        <div className="flex flex-col gap-5 my-10 mx-3">
-          <div className="w-full border-b pb-4">
+        <div className="flex flex-col gap-5 mx-3 my-10">
+          <div className="w-full pb-4 border-b">
             <div className="flex justify-between">
               {/* TODO: Add the logo of the coin */}
               <p>logo ETH</p>
@@ -218,15 +370,27 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12 ">
+        <div className="mt-12 text-xs font-bold">
           <p className="mb-7">Recent Transactions</p>
           <div>
             <DashboardTable />
           </div>
         </div>
+        <div className="mt-12 ">
+          <p className="text-xs font-bold mb-7">NFT</p>
+          <div className="flex flex-wrap gap-6">
+            {data.map((el) => (
+              <Card imageWidth={56} key={el.id} {...el} />
+            ))}
+          </div>
+        </div>
 
-
-        
+        <div className="mt-12 text-xs font-bold">
+          <p className="mb-7">Recent Sales</p>
+          <div>
+            <RecentSalesTable />
+          </div>
+        </div>
       </div>
     </div>
   );
