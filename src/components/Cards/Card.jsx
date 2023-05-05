@@ -1,15 +1,20 @@
 // import Image from "../../assets/nft/nft1.jpg";
 
-const Card = ({ imgUrl, floor, totalVolume }) => {
-  // console.log(artDatails);
+const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
+  // console.log(imageWidth);
   return (
     // <div className="h-56">
-    <a href="#" className="flex flex-col gap-2 rounded-lg shadow-lg">
+    <a
+      href="#"
+      className="flex flex-col gap-2 rounded-lg shadow-lg bg-slate-400"
+    >
       <div className="w-full">
         <img
           src={imgUrl}
           alt=""
-          className="object-cover w-full h-56 rounded-t-lg"
+          className={`object-cover h-56 rounded-t-lg ${
+            imageWidth === "full" ? "w-full" : "w-56"
+          }`}
         />
       </div>
       <div className="p-4">

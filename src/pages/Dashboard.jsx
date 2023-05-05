@@ -15,6 +15,20 @@ import {
 } from "@mui/material";
 
 import avatar from "../assets/avatar.png";
+import Card from "./../components/Cards/Card";
+
+import Image1 from "./../assets/nft/nft1.jpg";
+import Image2 from "./../assets/nft/nft2.jpg";
+import Image3 from "./../assets/nft/nft3.jpg";
+import Image4 from "./../assets/nft/nft4.jpg";
+import Image5 from "./../assets/nft/nft5.jpg";
+import Image6 from "./../assets/nft/nft6.jpg";
+import Image7 from "./../assets/nft/nft7.jpg";
+import Image8 from "./../assets/nft/nft8.png";
+import Image9 from "./../assets/nft/nft9.jpg";
+import Image10 from "./../assets/nft/nft10.png";
+import Image11 from "./../assets/nft/nft11.jpg";
+import Image12 from "./../assets/nft/nft12.jpg";
 
 const DashboardLinks = ({ name, icon }) => {
   return (
@@ -50,6 +64,81 @@ const rows = [
   createData(1, "deposit", 5, 2, "completed"),
   createData(2, "withdrawal", -4, 2, "pending"),
   createData(3, "mint", -2, 5, "cancelled"),
+];
+
+const data = [
+  {
+    id: "18932",
+    imgUrl: Image1,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "18293",
+    imgUrl: Image2,
+    floor: 1.2,
+    totalVolume: 138933,
+  },
+  {
+    id: "83229",
+    imgUrl: Image3,
+    floor: 0.8,
+    totalVolume: 1289233,
+  },
+  {
+    id: "5236",
+    imgUrl: Image4,
+    floor: 0.5,
+    totalVolume: 45233,
+  },
+  {
+    id: "87483",
+    imgUrl: Image5,
+    floor: 0.822,
+    totalVolume: 483233,
+  },
+  {
+    id: "3249",
+    imgUrl: Image6,
+    floor: 0.323,
+    totalVolume: 75843,
+  },
+  {
+    id: "1493",
+    imgUrl: Image7,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "1823",
+    imgUrl: Image8,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "18430",
+    imgUrl: Image9,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "1hjd3",
+    imgUrl: Image10,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "1jkdx",
+    imgUrl: Image11,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
+  {
+    id: "189i34j",
+    imgUrl: Image12,
+    floor: 2.3,
+    totalVolume: 23233,
+  },
 ];
 
 const DashboardTable = () => {
@@ -218,10 +307,18 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12 ">
+        <div className="mt-12 text-xs font-bold">
           <p className="mb-7">Recent Transactions</p>
           <div>
             <DashboardTable />
+          </div>
+        </div>
+        <div className="mt-12 ">
+          <p className="text-xs font-bold mb-7">NFT</p>
+          <div className="flex flex-wrap gap-6">
+            {data.map((el) => (
+              <Card imageWidth={56} key={el.id} {...el} />
+            ))}
           </div>
         </div>
       </div>
