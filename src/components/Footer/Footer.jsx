@@ -22,7 +22,9 @@ const Footer = () => {
                 />
               </div>
               <div>
-                <button className="px-5 py-3 bg-blue-500 rounded-lg">Sign up</button>
+                <button className="px-5 py-3 bg-blue-500 rounded-lg">
+                  Sign up
+                </button>
               </div>
             </div>
           </div>

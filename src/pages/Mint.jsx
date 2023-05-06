@@ -44,7 +44,7 @@ const Mint = () => {
       ></textarea>
 
       <button className="bg-[#084cdf] py-6 px-10 ml-auto text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
-        Submit
+        Mint
       </button>
     </div>
     // </div>
