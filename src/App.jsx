@@ -29,58 +29,54 @@ import Deposit from "./pages/Deposit";
 function App() {
   const RecentSalesTableRef = useRef(null);
 
-  const router = createBrowserRouter(
-    [
-      
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/auth",
-        element: <Auth />,
-      },
-      {
-        path: "/product",
-        element: <ProductDetail />,
-      },
-      {
-        path: "/collection/mew",
-        element: <CollectionPage />,
-      },
-      {
-        path: "/deposit",
-        element: <Deposit />
-      },
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-        children: [
-          {
-            path: "RecentSalesTable",
-            element: (
-              <RecentSalesTable RecentSalesTableRef={RecentSalesTableRef} />
-            ),
-          },
-          { path: "mint", element: <Mint /> },
-        ],
-      },
-      { path: "mint", element: <Mint /> },
-      ,
-    ]
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/auth",
+      element: <Auth />,
+    },
+    {
+      path: "/product",
+      element: <ProductDetail />,
+    },
+    {
+      path: "/collection/mew",
+      element: <CollectionPage />,
+    },
+    {
+      path: "/deposit",
+      element: <Deposit />,
+    },
+    {
+      path: "dashboard",
+      element: <Dashboard />,
+      children: [
+        {
+          path: "RecentSalesTable",
+          element: (
+            <RecentSalesTable RecentSalesTableRef={RecentSalesTableRef} />
+          ),
+        },
+        { path: "mint", element: <Mint /> },
+      ],
+    },
+    { path: "mint", element: <Mint /> },
+    ,
+  ]);
 
+  // createRoutesFromElements(
+  //   <Routes>
+  //     <Route indev element={<Home />} />
+  //     <Route path="/auth" element={<Auth />} />
+  //     <Route path="/Collection" element={<CollectionPage />} />
+  //     <Route path="/dashboard" element={<Dashboard />} />
+  //   </Routes>
+  // )
 
-    // createRoutesFromElements(
-    //   <Routes>
-    //     <Route indev element={<Home />} />
-    //     <Route path="/auth" element={<Auth />} />
-    //     <Route path="/Collection" element={<CollectionPage />} />
-    //     <Route path="/dashboard" element={<Dashboard />} />
-    //   </Routes>
-    // )
-
-
-  return( <RouterProvider router={router} />)
+  return <RouterProvider router={router} />;
 }
 
 export default App;
