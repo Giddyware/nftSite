@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import Header from "./components/Header/Header";
 import background from "./assets/background.jpg";
 import Cards from "./components/Cards/Cards";
@@ -24,12 +24,14 @@ import Dashboard from "./pages/Dashboard";
 import RecentSalesTable from "./components/UI/RecentSalesTable";
 import { useRef } from "react";
 import Mint from "./pages/Mint";
+import Deposit from "./pages/Deposit";
 
 function App() {
   const RecentSalesTableRef = useRef(null);
 
   const router = createBrowserRouter(
     [
+      
       {
         path: "/",
         element: <Home />,
@@ -45,6 +47,10 @@ function App() {
       {
         path: "/collection/mew",
         element: <CollectionPage />,
+      },
+      {
+        path: "/deposit",
+        element: <Deposit />
       },
       {
         path: "dashboard",
@@ -63,6 +69,7 @@ function App() {
       ,
     ]
 
+
     // createRoutesFromElements(
     //   <Routes>
     //     <Route indev element={<Home />} />
@@ -71,9 +78,9 @@ function App() {
     //     <Route path="/dashboard" element={<Dashboard />} />
     //   </Routes>
     // )
-  );
 
-  return <RouterProvider router={router} />;
+
+  return( <RouterProvider router={router} />)
 }
 
 export default App;
