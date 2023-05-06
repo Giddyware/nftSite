@@ -28,6 +28,7 @@ import Image10 from "../../assets/nft/nft10.png";
 import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
 import { useRef } from "react";
+import { BsFullscreenExit } from "react-icons/bs";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -157,7 +158,7 @@ const Cards = () => {
           {data.map((artDatails) => (
             <SwiperSlide>
               {" "}
-              <Card key={artDatails.id} {...artDatails} />
+              <Card key={artDatails.id} imageWidth={'full'} {...artDatails} />
             </SwiperSlide>
           ))}
         </Swiper>
