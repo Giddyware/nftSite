@@ -24,12 +24,14 @@ import Dashboard from "./pages/Dashboard";
 import RecentSalesTable from "./components/UI/RecentSalesTable";
 import { useRef } from "react";
 import Mint from "./pages/Mint";
+import Deposit from "./pages/Deposit";
 
 function App() {
   const RecentSalesTableRef = useRef(null);
 
   const router = createBrowserRouter(
     [
+      
       {
         path: "/",
         element: <Home />,
@@ -47,6 +49,10 @@ function App() {
         element: <CollectionPage />,
       },
       {
+        path: "/deposit",
+        element: <Deposit />
+      },
+      {
         path: "dashboard",
         element: <Dashboard />,
         children: [
@@ -60,8 +66,7 @@ function App() {
         ],
       },
       { path: "dashboard/mint", element: <Mint /> },
-      ,
-    ]
+    ])
 
     // createRoutesFromElements(
     //   <Routes>
@@ -71,9 +76,9 @@ function App() {
     //     <Route path="/dashboard" element={<Dashboard />} />
     //   </Routes>
     // )
-  );
 
-  return <RouterProvider router={router} />;
+
+  return( <RouterProvider router={router} />)
 }
 
 export default App;

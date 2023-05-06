@@ -232,10 +232,6 @@ html {
   height: 0;
 }
 .collectioncard:hover button {
-<<<<<<< HEAD
-    height: 35px;
-    transition: all 0.7s ease-in;
-=======
   height: 35px;
   transition: all 0.1s ease-in;
 }
@@ -334,5 +330,4 @@ input[type=file]::file-selector-button {
 
 input[type=file]::file-selector-button:hover {
   background: #0d45a5;
->>>>>>> b662da5fd104275f91623bbc3d9d7cb6302f3217
 }
