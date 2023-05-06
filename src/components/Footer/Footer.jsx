@@ -5,7 +5,7 @@ import { SlSocialReddit } from "react-icons/sl";
 const Footer = () => {
   return (
     <>
-      <div className="px-10 py-16 mt-32 text-white bg-blue-600 text-[16px]">
+      <div className="px-10 py-16 mt-32 text-white bg-[#1868B7] text-[16px]">
         <div className="flex justify-between border-b">
           <div>
             <h2 className="text-xl font-bold">Stay in the loop</h2>
@@ -88,7 +88,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="px-10 py-8 text-white bg-blue-600 text-[16px] flex justify-between">
+      <div className="px-10 py-8 text-white bg-[#1868B7] text-[16px] flex justify-between">
         <div>
           <p>© 2018 - 2023 Ozone Networks, Inc</p>
         </div>

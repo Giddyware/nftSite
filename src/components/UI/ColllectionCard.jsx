@@ -5,7 +5,7 @@ const ColllectionCard = ({ image, name, num, price }) => {
   console.log(image);
   return (
     <div className="flex flex-col gap-5 text-2xl font-bold font-poppins rounded-[12px] shadow-xl  bg-white cursor-pointer collectioncard relative ">
-      <div className="w-[100%] h-[200px] overflow-hidden">
+      <div className="w-[100%] h-[200px] overflow-hidden rounded-[12px]">
         <img
           src={image}
           alt=""
