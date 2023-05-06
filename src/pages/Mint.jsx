@@ -6,7 +6,7 @@ const Mint = () => {
       <p className="my-5 text-lg">* Required Field</p>
 
       <p className="text-2xl font-bold">Image *</p>
-      <p className="my-5 text-lg">File types supported: JPG, PNG</p>
+      <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
 
       <label for="images" className=" drop-container">
         <span class="drop-title">Drop files here</span>
