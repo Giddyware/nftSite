@@ -171,7 +171,7 @@ li {
 }
 
 .wallet-sub-menu {
-  @apply hidden w-fit py-10 cursor-pointer;
+  @apply hidden py-10 cursor-pointer w-fit;
 }
 .wallet-menu-bar li:hover .wallet-sub-menu {
   @apply absolute right-0 block gap-5 py-3 text-center text-black cursor-pointer w-fit;
@@ -234,4 +234,8 @@ html {
 .collectioncard:hover button {
   height: 35px;
   transition: all 0.1s ease-in;
+}
+
+html {
+  scroll-behavior: smooth;
 }

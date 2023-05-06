@@ -15,11 +15,15 @@ import Home from "./pages/Home";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CollectionPage from "./pages/CollectionPage";
 import Dashboard from "./pages/Dashboard";
+import RecentSalesTable from "./components/UI/RecentSalesTable";
+import { useRef } from "react";
 
 function App() {
+  const RecentSalesTableRef = useRef(null);
+
   const router = createBrowserRouter([
     {
-      path: "/*",
+      path: "/",
       element: <Home />,
     },
     {
@@ -37,6 +41,10 @@ function App() {
     {
       path: "/dashboard",
       element: <Dashboard />,
+    },
+    {
+      path: "/#RecentSalesTable",
+      element: <RecentSalesTable RecentSalesTableRef={RecentSalesTableRef} />,
     },
   ]);
 

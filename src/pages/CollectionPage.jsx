@@ -154,7 +154,7 @@ const CollectionPage = () => {
 
       <div className="grid grid-cols-4 gap-10 m-10">
         {coll.map((lec) => (
-          <ColllectionCard key={lec.image} />
+          <ColllectionCard key={lec.image} {...lec} />
         ))}
       </div>
     </div>
