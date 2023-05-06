@@ -5,7 +5,7 @@ const Mint = () => {
       <p className="text-5xl font-bold">Create New Item</p>
       <p className="my-5 text-lg">* Required Field</p>
 
-      <p className="text-2xl font-bold">Image, Video, Audio, or 3D Model *</p>
+      <p className="text-2xl font-bold">Image *</p>
       <p className="my-5 text-lg">File types supported: JPG, PNG</p>
 
       <label for="images" className=" drop-container">
