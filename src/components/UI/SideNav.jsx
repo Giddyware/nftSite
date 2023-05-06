@@ -59,6 +59,7 @@ const SideNav = () => {
             <DashboardLinks
               icon={<MdCreate size={"10%"} />}
               name={"Mint / Create"}
+              hash="/mint"
             />
           </li>
           <li className="px-5 py-6 ml-20">
