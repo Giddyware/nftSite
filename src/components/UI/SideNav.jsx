@@ -9,16 +9,10 @@ import { Link } from "react-router-dom";
 const DashboardLinks = ({ hash, name, icon }) => {
   console.log(hash);
   return (
-    <Link
-      onClick={() => {
-        handleScroll(RecentSalesTableRef.current);
-      }}
-      to={hash}
-      className="flex items-center justify-start"
-    >
+    <div className="flex items-center justify-start">
       {icon}
       <p className="p-5 text-lg">{name}</p>
-    </Link>
+    </div>
   );
 };
 
@@ -30,7 +24,7 @@ const handleScroll = (ref) => {
   });
 };
 
-const SideNav = () => {
+const SideNav = ({ refs }) => {
   return (
     <div className="">
       {/* TODO: Make the Sidebar component */}
@@ -69,12 +63,18 @@ const SideNav = () => {
             />
           </li>
 
-          <li className="px-5 py-6 ml-20">
+          <li
+            className="px-5 py-6 ml-20"
+            onClick={() => {
+              console.log(refs.saleRef, "salesref");
+              refs.saleRef.current.scrollIntoView();
+            }}
+          >
             {/* <Link to="/#RecentSalesTable"> */}
             <DashboardLinks
               icon={<GiTakeMyMoney size={"10%"} />}
               name={"Sales"}
-              hash="/#RecentSalesTable"
+              // hash="/#RecentSalesTable"
             />
             {/* </Link> */}
           </li>

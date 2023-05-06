@@ -18,9 +18,11 @@ import Card from "./../components/Cards/Card";
 import RecentSalesTable from "../components/UI/RecentSalesTable";
 import DashboardTable from "../components/UI/DashboardTable";
 import SideNav from "../components/UI/SideNav";
+import Withdraw from "../components/UI/Withdraw";
+import { useState, useRef } from "react";
+import Overlay from "../components/UI/Overlay";
 
-
-const DashboardCard = () => {
+const DashboardCard = ({ showModal }) => {
   return (
     <div className="bg-[hsla(0,_0%,_20%,_1)] py-10 px-16 flex justify-between rounded-2xl">
       <div>
@@ -29,7 +31,10 @@ const DashboardCard = () => {
       </div>
       <div className="flex gap-x-6">
         <button className="px-10 py-4 bg-blue-500 rounded-lg">Deposit</button>
-        <button className="px-10 py-4 text-black bg-white rounded-lg">
+        <button
+          className="px-10 py-4 text-black bg-white rounded-lg"
+          onClick={() => showModal()}
+        >
           Withdraw
         </button>
       </div>
@@ -112,11 +117,23 @@ const data = [
   },
 ];
 
-
 const Dashboard = () => {
+  const saleRef = useRef(null);
+  // console.log(saleRef.current);
+  const [showModal, setShowModal] = useState(false);
+
+  const ModalStatus = () => {
+    console.log("working");
+    setShowModal((prev) => !prev);
+  };
   return (
     <div className="grid min-h-screen text-white bg-black grid-cols-[320px,_1fr]">
-      <SideNav />
+      <Overlay show={showModal} clear={ModalStatus} />
+      {/* <Withdraw show={showModal} modalStatus={ModalStatus} /> */}
+      <Withdraw show={showModal} modalStatus={ModalStatus} />
+
+      <SideNav refs={{ saleRef }} />
+
       <div className="w-[100%] p-8">
         <div className="flex items-center justify-center pb-4 mb-8 border-b">
           <div className="mr-auto">
@@ -140,7 +157,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <DashboardCard id="home" />
+        <DashboardCard id="home" showModal={ModalStatus} />
         <div className="flex flex-col gap-5 mx-3 my-10" id="listing">
           <div className="w-full pb-4 border-b">
             <div className="flex justify-between">
@@ -182,7 +199,11 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="mt-12 text-xs font-bold" id="RecentSalesTable">
+        <div
+          className="mt-12 text-xs font-bold"
+          id="RecentSalesTable"
+          ref={saleRef}
+        >
           <p className="mb-7">Recent Sales</p>
           <div>
             <RecentSalesTable />
