@@ -5,8 +5,8 @@ const Mint = () => {
       <p className="text-5xl font-bold">Create New Item</p>
       <p className="my-5 text-lg">* Required Field</p>
 
-      <p className="text-2xl font-bold">Image, Video, Audio, or 3D Model *</p>
-      <p className="my-5 text-lg">File types supported: JPG, PNG</p>
+      <p className="text-2xl font-bold">Image *</p>
+      <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
 
       <label for="images" className=" drop-container">
         <span class="drop-title">Drop files here</span>
@@ -44,7 +44,7 @@ const Mint = () => {
       ></textarea>
 
       <button className="bg-[#084cdf] py-6 px-10 ml-auto text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
-        Submit
+        Mint
       </button>
     </div>
     // </div>
