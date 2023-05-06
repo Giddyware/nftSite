@@ -59,7 +59,7 @@ function App() {
           { path: "mint", element: <Mint /> },
         ],
       },
-      { path: "dashboard/mint", element: <Mint /> },
+      { path: "mint", element: <Mint /> },
       ,
     ]
 

@@ -13,7 +13,7 @@ const Footer = () => {
               Join our mailing list to stay in the loop with our newest feature
               releases, NFT drops, and tips and tricks for navigating OpenSea.
             </p>
-            <div className="flex">
+            <div className="flex items-center">
               <div className="my-8 mr-5 w-96">
                 <input
                   className="w-full p-2 text-black border-none rounded-lg"
@@ -21,9 +21,9 @@ const Footer = () => {
                   placeholder="Your email address"
                 />
               </div>
-              <button className="px-12 py-1 bg-blue-500 rounded-lg">
-                Sign up
-              </button>
+              <div>
+                <button className="px-5 py-3 bg-blue-500 rounded-lg">Sign up</button>
+              </div>
             </div>
           </div>
 
