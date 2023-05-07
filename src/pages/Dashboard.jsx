@@ -131,7 +131,7 @@ const Dashboard = () => {
     setShowModal((prev) => !prev);
   };
   return (
-    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[320px,_1fr]">
+    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr]">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <Withdraw show={showModal} modalStatus={ModalStatus} /> */}
       <Withdraw show={showModal} modalStatus={ModalStatus} />
@@ -162,35 +162,7 @@ const Dashboard = () => {
         </div>
 
         <DashboardCard id="home" showModal={ModalStatus} />
-        {/* <div className="flex flex-col gap-5 mx-3 my-10" id="listing"> */}
-        {/* <div className="w-full pb-
-        4 border-b">
-            <div className="flex justify-between">
-              {/* TODO: Add the logo of the coin */}
-        {/* <p>logo ETH</p>
-              <p>~19400</p>
-            </div> */}
-        {/* <div className="flex justify-between text-gray-500"> */}
-        {/* TODO: Add the logo of the coin */}
-        {/* <p>Logo WETH</p>
-              <p>~19400</p>
-            </div> */}
-        {/* </div> */}
-        {/* <div className="w-full ">
-            <div className="flex justify-between"> */}
-        {/* TODO: Add the logo of the coin */}
-        {/* <div className="w-10 h-10"></div> */}
-        {/* <p>ETH</p>
-              <p>~19400</p>
-            </div> */}
-        {/* <div className="flex justify-between text-gray-500"> */}
-        {/* TODO: Add the logo of the coin */}
-        {/* <p>Logo WETH</p>
-              <p>~19400</p>
-            </div> */}
-        {/* </div>  */}
 
-        {/* </div> */}
         <div
           className="mx- my-10 flex flex-col bg-gray-200 px-8 py-7 gap-4 rounded-xl"
           id="listing"
