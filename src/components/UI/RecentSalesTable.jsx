@@ -21,19 +21,19 @@ const RecentSalesTable = ({ RecentSalesTableRef }) => {
   return (
     <TableContainer
       ref={RecentSalesTableRef}
-      className="bg-[hsla(0,_0%,_20%,_1)] px-10 py-5 rounded-3xl"
+      className="bg-gray-200 px-10 py-5 rounded-3xl"
     >
       <Table aria-label="dashboard-table" className="rounded">
-        <TableHead className="bg-black rounded ">
+        <TableHead className="bg-gray-400 rounded ">
           <TableRow className="rounded">
-            <TableCell className="text-white border-none">
+            <TableCell className="text-black border-none">
               Transaction
             </TableCell>
-            <TableCell className="text-white border-none">NFT name</TableCell>
-            <TableCell className="text-white border-none">From</TableCell>
-            <TableCell className="text-white border-none">To</TableCell>
-            <TableCell className="text-white border-none">Amount</TableCell>
-            <TableCell className="text-white border-none">Status</TableCell>
+            <TableCell className="text-black border-none">NFT name</TableCell>
+            <TableCell className="text-black border-none">From</TableCell>
+            <TableCell className="text-black border-none">To</TableCell>
+            <TableCell className="text-black border-none">Amount</TableCell>
+            <TableCell className="text-black border-none">Status</TableCell>
           </TableRow>
         </TableHead>
 
@@ -41,15 +41,15 @@ const RecentSalesTable = ({ RecentSalesTableRef }) => {
           {SalesRows.map(
             ({ id, transaction, nftName, from, to, atm, status }) => (
               <TableRow className="" key={id}>
-                <TableCell className="text-white capitalize">
+                <TableCell className="text-black capitalize">
                   {transaction}
                 </TableCell>
-                <TableCell className="text-white capitalize">
+                <TableCell className="text-black capitalize">
                   {nftName}
                 </TableCell>
-                <TableCell className="text-white">{from}</TableCell>
-                <TableCell className="text-white">{to}</TableCell>
-                <TableCell className="text-white">{atm} ETH</TableCell>
+                <TableCell className="text-black">{from}</TableCell>
+                <TableCell className="text-black">{to}</TableCell>
+                <TableCell className="text-black">{atm} ETH</TableCell>
 
                 <TableCell
                   className={`capitalize ${

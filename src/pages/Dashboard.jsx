@@ -24,7 +24,7 @@ import Overlay from "../components/UI/Overlay";
 
 const DashboardCard = ({ showModal }) => {
   return (
-    <div className="bg-[hsla(0,_0%,_20%,_1)] py-10 px-16 flex justify-between rounded-2xl">
+    <div className="bg-gray-200 py-10 px-16 flex justify-between rounded-2xl">
       <div>
         <p>Account Balance</p>
         <p className="text-3xl font-bold">50 ETH</p>
@@ -32,7 +32,7 @@ const DashboardCard = ({ showModal }) => {
       <div className="flex gap-x-6">
         <button className="px-10 py-4 bg-blue-500 rounded-lg">Deposit</button>
         <button
-          className="px-10 py-4 text-black bg-white rounded-lg"
+          className="px-10 py-4 text-gray-400 bg-white rounded-lg"
           onClick={() => showModal()}
         >
           Withdraw
@@ -119,6 +119,8 @@ const data = [
 
 const Dashboard = () => {
   const saleRef = useRef(null);
+  const nftRef = useRef(null);
+  const transactionRef = useRef(null);
   // console.log(saleRef.current);
   const [showModal, setShowModal] = useState(false);
 
@@ -127,12 +129,12 @@ const Dashboard = () => {
     setShowModal((prev) => !prev);
   };
   return (
-    <div className="grid min-h-screen text-white bg-black grid-cols-[320px,_1fr]">
+    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[320px,_1fr]">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <Withdraw show={showModal} modalStatus={ModalStatus} /> */}
       <Withdraw show={showModal} modalStatus={ModalStatus} />
 
-      <SideNav refs={{ saleRef }} />
+      <SideNav refs={{ saleRef, nftRef, transactionRef }} />
 
       <div className="w-[100%] p-8">
         <div className="flex items-center justify-center pb-4 mb-8 border-b">
@@ -141,7 +143,7 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center justify-center ">
             <div>language</div>
-            <div className="flex px-4 bg-[#0d0d0d] item-center justify-center rounded-lg py-2">
+            <div className="flex px-4 bg-gray-200 item-center justify-center rounded-lg py-2">
               <img
                 className="border border-solid rounded-full h-14 w-14 border-whiter"
                 src={avatar}
@@ -184,15 +186,19 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12 text-xs font-bold" id="RecentTransactionTable">
+        <div
+          className="mt-12 text-xs font-bold"
+          id="RecentTransactionTable"
+          ref={transactionRef}
+        >
           <p className="mb-7">Recent Transactions</p>
           <div>
             <DashboardTable />
           </div>
         </div>
-        <div className="mt-12" id="nft">
+        <div className="mt-12" id="nft" ref={nftRef}>
           <p className="text-xs font-bold mb-7">NFT</p>
-          <div className="flex flex-wrap gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {data.map((el) => (
               <Card imageWidth={56} key={el.id} {...el} />
             ))}

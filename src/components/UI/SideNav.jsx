@@ -28,7 +28,7 @@ const SideNav = ({ refs }) => {
   return (
     <div className="">
       {/* TODO: Make the Sidebar component */}
-      <div className="bg-[hsla(0,_0%,_20%,_1)] min-h-full py-8">
+      <div className="bg-gray-200 min-h-full py-8">
         <a
           href="#"
           className="flex items-center justify-center p-2 pb-8 border-b"
@@ -43,7 +43,13 @@ const SideNav = ({ refs }) => {
               name={"Account Summary"}
             />
           </li>
-          <li className="px-5 py-6 ml-20">
+          <li
+            className="px-5 py-6 ml-20"
+            onClick={() => {
+              console.log(refs.nftRef, "nftRef");
+              refs.nftRef.current.scrollIntoView();
+            }}
+          >
             <DashboardLinks
               icon={<MdOutlineCollections size={"10%"} />}
               name={"NFT Collection"}
@@ -56,7 +62,13 @@ const SideNav = ({ refs }) => {
               hash="/mint"
             />
           </li>
-          <li className="px-5 py-6 ml-20">
+          <li
+            className="px-5 py-6 ml-20"
+            onClick={() => {
+              console.log(refs.transactionRef, "transactionRef");
+              refs.transactionRef.current.scrollIntoView();
+            }}
+          >
             <DashboardLinks
               icon={<GrTransaction size={"10%"} />}
               name={"Transaction"}
@@ -66,7 +78,7 @@ const SideNav = ({ refs }) => {
           <li
             className="px-5 py-6 ml-20"
             onClick={() => {
-              console.log(refs.saleRef, "salesref");
+              console.log(refs.saleRef, "salesRef");
               refs.saleRef.current.scrollIntoView();
             }}
           >

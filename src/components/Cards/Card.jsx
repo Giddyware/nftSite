@@ -6,14 +6,14 @@ const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col gap-2 rounded-lg shadow-lg bg-slate-400"
+      className="flex flex-col gap-2 rounded-lg shadow-lg bg-gray-200"
     >
       <div className="w-full">
         <img
           src={imgUrl}
           alt=""
           className={`object-cover h-56 rounded-t-lg ${
-            imageWidth === "full" ? "w-full" : "w-56"
+            imageWidth === "full" ? "w-full" : "w-full"
           }`}
         />
       </div>
