@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { BiChevronUp } from "react-icons/bi";
 
 import Image1 from "./../assets/nft/nft1.jpg";
@@ -12,6 +13,8 @@ import Image9 from "./../assets/nft/nft9.jpg";
 import Image10 from "./../assets/nft/nft10.png";
 import Image11 from "./../assets/nft/nft11.jpg";
 import Image12 from "./../assets/nft/nft12.jpg";
+import Ethereum_logo from "./../assets/Ethereum_logo.png";
+import Weth_logo from "./../assets/weth_logo.png";
 
 import avatar from "../assets/avatar.png";
 import Card from "./../components/Cards/Card";
@@ -19,7 +22,6 @@ import RecentSalesTable from "../components/UI/RecentSalesTable";
 import DashboardTable from "../components/UI/DashboardTable";
 import SideNav from "../components/UI/SideNav";
 import Withdraw from "../components/UI/Withdraw";
-import { useState, useRef } from "react";
 import Overlay from "../components/UI/Overlay";
 
 const DashboardCard = ({ showModal }) => {
@@ -142,8 +144,8 @@ const Dashboard = () => {
             <h1 className="text-lg">Home</h1>
           </div>
           <div className="flex items-center justify-center ">
-            <div>language</div>
-            <div className="flex px-4 bg-gray-200 item-center justify-center rounded-lg py-2">
+            <div className="mx-5">language</div>
+            <div className="flex px-4 bg-gray-100 item-center justify-center rounded-lg py-2">
               <img
                 className="border border-solid rounded-full h-14 w-14 border-whiter"
                 src={avatar}
@@ -160,34 +162,64 @@ const Dashboard = () => {
         </div>
 
         <DashboardCard id="home" showModal={ModalStatus} />
-        <div className="flex flex-col gap-5 mx-3 my-10" id="listing">
-          <div className="w-full pb-4 border-b">
+        {/* <div className="flex flex-col gap-5 mx-3 my-10" id="listing"> */}
+        {/* <div className="w-full pb-
+        4 border-b">
             <div className="flex justify-between">
               {/* TODO: Add the logo of the coin */}
-              <p>logo ETH</p>
+        {/* <p>logo ETH</p>
               <p>~19400</p>
-            </div>
-            <div className="flex justify-between text-gray-500">
-              {/* TODO: Add the logo of the coin */}
-              <p>Logo WETH</p>
+            </div> */}
+        {/* <div className="flex justify-between text-gray-500"> */}
+        {/* TODO: Add the logo of the coin */}
+        {/* <p>Logo WETH</p>
               <p>~19400</p>
+            </div> */}
+        {/* </div> */}
+        {/* <div className="w-full ">
+            <div className="flex justify-between"> */}
+        {/* TODO: Add the logo of the coin */}
+        {/* <div className="w-10 h-10"></div> */}
+        {/* <p>ETH</p>
+              <p>~19400</p>
+            </div> */}
+        {/* <div className="flex justify-between text-gray-500"> */}
+        {/* TODO: Add the logo of the coin */}
+        {/* <p>Logo WETH</p>
+              <p>~19400</p>
+            </div> */}
+        {/* </div>  */}
+
+        {/* </div> */}
+        <div
+          className="mx- my-10 flex flex-col bg-gray-200 px-4 py-7 gap-4 rounded-xl"
+          id="listing"
+        >
+          <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">
+            <div>
+              <img className="w-7" src={Ethereum_logo} alt="Ethereum_logo" />
             </div>
+            <p>ETH</p>
+            <p className="justify-self-end">~128938</p>
           </div>
-          <div className="w-full ">
-            <div className="flex justify-between">
-              {/* TODO: Add the logo of the coin */}
-              <p>logo ETH</p>
-              <p>~19400</p>
+          <div className="flex justify-between ml-[40px] text-gray-400">
+            <p>EHT</p>
+            <p>~839</p>
+          </div>
+          <div className="grid grid-cols-[40px,_80px_1fr]">
+            <div>
+              <img className="w-7" src={Weth_logo} alt="Weth_logo" />
             </div>
-            <div className="flex justify-between text-gray-500">
-              {/* TODO: Add the logo of the coin */}
-              <p>Logo WETH</p>
-              <p>~19400</p>
-            </div>
+            <p>WETH</p>
+            <p className="justify-self-end">~128938</p>
+          </div>
+          <div className="flex justify-between ml-[40px] text-gray-400">
+            <p>WETH</p>
+            <p>~839</p>
           </div>
         </div>
         <div
-          className="mt-12 text-xs font-bold"
+          className="mt-12 text-3xl font-bold"
           id="RecentTransactionTable"
           ref={transactionRef}
         >
@@ -197,7 +229,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="mt-12" id="nft" ref={nftRef}>
-          <p className="text-xs font-bold mb-7">NFT</p>
+          <p className="text-3xl font-bold mb-7">NFTs</p>
           <div className="grid grid-cols-4 gap-6">
             {data.map((el) => (
               <Card imageWidth={56} key={el.id} {...el} />
@@ -206,7 +238,7 @@ const Dashboard = () => {
         </div>
 
         <div
-          className="mt-12 text-xs font-bold"
+          className="mt-12 text-3xl font-bold"
           id="RecentSalesTable"
           ref={saleRef}
         >

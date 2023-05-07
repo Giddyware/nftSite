@@ -6,7 +6,7 @@ const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col gap-2 rounded-lg shadow-lg bg-gray-200"
+      className="flex flex-col gap-2 rounded-lg shadow-lg bg-gray-100"
     >
       <div className="w-full">
         <img

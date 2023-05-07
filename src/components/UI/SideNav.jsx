@@ -28,7 +28,7 @@ const SideNav = ({ refs }) => {
   return (
     <div className="">
       {/* TODO: Make the Sidebar component */}
-      <div className="bg-gray-200 min-h-full py-8">
+      <div className="bg-gray-100 min-h-full py-8">
         <a
           href="#"
           className="flex items-center justify-center p-2 pb-8 border-b"

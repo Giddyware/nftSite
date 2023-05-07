@@ -20,9 +20,9 @@ const transactionRows = [
 
 const DashboardTable = () => {
   return (
-    <TableContainer className="bg-gray-200 px-10 py-5 rounded-3xl">
+    <TableContainer className="bg-gray-100 px-10 py-5 rounded-3xl">
       <Table aria-label="dashboard-table" className="rounded">
-        <TableHead className="bg-gray-400 rounded ">
+        <TableHead className="bg-gray-300 rounded">
           <TableRow className="rounded">
             <TableCell className="text-black border-none">
               Transaction

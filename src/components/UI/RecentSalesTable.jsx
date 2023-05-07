@@ -21,7 +21,7 @@ const RecentSalesTable = ({ RecentSalesTableRef }) => {
   return (
     <TableContainer
       ref={RecentSalesTableRef}
-      className="bg-gray-200 px-10 py-5 rounded-3xl"
+      className="bg-gray-100 px-10 py-5 rounded-3xl"
     >
       <Table aria-label="dashboard-table" className="rounded">
         <TableHead className="bg-gray-400 rounded ">
