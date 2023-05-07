@@ -192,7 +192,7 @@ const Dashboard = () => {
 
         {/* </div> */}
         <div
-          className="mx- my-10 flex flex-col bg-gray-200 px-4 py-7 gap-4 rounded-xl"
+          className="mx- my-10 flex flex-col bg-gray-200 px-8 py-7 gap-4 rounded-xl"
           id="listing"
         >
           <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">

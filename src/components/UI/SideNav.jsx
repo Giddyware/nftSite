@@ -1,10 +1,11 @@
 import { FaMoneyCheck } from "react-icons/fa";
-import { FcWiFiLogo } from "react-icons/fc";
+
 import { MdCreate, MdOutlineCollections, MdSummarize } from "react-icons/md";
 import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Logo from '../../assets/logo.png'
 
 const DashboardLinks = ({ hash, name, icon }) => {
   console.log(hash);
@@ -27,14 +28,14 @@ const handleScroll = (ref) => {
 const SideNav = ({ refs }) => {
   return (
     <div className="">
-      {/* TODO: Make the Sidebar component */}
+      {/* TODO: Make the SideNav component */}
       <div className="bg-gray-100 min-h-full py-8">
         <a
           href="#"
           className="flex items-center justify-center p-2 pb-8 border-b"
         >
-          <FcWiFiLogo size={"10%"} />
-          <h1 className="text-2xl font-bold capitalize">OPENSEA</h1>
+          <img className="w-80" src={Logo} alt="logo" />
+          {/* <h1 className="text-2xl font-bold capitalize">OPENSEA</h1> */}
         </a>
         <ul className="my-10 ">
           <li className="px-5 py-6 ml-20">
