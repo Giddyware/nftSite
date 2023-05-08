@@ -6,20 +6,19 @@ import Categories from "../components/Category/Categories";
 import Header from "../components/Header/Header";
 import ConnectWallet from "../components/UI/ConnectWallet";
 import Overlay from "../components/UI/Overlay";
-import AddFundModal from "../components/UI/AddFundZModal";
-
+import AddFundModal from "../components/UI/AddFundsModal";
 
 const Home = () => {
   const [count, setCount] = useState(0);
-  const [showModal, setShowmodal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const ModalStatus = () => {
-    console.log("wroking");
-    setShowmodal((prev) => !prev);
+    console.log("working");
+    setShowModal((prev) => !prev);
   };
 
   return (
-    <div className="h-screen w-full relative">
+    <div className="relative w-full h-screen">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <ConnectWallet show={showModal} modalStatus={ModalStatus} /> */}
       <AddFundModal show={showModal} modalStatus={ModalStatus} />
