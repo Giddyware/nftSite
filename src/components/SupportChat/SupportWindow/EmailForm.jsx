@@ -3,15 +3,54 @@ import { styles } from "../styles";
 import { AiOutlineLoading, AiOutlineLoading3Quarters } from "react-icons/ai";
 import { CircularProgress } from "@mui/material";
 import Avatar from "../Avatar";
+import axios from "axios";
 
 const EmailForm = (props) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
+  function getOrCreateUser(callback) {
+    axios
+      .put(
+        "https://api.chatengine.io/users/",
+        { username: email, email: email, secret: email },
+        { headers: { "Private-Key": "715d933f-8d47-4010-9b68-7b1577e6d916" } }
+      )
+      .then((r) => callback(r.data))
+      .catch((e) => console.log("Get or create user error", e));
+  }
+
+  function getOrCreateChat(callback) {
+    axios
+      .put(
+        "https://api.chatengine.io/chats/",
+        { usernames: ["Test123", email], is_direct_chat: true },
+        {
+          headers: {
+            "Project-ID": "ecfa0435-edb4-43e9-9106-b5ebc93a94b0",
+            "User-Name": email,
+            "User-Secret": email,
+          },
+        }
+      )
+      .then((r) => callback(r.data))
+      .catch((e) => console.log("Get or create chat error", e));
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     console.log("Sending Email", email);
+
+    getOrCreateUser((user) => {
+      props.setUser && props.setUser(user);
+      getOrCreateChat((chat) => {
+        console.log("success", chat);
+        setLoading(false);
+        props.setChat && props.setChat(chat);
+      });
+    });
+
+ 
   };
   return (
     <div
@@ -38,7 +77,7 @@ const EmailForm = (props) => {
         }}
       />
       <CircularProgress
-        className="transition-5 w-24 "
+        className="w-24 transition-5 "
         style={{
           ...styles.loadingIcon,
           ...{
