@@ -3,17 +3,16 @@ import { useEffect, useState } from "react";
 import {
   ChatFeed,
   SingleChatSocket,
-  // ChatSocket,
-  // ChatFeed,
   useSingleChatLogic,
 } from "react-chat-engine-advanced";
 
 const ChatEngine = (props) => {
+  const [showChat, setShowChat] = useState(false);  //for Animation
+
   // const projectId =;
   const chatId = 1001;
   const chatAccessKey = 1234;
   const senderUsername = "Test123";
-  const [showChat, setShowChat] = useState(false);
   const chatProps = useSingleChatLogic(
     "ecfa0435-edb4-43e9-9106-b5ebc93a94b0",
     chatId,
