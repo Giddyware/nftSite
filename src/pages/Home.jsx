@@ -7,6 +7,7 @@ import Header from "../components/Header/Header";
 import ConnectWallet from "../components/UI/ConnectWallet";
 import Overlay from "../components/UI/Overlay";
 import AddFundModal from "../components/UI/AddFundsModal";
+import SupportEngine from "../components/SupportChat/SupportEngine";
 
 const Home = () => {
   const [count, setCount] = useState(0);
@@ -34,6 +35,7 @@ const Home = () => {
       </div>
       <Collection />
       <Cards />
+      <SupportEngine />
     </div>
   );
 };

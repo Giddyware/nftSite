@@ -20,7 +20,7 @@ const Button_Details = ({ showModal }) => {
           <MdOutlineCastConnected size={"100%"} />
         </div>
         <p
-          className="font-bold text-md md:text-2xl cursor-pointer"
+          className="font-bold cursor-pointer text-md md:text-2xl"
           onClick={() => showModal()}
         >
           Connect Wallet
@@ -66,12 +66,12 @@ const Header = ({ showModal }) => {
 
   return (
     <div
-      className="flex flex-row items-center w-full gap-5 py-5 px-5 text-white justify-between font-poppins"
+      className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white font-poppins"
       style={{ background: bg ? "white" : "none" }}
     >
       {/* <FcWiFiLogo fontSize={"10rem"} /> */}
-      <div className="border-right-solid border-right-[1px] border-right-[white] w-14 md:w-24">
-        <img className="w-64" src={Logo} alt="" />
+      <div className="border-right-solid border-right-[1px] border-right-[white] w-14 md:w-48">
+        <img className="w-full" src={Logo} alt="" />
       </div>
 
       <DropDown />

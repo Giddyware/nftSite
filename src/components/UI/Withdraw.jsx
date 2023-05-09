@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineScan } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
+
+import Weth_logo from "../../assets/weth_logo.png";
+import Ethereum_logo from "../../assets/Ethereum_logo.png";
 
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
@@ -8,66 +12,110 @@ const Withdraw = ({ show, modalStatus }) => {
     setShowMore((prev) => !prev);
   };
   return (
-    <div
-      className="fixed mx-auto sm:left-[30%] sm:top-[15%] h-[70%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
-      style={{
-        transform: show ? "translateY(0)" : "translateY(-1500px)",
-        opacity: show ? "1" : "0",
-        transition: "all 1s",
-      }}
-    >
-      {/* <div className="flex flex-col w-full h-full gap-6 px-10 bg-white rounded-3xl">
-        <div className="flex justify-between w-full mt-5">
-          <h3 className="py-6 text-center">Add funds to purchase</h3>
-          <div className="cursor-pointer"> */}
-      {/* onClick = {() => props.handler()} */}
-      {/* <div
-              className="flex items-center justify-center py-6"
-              onClick={modalStatus}
-            >
-              <AiOutlineClose fontSize={20} />
+    <>
+      <div
+        className="fixed mx-auto sm:left-[30%] sm:top-[15%] h-[70%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        style={{
+          transform: show ? "translateY(0)" : "translateY(-1500px)",
+          opacity: show ? "1" : "0",
+          transition: "all 1s",
+        }}
+      >
+        <h1 className="font-bold text-4xl">Select Coin </h1>
+
+        <p className="my-4">What coin would you like to deposit?</p>
+        <div className="my-9 flex flex-col gap-8">
+          <div className="px-6 py-10 rounded-xl bg-gray-100 hover:bg-gray-300 cursor-pointer">
+            <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center ">
+              <div>
+                <img className="w-7" src={Ethereum_logo} alt="Ethereum_logo" />
+              </div>
+              <p>ETH</p>
+              <p className="justify-self-end">~128938</p>
+            </div>
+            <div className="flex justify-between ml-[40px] text-gray-400">
+              <p>EHT</p>
+              <p>~839</p>
+            </div>
+          </div>
+
+          <div className="px-6 py-10 rounded-xl bg-gray-100 hover:bg-gray-300 cursor-pointer">
+            <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center ">
+              <div>
+                <img className="w-7" src={Weth_logo} alt="Weth_logo" />
+              </div>
+              <p>WETH</p>
+              <p className="justify-self-end">~128938</p>
+            </div>
+            <div className="flex justify-between ml-[40px] text-gray-400">
+              <p>WETH</p>
+              <p>~839</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <h1>
-          You need 0.4923 Polygon ETH +{" "}
-          <span className="text-blue-900 font-[800]"> gas fees</span>
-        </h1>
-        <div className="opacity-[0.5]">
-          Transfer funds to your wallet or add funds with a card it can take up
-          to a minute for your balance to update{" "}
+      <div
+        className="fixed mx-auto sm:left-[30%] sm:top-[15%] h-[70%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        style={{
+          transform: show ? "translateY(0)" : "translateY(-1500px)",
+          opacity: show ? "1" : "0",
+          transition: "all 1s",
+        }}
+      >
+        {/* <p className="mt-10 mb-4">Address</p>
+        <input
+          className="w-full  text-black rounded-lg p-6 border-4 active:border-gray-200"
+          type="text"
+          placeholder="Your address goes here"
+        /> */}
+
+        <label
+          for="address-icon"
+          className="block mb-2  font-bold text-gray-900 dark:text-white"
+        >
+          Address
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            {/* <svg
+              aria-hidden="true"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg> */}
+
+            <CgProfile className="text-gray-500" />
+            <AiOutlineScan className="text-gray-500 mx-3" />
+          </div>
+          <input
+            type="text"
+            id="address-icon"
+            className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-6  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter your address"
+          />
         </div>
 
-        <div className="flex justify-between w-full">
-          <div> Your ETH wallet</div> <span>Balance 0 ETH</span>
-        </div>
-
-        <small className="opacity-[0.5]">
-          0xb07e0b22065asaksjas,hjknsa0189012012jmkabnjs1u290121
-        </small>
-
-        <button className="bg-blue-200 w-full rounded-[4px] text-white text-poppins py-3">
-          Continue
-        </button>
-        <div className="text-center text-blue-900">Add funds with card</div>
-      </div> */}
-
-      <p>Withdraw</p>
-      <p>Coin List</p>
-      <div className="">
-        <div className="flex justify-between">
-          {/* TODO: Add the logo of the coin */}
-          <p>logo ETH</p>
-          <p>~19400</p>
-        </div>
-        <div className="flex justify-between text-gray-500">
-          {/* TODO: Add the logo of the coin */}
-          <p>Logo WETH</p>
-          <p>~19400</p>
+        <label
+          for="address-icon"
+          className="block my-8  font-bold text-gray-900 dark:text-white"
+        >
+          Network
+        </label>
+        <p className="font-bold text-2xl">Ethereum (ERC-20)</p>
+        <div className="">
+          <input
+            type="text"
+            id="address-icon"
+            className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-6  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Withdraw;

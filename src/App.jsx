@@ -25,6 +25,8 @@ import RecentSalesTable from "./components/UI/RecentSalesTable";
 import { useRef } from "react";
 import Mint from "./pages/Mint";
 import Deposit from "./pages/Deposit";
+import SupportAdmin from "./components/SupportAdmin/SupportAdmin";
+// import SupportAdmin from "./components/SupportAdmin";
 
 function App() {
   const RecentSalesTableRef = useRef(null);
@@ -64,6 +66,7 @@ function App() {
       ],
     },
     { path: "mint", element: <Mint /> },
+    { path: "support", element: <SupportAdmin /> },
     ,
   ]);
 
