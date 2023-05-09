@@ -37,14 +37,14 @@ const SideNav = ({ refs }) => {
           {/* <h1 className="text-2xl font-bold capitalize">OPENSEA</h1> */}
         </a>
         <ul className="flex flex-col gap-5 my-10">
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400">
+          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<MdSummarize size={"10%"} />}
               name={"Account Summary"}
             />
           </li>
           <li
-            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400"
+            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
             onClick={() => {
               console.log(refs.nftRef, "nftRef");
               refs.nftRef.current.scrollIntoView();
@@ -55,7 +55,7 @@ const SideNav = ({ refs }) => {
               name={"NFT Collection"}
             />
           </li>
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400">
+          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<MdCreate size={"10%"} />}
               name={"Mint / Create"}
@@ -63,7 +63,7 @@ const SideNav = ({ refs }) => {
             />
           </li>
           <li
-            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400"
+            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
             onClick={() => {
               console.log(refs.transactionRef, "transactionRef");
               refs.transactionRef.current.scrollIntoView();
@@ -76,7 +76,7 @@ const SideNav = ({ refs }) => {
           </li>
 
           <li
-            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400"
+            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
             onClick={() => {
               console.log(refs.saleRef, "salesRef");
               refs.saleRef.current.scrollIntoView();
@@ -90,13 +90,13 @@ const SideNav = ({ refs }) => {
             />
             {/* </Link> */}
           </li>
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400">
+          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<BiSupport size={"10%"} />}
               name={"Support"}
             />
           </li>
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-400">
+          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<GiReceiveMoney size={"10%"} />}
               name={"Withdraw / Deposit"}
