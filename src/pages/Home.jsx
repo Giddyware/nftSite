@@ -18,7 +18,7 @@ const Home = () => {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full min-h-screen">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <ConnectWallet show={showModal} modalStatus={ModalStatus} /> */}
       <AddFundModal show={showModal} modalStatus={ModalStatus} />
