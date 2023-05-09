@@ -20,23 +20,23 @@ const transactionRows = [
 
 const DashboardTable = () => {
   return (
-    <TableContainer className="bg-gray-100 px-10 py-5 rounded-3xl">
+    <TableContainer className="px-10 py-5 bg-gray-100 rounded-3xl">
       <Table aria-label="dashboard-table" className="rounded">
-        <TableHead className="bg-gray-300 rounded">
+        <TableHead className="bg-gray-300 rounded ">
           <TableRow className="rounded">
-            <TableCell className="text-black border-none">
+            <TableCell className="text-xl text-black border-none">
               Transaction
             </TableCell>
-            <TableCell className="text-black border-none">Amount</TableCell>
-            <TableCell className="text-black border-none">Date</TableCell>
-            <TableCell className="text-black border-none">Status</TableCell>
+            <TableCell className="text-xl text-black border-none">Amount</TableCell>
+            <TableCell className="text-xl text-black border-none">Date</TableCell>
+            <TableCell className="text-xl text-black border-none">Status</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody className="">
           {transactionRows.map(({ id, transaction, atm, date, status }) => (
             <TableRow className="" key={id}>
-              <TableCell className="text-black capitalize">
+              <TableCell className="text-xl text-black capitalize">
                 {transaction === "withdrawal" ? (
                   <div className="flex gap-x-3">
                     <BsArrowUpRight color="hsla(0, 79%, 63%, 1)" />
@@ -51,10 +51,10 @@ const DashboardTable = () => {
                   "undefined"
                 )}
               </TableCell>
-              <TableCell className="text-black">{atm}</TableCell>
-              <TableCell className="text-black">{date}</TableCell>
+              <TableCell className="text-xl text-black">{atm}</TableCell>
+              <TableCell className="text-xl text-black">{date}</TableCell>
               <TableCell
-                className={`capitalize ${
+                className={`capitalize text-xl ${
                   status === "pending"
                     ? "text-[hsla(28,_87%,_62%,_1)]"
                     : status === "completed"

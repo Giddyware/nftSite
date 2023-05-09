@@ -26,15 +26,15 @@ import Overlay from "../components/UI/Overlay";
 
 const DashboardCard = ({ showModal }) => {
   return (
-    <div className="bg-gray-200 py-10 px-16 flex justify-between rounded-2xl">
+    <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
       <div>
         <p>Account Balance</p>
         <p className="text-3xl font-bold">50 ETH</p>
       </div>
       <div className="flex gap-x-6">
-        <button className="px-10 py-4 bg-blue-500 rounded-lg">Deposit</button>
+        <button className="px-24 py-8 bg-blue-500 rounded-lg">Deposit</button>
         <button
-          className="px-10 py-4 text-gray-400 bg-white rounded-lg"
+          className="px-24 py-8 text-gray-400 bg-white rounded-lg"
           onClick={() => showModal()}
         >
           Withdraw
@@ -131,7 +131,7 @@ const Dashboard = () => {
     setShowModal((prev) => !prev);
   };
   return (
-    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr]">
+    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <Withdraw show={showModal} modalStatus={ModalStatus} /> */}
       <Withdraw show={showModal} modalStatus={ModalStatus} />
@@ -145,7 +145,7 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center justify-center ">
             <div className="mx-5">language</div>
-            <div className="flex px-4 bg-gray-100 item-center justify-center rounded-lg py-2">
+            <div className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center">
               <img
                 className="border border-solid rounded-full h-14 w-14 border-whiter"
                 src={avatar}
@@ -164,7 +164,7 @@ const Dashboard = () => {
         <DashboardCard id="home" showModal={ModalStatus} />
 
         <div
-          className="my-10 flex flex-col bg-gray-200 px-8 py-7 gap-4 rounded-xl"
+          className="flex flex-col gap-4 px-8 my-10 bg-gray-200 py-7 rounded-xl"
           id="listing"
         >
           <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">
