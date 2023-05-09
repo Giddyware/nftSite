@@ -5,14 +5,13 @@ import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Logo from '../../assets/logo.png'
+import Logo from "../../assets/logo.png";
 
 const DashboardLinks = ({ hash, name, icon }) => {
-  console.log(hash);
   return (
-    <div className="flex items-center justify-start">
+    <div className="flex items-center justify-start pl-5 rounded-l-full cursor-pointer hover:bg-gray-400">
       {icon}
-      <p className="p-5 text-lg">{name}</p>
+      <p className="p-5 text-2xl">{name}</p>
     </div>
   );
 };
@@ -29,7 +28,7 @@ const SideNav = ({ refs }) => {
   return (
     <div className="">
       {/* TODO: Make the SideNav component */}
-      <div className="bg-gray-100 min-h-full py-8">
+      <div className="min-h-full py-8 bg-gray-100">
         <a
           href="#"
           className="flex items-center justify-center p-2 pb-8 border-b"
