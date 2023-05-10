@@ -6,6 +6,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { BsArrowDownLeft, BsArrowUpRight } from "react-icons/bs";
 
 function createTransactionData(id, transaction, atm, date, status) {
@@ -19,13 +20,16 @@ const transactionRows = [
 ];
 
 const DashboardTable = () => {
+
+  const {t} = useTranslation()
+
   return (
     <TableContainer className="bg-gray-100 px-10 py-5 rounded-3xl">
       <Table aria-label="dashboard-table" className="rounded">
         <TableHead className="bg-gray-300 rounded">
           <TableRow className="rounded">
             <TableCell className="text-black border-none">
-              Transaction
+            {t('dashboard.transaction')}
             </TableCell>
             <TableCell className="text-black border-none">Amount</TableCell>
             <TableCell className="text-black border-none">Date</TableCell>
