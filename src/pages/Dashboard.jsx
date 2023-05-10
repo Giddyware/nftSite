@@ -32,7 +32,7 @@ import { useTranslation } from "react-i18next";
 const DashboardCard = ({ showModal }) => {
    const {t} = useTranslation()
   return (
-    <div className="bg-gray-200 py-10 px-16 flex justify-between rounded-2xl">
+    <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
       <div>
         <p>{t('dashboard.account_balance')}</p>
         <p className="text-3xl font-bold">50 ETH</p>
@@ -40,7 +40,7 @@ const DashboardCard = ({ showModal }) => {
       <div className="flex gap-x-6">
         <button className="px-10 py-4 bg-blue-500 rounded-lg">{t('dashboard.Deposit')}</button>
         <button
-          className="px-10 py-4 text-gray-400 bg-white rounded-lg"
+          className="px-24 py-8 text-gray-400 bg-white rounded-lg"
           onClick={() => showModal()}
         >
           {t('dashboard.withdrawal')}
@@ -180,7 +180,7 @@ const Dashboard = () => {
 
   
   return (
-    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr]">
+    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <Withdraw show={showModal} modalStatus={ModalStatus} /> */}
       <Withdraw show={showModal} modalStatus={ModalStatus} />
@@ -204,7 +204,6 @@ const Dashboard = () => {
                 src={avatar}
                 alt=""
               />
-
               <div className="flex flex-col items-center justify-center ml-3 mr-8">
                 <p>Lorem ipsum</p>
                 <p>Verified</p>
@@ -217,7 +216,7 @@ const Dashboard = () => {
         <DashboardCard id="home" showModal={ModalStatus} />
 
         <div
-          className="my-10 flex flex-col bg-gray-200 px-8 py-7 gap-4 rounded-xl"
+          className="flex flex-col gap-4 px-8 my-10 bg-gray-200 py-7 rounded-xl"
           id="listing"
         >
           <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">
