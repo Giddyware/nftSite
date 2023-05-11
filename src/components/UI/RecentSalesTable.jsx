@@ -6,6 +6,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 function createSalesData(id, transaction, nftName, from, to, atm, status) {
   return { transaction, nftName, from, to, atm, status };
@@ -18,6 +19,9 @@ const SalesRows = [
 ];
 
 const RecentSalesTable = ({ RecentSalesTableRef }) => {
+
+  const {t} = useTranslation()
+
   return (
     <TableContainer
       ref={RecentSalesTableRef}
