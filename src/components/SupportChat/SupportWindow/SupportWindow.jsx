@@ -2,6 +2,7 @@ import { useState } from "react";
 import { styles } from "../styles";
 import EmailForm from "./EmailForm";
 import ChatEngine from "./ChatEngine";
+import ChatBox from "../../ChatBox/ChatBox";
 
 const SupportWindow = (props) => {
   const [visible, setVisible] = useState(true);
@@ -15,12 +16,17 @@ const SupportWindow = (props) => {
         ...{ opacity: props.visible ? "1" : "0" },
       }}
     >
-      <EmailForm
+      {/* <EmailForm
         setUser={(user) => setUser(user)}
         setChat={(chat) => setChat(chat)}
         visible={user === null || chat === null}
-      />
-      <ChatEngine
+      /> */}
+      {/* <ChatEngine
+        visible={user !== null || chat !== null}
+        chat={chat}
+        user={user}
+      /> */}
+      <ChatBox
         visible={user !== null || chat !== null}
         chat={chat}
         user={user}

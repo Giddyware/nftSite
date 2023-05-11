@@ -23,6 +23,7 @@ import DashboardTable from "../components/UI/DashboardTable";
 import SideNav from "../components/UI/SideNav";
 import Withdraw from "../components/UI/Withdraw";
 import Overlay from "../components/UI/Overlay";
+import { SocketContext } from "../context/socket";
 
 const DashboardCard = ({ showModal }) => {
   return (
