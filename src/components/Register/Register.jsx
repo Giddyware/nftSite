@@ -79,7 +79,7 @@ const schema = z.object({
   username: z.string().nonempty("UserName is required"),
   email: z.string().nonempty("Email is required").email("Invalid email format"),
   password: z.string().nonempty("Password is required"),
-  confirmPassword: z.string().nonempty("Confirm Password is required"),
+  passwordConfirm: z.string().nonempty("Confirm Password is required"),
 });
 
 const RegisterForm = () => {
@@ -129,14 +129,14 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="passwordConfirm">Confirm Password</label>
           <input
             type="password"
-            id="confirmPassword"
-            {...registerForm("confirmPassword")}
+            id="passwordConfirm"
+            {...registerForm("passwordConfirm")}
           />
-          {errors.confirmPassword && (
-            <span>{errors.confirmPassword.message}</span>
+          {errors.passwordConfirm && (
+            <span>{errors.passwordConfirm.message}</span>
           )}
         </div>
 
