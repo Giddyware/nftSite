@@ -26,60 +26,85 @@ import { useRef } from "react";
 import Mint from "./pages/Mint";
 import Deposit from "./pages/Deposit";
 import SupportAdmin from "./components/SupportAdmin/SupportAdmin";
+import ProtectedRoute from "./Container/ProtectedRoute";
+import NotFound from "./pages/NotFound";
 // import SupportAdmin from "./components/SupportAdmin";
 
-function App() {
-  const RecentSalesTableRef = useRef(null);
+// function App() {
+//   const RecentSalesTableRef = useRef(null);
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/auth",
-      element: <Auth />,
-    },
-    {
-      path: "/product",
-      element: <ProductDetail />,
-    },
-    {
-      path: "/collection/mew",
-      element: <CollectionPage />,
-    },
-    {
-      path: "/deposit",
-      element: <Deposit />,
-    },
-    {
-      path: "dashboard",
-      element: <Dashboard />,
-      children: [
-        {
-          path: "RecentSalesTable",
-          element: (
-            <RecentSalesTable RecentSalesTableRef={RecentSalesTableRef} />
-          ),
-        },
-        { path: "mint", element: <Mint /> },
-      ],
-    },
-    { path: "mint", element: <Mint /> },
-    { path: "support", element: <SupportAdmin /> },
-    ,
-  ]);
+//   const router = createBrowserRouter([
+//     {
+//       path: "/",
+//       element: <Home />,
+//     },
+//     {
+//       path: "/auth",
+//       element: <Auth />,
+//     },
+//     {
+//       path: "/product",
+//       element: <ProductDetail />,
+//     },
+//     {
+//       path: "/collection/mew",
+//       element: <CollectionPage />,
+//     },
+//     {
+//       path: "/deposit",
+//       element: <Deposit />,
+//     },
+//     {
+//       path: "dashboard",
+//       element: <Dashboard />,
+//       children: [
+//         {
+//           path: "RecentSalesTable",
+//           element: (
+//             <RecentSalesTable RecentSalesTableRef={RecentSalesTableRef} />
+//           ),
+//         },
+//         { path: "mint", element: <Mint /> },
+//       ],
+//     },
+//     { path: "mint", element: <Mint /> },
+//     { path: "support", element: <SupportAdmin /> },
+//     ,
+//   ]);
 
-  // createRoutesFromElements(
-  //   <Routes>
-  //     <Route indev element={<Home />} />
-  //     <Route path="/auth" element={<Auth />} />
-  //     <Route path="/Collection" element={<CollectionPage />} />
-  //     <Route path="/dashboard" element={<Dashboard />} />
-  //   </Routes>
-  // )
+//   // createRoutesFromElements(
+//   //   <Routes>
+//   //     <Route indev element={<Home />} />
+//   //     <Route path="/auth" element={<Auth />} />
+//   //     <Route path="/Collection" element={<CollectionPage />} />
+//   //     <Route path="/dashboard" element={<Dashboard />} />
+//   //   </Routes>
+//   // )
 
-  return <RouterProvider router={router} />;
-}
+//   return <RouterProvider router={router} />;
+// }
+
+// export default App;
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      {/* <Route path="/register" element={<Register />} /> */}
+      <Route path="/auth" element={<Auth />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      {/* <ProtectedRoute path="/profile" element={<Profile />} /> */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+};
 
 export default App;

@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { StyledEngineProvider } from "@mui/material";
 import LanguageDetector from "i18next-browser-languagedetector";
+import store from "./context/auth/authStore.js";
 
 // import React from "react";
 // import ReactDOM from "react-dom";
@@ -11,6 +12,8 @@ import i18n from "i18next";
 import HttpApi from "i18next-http-backend";
 import { useTranslation, initReactI18next } from "react-i18next";
 import { SocketContext, socket } from "./context/socket.js";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
 
 
 
@@ -42,7 +45,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* To make Tailwind styles appear before the Material UI styles */}
     <StyledEngineProvider injectFirst>
       <SocketContext.Provider value={socket}>
-        <App />
+        <Provider store={store}>
+          <Router>
+            <App />
+          </Router>
+        </Provider>
       </SocketContext.Provider>
     </StyledEngineProvider>
   </React.StrictMode>
