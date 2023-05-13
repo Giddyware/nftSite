@@ -97,8 +97,9 @@ const RegisterForm = () => {
     try {
       const validData = schema.parse(data);
       setLoading(true);
-      dispatch(registerUser(validData));
+
       console.log(validData, "val");
+      dispatch(registerUser(validData));
       setLoading(false);
       // Reset form values here if needed
     } catch (error) {

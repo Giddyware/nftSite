@@ -3,11 +3,12 @@ import { authStart, authSuccess, authFailure, logout } from "./authSlice";
 import { loginUser, registerUser } from "./authApi";
 
 export const register = (userData) => async (dispatch) => {
+  console.log(userData, "userData");
   dispatch(authStart());
   try {
     const user = await registerUser(userData);
+    console.log(user, "regUser");
     dispatch(authSuccess(user));
-    console.log(user, "user");
   } catch (error) {
     dispatch(authFailure(error));
   }
