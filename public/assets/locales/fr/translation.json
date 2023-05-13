@@ -1,0 +1,34 @@
+
+{
+    "dashboard": {
+        "home": "domicile",
+        "account_summary": "Résumé du compte",
+        "NFT_Collection": "NFT Collection",
+        "Mint_Create": "frapper / créer",
+        "transaction":"transaction",
+        "sales": "ventes",
+        "support": "soutien",
+        "withdraw/deposit": "retirer/depot",
+        "recent_transactions": "transactions recentes",
+        "withdrawal": "retrait",
+        "mint": "frapper",
+        "Deposit": "depot",
+        "Recent_sales": "Ventes récentes",
+        "account_balance": "Solde du compte"
+    },
+    "home": {
+        "drops": "Drops",
+        "stat": "Stats",
+        "rating": "Notation",
+        "activity": "activité",
+        "featured": "Vedettes",
+        "learn_more": "Pour en savoir plus",
+        "connect_wallet": "Connecter le portefeuille",
+        "all": "tout",
+        "art": "art",
+        "gaming": "Jeu",
+        "membership": "adhésion",
+        "photography": "photographie"
+        
+    }
+}
