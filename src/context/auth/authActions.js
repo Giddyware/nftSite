@@ -18,6 +18,7 @@ export const login = (userData) => async (dispatch) => {
   dispatch(authStart());
   try {
     const user = await loginUser(userData);
+    console.log(user, "loginUser");
     Cookies.set("authToken", user.token, { expires: 7 }); // Store the authentication token in a cookie
     dispatch(authSuccess(user));
   } catch (error) {

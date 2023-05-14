@@ -124,9 +124,9 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" {...registerForm("password")} />
-          {errors.password && <span>{errors.password.message}</span>}
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" {...registerForm("email")} />
+          {errors.email && <span>{errors.email.message}</span>}
         </div>
 
         <div>

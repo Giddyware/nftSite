@@ -1,7 +1,6 @@
 // import { FormProvider } from "react-hook-form";
 import FormField from "../FormField";
 // import Text from "../Text";
-import { useContext } from "react";
 import { AuthContext } from "../../Container/Auth";
 // // import { Link, useNavigate } from "react-router-dom";
 
@@ -80,6 +79,7 @@ import { AuthContext } from "../../Container/Auth";
 
 // LoginForm.js
 // import React from 'react';
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../context/auth/authActions";
@@ -91,60 +91,52 @@ const schema = z.object({
 });
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const { status, changeStatus } = useContext(AuthContext);
+
   const dispatch = useDispatch();
-  const { register, handleSubmit, errors } = useForm({
-    resolver: async (data) => {
-      try {
-        await schema.validateAsync(data);
-        return { values: data, errors: {} };
-      } catch (error) {
-        const errorMessages = {};
-        if (error && error.errors && Array.isArray(error.errors)) {
-          error.errors.forEach((err) => {
-            const path = err.path[0];
-            const message = err.message;
-            errorMessages[path] = message;
-          });
-        }
-        return { values: {}, errors: errorMessages };
-      }
-    },
-  });
+  const {
+    register: loginForm,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const error = useSelector((state) => state.auth.error);
-  const errorMessages = Object.values(errors || {}).map((message, index) => (
-    <span key={index}>{message}</span>
-  ));
 
   const onSubmit = (data) => {
-    dispatch(login(data));
+    try {
+      const validData = schema.parse(data);
+      setLoading(true);
+      console.log(validData, "validData");
+
+      console.log(validData, "val");
+      dispatch(login(validData));
+      setLoading(false);
+      // Reset form values here if needed
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormField
-        type="email"
-        name="email"
-        label={"Email Address"}
-        className="col-span-6 mt-10"
-        autoComplete="username"
-      />
-      {errors?.email && <span>{errors?.email?.message}</span>}
+      <div>
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" {...loginForm("email")} />
+        {errors.email && <span>{errors.email.message}</span>}
+      </div>
 
-      <FormField
-        type="password"
-        name="password"
-        label={"Password"}
-        className="col-span-6"
-        autoComplete="new-password"
-      />
-      {errors?.password && <span>{errors?.password?.message}</span>}
+      <div>
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" {...loginForm("password")} />
+        {errors.password && <span>{errors.password.message}</span>}
+      </div>
 
-      {/* {error && <span>{error}</span>} */}
-      {errorMessages}
+      {error && <span>{error.message}</span>}
 
-      <button type="submit">Login</button>
+      <button type="submit" disabled={loading}>
+        {loading ? "Logging in..." : "Log in"}
+      </button>
       <div className="flex items-center justify-center col-span-6 gap-4 text-500">
         <p>Don’t have an account?</p>
         <div className="text-blue-500 " onClick={() => changeStatus()}>
