@@ -9,14 +9,8 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated || authToken ? (
     { children }
   ) : (
-    <Navigate to="/login" replace />
+    <Navigate to="/auth" replace />
   );
 };
-
-//   if (!isSignedIn) {
-//     return <Navigate to="/" replace />;
-//   }
-//   return children;
-// };
 
 export default ProtectedRoute;
