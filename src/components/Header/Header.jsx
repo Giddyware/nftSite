@@ -11,8 +11,12 @@ import DropDown from "./Headercomponent/dropDown/dropDown";
 import { useState } from "react";
 import { useEffect } from "react";
 import Connect from "./ConnectWallet/Connect";
+import { useTranslation } from "react-i18next";
+
 
 const Button_Details = ({ showModal }) => {
+  const {t} = useTranslation()
+
   return (
     <Button>
       <div className="flex items-center gap-4 text-white">
@@ -23,7 +27,7 @@ const Button_Details = ({ showModal }) => {
           className="font-bold cursor-pointer text-md md:text-2xl"
           onClick={() => showModal()}
         >
-          Connect Wallet
+          {t('home.connect_wallet')}
         </p>
         <ul className="border-l-solid border-l-slate-500 wallet-menu-bar">
           <li className="li">
