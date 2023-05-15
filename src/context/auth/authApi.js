@@ -6,10 +6,17 @@ const BASE_URL = "http://31.220.31.111:3000/api/v1"; // Replace with your actual
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${BASE_URL}/users/signup`, userData);
-   console.log(response,'respo');
-    return response.data;
+    const responseData = response.data;
+
+    if (responseData) {
+      console.log(responseData);
+      return responseData;
+    } else {
+      throw new Error("Invalid response data");
+    }
   } catch (error) {
-    throw error.response.data;
+    console.log(error.response?.data);
+    throw error.response?.data;
   }
 };
 
@@ -18,7 +25,14 @@ export const loginUser = async (userData) => {
     const response = await axios.post(`${BASE_URL}/users/login`, userData);
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    if (error.isAxiosError && !error.response) {
+      throw new Error("Network Error: Please check your internet connection.");
+    }
+    if (error.response && error.response.data) {
+      throw error.response.data;
+    } else {
+      throw error;
+    }
   }
 };
 
@@ -30,5 +44,3 @@ export const logoutUser = async () => {
     throw error.response.data;
   }
 };
-
-// Add other API calls as needed (e.g., logout)
