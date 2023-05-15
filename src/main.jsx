@@ -4,7 +4,9 @@ import App from "./App.jsx";
 import "./index.css";
 import { StyledEngineProvider } from "@mui/material";
 import LanguageDetector from "i18next-browser-languagedetector";
-import store from "./context/auth/authStore.js";
+// import store from "./context/auth/authStore.js";
+// import rootReducer from "./context/auth/authStore.js";
+import store from "./context/authStore.js";
 
 // import React from "react";
 // import ReactDOM from "react-dom";
@@ -15,16 +17,13 @@ import { SocketContext, socket } from "./context/socket.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 
-
-
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .use(LanguageDetector)
   .use(HttpApi)
   .init({
-
     // 'es', 'fin', 'bs', 'sp', 'de'
-    supportedLngs : ['en', 'fr'],
+    supportedLngs: ["en", "fr"],
 
     // the translations
     // (tip move them in a JSON file and import them,

@@ -1,11 +1,41 @@
 // authApi.js
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const BASE_URL = "http://31.220.31.111:3000/api/v1"; // Replace with your actual backend URL
 
-export const registerUser = async (userData) => {
+// Set the Axios base URL
+axios.defaults.baseURL = BASE_URL;
+
+// Request interceptor
+axios.interceptors.request.use((config) => {
+  const authToken = Cookies.get("authToken"); // Retrieve the authToken from cookies
+  if (authToken) {
+    config.headers.Authorization = `Bearer ${authToken}`; // Add the authToken to the request headers
+  }
+  return config;
+});
+
+// Response interceptor
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Handle unauthorized or expired token response
+    if (error.response && error.response.status === 401) {
+      // Redirect the user to the login page or perform any other action
+      console.log("Unauthorized or expired token");
+    }
+    return Promise.reject(error);
+  }
+);
+
+const api = axios.create({
+  baseURL: BASE_URL,
+});
+
+export const registerUserAPI = async (userData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users/signup`, userData);
+    const response = await api.post(`${BASE_URL}/users/signup`, userData);
     const responseData = response.data;
 
     if (responseData) {
@@ -20,9 +50,9 @@ export const registerUser = async (userData) => {
   }
 };
 
-export const loginUser = async (userData) => {
+export const loginUserAPI = async (userData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users/login`, userData);
+    const response = await api.post(`${BASE_URL}/users/login`, userData);
     return response.data;
   } catch (error) {
     if (error.isAxiosError && !error.response) {
@@ -36,11 +66,41 @@ export const loginUser = async (userData) => {
   }
 };
 
-export const logoutUser = async () => {
+export const logoutUserAPI = async () => {
   try {
-    const response = await axios.post(`${BASE_URL}/logout`);
+    const response = await api.post(`${BASE_URL}/logout`);
     return response.data;
   } catch (error) {
     throw error.response.data;
   }
 };
+
+export const getUserDetailsRequestAPI = async () => {
+  try {
+    const response = await api.get("/users/myDetails");
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const createEmailTokenAPI = async () => {
+  try {
+    const response = await api.patch("/createEmailToken");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const getNftsAPI = async () => {
+  try {
+    const response = await api.get("/nft");
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
