@@ -1,4 +1,6 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getNftsAPI } from "./nftApi";
+import { authFailure } from "../auth/authSlice";
 
 export const getNfts = createAsyncThunk(
   "auth/getProducts",
@@ -6,7 +8,7 @@ export const getNfts = createAsyncThunk(
     try {
       const nfts = await getNftsAPI();
       // Dispatch action to store products
-      console.log(nfts);
+      console.log(nfts,'nfts');
     } catch (error) {
       dispatch(authFailure(error));
     }

@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AuthContext } from "../../Container/Auth";
-import { loginUser } from "../../context/auth/authActions";
+import { getUserDetails, loginUser } from "../../context/auth/authActions";
+import { getNfts } from "../../context/nft/nftActions";
 
 const schema = z.object({
   email: z.string().nonempty("Email is required").email("Invalid email format"),
@@ -36,6 +37,8 @@ const Login = () => {
       console.log(validData, "validData");
 
       dispatch(loginUser(validData));
+      dispatch(getNfts());
+      dispatch(getUserDetails());
 
       setLoading(false);
     } catch (error) {

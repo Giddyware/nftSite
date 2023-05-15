@@ -8,10 +8,11 @@ const BASE_URL = "http://31.220.31.111:3000/api/v1"; // Replace with your actual
 axios.defaults.baseURL = BASE_URL;
 
 // Request interceptor
+const authToken = Cookies.get("authToken"); // Retrieve the authToken from cookies
 axios.interceptors.request.use((config) => {
-  const authToken = Cookies.get("authToken"); // Retrieve the authToken from cookies
   if (authToken) {
-    config.headers.Authorization = `Bearer ${authToken}`; // Add the authToken to the request headers
+    config.headers["Authorization"] = `Bearer ${authToken}`; // Add the authToken to the request headers
+    console.log(authToken, "authToken");
   }
   return config;
 });
@@ -32,6 +33,15 @@ axios.interceptors.response.use(
 const api = axios.create({
   baseURL: BASE_URL,
 });
+
+// const config = {
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// };
+// if (authToken) {
+//   config.headers["Authorization"] = `Bearer ${authToken}`;
+// }
 
 export const registerUserAPI = async (userData) => {
   try {
@@ -75,10 +85,25 @@ export const logoutUserAPI = async () => {
   }
 };
 
+export const tokenConfig = () => {
+  const authToken = Cookies.get("authToken");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "",
+    },
+  };
+  if (authToken !== null) {
+    config.headers["Authorization"] = `Bearer ${authToken}`;
+  }
+
+  return config;
+};
+
 export const getUserDetailsRequestAPI = async () => {
   try {
-    const response = await api.get("/users/myDetails");
-    console.log(response.data);
+    const response = await api.get("/users/myDetails", tokenConfig());
+    console.log(response.data, "userDetails");
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -103,4 +128,3 @@ export const getNftsAPI = async () => {
     throw error.response.data;
   }
 };
-
