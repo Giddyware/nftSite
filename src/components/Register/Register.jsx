@@ -5,6 +5,7 @@ import { z } from "zod";
 import { register as registerUser } from "../../context/auth/authActions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "../../Container/Auth";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   username: z.string().nonempty("UserName is required"),
@@ -24,21 +25,25 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     try {
       const validData = schema.parse(data);
       setLoading(true);
 
       console.log(validData, "val");
-      dispatch(registerUser(validData));
+      await dispatch(registerUser(validData));
       setLoading(false);
+
       // Reset form values here if needed
+
+      // Route to the dashboard page
+      const navigate = useNavigate();
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
     <form
       className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 bg-white border-[1px] outline-slate-700 outline-4"

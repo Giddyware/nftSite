@@ -2,9 +2,9 @@ import Cookies from "js-cookie";
 import { authStart, authSuccess, authFailure, logout } from "./authSlice";
 import { loginUser, registerUser } from "./authApi";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-
-
+// const navigate = useNavigate();
 
 export const register = (userData) => async (dispatch) => {
   console.log(userData, "userData");
@@ -24,9 +24,11 @@ export const login = (userData) => async (dispatch) => {
     const user = await loginUser(userData);
     console.log(user, "loginUser");
     Cookies.set("authToken", user.token, { expires: 7 }); // Store the authentication token in a cookie
-    dispatch(authSuccess(user));
+
     toast.success("Login Successful");
-   
+
+    // navigate("/dashboard");
+    dispatch(authSuccess(user));
   } catch (error) {
     dispatch(authFailure(error));
   }

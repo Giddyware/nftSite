@@ -38,7 +38,7 @@ const Login = () => {
 
       dispatch(login(validData));
       toast.success("Login Successful");
-      // navigate("/dashboard");
+      navigate("/dashboard");
       setLoading(false);
     } catch (error) {
       console.error(error);

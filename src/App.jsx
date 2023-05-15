@@ -28,6 +28,8 @@ import Deposit from "./pages/Deposit";
 import SupportAdmin from "./components/SupportAdmin/SupportAdmin";
 import ProtectedRoute from "./Container/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import VerifyEmail from "./components/UI/VerifyEmail";
+import { useSelector } from "react-redux";
 // import SupportAdmin from "./components/SupportAdmin";
 
 // function App() {
@@ -87,21 +89,30 @@ import NotFound from "./pages/NotFound";
 // export default App;
 
 const App = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route path="/register" element={<Register />} /> */}
       <Route path="/auth" element={<Auth />} />
-      <Route
-        path="/dashboard"
-        element={
-          // <ProtectedRoute>
-          <Dashboard />
-          // </ProtectedRoute>
-        }
-      />
-      {/* <ProtectedRoute path="/profile" element={<Profile />} /> */}
+      <Route path="/verify_email" element={<VerifyEmail />} />
+      {/* <Route path="/" element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route> */}
+
+      {/* {isAuthenticated && (
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoute isAuthenticated={isAuthenticated} />}
+        >
+          <Route index element={<Dashboard />} />
+        </Route>
+      )} */}
+
+      <Route path="/" element={<ProtectedRoute />} >
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
