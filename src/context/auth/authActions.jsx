@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import { authStart, authSuccess, authFailure, logout } from "./authSlice";
 import {
+  createEmailTokenAPI,
   getNftsAPI,
   getUserDetailsRequestAPI,
   loginUserAPI,
@@ -102,6 +103,19 @@ export const getUserDetails = createAsyncThunk(
       // dispatch(setUser(userDetails));
       // dispatch(clearError());
       dispatch(authSuccess(userDetails));
+    } catch (error) {
+      dispatch(authFailure(error));
+    }
+  }
+);
+
+export const createEmailToken = createAsyncThunk(
+  "auth/createEmailToken",
+  async (_, { dispatch }) => {
+    try {
+      const email = await createEmailTokenAPI();
+      console.log("EMAIL", email);
+      dispatch(authSuccess(email));
     } catch (error) {
       dispatch(authFailure(error));
     }

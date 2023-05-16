@@ -8,8 +8,14 @@ import {
 import logo from "../../assets/logo.png";
 import envelope from "../../assets/envelope.png";
 import { BiEnvelope } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { createEmailToken } from "../../context/auth/authActions";
 
 const VerifyEmail = () => {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(createEmailToken());
+  };
   return (
     <div className="h-[92vh] border-solid border-[1px] mt-[5vh]  shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] min-w-fit bg-gray-100 mx-10 md:mx-96">
       <header className="mx-auto">
@@ -30,6 +36,7 @@ const VerifyEmail = () => {
             type="submit"
             // disabled={loading}
             className="w-full p-6 font-normal transition duration-100 ease-in-out bg-red-500 border-none outline-none btn text-500 text-neutral-100 focus:bg-neutral-100 focus:text-blue-500 hover:bg-blue-700 hover:text-white hover:rounded-lg"
+            onClick={() => handleClick()}
           >
             Send verification Email
           </button>
