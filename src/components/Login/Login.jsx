@@ -9,7 +9,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AuthContext } from "../../Container/Auth";
-import { getUserDetails, loginUser } from "../../context/auth/authActions";
+import {
+  createEmailToken,
+  getUserDetails,
+  loginUser,
+} from "../../context/auth/authActions";
 import { getNfts } from "../../context/nft/nftActions";
 
 const schema = z.object({
@@ -37,8 +41,10 @@ const Login = () => {
       console.log(validData, "validData");
 
       dispatch(loginUser(validData));
-      dispatch(getNfts());
-      dispatch(getUserDetails());
+
+      // dispatch(getNfts());
+      // dispatch(getUserDetails());
+      dispatch(createEmailToken());
 
       setLoading(false);
     } catch (error) {
@@ -118,6 +124,7 @@ const Login = () => {
             *{error.message}
           </span>
         )}
+        {console.log(error?.message)}
 
         <div className="flex items-center justify-center col-span-6 gap-4 text-500">
           <p>Don’t have an account?</p>

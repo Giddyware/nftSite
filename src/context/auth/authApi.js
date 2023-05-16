@@ -102,7 +102,10 @@ export const tokenConfig = () => {
 
 export const getUserDetailsRequestAPI = async () => {
   try {
+    const authToken = Cookies.get("authToken");
+    console.log(authToken, "token");
     const response = await api.get("/users/myDetails", tokenConfig());
+
     console.log(response.data, "userDetails");
     return response.data;
   } catch (error) {
@@ -112,10 +115,9 @@ export const getUserDetailsRequestAPI = async () => {
 
 export const createEmailTokenAPI = async () => {
   try {
-    const response = await api.patch("/createEmailToken", tokenConfig());
-    console.log(response.data, 'emailAPI');
+    const response = await api.patch("/users/createEmailToken", tokenConfig());
+    console.log(response, "emailAPI");
     return response.data;
-
   } catch (error) {
     throw error.response.data;
   }
@@ -124,7 +126,7 @@ export const createEmailTokenAPI = async () => {
 export const getNftsAPI = async () => {
   try {
     const response = await api.get("/nft");
-    console.log(response.data);
+    console.log(response, "reps nft");
     return response.data;
   } catch (error) {
     throw error.response.data;
