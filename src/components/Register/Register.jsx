@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { register as registerUser } from "../../context/auth/authActions";
+import {  registerUser } from "../../context/auth/authActions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "../../Container/Auth";
 import { useNavigate } from "react-router-dom";

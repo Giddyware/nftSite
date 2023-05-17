@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { AuthContext } from "../../Container/Auth";
-import { login } from "../../context/auth/authActions";
+import { getUserDetails, loginUser } from "../../context/auth/authActions";
+import { getNfts } from "../../context/nft/nftActions";
 
 const schema = z.object({
   email: z.string().nonempty("Email is required").email("Invalid email format"),
@@ -26,8 +28,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-
   const error = useSelector((state) => state.auth.error);
 
   const onSubmit = (data) => {
@@ -36,11 +36,13 @@ const Login = () => {
       setLoading(true);
       console.log(validData, "validData");
 
-      dispatch(login(validData));
-      toast.success("Login Successful");
-      navigate("/dashboard");
+      dispatch(loginUser(validData));
+      dispatch(getNfts());
+      dispatch(getUserDetails());
+
       setLoading(false);
     } catch (error) {
+      toast.error("Login failed. Please try again.");
       console.error(error);
     }
   };

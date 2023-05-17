@@ -17,6 +17,8 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CollectionPage from "./pages/CollectionPage";
@@ -90,31 +92,31 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // TODO:Replace with the fallback path for unauthenticated users
+  const fallbackPath = "/auth"; // Replace with the fallback path for unauthenticated users
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/auth" element={<Auth />} />
-      <Route path="/verify_email" element={<VerifyEmail />} />
-      {/* <Route path="/" element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route> */}
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/verify_email" element={<VerifyEmail />} />
 
-      {/* {isAuthenticated && (
         <Route
           path="/dashboard"
-          element={<ProtectedRoute isAuthenticated={isAuthenticated} />}
-        >
-          <Route index element={<Dashboard />} />
-        </Route>
-      )} */}
-
-      <Route path="/" element={<ProtectedRoute />} >
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+          isAuthenticated={isAuthenticated}
+          fallbackPath={fallbackPath}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
 

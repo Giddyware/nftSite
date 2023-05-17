@@ -39,20 +39,21 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 
-const ProtectedRoute = ({ path, isAuthenticated, ...props }) => {
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+const ProtectedRoute = ({
+  element: Element,
+  isAuthenticated,
+  fallbackPath,
+  ...rest
+}) => {
   const authToken = Cookies.get("authToken");
   const navigate = useNavigate();
 
-  console.log(isAuthenticated);
+  if (!isAuthenticated) {
+    // Redirect the user to the fallback path or any login page
+    return <Navigate to={fallbackPath || "/auth"} />;
+  }
 
-  useEffect(() => {
-    if (!isAuthenticated && !authToken) {
-      navigate("/auth");
-    }
-  }, [isAuthenticated, authToken, navigate]);
-
-  return isAuthenticated || authToken ? <Route path={path} {...props} /> : null;
+  return <Route {...rest} element={<Element />} />;
 };
 
 export default ProtectedRoute;
