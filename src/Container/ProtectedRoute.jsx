@@ -48,6 +48,9 @@ const ProtectedRoute = ({
   const authToken = Cookies.get("authToken");
   const navigate = useNavigate();
 
+  
+  
+
   if (!isAuthenticated) {
     // Redirect the user to the fallback path or any login page
     return <Navigate to={fallbackPath || "/auth"} />;

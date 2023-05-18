@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {  registerUser } from "../../context/auth/authActions";
+import { registerUser } from "../../context/auth/authActions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "../../Container/Auth";
 import { useNavigate } from "react-router-dom";
@@ -83,6 +83,23 @@ const RegisterForm = () => {
             {errors.email && (
               <span className="text-200 font-semibold leading-200 tracking-[-0.21px]">
                 {errors.email.message}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10">
+          <input
+            className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-brand-900 caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 dark:border-brand-600 dark:bg-brand-700 dark:text-neutral-100 dark:autofill:bg-brand-700 dark:focus:border-brand-500 dark:hover:border-brand-500'
+            type="password"
+            id="password"
+            {...registerForm("password")}
+          />
+          <div className='flex items-center justify-between text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
+            <label htmlFor="password"> Password </label>
+            {errors.password && (
+              <span className="text-200 font-semibold leading-200 tracking-[-0.21px]">
+                {errors.password.message}
               </span>
             )}
           </div>

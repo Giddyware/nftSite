@@ -1,5 +1,5 @@
 // import { FormProvider } from "react-hook-form";
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +24,7 @@ const schema = z.object({
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const { status, changeStatus } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register: loginForm,
@@ -42,14 +42,15 @@ const Login = () => {
 
       dispatch(loginUser(validData));
 
+      navigate("/dashboard", { replace: true });
+      dispatch(getUserDetails());
       // dispatch(getNfts());
-      // dispatch(getUserDetails());
-      dispatch(createEmailToken());
-
-      setLoading(false);
+      // dispatch(createEmailToken());
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -121,10 +122,10 @@ const Login = () => {
 
         {error && (
           <span className="width-max-context text-200 text-red-500 font-semibold leading-200 tracking-[-0.21px]">
-            *{error.message}
+            *{error?.message}
           </span>
         )}
-        {console.log(error?.message)}
+        {/* {console.log(error?.message)} */}
 
         <div className="flex items-center justify-center col-span-6 gap-4 text-500">
           <p>Don’t have an account?</p>

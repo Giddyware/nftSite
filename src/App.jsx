@@ -95,6 +95,7 @@ const App = () => {
   // TODO:Replace with the fallback path for unauthenticated users
   const fallbackPath = "/auth"; // Replace with the fallback path for unauthenticated users
 
+
   return (
     <>
       <Routes>

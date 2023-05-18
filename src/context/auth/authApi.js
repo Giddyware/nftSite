@@ -115,7 +115,7 @@ export const getUserDetailsRequestAPI = async () => {
 
 export const createEmailTokenAPI = async () => {
   try {
-    const response = await api.patch("/users/createEmailToken", tokenConfig());
+    const response = await api.post("/users/createEmailToken", tokenConfig());
     console.log(response, "emailAPI");
     return response.data;
   } catch (error) {

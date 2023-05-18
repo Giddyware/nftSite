@@ -69,12 +69,12 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const user = await loginUserAPI(userData);
-      // Cookies.set("authToken", user.token, { expires: 7 }); // Store the authentication token in a cookie
-      <Navigate to="/dashboard" />;
-      console.log(user, "user");
-      // dispatch(setUser(user));
-      // dispatch(clearError());
+      Cookies.set("authToken", user.token, { expires: 1 }); // Store the authentication token in a cookie
       dispatch(authSuccess(user));
+      if (user) {
+        <Navigate to="/dashboard" />;
+        console.log(user, "user");
+      }
 
       toast.success("Login Successful");
     } catch (error) {
