@@ -1,15 +1,19 @@
 // import { FormProvider } from "react-hook-form";
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { AuthContext } from "../../Container/Auth";
-import { getUserDetails, loginUser } from "../../context/auth/authActions";
+import {
+  createEmailToken,
+  getUserDetails,
+  loginUser,
+} from "../../context/auth/authActions";
 import { getNfts } from "../../context/nft/nftActions";
 
 const schema = z.object({
@@ -20,8 +24,9 @@ const schema = z.object({
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const { status, changeStatus } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const state = useLocation().state;
   const {
     register: loginForm,
     handleSubmit,
@@ -37,16 +42,19 @@ const Login = () => {
       console.log(validData, "validData");
 
       dispatch(loginUser(validData));
-      dispatch(getNfts());
-      dispatch(getUserDetails());
 
-      setLoading(false);
+      dispatch(getUserDetails());
+      dispatch(getNfts());
+
+      navigate(state.from ? state.from : "/");
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
-
+  console.log(state);
   return (
     <form
       className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 bg-white border-[1px] outline-slate-700 outline-4"
@@ -115,9 +123,10 @@ const Login = () => {
 
         {error && (
           <span className="width-max-context text-200 text-red-500 font-semibold leading-200 tracking-[-0.21px]">
-            *{error.message}
+            *{error?.message}
           </span>
         )}
+        {/* {console.log(error?.message)} */}
 
         <div className="flex items-center justify-center col-span-6 gap-4 text-500">
           <p>Don’t have an account?</p>

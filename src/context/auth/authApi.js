@@ -34,15 +34,6 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-// const config = {
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// };
-// if (authToken) {
-//   config.headers["Authorization"] = `Bearer ${authToken}`;
-// }
-
 export const registerUserAPI = async (userData) => {
   try {
     const response = await api.post(`${BASE_URL}/users/signup`, userData);
@@ -90,11 +81,11 @@ export const tokenConfig = () => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "",
+      authorization: "",
     },
   };
   if (authToken !== null) {
-    config.headers["Authorization"] = `Bearer ${authToken}`;
+    config.headers["authorization"] = `Bearer ${authToken}`;
   }
 
   return config;
@@ -112,10 +103,13 @@ export const getUserDetailsRequestAPI = async () => {
 
 export const createEmailTokenAPI = async () => {
   try {
-    const response = await api.patch("/createEmailToken", tokenConfig());
-    console.log(response.data, 'emailAPI');
+    const response = await api.patch(
+      "/users/createEmailToken",
+      {},
+      tokenConfig()
+    );
+    console.log(response, "emailAPI");
     return response.data;
-
   } catch (error) {
     throw error.response.data;
   }
@@ -124,7 +118,7 @@ export const createEmailTokenAPI = async () => {
 export const getNftsAPI = async () => {
   try {
     const response = await api.get("/nft");
-    console.log(response.data);
+    console.log(response, "reps nft");
     return response.data;
   } catch (error) {
     throw error.response.data;

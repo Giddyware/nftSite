@@ -18,20 +18,24 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
+import { useRef } from "react";
+
 import "react-toastify/dist/ReactToastify.css";
+
 import Home from "./pages/Home";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CollectionPage from "./pages/CollectionPage";
 import Dashboard from "./pages/Dashboard";
 import RecentSalesTable from "./components/UI/RecentSalesTable";
-import { useRef } from "react";
 import Mint from "./pages/Mint";
 import Deposit from "./pages/Deposit";
 import SupportAdmin from "./components/SupportAdmin/SupportAdmin";
 import ProtectedRoute from "./Container/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import VerifyEmail from "./components/UI/VerifyEmail";
-import { useSelector } from "react-redux";
+
+import UnAuthenticated from "./Container/UnAuthenticated";
 // import SupportAdmin from "./components/SupportAdmin";
 
 // function App() {
@@ -100,9 +104,15 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/auth"
+          element={
+            // <UnAuthenticated>
+            <Auth />
+            // </UnAuthenticated>
+          }
+        />
         <Route path="/verify_email" element={<VerifyEmail />} />
-
         <Route
           path="/dashboard"
           element={
@@ -110,8 +120,6 @@ const App = () => {
               <Dashboard />
             </ProtectedRoute>
           }
-          isAuthenticated={isAuthenticated}
-          fallbackPath={fallbackPath}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
