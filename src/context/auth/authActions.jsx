@@ -12,20 +12,6 @@ import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// export const register = (userData) => async (dispatch) => {
-//   console.log(userData, "userData");
-//   dispatch(authStart());
-//   try {
-//     const user = await registerUser(userData);
-//     console.log(user, "regUser");
-//     dispatch(authSuccess(user));
-//     <Navigate to="/auth" />;
-//     toast.success("Login successful!");
-//   } catch (error) {
-//     dispatch(authFailure(error));
-//   }
-// };
-
 // export const loginUser = (userData) => async (dispatch) => {
 //   dispatch(authStart());
 //   try {
@@ -72,7 +58,7 @@ export const loginUser = createAsyncThunk(
       Cookies.set("authToken", user.token, { expires: 1 }); // Store the authentication token in a cookie
       dispatch(authSuccess(user));
       if (user) {
-        <Navigate to="/dashboard" />;
+        // <Navigate to="/dashboard" />;
         console.log(user, "user");
       }
 
@@ -130,7 +116,7 @@ export const getNfts = createAsyncThunk(
     try {
       const nfts = await getNftsAPI();
       // Dispatch action to store products
-      console.log();
+      dispatch(authSuccess(nfts));
     } catch (error) {
       dispatch(authFailure(error));
     }

@@ -34,29 +34,55 @@
 
 // export default ProtectedRoute;
 
-import Cookies from "js-cookie";
-import { useEffect } from "react";
+// const ProtectedRoute = ({
+//   element: Element,
+//   isAuthenticated,
+//   fallbackPath,
+//   ...rest
+// }) => {
+//   const authToken = Cookies.get("authToken");
+//   const navigate = useNavigate();
+
+//   if (!isAuthenticated) {
+//     // Redirect the user to the fallback path or any login page
+//     return <Navigate to={fallbackPath || "/auth"} />;
+//   }
+
+//   return <Route {...rest} element={<Element />} />;
+// };
+
+// export default ProtectedRoute;
+
+// import Cookies from "js-cookie";
+// import { useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+
+// const ProtectedRoute = ({ element: Element, fallbackPath, ...rest }) => {
+//   const authToken = Cookies.get("authToken");
+//   const navigate = useNavigate();
+
+//   if (!authToken) {
+//     // Redirect the user to the fallback path or any login page
+//     return <Navigate to={fallbackPath || "/auth"} />;
+//   }
+
+//   return <Route {...rest} element={<Element />} />;
+// };
+
+// export default ProtectedRoute;
+
+import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
-
-const ProtectedRoute = ({
-  element: Element,
-  isAuthenticated,
-  fallbackPath,
-  ...rest
-}) => {
-  const authToken = Cookies.get("authToken");
-  const navigate = useNavigate();
-
-  
-  
-
-  if (!isAuthenticated) {
-    // Redirect the user to the fallback path or any login page
-    return <Navigate to={fallbackPath || "/auth"} />;
-  }
-
-  return <Route {...rest} element={<Element />} />;
-};
-
+import { Navigate, useLocation } from "react-router-dom";
+function ProtectedRoute({ children }) {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const location = useLocation().pathname;
+  console.log(isAuthenticated, "pro");
+  return isAuthenticated ? (
+    children
+  ) : (
+    <Navigate to="/auth" state={{ from: location }} replace />
+  );
+}
 export default ProtectedRoute;

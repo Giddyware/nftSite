@@ -6,6 +6,7 @@ import { registerUser } from "../../context/auth/authActions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "../../Container/Auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   username: z.string().nonempty("UserName is required"),
@@ -18,6 +19,7 @@ const RegisterForm = () => {
   const { status, changeStatus } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.auth.error);
   const {
     register: registerForm,
@@ -38,8 +40,8 @@ const RegisterForm = () => {
       // Reset form values here if needed
 
       // Route to the dashboard page
-      const navigate = useNavigate();
-      navigate("/dashboard");
+      navigate("/auth");
+      toast("You can now log in");
     } catch (error) {
       console.error(error);
     }

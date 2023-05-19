@@ -34,15 +34,6 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-// const config = {
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// };
-// if (authToken) {
-//   config.headers["Authorization"] = `Bearer ${authToken}`;
-// }
-
 export const registerUserAPI = async (userData) => {
   try {
     const response = await api.post(`${BASE_URL}/users/signup`, userData);
@@ -90,11 +81,11 @@ export const tokenConfig = () => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: "",
+      authorization: "",
     },
   };
   if (authToken !== null) {
-    config.headers["Authorization"] = `Bearer ${authToken}`;
+    config.headers["authorization"] = `Bearer ${authToken}`;
   }
 
   return config;
@@ -102,10 +93,7 @@ export const tokenConfig = () => {
 
 export const getUserDetailsRequestAPI = async () => {
   try {
-    const authToken = Cookies.get("authToken");
-    console.log(authToken, "token");
     const response = await api.get("/users/myDetails", tokenConfig());
-
     console.log(response.data, "userDetails");
     return response.data;
   } catch (error) {
@@ -115,7 +103,11 @@ export const getUserDetailsRequestAPI = async () => {
 
 export const createEmailTokenAPI = async () => {
   try {
-    const response = await api.post("/users/createEmailToken", tokenConfig());
+    const response = await api.patch(
+      "/users/createEmailToken",
+      {},
+      tokenConfig()
+    );
     console.log(response, "emailAPI");
     return response.data;
   } catch (error) {

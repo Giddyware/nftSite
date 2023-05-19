@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,6 +26,7 @@ const Login = () => {
   const { status, changeStatus } = useContext(AuthContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const state = useLocation().state;
   const {
     register: loginForm,
     handleSubmit,
@@ -42,10 +43,10 @@ const Login = () => {
 
       dispatch(loginUser(validData));
 
-      navigate("/dashboard", { replace: true });
       dispatch(getUserDetails());
-      // dispatch(getNfts());
-      // dispatch(createEmailToken());
+      dispatch(getNfts());
+
+      navigate(state.from ? state.from : "/");
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
@@ -53,7 +54,7 @@ const Login = () => {
       setLoading(false);
     }
   };
-
+  console.log(state);
   return (
     <form
       className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 bg-white border-[1px] outline-slate-700 outline-4"

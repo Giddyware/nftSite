@@ -13,9 +13,8 @@ import { useEffect } from "react";
 import Connect from "./ConnectWallet/Connect";
 import { useTranslation } from "react-i18next";
 
-
 const Button_Details = ({ showModal }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Button>
@@ -27,9 +26,9 @@ const Button_Details = ({ showModal }) => {
           className="font-bold cursor-pointer text-md md:text-2xl"
           onClick={() => showModal()}
         >
-          {t('home.connect_wallet')}
+          {t("home.connect_wallet")}
         </p>
-        <ul className="border-l-solid border-l-slate-500 wallet-menu-bar">
+        <div className="border-l-solid border-l-slate-500 wallet-menu-bar">
           <li className="li">
             <p className="cursor:pointer w-10 md:w-[20px]">
               <BiUserCircle size={"100%"} />
@@ -38,7 +37,7 @@ const Button_Details = ({ showModal }) => {
               <Connect />
             </div>
           </li>
-        </ul>
+        </div>
       </div>
     </Button>
   );
