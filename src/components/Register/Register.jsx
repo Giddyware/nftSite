@@ -25,6 +25,7 @@ const RegisterForm = () => {
     register: registerForm,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -39,6 +40,7 @@ const RegisterForm = () => {
 
       // Reset form values here if needed
 
+      reset();
       // Route to the dashboard page
       navigate("/auth");
       toast("You can now log in");
