@@ -41,11 +41,11 @@ const Login = () => {
       const validData = schema.parse(data);
       setLoading(true);
       console.log(validData, "validData");
-      
+
       dispatch(loginUser(validData));
-      
+
       dispatch(getUserDetails());
-      dispatch(getNfts());
+
       reset();
 
       navigate(state.from ? state.from : "/");

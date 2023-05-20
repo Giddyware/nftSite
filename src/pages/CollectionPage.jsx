@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbNetwork } from "react-icons/tb";
 
 import Header from "../components/Header/Header";
@@ -20,72 +20,104 @@ import Image9 from "../assets/nft/nft9.jpg";
 import Image10 from "../assets/nft/nft10.png";
 import Image11 from "../assets/nft/nft11.jpg";
 import Image12 from "../assets/nft/nft12.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { CgLoadbar } from "react-icons/cg";
+import { BiErrorCircle } from "react-icons/bi";
+import { getNfts } from "../context/nft/nftActions";
+// import { getNfts } from "../context/nft/nftSlice";
 
-const coll = [
-  {
-    name: "Milady ",
-    image: Image1,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "Milady ",
-    image: Image2,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "Milady ",
-    image: Image3,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "Milady ",
-    image: Image4,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "18932",
-    image: Image5,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "18932",
-    image: Image6,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "18932",
-    image: Image7,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "18932",
-    image: Image8,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "18932",
-    image: Image9,
-    num: 2.3,
-    price: 23233,
-  },
-  {
-    name: "18932",
-    image: Image10,
-    num: 2.3,
-    price: 23233,
-  },
-];
+// const coll = [
+//   {
+//     name: "Milady ",
+//     image: Image1,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "Milady ",
+//     image: Image2,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "Milady ",
+//     image: Image3,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "Milady ",
+//     image: Image4,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "18932",
+//     image: Image5,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "18932",
+//     image: Image6,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "18932",
+//     image: Image7,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "18932",
+//     image: Image8,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "18932",
+//     image: Image9,
+//     num: 2.3,
+//     price: 23233,
+//   },
+//   {
+//     name: "18932",
+//     image: Image10,
+//     num: 2.3,
+//     price: 23233,
+//   },
+// ];
 
 const CollectionPage = () => {
   const [showMore, setShowMore] = useState(false);
+
+  const dispatch = useDispatch();
+  const { nfts, isLoading, error } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    dispatch(getNfts());
+    console.log(nfts, "nfts");
+  }, [dispatch]);
+  console.log(nfts, "2nfts");
+
+  if (isLoading) {
+    return (
+      <div>
+        Loading...
+        <CgLoadbar />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        Error: {error}
+        <BiErrorCircle />
+      </div>
+    );
+  }
 
   const handleChange = () => {};
 
@@ -153,8 +185,12 @@ const CollectionPage = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-10 m-10">
-        {coll.map((lec) => (
+        {/* {coll.map((lec) => (
           <ColllectionCard key={lec.image} {...lec} />
+        ))} */}
+
+        {nfts?.data?.map((nft) => (
+          <ColllectionCard key={nft.id} {...nft} />
         ))}
       </div>
     </div>

@@ -113,6 +113,7 @@ const App = () => {
           }
         />
         <Route path="/verify_email" element={<VerifyEmail />} />
+        <Route path="/marketPlace" element={<CollectionPage />} />
         <Route
           path="/dashboard"
           element={

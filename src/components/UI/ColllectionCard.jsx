@@ -1,14 +1,16 @@
 import React from "react";
 import { BsCart } from "react-icons/bs";
 
-const ColllectionCard = ({ image, name, num, price }) => {
-  console.log(image);
+const ColllectionCard = ({ photo, name, num, price }) => {
+  const BASE_URL = "http://31.220.31.111:3000/";
+  const imageURL = `${BASE_URL}/${photo}`;
+  console.log(imageURL);
   return (
     <div className="flex flex-col gap-5 text-2xl font-bold font-poppins rounded-xl shadow-xl  bg-white cursor-pointer collectioncard relative ">
       <div className="w-[100%] h-[200px] overflow-hidden rounded-t-xl">
         <img
-          src={image}
-          alt=""
+          src={imageURL}
+          alt={name}
           className="w-[100%] h-[100%]  flex items-center ease-linear mx-auto object-cover"
         />
       </div>

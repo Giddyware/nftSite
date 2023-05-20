@@ -51,7 +51,7 @@ axios.defaults.baseURL = BASE_URL;
 export const getNftsAPI = async () => {
   try {
     const response = await axios.get("/nft", tokenConfig());
-    console.log(response.data, "resData");
+    // console.log(response.data, "resData");
     return response.data;
   } catch (error) {
     throw error.response.data;
