@@ -55,7 +55,7 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const user = await loginUserAPI(userData);
-      Cookies.set("authToken", user.token, { expires: 1 }); // Store the authentication token in a cookie
+      Cookies.set("authToken", user.token, { expires: 0.625 }); // Store the authentication token in a cookie
       dispatch(authSuccess(user));
       if (user) {
         // <Navigate to="/dashboard" />;
@@ -110,15 +110,15 @@ export const createEmailToken = createAsyncThunk(
 );
 
 // TODO:Dispatch action to store products
-export const getNfts = createAsyncThunk(
-  "auth/getProducts",
-  async (_, { dispatch }) => {
-    try {
-      const nfts = await getNftsAPI();
-      // Dispatch action to store products
-      dispatch(authSuccess(nfts));
-    } catch (error) {
-      dispatch(authFailure(error));
-    }
-  }
-);
+// export const getNfts = createAsyncThunk(
+//   "auth/getProducts",
+//   async (_, { dispatch }) => {
+//     try {
+//       const nfts = await getNftsAPI();
+//       // Dispatch action to store products
+//       dispatch(authSuccess(nfts));
+//     } catch (error) {
+//       dispatch(authFailure(error));
+//     }
+//   }
+// );
