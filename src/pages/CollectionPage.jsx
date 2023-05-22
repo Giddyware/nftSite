@@ -26,68 +26,6 @@ import { BiErrorCircle } from "react-icons/bi";
 import { getNfts } from "../context/nft/nftActions";
 // import { getNfts } from "../context/nft/nftSlice";
 
-// const coll = [
-//   {
-//     name: "Milady ",
-//     image: Image1,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "Milady ",
-//     image: Image2,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "Milady ",
-//     image: Image3,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "Milady ",
-//     image: Image4,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "18932",
-//     image: Image5,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "18932",
-//     image: Image6,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "18932",
-//     image: Image7,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "18932",
-//     image: Image8,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "18932",
-//     image: Image9,
-//     num: 2.3,
-//     price: 23233,
-//   },
-//   {
-//     name: "18932",
-//     image: Image10,
-//     num: 2.3,
-//     price: 23233,
-//   },
-// ];
 
 const CollectionPage = () => {
   const [showMore, setShowMore] = useState(false);
