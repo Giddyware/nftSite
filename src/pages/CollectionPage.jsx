@@ -185,10 +185,6 @@ const CollectionPage = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-10 m-10">
-        {/* {coll.map((lec) => (
-          <ColllectionCard key={lec.image} {...lec} />
-        ))} */}
-
         {nfts?.data?.map((nft) => (
           <CollectionCard key={nft.id} {...nft} />
         ))}
