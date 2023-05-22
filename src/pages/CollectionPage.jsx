@@ -6,7 +6,7 @@ import background from "../assets/nft/nft6.jpg";
 import avater from "../assets/game.png";
 import { textData } from "../utils/textData";
 import CollectionTabs from "../components/Tabs";
-import ColllectionCard from "../components/UI/ColllectionCard";
+import CollectionCard from "../components/UI/CollectionCard";
 
 import Image1 from "../assets/nft/nft1.jpg";
 import Image2 from "../assets/nft/nft2.jpg";
@@ -190,7 +190,7 @@ const CollectionPage = () => {
         ))} */}
 
         {nfts?.data?.map((nft) => (
-          <ColllectionCard key={nft.id} {...nft} />
+          <CollectionCard key={nft.id} {...nft} />
         ))}
       </div>
     </div>
