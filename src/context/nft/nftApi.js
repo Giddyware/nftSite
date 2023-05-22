@@ -37,16 +37,9 @@ axios.defaults.baseURL = BASE_URL;
 //   baseURL: BASE_URL,
 // });
 
-// export const getNftsAPI = async () => {
-
-//   try {
-//     const response = await api.get("/nft");
-//     console.log(response.data);
-//     return response.data;
-//   } catch (error) {
-//     throw error.response.data;
-//   }
-// };
+const api = axios.create({
+  baseURL: BASE_URL,
+});
 
 export const getNftsAPI = async () => {
   try {
@@ -55,5 +48,22 @@ export const getNftsAPI = async () => {
     return response.data;
   } catch (error) {
     throw error.response.data;
+  }
+};
+
+export const createNftAPI = async (nftData) => {
+  try {
+    const response = await api.post(`${BASE_URL}/nft`, nftData);
+    const responseData = response.data;
+
+    if (responseData) {
+      console.log(responseData);
+      return responseData;
+    } else {
+      throw new Error("Invalid response data");
+    }
+  } catch (error) {
+    console.log(error.response?.data);
+    throw error.response?.data;
   }
 };

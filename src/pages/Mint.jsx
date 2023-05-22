@@ -14,10 +14,10 @@ const ACCEPTED_IMAGE_TYPES = [
 const schema = object({
   name: string().nonempty("Name is required"),
   category: string().nonempty("Category is required"),
-  price: number().min(0, "Price must be a positive number"),
+  priceInEthereum: number().min(0, "Price must be a positive number"),
   description: string().nonempty("Description can not be left empty"),
   // image: string().nonempty("Image is required"), // Update the schema to include the image field
-  image: any()
+  photo: any()
     .refine(
       (files) => files?.[0]?.size <= MAX_FILE_SIZE,
       `Max image size is 50MB.`
@@ -44,20 +44,16 @@ const Mint = () => {
     console.log(data);
     try {
       setLoading(true);
-      data.price = parseFloat(data.price); // Convert the price to a number
+      data.priceInEthereum = parseFloat(data.priceInEthereum); // Convert the price to a number
       const validData = schema.parse(data);
 
       console.log(validData, "validData");
 
       // dispatch(loginUser(validData));
 
-    
-
       reset();
-
-   
     } catch (error) {
-      toast.error("Login failed. Please try again.");
+      toast.error("Minting failed. Please try again.");
       console.error(error);
     } finally {
       setLoading(false);
@@ -87,21 +83,21 @@ const Mint = () => {
         <p className="text-2xl font-bold">Image *</p>
         <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
         <div>
-          <label htmlFor="images" className=" drop-container">
+          <label htmlFor="photo" className=" drop-container">
             <span className="drop-title">Drop files here</span>
             or
             <input
               type="file"
-              id="images"
+              id="photo"
               accept="image/*"
               required
               onChange={handleImageChange}
-              {...mintForm("image")}
+              {...mintForm("photo")}
             />
             {previewImage && (
               <img className="w-14 h-14" src={previewImage} alt="Preview" />
             )}
-            {errors.image && <span>{errors.image.message}</span>}
+            {errors.photo && <span>{errors.photo.message}</span>}
           </label>
         </div>
 
@@ -142,16 +138,16 @@ const Mint = () => {
           </div>
 
           <div className="flex flex-col gap-3 ">
-            <label htmlFor="price" id="price" className="text-2xl font-bold">
+            <label htmlFor="priceInEthereum" className="text-2xl font-bold">
               Price *
             </label>
             <input
               type="number"
               placeholder="NFT Price"
-              id="price"
-              name="price"
+              id="priceInEthereum"
+              name="priceInEthereum"
               className="w-2/3 p-4 border rounded focus:border-blue-600"
-              {...mintForm("price")}
+              {...mintForm("priceInEthereum")}
             />
             {errors.price && (
               <span className="text-red-400 font-semibold leading-200 tracking-[-0.21px]">

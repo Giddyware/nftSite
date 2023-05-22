@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getNftsAPI } from "./nftApi";
+import { createNftAPI, getNftsAPI } from "./nftApi";
 import { authFailure } from "../auth/authSlice";
 import { fetchFailure, fetchStart, fetchSuccess } from "./nftSlice";
 
@@ -33,16 +33,18 @@ export const getNfts = createAsyncThunk(
   }
 );
 
-// export const getNfts = createAsyncThunk(
-//   "product/getNfts",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await getNftsAPI();
-//       console.log(response.data, "respo");
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
+// createNft  action
+export const createNft = createAsyncThunk(
+  "auth/createNft",
+  async (nftData, { dispatch }) => {
+    dispatch(authStart());
+    try {
+      const nft = await createNftAPI(nftData);
 
+      dispatch(authSuccess(nft));
+      toast.success("Minting Successful");
+    } catch (error) {
+      dispatch(authFailure(error));
+    }
+  }
+);
