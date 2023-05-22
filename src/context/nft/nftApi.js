@@ -53,9 +53,9 @@ export const getNftsAPI = async () => {
 
 export const createNftAPI = async (nftData) => {
   try {
-    const response = await api.post(`${BASE_URL}/nft`, nftData);
+    const response = await api.post(`${BASE_URL}/nft`, nftData, tokenConfig());
     const responseData = response.data;
-
+    console.log(response);
     if (responseData) {
       console.log(responseData);
       return responseData;
@@ -63,7 +63,7 @@ export const createNftAPI = async (nftData) => {
       throw new Error("Invalid response data");
     }
   } catch (error) {
-    console.log(error.response?.data);
-    throw error.response?.data;
+    console.log(error.response.data);
+    throw error.response.data;
   }
 };

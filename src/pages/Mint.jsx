@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { object, string, number, any } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { createNft } from "../context/nft/nftActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -32,6 +34,8 @@ const schema = object({
 const Mint = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.product.error);
 
   const {
     register: mintForm,
@@ -48,10 +52,12 @@ const Mint = () => {
       const validData = schema.parse(data);
 
       console.log(validData, "validData");
+      dispatch(createNft(validData));
 
-      // dispatch(loginUser(validData));
+      toast.success("Success");
+      setLoading(false);
 
-      reset();
+      // reset();
     } catch (error) {
       toast.error("Minting failed. Please try again.");
       console.error(error);

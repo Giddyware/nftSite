@@ -5,6 +5,7 @@ const initialState = {
   nfts: [],
   isLoading: false,
   error: null,
+  nft: null,
 };
 
 // export const getNfts = createAsyncThunk(
