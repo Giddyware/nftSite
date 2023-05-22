@@ -68,7 +68,7 @@ const RegisterForm = () => {
           <div className='flex items-center justify-between text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
             <label htmlFor="username">Username</label>
             {errors.username && (
-              <span className="text-200 font-semibold leading-200 tracking-[-0.21px]">
+              <span className="text-red-200 font-semibold leading-200 tracking-[-0.21px]">
                 {errors.username.message}
               </span>
             )}

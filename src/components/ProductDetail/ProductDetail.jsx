@@ -1,5 +1,5 @@
 import React from "react";
-import ColllectionCard from "../UI/ColllectionCard";
+import ColllectionCard from "../UI/CollectionCard";
 import Activity from "./Activity";
 import Description from "./Description";
 import Detailtext from "./Detailtext";

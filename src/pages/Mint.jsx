@@ -1,8 +1,37 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { object, string, number, any } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
+
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+const schema = object({
+  name: string().nonempty("Name is required"),
+  category: string().nonempty("Category is required"),
+  price: number().min(0, "Price must be a positive number"),
+  description: string().nonempty("Description can not be left empty"),
+  // image: string().nonempty("Image is required"), // Update the schema to include the image field
+  image: any()
+    .refine(
+      (files) => files?.[0]?.size <= MAX_FILE_SIZE,
+      `Max image size is 50MB.`
+    )
+    .refine(
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
+  // image: object().required(),
+});
 
 const Mint = () => {
   const [previewImage, setPreviewImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     register: mintForm,
@@ -10,19 +39,23 @@ const Mint = () => {
     formState: { errors },
     reset,
   } = useForm();
+
   const onSubmit = (data) => {
+    console.log(data);
     try {
-      const validData = schema.parse(data);
       setLoading(true);
+      data.price = parseFloat(data.price); // Convert the price to a number
+      const validData = schema.parse(data);
+
       console.log(validData, "validData");
 
-      dispatch(loginUser(validData));
+      // dispatch(loginUser(validData));
 
-      dispatch(getUserDetails());
+    
 
       reset();
 
-      navigate(state.from ? state.from : "/");
+   
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
@@ -54,60 +87,78 @@ const Mint = () => {
         <p className="text-2xl font-bold">Image *</p>
         <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
         <div>
-          <label for="images" className=" drop-container">
-            <span class="drop-title">Drop files here</span>
+          <label htmlFor="images" className=" drop-container">
+            <span className="drop-title">Drop files here</span>
             or
             <input
               type="file"
               id="images"
               accept="image/*"
               required
-              {...mintForm("image")}
               onChange={handleImageChange}
+              {...mintForm("image")}
             />
             {previewImage && (
               <img className="w-14 h-14" src={previewImage} alt="Preview" />
             )}
+            {errors.image && <span>{errors.image.message}</span>}
           </label>
         </div>
 
-        <div>
-          <label className="my-5 text-2xl font-bold">Name *</label>
+        <div className="my-10">
+          <label className="text-2xl font-bold ">Name *</label>
           <input
             type="text"
             placeholder="NFT name"
-            className="w-full p-4 border rounded"
+            className={`w-full p-4 mt-4 border rounded ${
+              errors.name ? "border-red-500" : ""
+            } `}
+            {...mintForm("name")}
           />
         </div>
 
-        <div>
-          <label
-            for="Categories"
-            className="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-          >
-            Categories
-          </label>
-          <select
-            id="Categories"
-            className="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Choose a country</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
-          </select>
-        </div>
+        <div className="flex items-baseline justify-between w-full">
+          <div className="flex flex-col gap-3">
+            <label
+              htmlFor="category"
+              className="block text-2xl font-bold text-gray-900 dark:text-white"
+            >
+              Categories *
+            </label>
+            <select
+              id="category"
+              name="category"
+              className="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-600"
+              {...mintForm("category")}
+            >
+              <option value="">Choose a category</option>
+              <option value="arts">Arts</option>
+              <option value="gaming">Gaming</option>
+              <option value="membership">Membership</option>
+              <option value="photography">Photography</option>
+              <option value="pfps">PFPS</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
 
-        <div className="flex flex-col">
-          <label id="price" className="my-5 text-2xl font-bold">
-            Price *
-          </label>
-          <input
-            type="number"
-            placeholder="NFT Price"
-            className="w-1/2 p-4 border rounded"
-          />
+          <div className="flex flex-col gap-3 ">
+            <label htmlFor="price" id="price" className="text-2xl font-bold">
+              Price *
+            </label>
+            <input
+              type="number"
+              placeholder="NFT Price"
+              id="price"
+              name="price"
+              className="w-2/3 p-4 border rounded focus:border-blue-600"
+              {...mintForm("price")}
+            />
+            {errors.price && (
+              <span className="text-red-400 font-semibold leading-200 tracking-[-0.21px]">
+                {errors.price.message}
+              </span>
+            )}
+          </div>
         </div>
 
         <p className="my-5 text-2xl font-bold">External Link</p>
@@ -125,11 +176,12 @@ const Mint = () => {
 
         <textarea
           className="w-full p-5 my-5 border-2 rounded-md"
-          name="nftDescription"
-          id="nftDescription"
+          name="description"
+          id="description"
           cols="30"
           rows="10"
           placeholder="Provide a detailed description of your NFT."
+          {...mintForm("description")}
         ></textarea>
 
         <button className="bg-[#084cdf] py-6 px-10 ml-auto text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
