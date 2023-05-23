@@ -1,4 +1,3 @@
-import React from "react";
 import ColllectionCard from "../UI/CollectionCard";
 import Activity from "./Activity";
 import Description from "./Description";
@@ -17,6 +16,7 @@ import Image10 from "../../assets/nft/nft10.png";
 import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
 import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
 // import Detailtext from './DetailText/DetailText'
 
@@ -45,47 +45,12 @@ const coll = [
     num: 2.3,
     price: 23233,
   },
-  // {
-  //   name: "18932",
-  //   image: Image5,
-  //   num: 2.3,
-  //   price: 23233,
-  // },
-  // {
-  //   name: "18932",
-  //   image: Image6,
-  //   num: 2.3,
-  //   price: 23233,
-  // },
-  // {
-  //   name: "18932",
-  //   image: Image7,
-  //   num: 2.3,
-  //   price: 23233,
-  // },
-  // {
-  //   name: "18932",
-  //   image: Image8,
-  //   num: 2.3,
-  //   price: 23233,
-  // },
-  // {
-  //   name: "18932",
-  //   image: Image9,
-  //   num: 2.3,
-  //   price: 23233,
-  // },
-  // {
-  //   name: "18932",
-  //   image: Image10,
-  //   num: 2.3,
-  //   price: 23233,
-  // },
 ];
 
 const ProductDetail = () => {
   return (
     <>
+      <Header />
       <div className="w-full px-10">
         <div className="flex gap-5">
           <Product />

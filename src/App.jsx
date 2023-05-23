@@ -123,6 +123,7 @@ const App = () => {
           }
         />
         <Route path="/create" element={<Mint />} />
+        <Route path="/productDetail" element={<ProductDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />

@@ -12,16 +12,6 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
-export const getNftsAPI = async () => {
-  try {
-    const response = await axios.get("/nft", tokenConfig());
-    // console.log(response.data, "resData");
-    return response.data;
-  } catch (error) {
-    throw error.response.data;
-  }
-};
-
 const CreateTokenConfig = () => {
   const authToken = Cookies.get("authToken");
   const config = {
@@ -36,6 +26,37 @@ const CreateTokenConfig = () => {
   }
 
   return config;
+};
+
+export const getNftsAPI = async () => {
+  try {
+    const response = await axios.get("/nft", tokenConfig());
+    // console.log(response.data, "resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const selectItemAPI = async (productId) => {
+  try {
+    const response = await axios.get(`/nft/buy/${productId}`, tokenConfig());
+    // console.log(response.data, "resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+
+export const buyNftAPI = async (productId) => {
+  try {
+    const response = await axios.get(`/nft/buyNft/${productId}`, tokenConfig());
+    // console.log(response.data, "resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
 };
 
 export const createNftAPI = async (nftData) => {
