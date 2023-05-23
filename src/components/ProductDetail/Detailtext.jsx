@@ -45,7 +45,7 @@ const Detailtext = () => {
         <p>Current Price</p>
         <p className="text-[30px]">
           <span className="font-bold ">2.7115 WETH</span>
-          <span className="text-base text-gray-600">$5,060.78</span>
+          <span className="ml-3 text-base text-gray-600">$5,060.78</span>
         </p>
         <button className="w-full px-5 py-8 text-2xl font-semibold text-white bg-blue-400 rounded-lg hover:bg-blue-300">
           Buy now

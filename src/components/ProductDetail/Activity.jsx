@@ -1,17 +1,18 @@
-import React from 'react'
-import ActiviyTable from './ActiviyTable'
+import React from "react";
+import ActivityTable from "./ActivityTable";
+import { BsArrowDownUp } from "react-icons/bs";
 
 const Activity = () => {
   return (
-    <div className='w-[90%] max-w-[12000px] mt-10 text-poppins font-poppins text-3xl mx-auto rounded-t-[5px]'>
-        <p className='border rounded-[inherit] py-4 px-8'>Item Activity</p>
-        <div><input type="text" /></div>
+    <div className="max-w-[12000px] mt-10 text-poppins font-poppins text-3xl mx-4 rounded-t-xl">
+      <p className="flex px-8 border rounded-t-lg py-7">
+        <BsArrowDownUp color="gray" />
+        <span className="ml-4"> Item Activity</span>
+      </p>
 
-        <div>
-            <ActiviyTable />
-        </div>
+      <ActivityTable />
     </div>
-  )
-}
+  );
+};
 
-export default Activity
+export default Activity;
