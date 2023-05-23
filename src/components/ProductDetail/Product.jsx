@@ -5,18 +5,8 @@ import Image2 from "../../assets/nft/nft2.jpg";
 
 const Product = () => {
   return (
-    <div className="w-[40%] rounded-[10px] border-solid p-5 border-[#eee] border-[1px]">
-      {/* <div className="flex gap-4 ">
-        <div className="w-12">
-          <FcLike size={"100%"} color="black" />
-        </div>
-        <div className="w-12">
-          <MdOutlineCastConnected size={"100%"} color="black" />
-        </div>
-      </div> */}
-      <div>
-        <img src={Image2} alt="" className="w-full h-full" />
-      </div>
+    <div className="w-[40%] border-solid border-[#eee] border rounded-xl">
+      <img src={Image2} alt="" className="w-full h-full rounded-xl" />
     </div>
   );
 };

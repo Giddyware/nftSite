@@ -17,7 +17,7 @@ const VerifyEmail = () => {
     dispatch(createEmailToken());
   };
   return (
-    <div className="h-[92vh] border-solid border-[1px] mt-[5vh]  shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] min-w-fit bg-gray-100 mx-10 md:mx-96">
+    <div className="h-[92vh] border-solid border mt-[5vh]  shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] min-w-fit bg-gray-100 mx-10 md:mx-96">
       <header className="mx-auto">
         <img className="w-72" src={logo} />
       </header>

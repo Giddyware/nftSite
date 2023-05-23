@@ -58,7 +58,7 @@ const ProductDetail = () => {
         </div>
 
         <Activity />
-        <div className="border-solid border-[#eee] border-[1px] rounded-[14px] mt-20 ">
+        <div className="border-solid border-[#eee] border rounded-[14px] mt-20 ">
           <p className="p-12 text-3xl font-bold font-poppins">
             More On Collection
           </p>

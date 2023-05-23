@@ -59,7 +59,7 @@ const Login = () => {
   console.log(state);
   return (
     <form
-      className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 bg-white border-[1px] outline-slate-700 outline-4"
+      className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 bg-white border outline-slate-700 outline-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       <fieldset className="grid grid-cols-6 gap-8">

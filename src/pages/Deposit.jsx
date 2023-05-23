@@ -2,11 +2,11 @@ import React from "react";
 
 const Deposit = () => {
   return (
-    <div className="h-[90vh] border-solid border-[1px] mt-[5vh] border-black shadow-lg  mx-auto font-poppins text-[1rem]  justify-between flex flex-col px-8 py-12 max-w-xl rounded-[10px]">
+    <div className="h-[90vh] border-solid border mt-[5vh] border-black shadow-lg  mx-auto font-poppins text-[1rem]  justify-between flex flex-col px-8 py-12 max-w-xl rounded-[10px]">
       <p className="text-[2rem] px-[12px] font-bold">Deposit ETH</p>
 
       <div>
-        <div className="w-[150px] h-[150px] border-solid border-[1px] mx-auto mb-10"></div>
+        <div className="w-[150px] h-[150px] border-solid border mx-auto mb-10"></div>
         <div className="flex flex-col text-center opacity-[0.7] text-[1.25rem] px-[12px]">
           <p>Send only ETH to theis deposit address</p>
           <p>
