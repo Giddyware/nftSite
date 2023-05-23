@@ -1,36 +1,37 @@
 import React from "react";
+import { TbArrowsExchange } from "react-icons/tb";
 
 const activities = [
   {
-    transfer: "Transfer",
+    transaction: "Transfer",
     price: "$2.680",
     from: "pcs",
     to: "philip",
     date: "2 hours ago",
   },
   {
-    transfer: "Sale",
+    transaction: "Sale",
     price: "$2.680",
     from: "pcs",
     to: "Dave",
     date: "2 hours ago",
   },
   {
-    transfer: "Transfer",
+    transaction: "Transfer",
     price: "$2.680",
     from: "pcs",
     to: "sSam",
     date: "2 hours ago",
   },
   {
-    transfer: "Transfer",
+    transaction: "Transfer",
     price: "$2.680",
     from: "pcs",
     to: "Derick",
     date: "1 hours ago",
   },
   {
-    transfer: "Transfer",
+    transaction: "Transfer",
     price: "$2.680",
     from: "pcs",
     to: "philip",
@@ -38,39 +39,25 @@ const activities = [
   },
 ];
 
-// const ActiviyRole = ({ transfer, price, from, to, date }) => {
-//   return (
-//     <div className="grid grid-cols-5 border-y-solid border-y-[#eee] border-y p-6">
-//       <div>{transfer}</div>
-//       <div>{price}</div>
-//       <div className="text-blue-500">{from}</div>
-//       <div className="text-blue-500">{to}</div>
-//       <div className="text-blue-500">{date}</div>
-//     </div>
-//   );
-// };
-
-// const ActiviyTable = () => {
-//   return (
-//     <div>
-//       <div className="grid justify-around grid-cols-5">
-//         <div>Event </div>
-//         <div>Price </div>
-//         <div>From </div>
-//         <div>To </div>
-//         <div>Date </div>
-//       </div>
-
-//       <div className="bg-blue[#FBFDFF] px-5">
-//         {activities.map((act) => (
-//           <ActiviyRole {...act} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ActiviyTable;
+const ActivityRole = ({ transaction, price, from, to, date }) => {
+  return (
+    <tr className="overflow-auto bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      <th
+        scope="row"
+        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      >
+        <p className="flex items-center gap-2">
+          <TbArrowsExchange size={18} />
+          <span>{transaction}</span>
+        </p>
+      </th>
+      <td className="px-6 py-4 font-semibold">{price}</td>
+      <td className="px-6 py-4 text-blue-400">{from}</td>
+      <td className="px-6 py-4 text-blue-400">{from}</td>
+      <td className="px-6 py-4">{date}</td>
+    </tr>
+  );
+};
 
 const ActivityTable = () => {
   return (
@@ -95,19 +82,10 @@ const ActivityTable = () => {
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              Transfer
-            </th>
-            <td className="px-6 py-4"> </td>
-            <td className="px-6 py-4">Dave</td>
-            <td className="px-6 py-4">Samson</td>
-            <td className="px-6 py-4">2 hours ago</td>
-          </tr>
+        <tbody className="">
+          {activities.map((act) => (
+            <ActivityRole {...act} />
+          ))}
         </tbody>
       </table>
     </div>
