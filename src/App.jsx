@@ -122,6 +122,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/create" element={<Mint />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
