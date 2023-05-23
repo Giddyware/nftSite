@@ -16,7 +16,7 @@ const ACCEPTED_IMAGE_TYPES = [
 const schema = object({
   name: string().nonempty("Name is required"),
   category: string().nonempty("Category is required"),
-  priceInEthereum: number().min(0, "Price must be a positive number"),
+  priceInEtherium: number().min(0.0001, "Price must be a positive number"),
   description: string().nonempty("Description can not be left empty"),
   // image: string().nonempty("Image is required"), // Update the schema to include the image field
   photo: any()
@@ -48,16 +48,27 @@ const Mint = () => {
     console.log(data);
     try {
       setLoading(true);
-      data.priceInEthereum = parseFloat(data.priceInEthereum); // Convert the price to a number
-      const validData = schema.parse(data);
+      data.priceInEtherium = parseFloat(data.priceInEtherium); // Convert the price to a number
+
+      const validData = schema.parse(data); //Validating the data
 
       console.log(validData, "validData");
-      dispatch(createNft(validData));
 
-      toast.success("Success");
-      setLoading(false);
+      const formData = new FormData();
+      formData.append("photo", data.photo[0]); // Append the image file to the FormData object
 
-      // reset();
+      // Append the rest of the form data to the FormData object
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== "photo") {
+          formData.append(key, value);
+        }
+      });
+
+      console.log(formData, "formData");
+
+      dispatch(createNft(formData));
+
+      reset();
     } catch (error) {
       toast.error("Minting failed. Please try again.");
       console.error(error);
@@ -101,7 +112,7 @@ const Mint = () => {
               {...mintForm("photo")}
             />
             {previewImage && (
-              <img className="w-14 h-14" src={previewImage} alt="Preview" />
+              <img className="w-20 h-20" src={previewImage} alt="Preview" />
             )}
             {errors.photo && <span>{errors.photo.message}</span>}
           </label>
@@ -144,16 +155,17 @@ const Mint = () => {
           </div>
 
           <div className="flex flex-col gap-3 ">
-            <label htmlFor="priceInEthereum" className="text-2xl font-bold">
+            <label htmlFor="priceInEtherium" className="text-2xl font-bold">
               Price *
             </label>
             <input
               type="number"
+              step={0.001}
               placeholder="NFT Price"
-              id="priceInEthereum"
-              name="priceInEthereum"
+              id="priceInEtherium"
+              name="priceInEtherium"
               className="w-2/3 p-4 border rounded focus:border-blue-600"
-              {...mintForm("priceInEthereum")}
+              {...mintForm("priceInEtherium")}
             />
             {errors.price && (
               <span className="text-red-400 font-semibold leading-200 tracking-[-0.21px]">

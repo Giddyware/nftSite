@@ -8,18 +8,6 @@ const initialState = {
   nft: null,
 };
 
-// export const getNfts = createAsyncThunk(
-//   "product/getNfts",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await getNftsAPI();
-//       console.log(response.data, "respo");
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
 
 const nftSlice = createSlice({
   name: "product",

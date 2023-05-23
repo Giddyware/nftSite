@@ -8,35 +8,6 @@ const BASE_URL = "http://31.220.31.111:3000/api/v1"; // Replace with your actual
 // Set the Axios base URL
 axios.defaults.baseURL = BASE_URL;
 
-// // Request interceptor
-// axios.interceptors.request.use((config) => {
-//   const authToken = Cookies.get("authToken"); // Retrieve the authToken from cookies
-//   console.log(authToken, "authToken");
-//   if (authToken) {
-//     config.headers.Authorization = `Bearer ${authToken}`; // Add the authToken to the request headers
-//     console.log(authToken, "authToken");
-//   }
-//   return config;
-// });
-
-// // Response interceptor
-// axios.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     // Handle unauthorized or expired token response
-//     if (error.response && error.response.status === 401) {
-//       // Redirect the user to the login page or perform any other action
-//       Navigate("/auth");
-//       console.log("Unauthorized or expired token");
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
-// const api = axios.create({
-//   baseURL: BASE_URL,
-// });
-
 const api = axios.create({
   baseURL: BASE_URL,
 });
@@ -51,9 +22,29 @@ export const getNftsAPI = async () => {
   }
 };
 
+const CreateTokenConfig = () => {
+  const authToken = Cookies.get("authToken");
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      authorization: "",
+    },
+  };
+
+  if (authToken !== null) {
+    config.headers["authorization"] = `Bearer ${authToken}`;
+  }
+
+  return config;
+};
+
 export const createNftAPI = async (nftData) => {
   try {
-    const response = await api.post(`${BASE_URL}/nft`, nftData, tokenConfig());
+    const response = await api.post(
+      `${BASE_URL}/nft`,
+      nftData,
+      CreateTokenConfig()
+    );
     const responseData = response.data;
     console.log(response);
     if (responseData) {
