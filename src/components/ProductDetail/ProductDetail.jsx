@@ -52,7 +52,7 @@ const ProductDetail = () => {
     <>
       <Header />
       <div className="w-full px-10">
-        <div className="flex gap-5">
+        <div className="flex gap-5 flex-col lg:flex-row">
           <Product />
           <Detailtext />
         </div>
