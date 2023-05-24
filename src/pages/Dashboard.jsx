@@ -24,29 +24,29 @@ import SideNav from "../components/UI/SideNav";
 import Withdraw from "../components/UI/Withdraw";
 import Overlay from "../components/UI/Overlay";
 
-import {BiUserCircle} from "react-icons/bi"
-import i18next from 'i18next'
+import { BiUserCircle } from "react-icons/bi";
+import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { SocketContext } from "../context/socket";
-
-
-
+import { useSelector } from "react-redux";
 
 const DashboardCard = ({ showModal }) => {
-   const {t} = useTranslation()
+  const { t } = useTranslation();
   return (
     <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
       <div>
-        <p>{t('dashboard.account_balance')}</p>
+        <p>{t("dashboard.account_balance")}</p>
         <p className="text-3xl font-bold">50 ETH</p>
       </div>
       <div className="flex gap-x-6">
-        <button className="px-10 py-4 bg-blue-500 rounded-lg">{t('dashboard.Deposit')}</button>
+        <button className="px-10 py-4 bg-blue-500 rounded-lg">
+          {t("dashboard.Deposit")}
+        </button>
         <button
           className="px-24 py-8 text-gray-400 bg-white rounded-lg"
           onClick={() => showModal()}
         >
-          {t('dashboard.withdrawal')}
+          {t("dashboard.withdrawal")}
         </button>
       </div>
     </div>
@@ -55,8 +55,8 @@ const DashboardCard = ({ showModal }) => {
 
 const languages = [
   {
-    code: 'en',
-    name: 'English',
+    code: "en",
+    name: "English",
   },
   // {
   //   code : "es",
@@ -64,10 +64,10 @@ const languages = [
   // },
   // {
   //   code: "fin",
-  //   name: "Finnish" 
+  //   name: "Finnish"
   // },
   {
-    code : "fr",
+    code: "fr",
     name: "French",
   },
   // {
@@ -78,13 +78,11 @@ const languages = [
   //   code: "sp",
   //   name: "Spanish"
   // },
-  // { 
+  // {
   //   code: "de",
   //   name: "Desutch"
   // }
-]
-
-
+];
 
 const data = [
   {
@@ -165,27 +163,24 @@ const Dashboard = () => {
   const saleRef = useRef(null);
   const nftRef = useRef(null);
   const transactionRef = useRef(null);
-  const { t } = useTranslation()
-  // console.log(saleRef.current);
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
 
   const ModalStatus = () => {
-    console.log("working");
     setShowModal((prev) => !prev);
   };
 
-
   const ChangeLanguage = (code) => {
-    i18next.changeLanguage(code)
-    console.log("runnnig")
-  }
+    i18next.changeLanguage(code);
+  };
 
+  const { userDetails, isLoading, error } = useSelector((state) => state.auth);
+  console.log(userDetails, "dash");
 
-  
   return (
     <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
-      {/* <Withdraw show={showModal} modalStatus={ModalStatus} /> */}
+
       <Withdraw show={showModal} modalStatus={ModalStatus} />
 
       <SideNav refs={{ saleRef, nftRef, transactionRef }} />
@@ -193,14 +188,19 @@ const Dashboard = () => {
       <div className="w-[100%] p-8">
         <div className="flex items-center justify-center pb-4 mb-8 border-b">
           <div className="mr-auto">
-            <h1 className="text-lg">{t('dashboard.home')}</h1>
+            <h1 className="text-lg">{t("dashboard.home")}</h1>
           </div>
           <div className="flex items-center justify-center ">
-        <div>
-        <select name="devices" onChange= {(e) => i18next.changeLanguage(e.target.value)}>
-      {languages.map((lag => <option value={lag.code} > {lag.name}  </option>))}
-        </select>
-        </div>
+            <div>
+              <select
+                name="devices"
+                onChange={(e) => i18next.changeLanguage(e.target.value)}
+              >
+                {languages.map((lag) => (
+                  <option value={lag.code}> {lag.name} </option>
+                ))}
+              </select>
+            </div>
             <div className="flex px-4 bg-gray-100 item-center justify-center rounded-lg py-2">
               <img
                 className="border border-solid rounded-full h-14 w-14 border-whiter"
@@ -250,7 +250,7 @@ const Dashboard = () => {
           id="RecentTransactionTable"
           ref={transactionRef}
         >
-          <p className="mb-7">{t('dashboard.recent_transactions')}</p>
+          <p className="mb-7">{t("dashboard.recent_transactions")}</p>
           <div>
             <DashboardTable />
           </div>
@@ -269,7 +269,7 @@ const Dashboard = () => {
           id="RecentSalesTable"
           ref={saleRef}
         >
-          <p className="mb-7">{t('dashboard.Recent_sales')}</p>
+          <p className="mb-7">{t("dashboard.Recent_sales")}</p>
           <div>
             <RecentSalesTable />
           </div>
