@@ -23,7 +23,8 @@ import { BiErrorCircle } from "react-icons/bi";
 import { useEffect } from "react";
 import { selectProduct } from "../../context/nft/nftActions";
 import NotFound from "../../pages/NotFound";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const coll = [
   {
@@ -71,11 +72,14 @@ const ProductDetail = () => {
       </div>
     );
   }
-  if (error) {
+  if (error === "this Nft already belong to you") {
     return (
       <div>
-        Error: {error}
-        <BiErrorCircle />
+        {toast.warning("This NFT is already yours! \n \n Try to buy other", {
+          position: toast.POSITION.TOP_CENTER,
+          className:'toast-message'
+        })}
+        <Navigate to={"/marketPlace"} />
       </div>
     );
   }
@@ -87,7 +91,8 @@ const ProductDetail = () => {
     );
   }
 
-  const { photo, description, name, nftOwner, priceInEtherium } = selectedItem;
+  const { id, photo, description, name, nftOwner, priceInEtherium } =
+    selectedItem;
   return (
     <>
       <Header />
@@ -95,6 +100,7 @@ const ProductDetail = () => {
         <div className="flex gap-5 flex-col lg:flex-row">
           <Product photo={photo} />
           <DetailText
+            productId={id}
             description={description}
             nam={name}
             priceInEtherium={priceInEtherium}

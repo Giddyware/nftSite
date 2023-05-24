@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createNftAPI, getNftsAPI, selectItemAPI } from "./nftApi";
+import { buyNftAPI, createNftAPI, getNftsAPI, selectItemAPI } from "./nftApi";
 import {
   buyProductFailure,
   buyProductStart,
