@@ -37,6 +37,19 @@ const nftSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    selectItemStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    selectItemSuccess: (state, action) => {
+      state.selectedItem = action.payload;
+      state.loading = false;
+      state.error = null;
+    },
+    selectItemFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -47,6 +60,9 @@ export const {
   buyProductStart,
   buyProductSuccess,
   buyProductFailure,
+  selectItemStart,
+  selectItemSuccess,
+  selectItemFailure,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;

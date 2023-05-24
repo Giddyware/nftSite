@@ -36,6 +36,7 @@ import NotFound from "./pages/NotFound";
 import VerifyEmail from "./components/UI/VerifyEmail";
 
 import UnAuthenticated from "./Container/UnAuthenticated";
+import MarketPlace from "./pages/MarketPlace";
 // import SupportAdmin from "./components/SupportAdmin";
 
 // function App() {
@@ -117,7 +118,7 @@ const App = () => {
           path="/marketPlace"
           element={
             <ProtectedRoute>
-              <CollectionPage />
+              <MarketPlace />
             </ProtectedRoute>
           }
         />
@@ -131,7 +132,7 @@ const App = () => {
         />
         <Route path="/create" element={<Mint />} />
         <Route
-          path="/productDetail"
+          path="/marketPlace/products/:productId"
           element={
             <ProtectedRoute>
               <ProductDetail />

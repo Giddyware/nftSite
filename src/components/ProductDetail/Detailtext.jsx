@@ -38,13 +38,13 @@ export const Data = [
 
 import Description from "./Description";
 
-const Detailtext = () => {
+const DetailText = ({ description, name, nftOwner, priceInEtherium }) => {
   return (
     <div className="flex-1 font-poppins">
       <div className="rounded-[5px] flex gap-5 flex-col border px-5 w-full py-10">
         <p>Current Price</p>
         <p className="text-[30px]">
-          <span className="font-bold ">2.7115 WETH</span>
+          <span className="font-bold ">{priceInEtherium} ETH</span>
           <span className="ml-3 text-base text-gray-600">$5,060.78</span>
         </p>
         <button className="w-full px-5 py-8 text-2xl font-semibold text-white bg-blue-400 rounded-lg hover:bg-blue-300">
@@ -52,9 +52,9 @@ const Detailtext = () => {
         </button>
       </div>
 
-      <Description />
+      <Description description={description} nftOwner={nftOwner} />
     </div>
   );
 };
 
-export default Detailtext;
+export default DetailText;

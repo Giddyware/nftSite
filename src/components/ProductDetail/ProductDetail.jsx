@@ -1,7 +1,7 @@
 import ColllectionCard from "../UI/CollectionCard";
 import Activity from "./Activity";
 import Description from "./Description";
-import Detailtext from "./Detailtext";
+import DetailText from "./DetailText";
 import Product from "./Product";
 import Image1 from "../../assets/nft/nft1.jpg";
 import Image2 from "../../assets/nft/nft2.jpg";
@@ -17,8 +17,13 @@ import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-
-// import Detailtext from './DetailText/DetailText'
+import { useDispatch, useSelector } from "react-redux";
+import { CgLoadbar } from "react-icons/cg";
+import { BiErrorCircle } from "react-icons/bi";
+import { useEffect } from "react";
+import { selectProduct } from "../../context/nft/nftActions";
+import NotFound from "../../pages/NotFound";
+import { useParams } from "react-router-dom";
 
 const coll = [
   {
@@ -48,13 +53,53 @@ const coll = [
 ];
 
 const ProductDetail = () => {
+  const { productId } = useParams();
+  const dispatch = useDispatch();
+  const { selectedItem, isLoading, error } = useSelector(
+    (state) => state.product
+  );
+
+  useEffect(() => {
+    dispatch(selectProduct(productId));
+  }, [dispatch, productId]);
+
+  if (isLoading) {
+    return (
+      <div>
+        Loading...
+        <CgLoadbar />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div>
+        Error: {error}
+        <BiErrorCircle />
+      </div>
+    );
+  }
+  if (!selectedItem) {
+    return (
+      <div>
+        <NotFound />
+      </div>
+    );
+  }
+
+  const { photo, description, name, nftOwner, priceInEtherium } = selectedItem;
   return (
     <>
       <Header />
       <div className="w-full px-10">
         <div className="flex gap-5 flex-col lg:flex-row">
-          <Product />
-          <Detailtext />
+          <Product photo={photo} />
+          <DetailText
+            description={description}
+            nam={name}
+            priceInEtherium={priceInEtherium}
+            nftOwner={nftOwner}
+          />
         </div>
 
         <Activity />

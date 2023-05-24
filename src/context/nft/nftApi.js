@@ -40,14 +40,13 @@ export const getNftsAPI = async () => {
 
 export const selectItemAPI = async (productId) => {
   try {
-    const response = await axios.get(`/nft/buy/${productId}`, tokenConfig());
-    // console.log(response.data, "resData");
-    return response.data;
+    const response = await axios.get(`/nft/${productId}`, tokenConfig());
+    // console.log(response.data.data, "resData");
+    return response.data.data;
   } catch (error) {
     throw error.response.data;
   }
 };
-
 
 export const buyNftAPI = async (productId) => {
   try {

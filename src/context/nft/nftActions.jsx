@@ -7,6 +7,9 @@ import {
   fetchFailure,
   fetchStart,
   fetchSuccess,
+  selectItemFailure,
+  selectItemStart,
+  selectItemSuccess,
 } from "./nftSlice";
 import { toast } from "react-toastify";
 
@@ -27,13 +30,13 @@ export const getNfts = createAsyncThunk(
 export const selectProduct = createAsyncThunk(
   "product/selectProduct",
   async (productId, { dispatch }) => {
-    dispatch(fetchStart());
+    dispatch(selectItemStart());
     try {
       const selected = await selectItemAPI(productId);
       console.log(selected, "selected");
-      dispatch(fetchSuccess(selected));
+      dispatch(selectItemSuccess(selected));
     } catch (error) {
-      dispatch(fetchFailure(error));
+      dispatch(selectItemFailure(error));
     }
   }
 );
