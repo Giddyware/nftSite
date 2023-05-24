@@ -15,6 +15,7 @@ import Image9 from "../../assets/nft/nft9.jpg";
 import Image10 from "../../assets/nft/nft10.png";
 import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
+import Logo from "../../assets/logo.png";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -101,7 +102,11 @@ const ProductDetail = () => {
   }
 
   if (!selectedItem) {
-    return <div>Loading Loading</div>;
+    return (
+      <div>
+        <img src={Logo} alt="" />
+      </div>
+    );
   }
 
   const { id, photo, description, name, nftOwner, priceInEtherium } =
