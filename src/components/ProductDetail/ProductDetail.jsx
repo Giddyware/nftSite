@@ -72,23 +72,36 @@ const ProductDetail = () => {
       </div>
     );
   }
+
   if (error === "this Nft already belong to you") {
     return (
       <div>
         {toast.warning("This NFT is already yours! \n \n Try to buy other", {
           position: toast.POSITION.TOP_CENTER,
-          className:'toast-message'
+          className: "toast-message",
         })}
         <Navigate to={"/marketPlace"} />
       </div>
     );
   }
-  if (!selectedItem) {
+
+  if (error === "you dont have enough balance to buy this Nft") {
     return (
       <div>
-        <NotFound />
+        {toast.warning(
+          "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toast-message",
+          }
+        )}
+        <Navigate to={"/marketPlace"} />
       </div>
     );
+  }
+
+  if (!selectedItem) {
+    return <div>Loading Loading</div>;
   }
 
   const { id, photo, description, name, nftOwner, priceInEtherium } =
