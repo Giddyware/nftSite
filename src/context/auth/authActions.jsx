@@ -1,5 +1,12 @@
 import Cookies from "js-cookie";
-import { authStart, authSuccess, authFailure, logout } from "./authSlice";
+import {
+  authStart,
+  authSuccess,
+  authFailure,
+  logout,
+  getUserDetailsStart,
+  getUserDetailsSuccess,
+} from "./authSlice";
 import {
   createEmailTokenAPI,
   getNftsAPI,
@@ -12,25 +19,6 @@ import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// export const loginUser = (userData) => async (dispatch) => {
-//   dispatch(authStart());
-//   try {
-//     const user = await loginUserAPI(userData);
-//     console.log(user, "loginUser");
-//     Cookies.set("authToken", user.token, { expires: 7 }); // Store the authentication token in a cookie
-//     <Navigate to="/dashboard" />;
-//     dispatch(authSuccess(user));
-//     toast.success("Login Successful");
-//   } catch (error) {
-//     dispatch(authFailure(error));
-//   }
-// };
-
-// export const signOut = () => (dispatch) => {
-//   Cookies.remove("authToken"); // Remove the authentication token cookie
-//   dispatch(logout());
-// };
-
 // Register user action
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
@@ -38,8 +26,6 @@ export const registerUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const user = await registerUserAPI(userData);
-      // dispatch(setUser(user));
-      // dispatch(clearError());
       <Navigate to="/auth" />;
       dispatch(authSuccess(user));
       toast.success("Registered Successful");
@@ -54,9 +40,9 @@ export const loginUser = createAsyncThunk(
   async (userData, { dispatch }) => {
     dispatch(authStart());
     try {
-      const user = await loginUserAPI(userData);
-      Cookies.set("authToken", user.token, { expires: 0.625 }); // Store the authentication token in a cookie
-      dispatch(authSuccess(user));
+      const response = await loginUserAPI(userData);
+      Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
+      dispatch(authSuccess(response.data));
       if (user) {
         // <Navigate to="/dashboard" />;
         console.log(user, "user");
@@ -86,12 +72,11 @@ export const getUserDetails = createAsyncThunk(
   "auth/getUserDetails",
   async (_, { dispatch }) => {
     try {
-      const userDetails = await getUserDetailsRequestAPI();
-      // dispatch(setUser(userDetails));
-      // dispatch(clearError());
-      dispatch(authSuccess(userDetails));
+      dispatch(getUserDetailsStart());
+      const response = await getUserDetailsRequestAPI();
+      dispatch(getUserDetailsSuccess(response.data));
     } catch (error) {
-      dispatch(authFailure(error));
+      dispatch(getUserDetailsFailure(error.message));
     }
   }
 );
@@ -108,17 +93,3 @@ export const createEmailToken = createAsyncThunk(
     }
   }
 );
-
-// TODO:Dispatch action to store products
-// export const getNfts = createAsyncThunk(
-//   "auth/getProducts",
-//   async (_, { dispatch }) => {
-//     try {
-//       const nfts = await getNftsAPI();
-//       // Dispatch action to store products
-//       dispatch(authSuccess(nfts));
-//     } catch (error) {
-//       dispatch(authFailure(error));
-//     }
-//   }
-// );
