@@ -15,6 +15,7 @@ import Image9 from "../../assets/nft/nft9.jpg";
 import Image10 from "../../assets/nft/nft10.png";
 import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
+import Logo from "../../assets/logo.png";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +26,7 @@ import { selectProduct } from "../../context/nft/nftActions";
 import NotFound from "../../pages/NotFound";
 import { Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loading from "../Loading/Loading";
 
 const coll = [
   {
@@ -72,23 +74,36 @@ const ProductDetail = () => {
       </div>
     );
   }
+
   if (error === "this Nft already belong to you") {
     return (
       <div>
         {toast.warning("This NFT is already yours! \n \n Try to buy other", {
           position: toast.POSITION.TOP_CENTER,
-          className:'toast-message'
+          className: "toast-message",
         })}
         <Navigate to={"/marketPlace"} />
       </div>
     );
   }
-  if (!selectedItem) {
+
+  if (error === "you dont have enough balance to buy this Nft") {
     return (
       <div>
-        <NotFound />
+        {toast.warning(
+          "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toast-message",
+          }
+        )}
+        <Navigate to={"/marketPlace"} />
       </div>
     );
+  }
+
+  if (!selectedItem) {
+    return <Loading />;
   }
 
   const { id, photo, description, name, nftOwner, priceInEtherium } =

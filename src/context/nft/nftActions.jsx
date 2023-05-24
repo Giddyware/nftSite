@@ -48,6 +48,10 @@ export const buyProduct = createAsyncThunk(
     try {
       const bought = await buyNftAPI(productId);
       console.log(bought, "bought");
+      toast.success("Congratulations🎉, You have successfully bought an NFT", {
+        position: toast.POSITION.TOP_CENTER,
+        className: "toast-message",
+      });
       dispatch(buyProductSuccess());
     } catch (error) {
       dispatch(buyProductFailure(error.message));
