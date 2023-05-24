@@ -1,6 +1,7 @@
 import { FaTwitter, FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FcWiFiLogo } from "react-icons/fc";
 import { SlSocialReddit } from "react-icons/sl";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -63,15 +64,15 @@ const Footer = () => {
           </div>
           <div className="flex flex-col gap-y-5">
             <h1 className="font-bold">Marketplace</h1>
-            <a href="">All NFTs</a>
-            <a href="">Art</a>
-            <a href="">Gaming</a>
+            <Link to={"/marketPlace"}>All NFTs</Link>
+            <Link to={"/nfts/art"}>Art</Link>
+            <Link to={"/nfts/gaming"}>Gaming</Link>
           </div>
           <div className="flex flex-col gap-y-5">
             <h1 className="font-bold">My Account</h1>
-            <a href="">Profile</a>
+            <Link to={"/dashboard"}>Profile</Link>
             <a href="">Favorites</a>
-            <a href="">Watchlist</a>
+            <a href="">WatchList</a>
             <a href="">Collection</a>
           </div>
           <div className="flex flex-col gap-y-5">

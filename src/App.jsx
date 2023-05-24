@@ -130,7 +130,16 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/create" element={<Mint />} />
+        <Route
+          path="/createNft"
+          element={
+            <ProtectedRoute>
+              <Mint />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/buyNft" element={<Mint />} />
         <Route
           path="/marketPlace/products/:productId"
           element={

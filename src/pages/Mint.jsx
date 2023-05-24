@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { createNft } from "../context/nft/nftActions";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -197,10 +198,14 @@ const Mint = () => {
           placeholder="Provide a detailed description of your NFT."
           {...mintForm("description")}
         ></textarea>
-
-        <button className="bg-[#084cdf] py-6 px-10 ml-auto text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
-          Mint
-        </button>
+        <div className="flex w-full justify-between mt-auto">
+          <button className="bg-[#084cdf] py-6 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
+            Mint
+          </button>
+          <button className="bg-[#084cdf] py-6 px-3 w-48 text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
+            <Link to={"/dashboard"}>Go to Dashbaord</Link>
+          </button>
+        </div>
       </div>
     </form>
     // </div>
