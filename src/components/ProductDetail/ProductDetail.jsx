@@ -26,6 +26,7 @@ import { selectProduct } from "../../context/nft/nftActions";
 import NotFound from "../../pages/NotFound";
 import { Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loading from "../Loading/Loading";
 
 const coll = [
   {
@@ -102,13 +103,7 @@ const ProductDetail = () => {
   }
 
   if (!selectedItem) {
-    return (
-      <div className="flex justify-center items-center min-h-full min-w-full">
-        <div className="w-56 h-28 loader">
-          <img className="ml-12" src={Logo} alt="" />
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   const { id, photo, description, name, nftOwner, priceInEtherium } =

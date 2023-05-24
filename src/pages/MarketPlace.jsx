@@ -25,6 +25,7 @@ import { CgLoadbar } from "react-icons/cg";
 import { BiErrorCircle } from "react-icons/bi";
 import { getNfts } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
+import Loading from "../components/Loading/Loading";
 
 const MarketPlace = () => {
   const [showMore, setShowMore] = useState(false);
@@ -41,12 +42,7 @@ const MarketPlace = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return (
-      <div>
-        Loading...
-        <CgLoadbar />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
