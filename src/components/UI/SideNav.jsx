@@ -6,9 +6,8 @@ import { GrTransaction } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-import Logo from '../../assets/logo.png'
+import Logo from "../../assets/logo.png";
 import { useTranslation } from "react-i18next";
-
 
 const DashboardLinks = ({ hash, name, icon }) => {
   return (
@@ -28,7 +27,7 @@ const handleScroll = (ref) => {
 };
 
 const SideNav = ({ refs }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   return (
     <div className="">
       {/* TODO: Make the SideNav component */}
@@ -44,7 +43,7 @@ const SideNav = ({ refs }) => {
           <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<MdSummarize size={"10%"} />}
-              name={t('dashboard.account_summary')}
+              name={t("dashboard.account_summary")}
             />
           </li>
           <li
@@ -56,16 +55,19 @@ const SideNav = ({ refs }) => {
           >
             <DashboardLinks
               icon={<MdOutlineCollections size={"10%"} />}
-              name={t('dashboard.NFT_Collection')}
+              name={t("dashboard.NFT_Collection")}
             />
           </li>
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
+          <Link
+            to={"/createNft"}
+            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
+          >
             <DashboardLinks
               icon={<MdCreate size={"10%"} />}
-              name={t('dashboard.Mint_Create')}
-              hash="/mint"
+              name={t("dashboard.Mint_Create")}
+              // hash="/mint"
             />
-          </li>
+          </Link>
           <li
             className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
             onClick={() => {
@@ -76,8 +78,7 @@ const SideNav = ({ refs }) => {
           >
             <DashboardLinks
               icon={<GrTransaction size={"10%"} />}
-              name={t('dashboard.transaction')}
-
+              name={t("dashboard.transaction")}
             />
           </li>
 
@@ -91,7 +92,7 @@ const SideNav = ({ refs }) => {
             {/* <Link to="/#RecentSalesTable"> */}
             <DashboardLinks
               icon={<GiTakeMyMoney size={"10%"} />}
-              name={t('dashboard.sales')}
+              name={t("dashboard.sales")}
               // hash="/#RecentSalesTable"
             />
             {/* </Link> */}
@@ -99,14 +100,13 @@ const SideNav = ({ refs }) => {
           <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<BiSupport size={"10%"} />}
-              name={t('dashboard.support')}
-
+              name={t("dashboard.support")}
             />
           </li>
           <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<GiReceiveMoney size={"10%"} />}
-              name={t('dashboard.withdraw/deposit')}
+              name={t("dashboard.withdraw/deposit")}
             />
           </li>
         </ul>

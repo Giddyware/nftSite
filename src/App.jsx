@@ -36,6 +36,7 @@ import NotFound from "./pages/NotFound";
 import VerifyEmail from "./components/UI/VerifyEmail";
 
 import UnAuthenticated from "./Container/UnAuthenticated";
+import MarketPlace from "./pages/MarketPlace";
 // import SupportAdmin from "./components/SupportAdmin";
 
 // function App() {
@@ -113,7 +114,14 @@ const App = () => {
           }
         />
         <Route path="/verify_email" element={<VerifyEmail />} />
-        <Route path="/marketPlace" element={<CollectionPage />} />
+        <Route
+          path="/marketPlace"
+          element={
+            <ProtectedRoute>
+              <MarketPlace />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/dashboard"
           element={
@@ -122,7 +130,24 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/create" element={<Mint />} />
+        <Route
+          path="/createNft"
+          element={
+            <ProtectedRoute>
+              <Mint />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/buyNft" element={<Mint />} />
+        <Route
+          path="/marketPlace/products/:productId"
+          element={
+            <ProtectedRoute>
+              <ProductDetail />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />

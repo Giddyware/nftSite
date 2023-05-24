@@ -1,12 +1,13 @@
 import { FaTwitter, FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FcWiFiLogo } from "react-icons/fc";
 import { SlSocialReddit } from "react-icons/sl";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <>
       <div className="px-10 py-16 mt-32 text-white bg-[#1868B7] text-[16px]">
-        <div className="flex justify-between border-b">
+        <div className="flex justify-between border-b flex-col lg:flex-row">
           <div>
             <h2 className="text-xl font-bold">Stay in the loop</h2>
             <p className="text-base">
@@ -50,7 +51,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="grid my-32 grid-cols-[320px_repeat(4,_1fr)] gap-x-32 ">
+        <div className="grid my-32 lg:grid-cols-[320px_repeat(4,_1fr)] gap-x-32 grid-cols-3 gap-y-8 lg:gap-y-0">
           <div className="mt--6 ">
             <div className="border-right-solid border-right-[1px] border-right-[white] w-14 md:w-24">
               <FcWiFiLogo size={"100%"} />
@@ -63,15 +64,15 @@ const Footer = () => {
           </div>
           <div className="flex flex-col gap-y-5">
             <h1 className="font-bold">Marketplace</h1>
-            <a href="">All NFTs</a>
-            <a href="">Art</a>
-            <a href="">Gaming</a>
+            <Link to={"/marketPlace"}>All NFTs</Link>
+            <Link to={"/nfts/art"}>Art</Link>
+            <Link to={"/nfts/gaming"}>Gaming</Link>
           </div>
           <div className="flex flex-col gap-y-5">
             <h1 className="font-bold">My Account</h1>
-            <a href="">Profile</a>
+            <Link to={"/dashboard"}>Profile</Link>
             <a href="">Favorites</a>
-            <a href="">Watchlist</a>
+            <a href="">WatchList</a>
             <a href="">Collection</a>
           </div>
           <div className="flex flex-col gap-y-5">
