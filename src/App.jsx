@@ -113,7 +113,14 @@ const App = () => {
           }
         />
         <Route path="/verify_email" element={<VerifyEmail />} />
-        <Route path="/marketPlace" element={<CollectionPage />} />
+        <Route
+          path="/marketPlace"
+          element={
+            <ProtectedRoute>
+              <CollectionPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/dashboard"
           element={
@@ -123,7 +130,14 @@ const App = () => {
           }
         />
         <Route path="/create" element={<Mint />} />
-        <Route path="/productDetail" element={<ProductDetail />} />
+        <Route
+          path="/productDetail"
+          element={
+            <ProtectedRoute>
+              <ProductDetail />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
