@@ -22,6 +22,7 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
   const { t } = useTranslation();
 
   console.log(myNftTransaction, "myNftTransaction");
+
   return (
     <TableContainer
       ref={RecentSalesTableRef}
@@ -50,11 +51,11 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
         </TableHead>
 
         <TableBody className="">
-          {myNftTransaction.map(
+          {myNftTransaction?.map(
             ({ id, transaction, nft, From, to, amount, status }) => (
               <TableRow className="" key={id}>
                 <TableCell className="text-xl text-black capitalize">
-                  {/* {transaction} */} kisd
+                  {transaction}
                 </TableCell>
                 <TableCell className="text-xl text-black capitalize">
                   {nft?.name}
