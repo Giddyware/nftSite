@@ -193,7 +193,7 @@ const Dashboard = () => {
           <p className="text-3xl font-bold mb-7">NFTs</p>
           <div className="grid grid-cols-4 gap-6">
             {myNft.map((el) => (
-              <Card imageWidth={56} key={el.id} {...el} />
+              <Card inDashboard={true} imageWidth={56} key={el.id} {...el} />
             ))}
           </div>
         </div>
