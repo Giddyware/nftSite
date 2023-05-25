@@ -1,5 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { buyNftAPI, createNftAPI, getNftsAPI, selectItemAPI } from "./nftApi";
+import {
+  buyNftAPI,
+  createNftAPI,
+  getNftsAPI,
+  pullFromMarketAPI,
+  pushToMarketAPI,
+  selectItemAPI,
+} from "./nftApi";
 import {
   buyProductFailure,
   buyProductStart,
@@ -70,7 +77,32 @@ export const createNft = createAsyncThunk(
       dispatch(fetchSuccess(nft));
       toast.success("Minting Successful");
     } catch (error) {
-      dispatch(authFailure(error));
+      dispatch(fetchFailure(error));
+    }
+  }
+);
+
+export const pushToMarket = createAsyncThunk(
+  "product/pushToMarket",
+  async (_, { dispatch }) => {
+    try {
+      const response = await pushToMarketAPI();
+      console.log("pushToMarket", response);
+      dispatch(fetchSuccess(response));
+    } catch (error) {
+      dispatch(fetchFailure(error));
+    }
+  }
+);
+export const pullFromMarket = createAsyncThunk(
+  "product/pullFromMarket",
+  async (_, { dispatch }) => {
+    try {
+      const response = await pullFromMarketAPI();
+      console.log("pullFromMarket", response);
+      dispatch(fetchSuccess(response));
+    } catch (error) {
+      dispatch(fetchFailure(error));
     }
   }
 );

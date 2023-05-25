@@ -81,3 +81,31 @@ export const createNftAPI = async (nftData) => {
     throw error.response.data;
   }
 };
+
+export const pushToMarketAPI = async (productId) => {
+  try {
+    const response = await api.patch(
+      `${BASE_URL}/pushNftToMarket/${productId}`,
+      {},
+      tokenConfig()
+    );
+    console.log(response, "pushToMarket");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const pullFromMarketAPI = async (productId) => {
+  try {
+    const response = await api.patch(
+      `${BASE_URL}/pullFromNftToMarket/${productId}`,
+      {},
+      tokenConfig()
+    );
+    console.log(response, "pullFromMarket");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
