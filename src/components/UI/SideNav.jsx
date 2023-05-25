@@ -5,12 +5,14 @@ import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { RiLuggageDepositFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
 import { useTranslation } from "react-i18next";
 
 const DashboardLinks = ({ hash, name, icon }) => {
+  const location = useLocation();
+  console.log(location, "location");
   return (
     <div className="flex items-center justify-start">
       {icon}
@@ -104,18 +106,24 @@ const SideNav = ({ refs }) => {
               name={t("dashboard.support")}
             />
           </li>
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
+          <Link
+            to={`${location.pathname}/withdraw`}
+            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
+          >
             <DashboardLinks
               icon={<GiReceiveMoney size={"10%"} />}
               name={t("dashboard.withdraw")}
             />
-          </li>
-          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
+          </Link>
+          <Link
+            to={`${location.pathname}/deposit`}
+            className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
+          >
             <DashboardLinks
               icon={<RiLuggageDepositFill size={"10%"} />}
               name={t("dashboard.deposit")}
             />
-          </li>
+          </Link>
         </ul>
       </div>
     </div>

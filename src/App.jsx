@@ -37,6 +37,7 @@ import VerifyEmail from "./components/UI/VerifyEmail";
 
 import UnAuthenticated from "./Container/UnAuthenticated";
 import MarketPlace from "./pages/MarketPlace";
+import Withdraw from "./components/UI/Withdraw";
 // import SupportAdmin from "./components/SupportAdmin";
 
 // function App() {
@@ -113,7 +114,7 @@ const App = () => {
             // </UnAuthenticated>
           }
         />
-        <Route path="/verify_email" element={<VerifyEmail />} />
+        <Route path="dashboard/verify_email" element={<VerifyEmail />} />
         <Route
           path="/marketPlace"
           element={
@@ -131,15 +132,31 @@ const App = () => {
           }
         />
         <Route
-          path="/createNft"
+          path="/dashboard/createNft"
           element={
             <ProtectedRoute>
               <Mint />
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/dashboard/deposit"
+          element={
+            <ProtectedRoute>
+              <Deposit />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/withdraw"
+          element={
+            <ProtectedRoute>
+              <Withdraw />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/buyNft" element={<Mint />} />
+        <Route path="dashboard/buyNft" element={<Mint />} />
         <Route
           path="/marketPlace/products/:productId"
           element={
