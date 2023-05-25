@@ -114,7 +114,7 @@ const App = () => {
             // </UnAuthenticated>
           }
         />
-        <Route path="dashboard/verify_email" element={<VerifyEmail />} />
+        <Route path="/dashboard/verify_email" element={<VerifyEmail />} />
         <Route
           path="/marketPlace"
           element={
