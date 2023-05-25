@@ -84,11 +84,14 @@ export const createNft = createAsyncThunk(
 
 export const pushToMarket = createAsyncThunk(
   "product/pushToMarket",
-  async (_, { dispatch }) => {
+  async (id, { dispatch }) => {
     try {
-      const response = await pushToMarketAPI();
+      const response = await pushToMarketAPI(id);
       console.log("pushToMarket", response);
       dispatch(fetchSuccess(response));
+      toast.success(
+        "Congratulations🎉, You have successfully PUSH an NFT to the market. 🚀"
+      );
     } catch (error) {
       dispatch(fetchFailure(error));
     }
@@ -96,9 +99,9 @@ export const pushToMarket = createAsyncThunk(
 );
 export const pullFromMarket = createAsyncThunk(
   "product/pullFromMarket",
-  async (_, { dispatch }) => {
+  async (id, { dispatch }) => {
     try {
-      const response = await pullFromMarketAPI();
+      const response = await pullFromMarketAPI(id);
       console.log("pullFromMarket", response);
       dispatch(fetchSuccess(response));
     } catch (error) {

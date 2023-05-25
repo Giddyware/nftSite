@@ -30,7 +30,7 @@ const CreateTokenConfig = () => {
 
 export const getNftsAPI = async () => {
   try {
-    const response = await axios.get("/nft", tokenConfig());
+    const response = await axios.get("/nft?nftInMarket=true", tokenConfig());
     // console.log(response.data, "resData");
     return response.data;
   } catch (error) {
@@ -85,7 +85,7 @@ export const createNftAPI = async (nftData) => {
 export const pushToMarketAPI = async (productId) => {
   try {
     const response = await api.patch(
-      `${BASE_URL}/pushNftToMarket/${productId}`,
+      `${BASE_URL}/nft/pushNftToMarket/${productId}`,
       {},
       tokenConfig()
     );
@@ -99,7 +99,7 @@ export const pushToMarketAPI = async (productId) => {
 export const pullFromMarketAPI = async (productId) => {
   try {
     const response = await api.patch(
-      `${BASE_URL}/pullFromNftToMarket/${productId}`,
+      `${BASE_URL}/nft/pullNftFromMarket/${productId}`,
       {},
       tokenConfig()
     );

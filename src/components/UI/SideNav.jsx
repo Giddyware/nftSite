@@ -4,6 +4,7 @@ import { MdCreate, MdOutlineCollections, MdSummarize } from "react-icons/md";
 import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
+import { RiLuggageDepositFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
@@ -106,7 +107,13 @@ const SideNav = ({ refs }) => {
           <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
               icon={<GiReceiveMoney size={"10%"} />}
-              name={t("dashboard.withdraw/deposit")}
+              name={t("dashboard.withdraw")}
+            />
+          </li>
+          <li className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300">
+            <DashboardLinks
+              icon={<RiLuggageDepositFill size={"10%"} />}
+              name={t("dashboard.deposit")}
             />
           </li>
         </ul>

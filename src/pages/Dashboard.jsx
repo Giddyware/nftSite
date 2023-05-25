@@ -29,6 +29,7 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { SocketContext } from "../context/socket";
 import { useSelector } from "react-redux";
+import Loading from "../components/Loading/Loading";
 
 const DashboardCard = ({ showModal, wallet }) => {
   const { t } = useTranslation();
@@ -102,6 +103,12 @@ const Dashboard = () => {
   const { userDetails, isLoading, error } = useSelector((state) => state.auth);
 
   const { myNftTransaction, myNft, wallet, photo, userVerified } = userDetails;
+  {
+    console.log(myNft, "myyyjk");
+  }
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
@@ -192,7 +199,7 @@ const Dashboard = () => {
         <div className="mt-12" id="nft" ref={nftRef}>
           <p className="text-3xl font-bold mb-7">NFTs</p>
           <div className="grid grid-cols-4 gap-6">
-            {myNft.map((el) => (
+            {myNft?.map((el) => (
               <Card inDashboard={true} imageWidth={56} key={el.id} {...el} />
             ))}
           </div>
@@ -205,7 +212,7 @@ const Dashboard = () => {
         >
           <p className="mb-7">{t("dashboard.Recent_sales")}</p>
           <div>
-            <RecentSalesTable myNftTransaction={myNftTransaction} />
+            {/* <RecentSalesTable myNftTransaction={myNftTransaction} /> */}
           </div>
         </div>
       </div>
