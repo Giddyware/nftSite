@@ -18,10 +18,10 @@ const SalesRows = [
   createSalesData(3, "mint", "jkds8r4k", "bell", "josh", -648, "cancelled"),
 ];
 
-const RecentSalesTable = ({ RecentSalesTableRef }) => {
+const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
+  const { t } = useTranslation();
 
-  const {t} = useTranslation()
-
+  console.log(myNftTransaction, "myNftTransaction");
   return (
     <TableContainer
       ref={RecentSalesTableRef}
@@ -33,27 +33,35 @@ const RecentSalesTable = ({ RecentSalesTableRef }) => {
             <TableCell className="text-xl text-black border-none">
               Transaction
             </TableCell>
-            <TableCell className="text-xl text-black border-none">NFT name</TableCell>
-            <TableCell className="text-xl text-black border-none">From</TableCell>
+            <TableCell className="text-xl text-black border-none">
+              NFT name
+            </TableCell>
+            <TableCell className="text-xl text-black border-none">
+              From
+            </TableCell>
             <TableCell className="text-xl text-black border-none">To</TableCell>
-            <TableCell className="text-xl text-black border-none">Amount</TableCell>
-            <TableCell className="text-xl text-black border-none">Status</TableCell>
+            <TableCell className="text-xl text-black border-none">
+              Amount
+            </TableCell>
+            <TableCell className="text-xl text-black border-none">
+              Status
+            </TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody className="">
-          {SalesRows.map(
-            ({ id, transaction, nftName, from, to, atm, status }) => (
+          {myNftTransaction.map(
+            ({ id, transaction, nft, From, to, amount, status }) => (
               <TableRow className="" key={id}>
                 <TableCell className="text-xl text-black capitalize">
-                  {transaction}
+                  {/* {transaction} */} kisd
                 </TableCell>
                 <TableCell className="text-xl text-black capitalize">
-                  {nftName}
+                  {nft?.name}
                 </TableCell>
-                <TableCell className="text-black">{from}</TableCell>
-                <TableCell className="text-black">{to}</TableCell>
-                <TableCell className="text-black">{atm} ETH</TableCell>
+                <TableCell className="text-black">{From.username}</TableCell>
+                <TableCell className="text-black">{to.username}</TableCell>
+                <TableCell className="text-black">{amount} ETH</TableCell>
 
                 <TableCell
                   className={`capitalize text-xl ${
