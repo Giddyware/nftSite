@@ -62,7 +62,7 @@ const SideNav = ({ refs }) => {
             />
           </li>
           <Link
-            to={"/createNft"}
+            to={`${location.pathname}/createNft`}
             className="px-5 py-6 ml-20 rounded-l-full cursor-pointer hover:bg-gray-300"
           >
             <DashboardLinks
