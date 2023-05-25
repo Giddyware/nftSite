@@ -1,4 +1,5 @@
 const Card = ({
+  id,
   imageWidth,
   photo,
   floor,
@@ -9,6 +10,8 @@ const Card = ({
 }) => {
   const BASE_URL = "http://31.220.31.111:3000";
   const imageURL = `${BASE_URL}${photo}`;
+
+  const handleToggleNFT = () => {};
   return (
     // <div className="h-56">
     <a
