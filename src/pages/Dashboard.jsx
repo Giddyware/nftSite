@@ -30,13 +30,13 @@ import { useTranslation } from "react-i18next";
 import { SocketContext } from "../context/socket";
 import { useSelector } from "react-redux";
 
-const DashboardCard = ({ showModal }) => {
+const DashboardCard = ({ showModal, wallet }) => {
   const { t } = useTranslation();
   return (
     <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
       <div>
         <p>{t("dashboard.account_balance")}</p>
-        <p className="text-3xl font-bold">50 ETH</p>
+        <p className="text-3xl font-bold">{wallet?.accountBallance} ETH</p>
       </div>
       <div className="flex gap-x-6">
         <button className="px-10 py-4 bg-blue-500 rounded-lg">
@@ -84,81 +84,6 @@ const languages = [
   // }
 ];
 
-const data = [
-  {
-    id: "18932",
-    imgUrl: Image1,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-  {
-    id: "18293",
-    imgUrl: Image2,
-    floor: 1.2,
-    totalVolume: 138933,
-  },
-  {
-    id: "83229",
-    imgUrl: Image3,
-    floor: 0.8,
-    totalVolume: 1289233,
-  },
-  {
-    id: "5236",
-    imgUrl: Image4,
-    floor: 0.5,
-    totalVolume: 45233,
-  },
-  {
-    id: "87483",
-    imgUrl: Image5,
-    floor: 0.822,
-    totalVolume: 483233,
-  },
-  {
-    id: "3249",
-    imgUrl: Image6,
-    floor: 0.323,
-    totalVolume: 75843,
-  },
-  {
-    id: "1493",
-    imgUrl: Image7,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-  {
-    id: "1823",
-    imgUrl: Image8,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-  {
-    id: "18430",
-    imgUrl: Image9,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-  {
-    id: "1hjd3",
-    imgUrl: Image10,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-  {
-    id: "1jkdx",
-    imgUrl: Image11,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-  {
-    id: "189i34j",
-    imgUrl: Image12,
-    floor: 2.3,
-    totalVolume: 23233,
-  },
-];
-
 const Dashboard = () => {
   const saleRef = useRef(null);
   const nftRef = useRef(null);
@@ -175,12 +100,11 @@ const Dashboard = () => {
   };
 
   const { userDetails, isLoading, error } = useSelector((state) => state.auth);
-  console.log(userDetails, "dash");
 
+  const { myNftTransaction, myNft, wallet, photo, userVerified } = userDetails;
   return (
     <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
-
       <Withdraw show={showModal} modalStatus={ModalStatus} />
 
       <SideNav refs={{ saleRef, nftRef, transactionRef }} />
@@ -209,14 +133,24 @@ const Dashboard = () => {
               />
               <div className="flex flex-col items-center justify-center ml-3 mr-8">
                 <p>Lorem ipsum</p>
-                <p>Verified</p>
+                <p className="font-bold">
+                  {!!userVerified ? (
+                    <span className="text-green-500">Verified</span>
+                  ) : (
+                    <span className="text-red-500"> Unverified</span>
+                  )}
+                </p>
               </div>
               <BiChevronUp size={15} />
             </div>
           </div>
         </div>
 
-        <DashboardCard id="home" showModal={ModalStatus} />
+        <DashboardCard
+          id="home"
+          wallet={!!wallet && wallet}
+          showModal={ModalStatus}
+        />
 
         <div
           className="flex flex-col gap-4 px-8 my-10 bg-gray-200 py-7 rounded-xl"
@@ -252,13 +186,13 @@ const Dashboard = () => {
         >
           <p className="mb-7">{t("dashboard.recent_transactions")}</p>
           <div>
-            <DashboardTable />
+            <DashboardTable wallet={wallet} />
           </div>
         </div>
         <div className="mt-12" id="nft" ref={nftRef}>
           <p className="text-3xl font-bold mb-7">NFTs</p>
           <div className="grid grid-cols-4 gap-6">
-            {data.map((el) => (
+            {myNft.map((el) => (
               <Card imageWidth={56} key={el.id} {...el} />
             ))}
           </div>
@@ -271,7 +205,7 @@ const Dashboard = () => {
         >
           <p className="mb-7">{t("dashboard.Recent_sales")}</p>
           <div>
-            <RecentSalesTable />
+            <RecentSalesTable myNftTransaction={myNftTransaction} />
           </div>
         </div>
       </div>

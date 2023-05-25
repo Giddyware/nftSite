@@ -1,7 +1,15 @@
 // import Image from "../../assets/nft/nft1.jpg";
 
-const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
-  // console.log(imageWidth);
+const Card = ({
+  imageWidth,
+  photo,
+  floor,
+  totalVolume,
+  priceInEtherium,
+  name,
+}) => {
+  const BASE_URL = "http://31.220.31.111:3000";
+  const imageURL = `${BASE_URL}${photo}`;
   return (
     // <div className="h-56">
     <a
@@ -10,7 +18,8 @@ const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
     >
       <div className="w-full">
         <img
-          src={imgUrl}
+          crossOrigin="anonymous"
+          src={imageURL}
           alt=""
           className={`object-cover h-56 rounded-t-lg ${
             imageWidth === "full" ? "w-full" : "w-full"
@@ -18,7 +27,7 @@ const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
         />
       </div>
       <div className="p-4">
-        <h3 className="pb-4 text-sm font-bold">ASM Brains</h3>
+        <h3 className="pb-4 text-sm font-bold">{name}</h3>
         <div className="flex justify-between font-bold">
           <div className="">
             <p className="text-gray-600">FLOOR</p>
@@ -26,7 +35,7 @@ const Card = ({ imageWidth, imgUrl, floor, totalVolume }) => {
           </div>
           <div>
             <p className="text-gray-600">TOTAL VOLUME</p>
-            <p>{totalVolume} ETH</p>
+            <p>{priceInEtherium} ETH</p>
           </div>
         </div>
       </div>
