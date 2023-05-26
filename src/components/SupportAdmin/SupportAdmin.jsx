@@ -19,7 +19,7 @@ const SupportAdmin = () => {
     //     secret="1234"
     //     style={{ height: "100%" }}
     //   />
-    </div>
+    // </div>
   );
 };
 
