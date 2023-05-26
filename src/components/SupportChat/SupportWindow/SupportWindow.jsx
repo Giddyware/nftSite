@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { styles } from "../styles";
-import EmailForm from "./EmailForm";
+// import EmailForm from "./EmailForm";
 // import ChatEngine from "./ChatEngine";
 import ChatBox from "../../ChatBox/ChatBox";
 
