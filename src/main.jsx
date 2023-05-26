@@ -13,7 +13,7 @@ import store from "./context/authStore.js";
 import i18n from "i18next";
 import HttpApi from "i18next-http-backend";
 import { useTranslation, initReactI18next } from "react-i18next";
-import { SocketContext, socket } from "./context/socket.js";
+// import { SocketContext, socket } from "./context/socket.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -44,11 +44,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* To make Tailwind styles appear before the Material UI styles */}
     <StyledEngineProvider injectFirst>
       <Provider store={store}>
-        {/* <SocketContext.Provider value={socket}> */}
-        <Router>
-          <App />
-        </Router>
-        {/* </SocketContext.Provider> */}
+        <SocketContext.Provider value={socket}>
+          <Router>
+            <App />
+          </Router>
+        </SocketContext.Provider>
       </Provider>
     </StyledEngineProvider>
   </React.StrictMode>
