@@ -6,7 +6,7 @@ import {
   BsThreeDotsVertical,
 } from "react-icons/bs";
 import { FcOnlineSupport } from "react-icons/fc";
-import { SocketContext } from "../../context/socket";
+// import { SocketContext } from "../../context/socket";
 import { styles } from "../SupportChat/styles";
 
 const ChatBox = (props) => {
