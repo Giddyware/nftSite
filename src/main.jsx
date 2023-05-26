@@ -44,11 +44,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* To make Tailwind styles appear before the Material UI styles */}
     <StyledEngineProvider injectFirst>
       <Provider store={store}>
-        <SocketContext.Provider value={socket}>
-          <Router>
-            <App />
-          </Router>
-        </SocketContext.Provider>
+        {/* <SocketContext.Provider value={socket}> */}
+        <Router>
+          <App />
+        </Router>
+        {/* </SocketContext.Provider> */}
       </Provider>
     </StyledEngineProvider>
   </React.StrictMode>
