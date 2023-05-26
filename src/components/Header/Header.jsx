@@ -7,7 +7,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Search from "./Headercomponent/Search";
 import Logo from "../../assets/logo.png";
-import DropDown from "./Headercomponent/dropDown/dropDown";
+// import DropDown from "./Headercomponent/dropDown/dropDown";
 import { useState } from "react";
 import { useEffect } from "react";
 import Connect from "./ConnectWallet/Connect";
@@ -77,7 +77,7 @@ const Header = ({ showModal }) => {
         <img className="w-full" src={Logo} alt="" />
       </div>
 
-      <DropDown />
+      {/* <DropDown /> */}
       <Search />
       <Button_Details showModal={showModal} />
       <CartButton />
