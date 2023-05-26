@@ -30,8 +30,10 @@ import { useTranslation } from "react-i18next";
 import { SocketContext } from "../context/socket";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading/Loading";
+import { Link, useLocation } from "react-router-dom";
 
 const DashboardCard = ({ showModal, wallet }) => {
+  const location = useLocation();
   const { t } = useTranslation();
   return (
     <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
@@ -40,9 +42,11 @@ const DashboardCard = ({ showModal, wallet }) => {
         <p className="text-3xl font-bold">{wallet?.accountBallance} ETH</p>
       </div>
       <div className="flex gap-x-6">
-        <button className="px-10 py-4 bg-blue-500 rounded-lg">
-          {t("dashboard.Deposit")}
-        </button>
+        <Link to={`${location.pathname}/deposit`}>
+          <button className="px-24 py-8 bg-blue-500 rounded-lg">
+            {t("dashboard.Deposit")}
+          </button>
+        </Link>
         <button
           className="px-24 py-8 text-gray-400 bg-white rounded-lg"
           onClick={() => showModal()}
@@ -103,9 +107,7 @@ const Dashboard = () => {
   const { userDetails, isLoading, error } = useSelector((state) => state.auth);
 
   const { myNftTransaction, myNft, wallet, photo, userVerified } = userDetails;
-  {
-    console.log(myNft, "myyyjk");
-  }
+
   if (isLoading) {
     return <Loading />;
   }

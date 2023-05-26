@@ -71,7 +71,7 @@ const Withdraw = ({ show, modalStatus }) => {
         /> */}
 
         <label
-          for="address-icon"
+          htmlFor="address-icon"
           className="block mb-2  font-bold text-gray-900 dark:text-white"
         >
           Address
@@ -101,7 +101,7 @@ const Withdraw = ({ show, modalStatus }) => {
         </div>
 
         <label
-          for="address-icon"
+          htmlFor="address-icon"
           className="block my-8  font-bold text-gray-900 dark:text-white"
         >
           Network

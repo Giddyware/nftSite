@@ -18,8 +18,8 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useSelector } from "react-redux";
-import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,6 +37,9 @@ import VerifyEmail from "./components/UI/VerifyEmail";
 
 import UnAuthenticated from "./Container/UnAuthenticated";
 import MarketPlace from "./pages/MarketPlace";
+import Withdraw from "./components/UI/Withdraw";
+import Cookies from "js-cookie";
+import { loginUser } from "./context/auth/authActions";
 // import SupportAdmin from "./components/SupportAdmin";
 
 // function App() {
@@ -100,6 +103,14 @@ const App = () => {
   // TODO:Replace with the fallback path for unauthenticated users
   const fallbackPath = "/auth"; // Replace with the fallback path for unauthenticated users
 
+  const dispatch = useDispatch();
+  // Check for authentication token on app initialization
+  useEffect(() => {
+    const token = Cookies.get("authToken");
+    if (token) {
+      dispatch(loginUser(token));
+    }
+  }, [dispatch]);
   return (
     <>
       <Routes>
@@ -113,7 +124,7 @@ const App = () => {
             // </UnAuthenticated>
           }
         />
-        <Route path="/verify_email" element={<VerifyEmail />} />
+        <Route path="/dashboard/verify_email" element={<VerifyEmail />} />
         <Route
           path="/marketPlace"
           element={
@@ -131,15 +142,31 @@ const App = () => {
           }
         />
         <Route
-          path="/createNft"
+          path="/dashboard/createNft"
           element={
             <ProtectedRoute>
               <Mint />
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/dashboard/deposit"
+          element={
+            <ProtectedRoute>
+              <Deposit />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/withdraw"
+          element={
+            // <ProtectedRoute>
+            <Withdraw />
+            // </ProtectedRoute>
+          }
+        />
 
-        <Route path="/buyNft" element={<Mint />} />
+        <Route path="dashboard/buyNft" element={<Mint />} />
         <Route
           path="/marketPlace/products/:productId"
           element={

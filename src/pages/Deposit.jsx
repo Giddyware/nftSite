@@ -1,14 +1,24 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import QRCodeGenerator from "../components/QRCodeGenerator";
+import Loading from "../components/Loading/Loading";
 
 const Deposit = () => {
+  const { userDetails, isLoading, error } = useSelector((state) => state.auth);
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="h-[90vh] border-solid border mt-[5vh] border-black shadow-lg  mx-auto font-poppins text-[1rem]  justify-between flex flex-col px-8 py-12 max-w-xl rounded-[10px]">
       <p className="text-[2rem] px-[12px] font-bold">Deposit ETH</p>
 
       <div>
-        <div className="w-[150px] h-[150px] border-solid border mx-auto mb-10"></div>
+        <div className="w-[150px] h-[150px] border-solid border mx-auto mb-10">
+          <QRCodeGenerator qrCode={userDetails?.wallet?.qrCode} />
+        </div>
         <div className="flex flex-col text-center opacity-[0.7] text-[1.25rem] px-[12px]">
-          <p>Send only ETH to theis deposit address</p>
+          <p>Send only ETH to this deposit address</p>
           <p>
             This address does not support deposit of non-fungible token, please
             go to NFT page to deposit NFT
@@ -18,12 +28,12 @@ const Deposit = () => {
 
       <div className=" px-[12px] gap-3  flex flex-col text-center opacity-[0.7] text-[1.25rem]">
         <p>Wallet Address</p>
-        <p>0x204ed55d43e27c97d8b491276d7382290dc556b</p>
+        <p>{userDetails?.wallet?.address}</p>
       </div>
 
       <div className="px-[12px] flex flex-col opacity-[0.7] text-[1.25rem] font-bold">
         Network
-        <div>Ethereum(ECR20)</div>
+        <div>Ethereum({userDetails?.wallet?.network})</div>
       </div>
 
       <div className=" px-[12px] flex flex-col font-poppins font-[400] bg-[grey] text-white text-[1.25rem] rounded-b-[10px]">
