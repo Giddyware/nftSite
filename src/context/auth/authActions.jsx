@@ -43,10 +43,10 @@ export const loginUser = createAsyncThunk(
       const response = await loginUserAPI(userData);
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
       dispatch(authSuccess(response));
-      if (response) {
-        <Navigate to="/marketPlace" />;
-        console.log(response, "user");
-      }
+      // if (response) {
+      //   <Navigate to="/marketPlace" />;
+      //   console.log(response, "user");
+      // }
 
       toast.success("Login Successful");
     } catch (error) {

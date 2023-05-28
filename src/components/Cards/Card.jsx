@@ -16,7 +16,7 @@ const Card = ({
   inDashboard,
 }) => {
   const [enabled, setEnabled] = useState(nftInMarket);
-  const BASE_URL = "http://31.220.31.111:3000";
+  const BASE_URL = "https://alphapp.tech";
   const imageURL = `${BASE_URL}${photo}`;
 
   const dispatch = useDispatch();

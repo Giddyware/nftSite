@@ -40,63 +40,8 @@ import MarketPlace from "./pages/MarketPlace";
 import Withdraw from "./components/UI/Withdraw";
 import Cookies from "js-cookie";
 import { loginUser } from "./context/auth/authActions";
+import LoginPage from "./pages/LoginPage";
 // import SupportAdmin from "./components/SupportAdmin";
-
-// function App() {
-//   const RecentSalesTableRef = useRef(null);
-
-//   const router = createBrowserRouter([
-//     {
-//       path: "/",
-//       element: <Home />,
-//     },
-//     {
-//       path: "/auth",
-//       element: <Auth />,
-//     },
-//     {
-//       path: "/product",
-//       element: <ProductDetail />,
-//     },
-//     {
-//       path: "/collection/mew",
-//       element: <CollectionPage />,
-//     },
-//     {
-//       path: "/deposit",
-//       element: <Deposit />,
-//     },
-//     {
-//       path: "dashboard",
-//       element: <Dashboard />,
-//       children: [
-//         {
-//           path: "RecentSalesTable",
-//           element: (
-//             <RecentSalesTable RecentSalesTableRef={RecentSalesTableRef} />
-//           ),
-//         },
-//         { path: "mint", element: <Mint /> },
-//       ],
-//     },
-//     { path: "mint", element: <Mint /> },
-//     { path: "support", element: <SupportAdmin /> },
-//     ,
-//   ]);
-
-//   // createRoutesFromElements(
-//   //   <Routes>
-//   //     <Route indev element={<Home />} />
-//   //     <Route path="/auth" element={<Auth />} />
-//   //     <Route path="/Collection" element={<CollectionPage />} />
-//   //     <Route path="/dashboard" element={<Dashboard />} />
-//   //   </Routes>
-//   // )
-
-//   return <RouterProvider router={router} />;
-// }
-
-// export default App;
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -115,7 +60,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
         <Route
           path="/auth"
           element={
@@ -141,6 +86,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/login" element={<LoginPage />} />
         <Route
           path="/dashboard/createNft"
           element={

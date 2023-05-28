@@ -2,7 +2,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const BASE_URL = "http://31.220.31.111:3000/api/v1"; // Replace with your actual backend URL
+const BASE_URL = "https://alphapp.tech/api/v1"; // Replace with your actual backend URL
 
 // Set the Axios base URL
 axios.defaults.baseURL = BASE_URL;
@@ -56,14 +56,11 @@ export const loginUserAPI = async (userData) => {
     const response = await api.post(`${BASE_URL}/users/login`, userData);
     return response.data;
   } catch (error) {
-    if (error.isAxiosError && !error.response) {
-      throw new Error("Network Error: Please check your internet connection.");
-    }
-    if (error.response && error.response.data) {
-      throw error.response.data;
-    } else {
-      throw error;
-    }
+    // if (error.isAxiosError && !error.response) {
+    //   throw new Error("Network Error: Please check your internet connection.");
+    // }
+    console.log(error);
+    throw error;
   }
 };
 
