@@ -56,14 +56,11 @@ export const loginUserAPI = async (userData) => {
     const response = await api.post(`${BASE_URL}/users/login`, userData);
     return response.data;
   } catch (error) {
-    if (error.isAxiosError && !error.response) {
-      throw new Error("Network Error: Please check your internet connection.");
-    }
-    if (error.response && error.response.data) {
-      throw error.response.data;
-    } else {
-      throw error;
-    }
+    // if (error.isAxiosError && !error.response) {
+    //   throw new Error("Network Error: Please check your internet connection.");
+    // }
+    console.log(error);
+    throw error;
   }
 };
 

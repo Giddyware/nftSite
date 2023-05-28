@@ -38,10 +38,8 @@ const RegisterForm = () => {
       await dispatch(registerUser(validData));
       setLoading(false);
 
-      // Reset form values here if needed
-
       reset();
-      // Route to the dashboard page
+
       navigate("/auth");
       toast("You can now log in");
     } catch (error) {

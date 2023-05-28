@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Connect from "./ConnectWallet/Connect";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Button_Details = ({ showModal }) => {
   const { t } = useTranslation();
@@ -19,24 +20,23 @@ const Button_Details = ({ showModal }) => {
   return (
     <Button>
       <div className="flex items-center gap-4 text-white">
-        <div className="w-10 md:w-[20px]">
+        <div className="w-10 md:w-[20px] cursor:pointer">
           <MdOutlineCastConnected size={"100%"} />
         </div>
         <p
           className="font-bold cursor-pointer text-md md:text-2xl"
-          onClick={() => showModal()}
+          // onClick={() => showModal()}
         >
-          {t("home.connect_wallet")}
+          {/* {t("home.connect_wallet")} */}
         </p>
         <div className="border-l-solid border-l-slate-500 wallet-menu-bar">
-          <li className="li">
-            <p className="cursor:pointer w-10 md:w-[20px]">
-              <BiUserCircle size={"100%"} />
+          <Link to={"/auth"} className="li ">
+            <p className=" w-10 md:w-[80px] flex">
+              {/* <BiUserCircle size={"100%"} /> */}
+              <span>Login/ SignUp</span>
             </p>
-            <div className="w-[10rem] wallet-sub-menu">
-              <Connect />
-            </div>
-          </li>
+            <div className="w-[10rem] wallet-sub-menu">{/* <Connect /> */}</div>
+          </Link>
         </div>
       </div>
     </Button>
