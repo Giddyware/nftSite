@@ -29,7 +29,7 @@ const LoginPage = () => {
   // const error = useSelector((state) => state.auth.error);
 
   const loginUser = (data) => {
-    fetch("http://31.220.31.111:3000/api/v1/users/login", {
+    fetch("https://alphapp.tech/api/v1/users/login", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

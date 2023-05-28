@@ -3,7 +3,7 @@ import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const CollectionCard = ({ photo, name, num, priceInEtherium }) => {
-  const BASE_URL = "http://31.220.31.111:3000";
+  const BASE_URL = "https://alphapp.tech";
   const imageURL = `${BASE_URL}${photo}`;
 
   return (

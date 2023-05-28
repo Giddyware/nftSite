@@ -2,7 +2,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const BASE_URL = "http://31.220.31.111:3000/api/v1"; // Replace with your actual backend URL
+const BASE_URL = "https://alphapp.tech/api/v1"; // Replace with your actual backend URL
 
 // Set the Axios base URL
 axios.defaults.baseURL = BASE_URL;
