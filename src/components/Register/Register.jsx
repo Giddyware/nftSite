@@ -26,7 +26,7 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data) => {
     console.log(data);

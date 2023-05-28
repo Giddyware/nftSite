@@ -5,12 +5,29 @@ import { CgProfile } from "react-icons/cg";
 import Weth_logo from "../../assets/weth_logo.png";
 import Ethereum_logo from "../../assets/Ethereum_logo.png";
 import { FaEthereum } from "react-icons/fa";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+const schema = z.object({
+  coin: z.string().nonempty("Please select a coin of your choice"),
+  network: z.string().nonempty("Please enter a network"),
+  address: z.string().nonempty("Please enter your address here"),
+});
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: zodResolver(schema) });
 
   const changeShowMore = () => {
     setShowMore((prev) => !prev);
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
   return (
     <>
@@ -21,8 +38,9 @@ const Withdraw = ({ show, modalStatus }) => {
           opacity: show ? "1" : "0",
           transition: "all 1s",
         }}
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="text-4xl font-bold mb-3">Deposit </h1>
+        <h1 className="mb-3 text-4xl font-bold">Deposit </h1>
 
         <p className="">What coin would you like to deposit?</p>
         {/* 
@@ -57,25 +75,23 @@ const Withdraw = ({ show, modalStatus }) => {
         </div> */}
         <div className="my-10">
           <label
-            htmlFor="countries"
+            htmlFor="coins"
             className="block mb-2 font-medium text-gray-900 dark:text-white"
           >
-            Select an coin
+            Select a coin
           </label>
           <select
             id="coins"
             className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            {...register("coin")}
           >
             <option disabled>Make a choice</option>
-            <option className="border border-3" value="US">
-              ETH
-              <FaEthereum />
-            </option>
-            <option value="US">WETH</option>
+            <option value="ETH">ETH</option>
+            <option value="WETH">WETH</option>
           </select>
         </div>
         <label
-          htmlFor="address-icon"
+          htmlFor="address"
           className="block mb-2 font-bold text-gray-900 dark:text-white"
         >
           Address
@@ -87,29 +103,34 @@ const Withdraw = ({ show, modalStatus }) => {
           </div>
           <input
             type="text"
-            id="address-icon"
+            id="address"
             className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Enter your address"
+            {...register("address")}
           />
         </div>
 
-        <label
-          htmlFor="address-icon"
-          className="block my-8 font-bold text-gray-900 dark:text-white"
-        >
-          Network
-        </label>
-        <p className="text-2xl font-bold">Ethereum (ERC-20)</p>
         <div className="">
+          <label
+            htmlFor="network"
+            className="block my-8 font-bold text-gray-900 dark:text-white"
+          >
+            Network
+          </label>
+          <p className="text-2xl font-bold">Ethereum (ERC-20)</p>
           <input
             type="text"
-            id="address-icon"
+            id="network"
             className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            {...register("network")}
           />
         </div>
 
-        <button className="mt-7" type="submit">
-          withdraw
+        <button
+          className="py-5 mt-10 text-[#2196F3] capitalize px-7 bg-[#2196F3]"
+          type="submit"
+        >
+          submit
         </button>
       </form>
 

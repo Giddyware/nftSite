@@ -15,6 +15,7 @@ import {
   loginUser,
 } from "../../context/auth/authActions";
 import { getNfts } from "../../context/nft/nftActions";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   email: z.string().nonempty("Email is required").email("Invalid email format"),
@@ -32,7 +33,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ resolver: zodResolver(schema) });
 
   const error = useSelector((state) => state.auth.error);
 
@@ -99,7 +100,7 @@ const Login = () => {
           )}
         </div>
 
-        <button
+        {/* <button
           type="button"
           className="flex items-center col-span-6 gap-6 group"
           onClick={() => {}}
@@ -112,7 +113,7 @@ const Login = () => {
           </span>
 
           <span className="body-100">Recognize this device in the future</span>
-        </button>
+        </button> */}
         <div className="col-span-6 mt-6 bg-blue-500 hover:bg-neutral-100 hover:text-blue-500">
           <button
             type="submit"
