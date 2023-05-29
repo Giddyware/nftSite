@@ -109,3 +109,26 @@ export const pullFromMarketAPI = async (productId) => {
     throw error.response.data;
   }
 };
+
+export const WithdrawInEthAPI = async (amt) => {
+  try {
+    const response = await api.patch(
+      `${BASE_URL}/wallets/withdrawEth/${amt}`,
+      {},
+      CreateTokenConfig()
+    );
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+export const WithdrawInWethAPI = async (amt) => {
+  try {
+    const response = await api.patch(
+      `${BASE_URL}/wallets/withdrawWeth/${amt}`,
+      {},
+      CreateTokenConfig()
+    );
+  } catch (error) {
+    throw error.response.data;
+  }
+};

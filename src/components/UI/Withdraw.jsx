@@ -8,14 +8,17 @@ import { FaEthereum } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { WithdrawInEth, WithdrawInWeth } from "../../context/nft/nftActions";
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
-  network: z.string().nonempty("Please enter a network"),
+  amount: z.number(),
   address: z.string().nonempty("Please enter your address here"),
 });
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
   const [coin, setCoin] = useState("");
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -28,7 +31,13 @@ const Withdraw = ({ show, modalStatus }) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log("data======", data);
+    if (data.coin == "ETH") {
+      dispatch(WithdrawInEth(data.amount));
+    }
+    if (data.coin == "WETH") {
+      dispatch(WithdrawInWeth(data.amount));
+    }
   };
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -120,14 +129,16 @@ const Withdraw = ({ show, modalStatus }) => {
             htmlFor="network"
             className="block my-8 font-bold text-gray-900 dark:text-white"
           >
-            Network
+            Enter amount
           </label>
-          <p className="text-2xl font-bold">Ethereum (ERC-20)</p>
+          {/* <p className="text-2xl font-bold">Ethereum (ERC-20)</p> */}
           <input
-            type="text"
+            type="number"
             id="network"
             className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            {...register("network")}
+            {...register("amount", {
+              valueAsNumber: true,
+            })}
           />
         </div>
 

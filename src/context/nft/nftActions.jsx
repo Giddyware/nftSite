@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
+  WithdrawInEthAPI,
+  WithdrawInWethAPI,
   buyNftAPI,
   createNftAPI,
   getNftsAPI,
@@ -97,6 +99,7 @@ export const pushToMarket = createAsyncThunk(
     }
   }
 );
+
 export const pullFromMarket = createAsyncThunk(
   "product/pullFromMarket",
   async (id, { dispatch }) => {
@@ -106,6 +109,30 @@ export const pullFromMarket = createAsyncThunk(
       dispatch(fetchSuccess(response));
     } catch (error) {
       dispatch(fetchFailure(error));
+    }
+  }
+);
+
+export const WithdrawInEth = createAsyncThunk(
+  "product/withdrawEth",
+  async (amt, { dispatch }) => {
+    try {
+      const response = await WithdrawInEthAPI(amt);
+      console.log(response, "withdrawEth===");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const WithdrawInWeth = createAsyncThunk(
+  "product/withdrawEth",
+  async (amt, { dispatch }) => {
+    try {
+      const response = await WithdrawInWethAPI(amt);
+      console.log(response, "withdrawEth===");
+    } catch (error) {
+      console.log(error);
     }
   }
 );
