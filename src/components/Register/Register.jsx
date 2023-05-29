@@ -48,7 +48,7 @@ const RegisterForm = () => {
   };
   return (
     <form
-      className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 max-md:mt-24 bg-white border outline-slate-700 outline-4"
+      className="w-[90%] max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100 dark:bg-blue-600 mt-24 bg-white border outline-slate-700 outline-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       <fieldset className="grid grid-cols-6 gap-8">
@@ -63,7 +63,7 @@ const RegisterForm = () => {
             id="username"
             {...registerForm("username")}
           />
-          <div className='flex items-center justify-between text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
+          <div className='flex items-center justify-between text-xl text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
             <label htmlFor="username">Username</label>
             {errors.username && (
               <span className="text-red-200 font-semibold leading-200 tracking-[-0.21px]">
@@ -73,7 +73,7 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10">
+        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10 text-xl">
           <input
             className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-brand-900 caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 dark:border-brand-600 dark:bg-brand-700 dark:text-neutral-100 dark:autofill:bg-brand-700 dark:focus:border-brand-500 dark:hover:border-brand-500'
             type="email"
@@ -90,7 +90,7 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10">
+        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10 text-xl">
           <input
             className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-brand-900 caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 dark:border-brand-600 dark:bg-brand-700 dark:text-neutral-100 dark:autofill:bg-brand-700 dark:focus:border-brand-500 dark:hover:border-brand-500'
             type="password"
@@ -107,7 +107,7 @@ const RegisterForm = () => {
           </div>
         </div>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10">
+        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10 text-xl">
           <input
             className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-brand-900 caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 dark:border-brand-600 dark:bg-brand-700 dark:text-neutral-100 dark:autofill:bg-brand-700 dark:focus:border-brand-500 dark:hover:border-brand-500'
             type="password"

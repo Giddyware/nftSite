@@ -26,6 +26,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { getNfts } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
+import Footer from "../components/Footer/Footer";
 
 const MarketPlace = () => {
   const [showMore, setShowMore] = useState(false);
@@ -128,6 +129,8 @@ const MarketPlace = () => {
           </li>
         ))}
       </div>
+
+      <Footer />
     </div>
   );
 };
