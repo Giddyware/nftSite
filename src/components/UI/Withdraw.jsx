@@ -15,6 +15,7 @@ const schema = z.object({
 });
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
+  const [coin, setCoin] = useState("");
   const {
     register,
     handleSubmit,
@@ -29,10 +30,13 @@ const Withdraw = ({ show, modalStatus }) => {
   const onSubmit = (data) => {
     console.log(data);
   };
+  const handleChange = (event) => {
+    console.log(event.target.value);
+  };
   return (
     <>
       <form
-        className="fixed mx-auto sm:left-[30%] sm:top-[15%] overflow-y-auto h-[80%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        className="fixed mx-auto sm:left-[30%] sm:top-[15%] overflow-y-auto h-[80%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
         style={{
           transform: show ? "translateY(0)" : "translateY(-1500px)",
           opacity: show ? "1" : "0",
@@ -40,7 +44,7 @@ const Withdraw = ({ show, modalStatus }) => {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="mb-3 text-4xl font-bold">Deposit </h1>
+        <h1 className="mb-3 text-4xl font-bold">Withdrawal </h1>
 
         <p className="">What coin would you like to deposit?</p>
         {/* 
@@ -84,6 +88,7 @@ const Withdraw = ({ show, modalStatus }) => {
             id="coins"
             className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             {...register("coin")}
+            onChange={handleChange}
           >
             <option disabled>Make a choice</option>
             <option value="ETH">ETH</option>

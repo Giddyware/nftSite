@@ -73,9 +73,9 @@ const Header = ({ showModal }) => {
       style={{ background: bg ? "white" : "none" }}
     >
       {/* <FcWiFiLogo fontSize={"10rem"} /> */}
-      <div className="border-right-solid border-right-[1px] border-right-[white] w-14 md:w-48">
+      <Link to='/' className="border-right-solid border-right-[1px] border-right-[white] w-14 md:w-48">
         <img className="w-full" src={Logo} alt="" />
-      </div>
+      </Link>
 
       <DropDown />
       <Search />

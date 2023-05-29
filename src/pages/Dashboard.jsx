@@ -39,16 +39,16 @@ const DashboardCard = ({ showModal, wallet }) => {
     <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
       <div>
         <p>{t("dashboard.account_balance")}</p>
-        <p className="text-3xl font-bold">{wallet?.accountBallance} ETH</p>
+        <p className="md:text-3xl font-bold">{wallet?.accountBallance} ETH</p>
       </div>
-      <div className="flex gap-x-6">
+      <div className="flex gap-x-3 md:gap-x-6">
         <Link to={`${location.pathname}/deposit`}>
-          <button className="px-24 py-8 bg-blue-500 rounded-lg">
+          <button className="px-24 py-8 bg-blue-500 rounded-lg cursor-pointer">
             {t("dashboard.Deposit")}
           </button>
         </Link>
         <button
-          className="px-24 py-8 text-gray-400 bg-white rounded-lg"
+          className="px-24 py-8 text-gray-400 bg-white rounded-lg cursor-pointer"
           onClick={() => showModal()}
         >
           {t("dashboard.withdrawal")}
@@ -112,7 +112,7 @@ const Dashboard = () => {
     return <Loading />;
   }
   return (
-    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[250px,_1fr] text-xl">
+    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_1fr]  md:grid-cols-[250px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
       <Withdraw show={showModal} modalStatus={ModalStatus} />
 
