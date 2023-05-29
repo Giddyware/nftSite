@@ -28,7 +28,7 @@ import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 
-const MarketPlace = () => {
+const MarketPlace = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
 
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const MarketPlace = () => {
       </div>
       <div className="m-10 mt-20">
         <div className="flex justify-between ">
-          <h1 className="font-bold text-[30px]">GAME CATEGORY</h1>
+          <h1 className="font-bold text-[30px]">{name}</h1>
           <div>
             <TbNetwork />
           </div>
