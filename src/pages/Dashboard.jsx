@@ -106,17 +106,22 @@ const Dashboard = () => {
 
   const { userDetails, isLoading, error } = useSelector((state) => state.auth);
 
-  const { myNftTransaction, myNft, wallet, photo, userVerified } = userDetails;
+  const { myNftTransaction, myNft, wallet, photo, userVerified, username } =
+    userDetails;
 
   if (isLoading) {
     return <Loading />;
   }
   return (
-    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_1fr]  md:grid-cols-[250px,_1fr] text-xl">
+    <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_1fr]  md:grid-cols-[350px,_1fr] text-xl">
       <Overlay show={showModal} clear={ModalStatus} />
       <Withdraw show={showModal} modalStatus={ModalStatus} />
 
-      <SideNav refs={{ saleRef, nftRef, transactionRef }} />
+      <SideNav
+        show={showModal}
+        modalStatus={ModalStatus}
+        refs={{ saleRef, nftRef, transactionRef }}
+      />
 
       <div className="w-[100%] p-8">
         <div className="flex items-center justify-center pb-4 mb-8 border-b">
@@ -141,12 +146,12 @@ const Dashboard = () => {
                 alt=""
               />
               <div className="flex flex-col items-center justify-center ml-3 mr-8">
-                <p>Lorem ipsum</p>
+                <p>{username}</p>
                 <p className="font-bold">
                   {!!userVerified ? (
-                    <span className="text-green-500">Verified</span>
+                    <span className="text-green-400">Verified</span>
                   ) : (
-                    <span className="text-red-500"> Unverified</span>
+                    <span className="text-red-400"> Unverified</span>
                   )}
                 </p>
               </div>
@@ -162,17 +167,17 @@ const Dashboard = () => {
         />
 
         <div
-          className="flex flex-col gap-4 px-8 my-10 bg-gray-200 py-7 rounded-xl"
+          className="flex flex-col px-8 my-10 bg-gray-200 py-7 rounded-xl"
           id="listing"
         >
           <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">
             <div>
-              <img className="w-7" src={Ethereum_logo} alt="Ethereum_logo" />
+              <img className="w-5" src={Ethereum_logo} alt="Ethereum_logo" />
             </div>
             <p>ETH</p>
             <p className="justify-self-end">~128938</p>
           </div>
-          <div className="flex justify-between ml-[40px] text-gray-400">
+          <div className="flex justify-between mb-10 ml-[40px] text-sm text-gray-400">
             <p>EHT</p>
             <p>~839</p>
           </div>
@@ -183,7 +188,7 @@ const Dashboard = () => {
             <p>WETH</p>
             <p className="justify-self-end">~128938</p>
           </div>
-          <div className="flex justify-between ml-[40px] text-gray-400">
+          <div className="flex justify-between text-sm ml-[40px] text-gray-400">
             <p>WETH</p>
             <p>~839</p>
           </div>
