@@ -22,23 +22,23 @@ const transactionRows = [
 
 const DashboardTable = ({ wallet }) => {
   const { t } = useTranslation();
-  console.log(wallet, "wallet");
+
   return (
     <TableContainer className="px-10 py-5 bg-gray-100 rounded-3xl">
       <Table aria-label="dashboard-table" className="rounded">
         <TableHead className="bg-gray-300 rounded ">
           <TableRow className="rounded">
-            <TableCell className="text-black border-none">
+            <TableCell className="text-black text-2xl border-none">
               {t("dashboard.transaction")}
               {/* Transaction */}
             </TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               Amount
             </TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               Date
             </TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               Status
             </TableCell>
           </TableRow>
@@ -49,14 +49,14 @@ const DashboardTable = ({ wallet }) => {
             ({ id, transaction, amount, date, status }) => (
               <TableRow className="" key={id}>
                 <TableCell className="text-xl text-black capitalize">
-                  {transaction === "withdrawal" ? (
+                  {transaction === "withdraw" ? (
                     <div className="flex gap-x-3">
-                      <BsArrowUpRight color="hsla(0, 79%, 63%, 1)" />
+                      <BsArrowUpRight color="hsla(84, 100%, 44%, 1)" />
                       {transaction}
                     </div>
                   ) : transaction === "deposite" || transaction === "mint" ? (
                     <div className="flex gap-x-3">
-                      <BsArrowDownLeft color="hsla(84, 100%, 44%, 1)" />
+                      <BsArrowDownLeft color="hsla(0, 79%, 63%, 1)" />
                       {transaction}
                     </div>
                   ) : (

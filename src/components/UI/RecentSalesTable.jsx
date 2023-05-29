@@ -21,8 +21,6 @@ const SalesRows = [
 const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
   const { t } = useTranslation();
 
-  console.log(myNftTransaction, "myNftTransaction");
-
   return (
     <TableContainer
       ref={RecentSalesTableRef}
@@ -31,20 +29,22 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
       <Table aria-label="dashboard-table" className="rounded">
         <TableHead className="bg-gray-400 rounded ">
           <TableRow className="rounded">
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               Transaction
             </TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               NFT name
             </TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               From
             </TableCell>
-            <TableCell className="text-xl text-black border-none">To</TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
+              To
+            </TableCell>
+            <TableCell className="text-2xl text-black border-none">
               Amount
             </TableCell>
-            <TableCell className="text-xl text-black border-none">
+            <TableCell className="text-2xl text-black border-none">
               Status
             </TableCell>
           </TableRow>
@@ -61,9 +61,15 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
                 <TableCell className="text-xl text-black capitalize">
                   {nft?.name}
                 </TableCell>
-                <TableCell className="text-black">{From.username}</TableCell>
-                <TableCell className="text-black">{to.username}</TableCell>
-                <TableCell className="text-black">{amount} ETH</TableCell>
+                <TableCell className="text-black text-xl">
+                  {From.username}
+                </TableCell>
+                <TableCell className="text-black text-xl">
+                  {to.username}
+                </TableCell>
+                <TableCell className="text-black text-xl">
+                  {amount} ETH
+                </TableCell>
 
                 <TableCell
                   className={`capitalize text-xl ${

@@ -3,7 +3,7 @@ import { FaMoneyCheck } from "react-icons/fa";
 import { MdCreate, MdOutlineCollections, MdSummarize } from "react-icons/md";
 import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
-import { BiSupport } from "react-icons/bi";
+import { BiLogOut, BiSupport } from "react-icons/bi";
 import { RiLuggageDepositFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 
@@ -131,6 +131,13 @@ const SideNav = ({ modalStatus, refs }) => {
             <DashboardLinks
               icon={<RiLuggageDepositFill size={"20px"} />}
               name={"Market Place"}
+            />
+          </Link>
+
+          <Link className="px-5 mt-32 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300">
+            <DashboardLinks
+              icon={<BiLogOut size={"20px"} />}
+              name={"Log out"}
             />
           </Link>
         </ul>
