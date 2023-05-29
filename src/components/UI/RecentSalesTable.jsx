@@ -51,8 +51,9 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
         </TableHead>
 
         <TableBody className="">
-          {myNftTransaction?.map(
-            ({ id, transaction, nft, From, to, amount, status }) => (
+          {myNftTransaction
+            .filter(Boolean)
+            .map(({ id, transaction, nft, From, to, amount, status }) => (
               <TableRow className="" key={id}>
                 <TableCell className="text-xl text-black capitalize">
                   {transaction}
@@ -78,8 +79,7 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
                   {status}
                 </TableCell>
               </TableRow>
-            )
-          )}
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

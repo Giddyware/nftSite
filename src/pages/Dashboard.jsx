@@ -134,7 +134,7 @@ const Dashboard = () => {
                 ))}
               </select>
             </div>
-            <div className="flex px-4 bg-gray-100 item-center justify-center rounded-lg py-2">
+            <div className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center">
               <img
                 className="border border-solid rounded-full h-14 w-14 border-whiter"
                 src={avatar}
@@ -214,7 +214,7 @@ const Dashboard = () => {
         >
           <p className="mb-7">{t("dashboard.Recent_sales")}</p>
           <div>
-            {/* <RecentSalesTable myNftTransaction={myNftTransaction} /> */}
+            <RecentSalesTable myNftTransaction={myNftTransaction} />
           </div>
         </div>
       </div>
