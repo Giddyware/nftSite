@@ -108,7 +108,7 @@ const Trending = () => {
           <li className="text-center">VOLUME</li>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-y-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-20">
         {trending.map((val, index) => {
           return <TableRow {...val} no={index} />;
         })}

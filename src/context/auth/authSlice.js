@@ -1,12 +1,13 @@
 // authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState = {
   user: null,
-  isAuthenticated: false,
+  isAuthenticated: Cookies.get("authToken") ? true : false,
   isLoading: false,
   error: null,
-  token: null,
+  token: Cookies.get("authToken") ? Cookies.get("authToken") : null,
   userDetails: {},
 };
 
