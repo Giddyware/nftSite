@@ -37,19 +37,19 @@ const DashboardCard = ({ showModal, wallet }) => {
   const location = useLocation();
   const { t } = useTranslation();
   return (
-    <div className="flex justify-between px-16 py-10 bg-gray-200 rounded-2xl">
+    <div className="flex md:justify-between flex-col md:flex-row gap-6 px-16 py-10 sm:justify-center sm:items-center  bg-gray-200 rounded-2xl">
       <div>
         <p>{t("dashboard.account_balance")}</p>
         <p className="md:text-3xl font-bold">{wallet?.accountBallance} ETH</p>
       </div>
-      <div className="flex gap-x-3 md:gap-x-6">
+      <div className="flex gap-x-3 md:gap-x-6 font-bold text-2xl">
         <Link to={`${location.pathname}/deposit`}>
-          <button className="px-24 py-8 bg-blue-500 rounded-lg cursor-pointer">
+          <button className="px-16 py-6  md:px-24 md:py-8 bg-blue-500 rounded-lg cursor-pointer">
             {t("dashboard.Deposit")}
           </button>
         </Link>
         <button
-          className="px-24 py-8 text-gray-400 bg-white rounded-lg cursor-pointer"
+          className="px-16 py-6  md:px-24 md:py-8 text-gray-400 bg-white rounded-lg cursor-pointer"
           onClick={() => showModal()}
         >
           {t("dashboard.withdrawal")}
@@ -133,7 +133,7 @@ const Dashboard = () => {
             <div className="mr-auto">
               <h1 className="text-lg">{t("dashboard.home")}</h1>
             </div>
-            <div className="flex items-center justify-center ">
+            <div className="flex items-center justify-center">
               <div>
                 <select
                   name="devices"
