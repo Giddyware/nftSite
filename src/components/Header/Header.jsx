@@ -78,12 +78,7 @@ const Header = ({ showModal }) => {
   }, []);
 
   return (
-    <div
-      className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white font-poppins"
-      style={{ background: "black" }}
-    >
-      {/* <FcWiFiLogo fontSize={"10rem"} /> */}
-
+    <div className="flex flex-row items-center bg-gray-900 justify-between w-full gap-5 px-5 py-5 text-white font-poppins">
       <Link
         to="/"
         className="border-right-solid border-right-[1px] border-right-[white] w-48 md:w-52"

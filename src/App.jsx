@@ -61,9 +61,9 @@ const App = () => {
         <Route
           path="/auth"
           element={
-            // <UnAuthenticated>
-            <Auth />
-            // </UnAuthenticated>
+            <UnAuthenticated>
+              <Auth />
+            </UnAuthenticated>
           }
         />
         <Route path="/dashboard/verify_email" element={<VerifyEmail />} />

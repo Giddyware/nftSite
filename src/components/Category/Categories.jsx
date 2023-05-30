@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
-const Category = ({ text }) => {
+const CategoryLink = ({ text, link }) => {
   return (
-    <div className="white px-5 hover:bg-[grey] cursor-pointer rounded-xl p-3 mb-5">
-      {text}
-    </div>
+    <Link to={link}>
+      <div className="white px-5 hover:bg-gray-400 cursor-pointer rounded-xl p-3 mb-5">
+        {text}
+      </div>
+    </Link>
   );
 };
 
@@ -13,18 +16,18 @@ const Categories = () => {
   const { t } = useTranslation();
 
   const lis = [
-    `${t("home.all")}`,
-    `${t("home.art")}`,
-    `${t("home.gaming")}`,
-    `${t("home.membership")}`,
-    "PFPs",
-    `${t("home.photography")}`,
+    { text: `${t("home.all")}`, link: "/marketPlace" },
+    { text: `${t("home.art")}`, link: "/art" },
+    { text: `${t("home.gaming")}`, link: "/gaming" },
+    { text: `${t("home.membership")}`, link: "/membership" },
+    { text: `PFPs`, link: "/PFPs" },
+    { text: `${t("home.photography")}`, link: "/photography" },
   ];
 
   return (
     <div className="flex justify-between px-5 my-5 text-white md:justify-start md:gap-5 md:text-3xl font-poppins ">
       {lis.map((val) => {
-        return <Category text={val} />;
+        return <CategoryLink {...val} />;
       })}
     </div>
   );

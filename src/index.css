@@ -145,6 +145,7 @@
 @media (max-width: 640px) {
   .glass__effect {
     padding: 6px;
+    border-radius: 8px;
   }
 }
 
