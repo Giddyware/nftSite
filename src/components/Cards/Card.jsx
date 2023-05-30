@@ -26,7 +26,7 @@ const Card = ({
 
   const handleToggleMarket = () => {
     enabled ? dispatch(pullFromMarket(id)) : dispatch(pushToMarket(id));
-    setEnabled((prev) => !prev);
+    // setEnabled((prev) => !prev);
   };
   return (
     // <div className="h-56">

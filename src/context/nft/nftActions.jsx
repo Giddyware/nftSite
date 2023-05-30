@@ -89,8 +89,10 @@ export const pushToMarket = createAsyncThunk(
   async (id, { dispatch }) => {
     try {
       const response = await pushToMarketAPI(id);
+      const state = getState().auth.userDetails.myNft;
+
       console.log("pushToMarket", response);
-      dispatch(fetchSuccess(response));
+      dispatch(fetchSuccess(state));
       toast.success(
         "Congratulations🎉, You have successfully PUSH an NFT to the market. 🚀"
       );
@@ -102,10 +104,17 @@ export const pushToMarket = createAsyncThunk(
 
 export const pullFromMarket = createAsyncThunk(
   "product/pullFromMarket",
-  async (id, { dispatch }) => {
+  async (id, { dispatch, getState }) => {
+    const state = getState().auth.userDetails.myNft;
+    const newState = state.map((detail) =>
+      detail.id == id
+        ? { ...detail, nftInMarket: !detail.nftInMarket }
+        : { ...detail }
+    );
     try {
       const response = await pullFromMarketAPI(id);
       console.log("pullFromMarket", response);
+
       dispatch(fetchSuccess(response));
     } catch (error) {
       dispatch(fetchFailure(error));
