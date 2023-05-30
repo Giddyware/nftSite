@@ -4,12 +4,20 @@ import { MdCreate, MdOutlineCollections, MdSummarize } from "react-icons/md";
 import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { GrTransaction } from "react-icons/gr";
 import { BiLogOut, BiSupport } from "react-icons/bi";
-import { RiLuggageDepositFill } from "react-icons/ri";
+import { RiLuggageDepositFill, RiLuggageDepositLine } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 
 import Logo from "../../assets/logo.png";
 import Logo_sm from "../../assets/logo_sm.png";
 import { useTranslation } from "react-i18next";
+import {
+  IoWalletOutline,
+  IoImageOutline,
+  IoCreateOutline,
+  IoCardOutline,
+  IoLogOutOutline,
+  IoSwapHorizontalOutline,
+} from "react-icons/io5";
 
 const DashboardLinks = ({ hash, name, icon }) => {
   const location = useLocation();
@@ -46,7 +54,7 @@ const SideNav = ({ modalStatus, refs }) => {
         <ul className="flex flex-col gap-5 my-10">
           <li className="px-5 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
-              icon={<MdSummarize size={"20px"} />}
+              icon={<IoWalletOutline size={"20px"} />}
               name={t("dashboard.account_summary")}
             />
           </li>
@@ -58,7 +66,7 @@ const SideNav = ({ modalStatus, refs }) => {
             }}
           >
             <DashboardLinks
-              icon={<MdOutlineCollections size={"20px"} />}
+              icon={<IoImageOutline size={"20px"} />}
               name={t("dashboard.NFT_Collection")}
             />
           </li>
@@ -67,8 +75,8 @@ const SideNav = ({ modalStatus, refs }) => {
             className="px-5 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300"
           >
             <DashboardLinks
-              icon={<MdCreate size={"10"} />}
-              name={t("dashboard.Mint_Create")}
+              icon={<IoCreateOutline size={"20"} />}
+              name={t("dashboard.Mint")}
             />
           </Link>
           <li
@@ -80,7 +88,7 @@ const SideNav = ({ modalStatus, refs }) => {
             }}
           >
             <DashboardLinks
-              icon={<GrTransaction size={"20px"} />}
+              icon={<IoSwapHorizontalOutline size={"20px"} />}
               name={t("dashboard.transaction")}
             />
           </li>
@@ -94,7 +102,7 @@ const SideNav = ({ modalStatus, refs }) => {
           >
             {/* <Link to="/#RecentSalesTable"> */}
             <DashboardLinks
-              icon={<GiTakeMyMoney size={"20px"} />}
+              icon={<IoCardOutline size={"20px"} />}
               name={t("dashboard.sales")}
               // hash="/#RecentSalesTable"
             />
@@ -129,14 +137,14 @@ const SideNav = ({ modalStatus, refs }) => {
             className="px-5 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300"
           >
             <DashboardLinks
-              icon={<RiLuggageDepositFill size={"20px"} />}
+              icon={<RiLuggageDepositLine size={"20px"} />}
               name={"Market Place"}
             />
           </Link>
 
           <Link className="px-5 mt-32 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300">
             <DashboardLinks
-              icon={<BiLogOut size={"20px"} />}
+              icon={<IoLogOutOutline size={"20px"} />}
               name={"Log out"}
             />
           </Link>
