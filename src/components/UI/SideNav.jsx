@@ -18,6 +18,8 @@ import {
   IoLogOutOutline,
   IoSwapHorizontalOutline,
 } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { logout } from "../../context/auth/authSlice";
 
 const DashboardLinks = ({ hash, name, icon }) => {
   const location = useLocation();
@@ -40,6 +42,10 @@ const handleScroll = (ref) => {
 
 const SideNav = ({ modalStatus, refs }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const LogMeOut = () => {
+    dispatch(logout());
+  };
   return (
     <div className="h-[100%] w-full">
       <div className=" py-8 fixed top-0 left-0 bg-gray-100 h-full md:w-[250px] lg:w-[350px]">
@@ -114,24 +120,7 @@ const SideNav = ({ modalStatus, refs }) => {
               name={t("dashboard.support")}
             />
           </li>
-          {/* <li
-            onClick={() => modalStatus()}
-            className="px-5 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300"
-          >
-            <DashboardLinks
-              icon={<GiReceiveMoney size={"20px"} />}
-              name={t("dashboard.withdraw")}
-            />
-          </li>
-          <Link
-            to={`${location.pathname}/deposit`}
-            className="px-5 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300"
-          >
-            <DashboardLinks
-              icon={<RiLuggageDepositFill size={"20px"} />}
-              name={t("dashboard.deposit")}
-            />
-          </Link> */}
+
           <Link
             to={`/marketPlace`}
             className="px-5 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300"
@@ -142,7 +131,10 @@ const SideNav = ({ modalStatus, refs }) => {
             />
           </Link>
 
-          <Link className="px-5 mt-32 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300">
+          <Link
+            onClick={() => LogMeOut()}
+            className="px-5 mt-32 py-3 ml-3 md:ml-28 rounded-l-full cursor-pointer hover:bg-gray-300"
+          >
             <DashboardLinks
               icon={<IoLogOutOutline size={"20px"} />}
               name={"Log out"}

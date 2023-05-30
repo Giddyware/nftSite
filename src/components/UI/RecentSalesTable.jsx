@@ -99,7 +99,7 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  // style={{ minWidth: column.minWidth }}
+                  className="text-2xl"
                 >
                   {column.label}
                 </TableCell>

@@ -28,19 +28,18 @@ const Button_Details = ({ showModal }) => {
 
   return (
     <Button>
-      <div className="flex items-center gap-4 text-white">
-        <p
-          className="font-bold cursor-pointer text-md md:text-2xl"
+      <div className="flex justify-center  cursor-pointer py-[3px] items-center gap-4 text-white">
+        {/* <p
+          className="font-bold text-md md:text-2xl"
           // onClick={() => showModal()}
-        ></p>
+        ></p> */}
         <div className="border-l-solid border-l-slate-500 wallet-menu-bar">
           <Link
-            to={isAuthenticated ? "/auth" : null}
+            to={!isAuthenticated ? "/auth" : null}
             className="li"
             onClick={() => LogMeOut()}
           >
-            <p className=" w-10 md:w-[80px] flex">
-              {/* <BiUserCircle size={"100%"} /> */}
+            <p className="w-10 md:w-[80px] flex justify-center">
               {!isAuthenticated ? (
                 <span>Login/ SignUp</span>
               ) : (
