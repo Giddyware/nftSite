@@ -186,11 +186,11 @@ const Mint = () => {
           placeholder="Provide a detailed description of your NFT."
           {...mintForm("description")}
         ></textarea>
-        <div className="flex w-full justify-between mt-auto">
+        <div className="flex justify-between w-full mt-auto">
           <button className="bg-[#084cdf] py-6 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
             Mint
           </button>
-          <button className="bg-[#084cdf] py-6 px-3 w-48 text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
+          <button className="w-48 px-3 py-6 mt-3 text-white bg-gray-400 rounded-lg shadow-xl hover:bg-gray-600">
             <Link to={"/dashboard"}>Go to Dashboard</Link>
           </button>
         </div>
