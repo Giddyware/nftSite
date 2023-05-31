@@ -76,6 +76,14 @@ const App = () => {
           }
         />
         <Route
+          path="/art"
+          element={
+            <ProtectedRoute>
+              <CollectionPage name="Art" />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/dashboard"
           element={
             <ProtectedRoute>

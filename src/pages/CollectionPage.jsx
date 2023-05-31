@@ -24,28 +24,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { CgLoadbar } from "react-icons/cg";
 import { BiErrorCircle } from "react-icons/bi";
 import { getNfts } from "../context/nft/nftActions";
-// import { getNfts } from "../context/nft/nftSlice";
+import { Link, useLocation } from "react-router-dom";
+import Loading from "../components/Loading/Loading";
+import Footer from "../components/Footer/Footer";
 
-
-const CollectionPage = () => {
+const CollectionPage = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
 
   const dispatch = useDispatch();
   const { nfts, isLoading, error } = useSelector((state) => state.product);
 
-  useEffect(() => {
-    dispatch(getNfts());
-    console.log(nfts, "nfts");
-  }, [dispatch]);
-  console.log(nfts, "2nfts");
+  // Get the current pathname
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // useEffect(() => {
+  //   dispatch(getNfts());
+  // }, [dispatch]);
 
   if (isLoading) {
-    return (
-      <div>
-        Loading...
-        <CgLoadbar />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
@@ -77,7 +75,7 @@ const CollectionPage = () => {
       </div>
       <div className="m-10 mt-20">
         <div className="flex justify-between ">
-          <h1 className="font-bold text-[30px]">GAME CATEGORY</h1>
+          <h1 className="font-bold text-[30px]">{name}</h1>
           <div>
             <TbNetwork />
           </div>
@@ -122,11 +120,17 @@ const CollectionPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-10 m-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 m-10">
         {nfts?.data?.map((nft) => (
-          <CollectionCard key={nft.id} {...nft} />
+          <li key={nft.id}>
+            <Link to={`${currentPath}/products/${nft.id}`}>
+              <CollectionCard {...nft} />
+            </Link>
+          </li>
         ))}
       </div>
+
+      <Footer />
     </div>
   );
 };
