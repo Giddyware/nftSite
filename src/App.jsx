@@ -47,15 +47,12 @@ const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   // TODO:Replace with the fallback path for unauthenticated users
   const fallbackPath = "/auth"; // Replace with the fallback path for unauthenticated users
-
+  console.log(isAuthenticated);
   const dispatch = useDispatch();
   // Check for authentication token on app initialization
   useEffect(() => {
     const token = Cookies.get("authToken");
-    if (token) {
-      dispatch(loginUser(token));
-    }
-  }, [dispatch]);
+  }, []);
   return (
     <>
       <Routes>
@@ -64,9 +61,9 @@ const App = () => {
         <Route
           path="/auth"
           element={
-            // <UnAuthenticated>
-            <Auth />
-            // </UnAuthenticated>
+            <UnAuthenticated>
+              <Auth />
+            </UnAuthenticated>
           }
         />
         <Route path="/dashboard/verify_email" element={<VerifyEmail />} />
@@ -74,7 +71,7 @@ const App = () => {
           path="/marketPlace"
           element={
             <ProtectedRoute>
-              <MarketPlace />
+              <MarketPlace name="Market Place" />
             </ProtectedRoute>
           }
         />
@@ -107,9 +104,9 @@ const App = () => {
         <Route
           path="/dashboard/withdraw"
           element={
-            // <ProtectedRoute>
-            <Withdraw />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <Withdraw />
+            </ProtectedRoute>
           }
         />
 

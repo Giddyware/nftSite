@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,6 +28,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useLocation().state;
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log(state, isAuthenticated);
   const {
     register: loginForm,
     handleSubmit,
@@ -43,12 +45,8 @@ const Login = () => {
       setLoading(true);
 
       dispatch(loginUser(validData));
-
       dispatch(getUserDetails());
-
       reset();
-
-      navigate(state.from ? state.from : "/");
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
@@ -56,12 +54,15 @@ const Login = () => {
       setLoading(false);
     }
   };
-  console.log(state);
+
   return (
     <form
-      className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100 dark:bg-blue-600 bg-white border outline-slate-700 outline-4"
+      className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100  bg-white border outline-slate-700 outline-4"
       onSubmit={handleSubmit(onSubmit)}
     >
+      {isAuthenticated && (
+        <Navigate to={state !== null ? state.from : "/marketPlace"} />
+      )}
       <fieldset className="grid grid-cols-6 gap-8">
         <p as="legend" className="text-5xl font-normal tracking-300">
           Login

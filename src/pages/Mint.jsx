@@ -96,7 +96,6 @@ const Mint = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col items-start justify-center min-h-[100%] bg-white  px-10 py-12 border-2 rounded-2xl max-w-[450px] my-6 mx-auto text-[#04111D]">
         <p className="text-5xl font-bold">Create New Item</p>
-        <p className="my-5 text-lg">* Required Field</p>
 
         <p className="text-2xl font-bold">Image *</p>
         <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
@@ -176,18 +175,7 @@ const Mint = () => {
           </div>
         </div>
 
-        <p className="my-5 text-2xl font-bold">External Link</p>
-        <p className="">
-          OpenSea will include the link Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Necessitatibus non ipsa possimus eos, nihil, fuga
-          corporis assumenda
-        </p>
-
         <p className="my-5 text-2xl font-bold">Description</p>
-        <p className="">
-          OpenSea will include the link Lorem ipsum dolor sit amet consectetur
-          adipisicing elit.
-        </p>
 
         <textarea
           className="w-full p-5 my-5 border-2 rounded-md"
@@ -203,7 +191,7 @@ const Mint = () => {
             Mint
           </button>
           <button className="bg-[#084cdf] py-6 px-3 w-48 text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
-            <Link to={"/dashboard"}>Go to Dashbaord</Link>
+            <Link to={"/dashboard"}>Go to Dashboard</Link>
           </button>
         </div>
       </div>

@@ -13,29 +13,39 @@ import { useEffect } from "react";
 import Connect from "./ConnectWallet/Connect";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { logoutUser } from "../../context/auth/authActions";
+import { useDispatch } from "react-redux";
+import { logout } from "../../context/auth/authSlice";
 
 const Button_Details = ({ showModal }) => {
   const { t } = useTranslation();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+  const LogMeOut = () => {
+    dispatch(logout());
+  };
 
   return (
     <Button>
-      <div className="flex items-center gap-4 text-white">
-        <div className="w-10 md:w-[20px] cursor:pointer">
-          <MdOutlineCastConnected size={"100%"} />
-        </div>
-        <p
-          className="font-bold cursor-pointer text-md md:text-2xl"
+      <div className="flex justify-center  cursor-pointer py-[3px] items-center gap-4 text-white">
+        {/* <p
+          className="font-bold text-md md:text-2xl"
           // onClick={() => showModal()}
-        >
-          {/* {t("home.connect_wallet")} */}
-        </p>
+        ></p> */}
         <div className="border-l-solid border-l-slate-500 wallet-menu-bar">
-          <Link to={"/auth"} className="li ">
-            <p className=" w-10 md:w-[80px] flex">
-              {/* <BiUserCircle size={"100%"} /> */}
-              <span>Login/ SignUp</span>
+          <Link
+            to={!isAuthenticated ? "/auth" : null}
+            className="li"
+            onClick={() => LogMeOut()}
+          >
+            <p className="w-10 md:w-[80px] flex justify-center">
+              {!isAuthenticated ? (
+                <span>Login/ SignUp</span>
+              ) : (
+                <span>LogOut</span>
+              )}
             </p>
-            <div className="w-[10rem] wallet-sub-menu">{/* <Connect /> */}</div>
           </Link>
         </div>
       </div>
@@ -68,12 +78,11 @@ const Header = ({ showModal }) => {
   }, []);
 
   return (
-    <div
-      className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white font-poppins"
-      style={{ background: bg ? "white" : "none" }}
-    >
-      {/* <FcWiFiLogo fontSize={"10rem"} /> */}
-      <Link to='/' className="border-right-solid border-right-[1px] border-right-[white] w-14 md:w-48">
+    <div className="flex flex-row items-center bg-gray-900 justify-between w-full gap-5 px-5 py-5 text-white font-poppins">
+      <Link
+        to="/"
+        className="border-right-solid border-right-[1px] border-right-[white] w-48 md:w-52"
+      >
         <img className="w-full" src={Logo} alt="" />
       </Link>
 

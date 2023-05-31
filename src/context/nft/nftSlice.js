@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
   error: null,
   nft: null,
-  selectedItem: null,
+  selectedItem: null, 
 };
 
 const nftSlice = createSlice({
