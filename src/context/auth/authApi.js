@@ -55,6 +55,7 @@ export const loginUserAPI = async (userData) => {
   try {
     const response = await api.post(`${BASE_URL}/users/login`, userData);
     return response.data;
+    console.log(response.data);
   } catch (error) {
     // if (error.isAxiosError && !error.response) {
     //   throw new Error("Network Error: Please check your internet connection.");
@@ -66,7 +67,7 @@ export const loginUserAPI = async (userData) => {
 
 export const logoutUserAPI = async () => {
   try {
-    const response = await api.post(`${BASE_URL}/logout`);
+    const response = await api.post(`${BASE_URL}/users/logout`);
     return response.data;
   } catch (error) {
     throw error.response.data;

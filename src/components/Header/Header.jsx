@@ -12,12 +12,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Connect from "./ConnectWallet/Connect";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logoutUser } from "../../context/auth/authActions";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/auth/authSlice";
 import { CgProfile } from "react-icons/cg";
+import Cookies from "js-cookie";
 
 const Button_Details = ({ showModal }) => {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ const Button_Details = ({ showModal }) => {
   const dispatch = useDispatch();
   const LogMeOut = () => {
     dispatch(logout());
+    Cookies.remove("authToken");
   };
 
   return (
@@ -40,7 +42,7 @@ const Button_Details = ({ showModal }) => {
             className="li"
             onClick={() => LogMeOut()}
           >
-            <p className="w-10 md:w-[80px] flex justify-center">
+            <p className="w-full md:w-[80px] flex justify-center">
               {!isAuthenticated ? (
                 <span>Login/ SignUp</span>
               ) : (
@@ -55,11 +57,14 @@ const Button_Details = ({ showModal }) => {
 };
 
 const ProfileButton = () => {
+  const location = useLocation().pathname;
   return (
     <Button>
-      <div className="flex items-center justify-center gap-4 text-white w-7 md:w-[24px] ">
-        <CgProfile size={"100%"} />
-      </div>
+      <Link to="/dashboard" state={{ from: location }}>
+        <div className="flex items-center justify-center gap-4 text-white w-7 md:w-[24px] ">
+          <CgProfile size={"100%"} />
+        </div>
+      </Link>
     </Button>
   );
 };

@@ -4,7 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 function ProtectedRoute({ children }) {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation().pathname;
-  console.log(isAuthenticated, "pro");
+
   return isAuthenticated ? (
     children
   ) : (
