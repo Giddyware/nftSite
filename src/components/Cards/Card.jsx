@@ -37,7 +37,7 @@ const Card = ({
           crossOrigin="anonymous"
           src={imgUrl || imageURL}
           alt=""
-          className={`object-cover h-56 rounded-t-lg ${
+          className={`object-cover h-full rounded-t-lg ${
             imageWidth === "full" ? "w-full" : "w-full"
           }`}
         />

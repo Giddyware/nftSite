@@ -295,8 +295,8 @@ html {
       rgba(255, 255, 255, 0) 0%,
       rgba(255, 255, 255, 1) 90%
     ),
-    url("./assets/background.jpg");
-  background-size: cover;
+    url("./assets/bgImg.jpg");
+  background-size: contain;
   background-position: center;
   z-index: 1;
 }

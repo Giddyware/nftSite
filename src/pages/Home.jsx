@@ -147,8 +147,8 @@ const Home = () => {
             }}
             breakpoints={{
               320: {
-                slidesPerView: 1,
-                spaceBetween: 40,
+                slidesPerView: 2,
+                spaceBetween: 20,
               },
               640: {
                 slidesPerView: 3,

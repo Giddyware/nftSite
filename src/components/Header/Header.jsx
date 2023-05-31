@@ -84,7 +84,7 @@ const Header = ({ showModal }) => {
   }, []);
 
   return (
-    <div className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-gray-900 font-poppins">
+    <div className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-transparent font-poppins">
       <Link
         to="/"
         className="border-right-solid border-right-[1px] border-right-[white] w-48 md:w-52"
