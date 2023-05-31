@@ -26,13 +26,12 @@ const Card = ({
 
   const handleToggleMarket = () => {
     enabled ? dispatch(pullFromMarket(id)) : dispatch(pushToMarket(id));
-    // setEnabled((prev) => !prev);
   };
   return (
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col gap-2 rounded-lg shadow-lg bg-gray-100"
+      className="flex flex-col gap-2 bg-gray-100 rounded-lg shadow-lg"
     >
       <div className="w-full">
         <img
@@ -59,8 +58,8 @@ const Card = ({
       </div>
       {inDashboard && (
         <>
-          <label className="relative inline-flex items-center mb-5 cursor-pointer ml-auto mr-auto">
-            <span className="ml-3 font-medium text-gray-900 dark:text-gray-300 mr-3">
+          <label className="relative inline-flex items-center mb-5 ml-auto mr-auto cursor-pointer">
+            <span className="ml-3 mr-3 font-medium text-gray-900 dark:text-gray-300">
               Push to market
             </span>
             <input

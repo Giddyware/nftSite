@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 import { logoutUser } from "../../context/auth/authActions";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/auth/authSlice";
+import { CgProfile } from "react-icons/cg";
 
 const Button_Details = ({ showModal }) => {
   const { t } = useTranslation();
@@ -53,11 +54,11 @@ const Button_Details = ({ showModal }) => {
   );
 };
 
-const CartButton = () => {
+const ProfileButton = () => {
   return (
     <Button>
       <div className="flex items-center justify-center gap-4 text-white w-7 md:w-[24px] ">
-        <AiOutlineShoppingCart size={"100%"} />
+        <CgProfile size={"100%"} />
       </div>
     </Button>
   );
@@ -78,7 +79,7 @@ const Header = ({ showModal }) => {
   }, []);
 
   return (
-    <div className="flex flex-row items-center bg-gray-900 justify-between w-full gap-5 px-5 py-5 text-white font-poppins">
+    <div className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-gray-900 font-poppins">
       <Link
         to="/"
         className="border-right-solid border-right-[1px] border-right-[white] w-48 md:w-52"
@@ -89,7 +90,7 @@ const Header = ({ showModal }) => {
       <DropDown />
       <Search />
       <Button_Details showModal={showModal} />
-      <CartButton />
+      <ProfileButton />
     </div>
   );
 };

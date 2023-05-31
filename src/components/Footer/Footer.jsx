@@ -33,25 +33,25 @@ const Footer = () => {
           <div className="text-[16px] mb-32 ">
             <h2>Join the community</h2>
             <div className="flex mt-8">
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-400">
+              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
                 <FaTwitter />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-400">
+              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
                 <FaDiscord />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-400">
+              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
                 <FaInstagram />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-400">
+              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
                 <SlSocialReddit />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-400">
+              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
                 <FaYoutube />
               </div>
             </div>
           </div>
         </div>
-        <div className="grid my-32 lg:grid-cols-[320px_repeat(4,_1fr)] gap-x-32 grid-cols-1 md:grid-cols-3  gap-y-8 lg:gap-y-0">
+        <div className="grid my-32 lg:grid-cols-[320px_repeat(2,_1fr)] gap-x-32 grid-cols-1 md:grid-cols-3  gap-y-8 lg:gap-y-0">
           <div className=" mt--6">
             <div className="border-right-solid border-right-[1px] border-right-[white] w-48 md:w-24 mx-auto md:mx-0">
               <img className="w-full" src={Logo} alt="home" />
@@ -75,25 +75,11 @@ const Footer = () => {
             <a href="">WatchList</a>
             <a href="">Collection</a>
           </div>
-          <div className="flex flex-col items-center gap-y-5">
-            <h1 className="font-bold">Resources</h1>
-            <a href="">Blog</a>
-            <a href="">Learn</a>
-            <a href="">Help Center</a>
-            <a href="">User Content FAQ</a>
-          </div>
-          <div className="flex flex-col items-center gap-y-5">
-            <h1 className="font-bold">Company</h1>
-            <a href="">About</a>
-            <a href="">Careers</a>
-            <a href="">Ventures</a>
-            <a href="">Grants</a>
-          </div>
         </div>
       </div>
       <div className="px-10 py-8 text-white bg-[#1868B7] text-[16px] flex justify-between">
         <div>
-          <p>© 2018 - 2023 Ozone Networks, Inc</p>
+          <p>© 2018 - 2023 Artmint, Inc</p>
         </div>
         <div className="flex gap-x-6">
           <p>Privacy Policy</p>
