@@ -37,19 +37,19 @@ const DashboardCard = ({ showModal, wallet }) => {
   const location = useLocation();
   const { t } = useTranslation();
   return (
-    <div className="flex md:justify-between flex-col md:flex-row gap-6 px-16 py-10 sm:justify-center sm:items-center  bg-gray-200 rounded-2xl">
+    <div className="flex flex-col gap-6 px-16 py-10 bg-gray-200 md:justify-between md:flex-row sm:justify-center sm:items-center rounded-2xl">
       <div>
         <p>{t("dashboard.account_balance")}</p>
-        <p className="md:text-3xl font-bold">{wallet?.accountBallance} ETH</p>
+        <p className="font-bold md:text-3xl">{wallet?.accountBallance} ETH</p>
       </div>
-      <div className="flex gap-x-3 md:gap-x-6 font-bold text-2xl">
+      <div className="flex text-2xl font-bold gap-x-3 md:gap-x-6">
         <Link to={`${location.pathname}/deposit`}>
-          <button className="px-16 py-6  md:px-24 md:py-8 bg-blue-500 rounded-lg cursor-pointer">
+          <button className="px-16 py-6 bg-blue-500 rounded-lg cursor-pointer md:px-24 md:py-8">
             {t("dashboard.Deposit")}
           </button>
         </Link>
         <button
-          className="px-16 py-6  md:px-24 md:py-8 text-gray-400 bg-white rounded-lg cursor-pointer"
+          className="px-16 py-6 text-gray-400 bg-white rounded-lg cursor-pointer md:px-24 md:py-8"
           onClick={() => showModal()}
         >
           {t("dashboard.withdrawal")}
@@ -109,9 +109,10 @@ const Dashboard = () => {
 
   const { myNftTransaction, myNft, wallet, photo, userVerified, username } =
     userDetails;
+
   useEffect(() => {
     dispatch(getUserDetails());
-  }, [userDetails]);
+  }, [getUserDetails]);
 
   if (isLoading) {
     return <Loading />;

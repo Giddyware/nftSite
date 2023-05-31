@@ -22,8 +22,6 @@ const Card = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(id);
-
   const handleToggleMarket = () => {
     enabled ? dispatch(pullFromMarket(id)) : dispatch(pushToMarket(id));
   };
