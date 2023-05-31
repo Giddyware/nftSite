@@ -1,7 +1,7 @@
 import Button from "../Button";
 
 import { MdOutlineCastConnected } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
+import { BiChevronUp, BiUserCircle } from "react-icons/bi";
 
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -19,6 +19,8 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../context/auth/authSlice";
 import { CgProfile } from "react-icons/cg";
 import Cookies from "js-cookie";
+
+import avatar from "../../assets/avatar.png";
 
 const Button_Details = ({ showModal }) => {
   const { t } = useTranslation();
@@ -82,12 +84,13 @@ const Header = ({ showModal }) => {
   useEffect(() => {
     check();
   }, []);
-
+  let username;
+  let userVerified;
   return (
     <div className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-transparent font-poppins">
       <Link
         to="/"
-        className="border-right-solid border-right-[1px] border-right-[white] w-48 md:w-52"
+        className="border-right-solid border-right-[1px] border-right-black w-48 md:w-52"
       >
         <img className="w-full" src={Logo} alt="" />
       </Link>
@@ -95,7 +98,25 @@ const Header = ({ showModal }) => {
       {/* <DropDown /> */}
       <Search />
       <Button_Details showModal={showModal} />
-      <ProfileButton />
+      {/* <ProfileButton /> */}
+      <div className="flex justify-center px-4 py-2 bg-transparent rounded-lg item-center">
+        <img
+          className="border border-white border-solid rounded-full h-14 w-14"
+          src={avatar}
+          alt=""
+        />
+        <div className="flex flex-col items-center justify-center ml-3 mr-8">
+          <p>{username}</p>
+          <p className="font-bold">
+            {!!userVerified ? (
+              <span className="text-green-400">Verified</span>
+            ) : (
+              <span className="text-red-400"> Unverified</span>
+            )}
+          </p>
+        </div>
+        <BiChevronUp size={15} />
+      </div>
     </div>
   );
 };

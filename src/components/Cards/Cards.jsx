@@ -113,7 +113,7 @@ const Cards = ({ title }) => {
 
   return (
     <>
-      <h1 className="px-10 text-3xl font-bold mt-8car font-poppins">{title}</h1>
+      <h1 className="px-10 mt-8 text-3xl font-bold font-poppins">{title}</h1>
       <div className="flex items-center w-full px-10 mt-10">
         <div
           className="absolute left-0 z-50 hidden text-white bg-white rounded-full cursor-pointer shadow:4xl h-fit prevNav md:block "
