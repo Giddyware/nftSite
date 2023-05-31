@@ -14,6 +14,7 @@ const Card = ({
   priceInEtherium,
   name,
   inDashboard,
+  imgUrl,
 }) => {
   const [enabled, setEnabled] = useState(nftInMarket);
   const BASE_URL = "https://alphapp.tech";
@@ -29,28 +30,24 @@ const Card = ({
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col gap-2 bg-gray-100 rounded-lg shadow-lg"
+      className="flex flex-col gap-2 bg-gray-100 rounded-lg shadow-lg h-[300px]"
     >
-      <div className="w-full">
+      <div className="w-full h-[70%]">
         <img
           crossOrigin="anonymous"
-          src={imageURL}
+          src={imgUrl || imageURL}
           alt=""
           className={`object-cover h-56 rounded-t-lg ${
             imageWidth === "full" ? "w-full" : "w-full"
           }`}
         />
       </div>
-      <div className="p-4">
+      <div className="p-4 ">
         <h3 className="pb-4 text-sm font-bold">{name}</h3>
         <div className="flex justify-between mb-5 font-bold">
-          <div className="">
+          <div className="flex justify-between w-full">
             <p className="text-gray-600">FLOOR</p>
-            <p className="">{floor}ETH</p>
-          </div>
-          <div className="">
-            <p className="text-gray-600">TOTAL VOLUME</p>
-            <p>{priceInEtherium} ETH</p>
+            <p className="">{priceInEtherium}ETH</p>
           </div>
         </div>
       </div>

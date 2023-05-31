@@ -114,6 +114,8 @@ const Dashboard = () => {
     dispatch(getUserDetails());
   }, [getUserDetails]);
 
+  console.log(userDetails, "userDetails====");
+
   if (isLoading) {
     return <Loading />;
   }
@@ -147,7 +149,7 @@ const Dashboard = () => {
               </div>
               <div className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center">
                 <img
-                  className="border border-solid rounded-full h-14 w-14 border-whiter"
+                  className="border border-white border-solid rounded-full h-14 w-14"
                   src={avatar}
                   alt=""
                 />
@@ -181,10 +183,10 @@ const Dashboard = () => {
                 <img className="w-5" src={Ethereum_logo} alt="Ethereum_logo" />
               </div>
               <p>ETH</p>
-              <p className="justify-self-end">~128938</p>
+              <p className="justify-self-end">{wallet?.eth}</p>
             </div>
             <div className="flex justify-between mb-10 ml-[40px] text-sm text-gray-400">
-              <p>EHT</p>
+              <p>ERC20</p>
               <p>~839</p>
             </div>
             <div className="grid grid-cols-[40px,_80px_1fr]">
@@ -192,10 +194,10 @@ const Dashboard = () => {
                 <img className="w-7" src={Weth_logo} alt="Weth_logo" />
               </div>
               <p>WETH</p>
-              <p className="justify-self-end">~128938</p>
+              <p className="justify-self-end">{wallet?.weth}</p>
             </div>
             <div className="flex justify-between text-sm ml-[40px] text-gray-400">
-              <p>WETH</p>
+              <p>ERC20</p>
               <p>~839</p>
             </div>
           </div>

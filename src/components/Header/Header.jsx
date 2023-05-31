@@ -92,7 +92,7 @@ const Header = ({ showModal }) => {
         <img className="w-full" src={Logo} alt="" />
       </Link>
 
-      <DropDown />
+      {/* <DropDown /> */}
       <Search />
       <Button_Details showModal={showModal} />
       <ProfileButton />

@@ -107,19 +107,18 @@ const data = [
   },
 ];
 
-const Cards = () => {
+const Cards = ({ title }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   return (
     <>
-      <h1 className="px-10 mt-8 text-3xl font-bold font-poppins">Notable Collections</h1>
+      <h1 className="px-10 text-3xl font-bold mt-8car font-poppins">{title}</h1>
       <div className="flex items-center w-full px-10 mt-10">
         <div
           className="absolute left-0 z-50 hidden text-white bg-white rounded-full cursor-pointer shadow:4xl h-fit prevNav md:block "
           ref={prevRef}
         >
-          {" "}
           <MdOutlineNavigateBefore size={50} color="grey" />
         </div>
         <Swiper
@@ -157,8 +156,7 @@ const Cards = () => {
         >
           {data.map((artDatails) => (
             <SwiperSlide>
-              {" "}
-              <Card key={artDatails.id} imageWidth={'full'} {...artDatails} />
+              <Card key={artDatails.id} imageWidth={"full"} {...artDatails} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -166,7 +164,6 @@ const Cards = () => {
           className="absolute right-0 z-50 hidden text-white bg-white rounded-full shadow cursor-pointer h-fit prevNav md:block"
           ref={nextRef}
         >
-          {" "}
           <MdOutlineNavigateNext size={50} color="grey" />
         </div>
       </div>

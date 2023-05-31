@@ -70,17 +70,17 @@ const App = () => {
         <Route
           path="/marketPlace"
           element={
-            <ProtectedRoute>
-              <MarketPlace name="Market Place" />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <MarketPlace name="Market Place" />
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/art"
           element={
-            <ProtectedRoute>
-              <CollectionPage name="Art" />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <CollectionPage name="Art" />
+            // </ProtectedRoute>
           }
         />
         <Route
