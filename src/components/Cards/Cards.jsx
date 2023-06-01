@@ -29,6 +29,7 @@ import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
 import { useRef } from "react";
 import { BsFullscreenExit } from "react-icons/bs";
+import HomeCard from "./HomeCard";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -114,7 +115,7 @@ const Cards = ({ title }) => {
   return (
     <>
       <h1 className="px-10 mt-8 text-3xl font-bold font-poppins">{title}</h1>
-      <div className="flex items-center w-full px-10 mt-10">
+      <div className="flex items-center w-full px-10 my-10">
         <div
           className="absolute left-0 z-50 hidden text-white bg-white rounded-full cursor-pointer shadow:4xl h-fit prevNav md:block "
           ref={prevRef}
@@ -156,7 +157,11 @@ const Cards = ({ title }) => {
         >
           {data.map((artDatails) => (
             <SwiperSlide>
-              <Card key={artDatails.id} imageWidth={"full"} {...artDatails} />
+              <HomeCard
+                key={artDatails.id}
+                imageWidth={"full"}
+                {...artDatails}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
