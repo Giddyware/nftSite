@@ -9,6 +9,7 @@ const initialState = {
   selectedItem: null,
   category: [],
   art: [],
+  gaming: [],
 };
 
 const nftSlice = createSlice({
@@ -86,6 +87,21 @@ const nftSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    // FETCH GAMING CATEGORY
+    fetchGamingStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchGamingSuccess: (state, action) => {
+      state.isLoading = false;
+      state.gaming = action.payload;
+      state.error = null;
+    },
+    fetchGamingFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -105,6 +121,9 @@ export const {
   fetchArtStart,
   fetchArtSuccess,
   fetchArtFailure,
+  fetchGamingStart,
+  fetchGamingSuccess,
+  fetchGamingFailure,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;

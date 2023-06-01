@@ -42,6 +42,7 @@ import Cookies from "js-cookie";
 import { loginUser } from "./context/auth/authActions";
 import LoginPage from "./pages/LoginPage";
 import Art from "./pages/Art";
+import Gaming from "./pages/Gaming";
 // import SupportAdmin from "./components/SupportAdmin";
 
 const App = () => {
@@ -81,6 +82,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Art name="Art" />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/category=gaming"
+          element={
+            <ProtectedRoute>
+              <Gaming name="Gaming" />
             </ProtectedRoute>
           }
         />

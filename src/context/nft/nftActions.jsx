@@ -6,6 +6,7 @@ import {
   createNftAPI,
   getArtNftsAPI,
   getCategoryAPI,
+  getGamingNftsAPI,
   getNftsAPI,
   pullFromMarketAPI,
   pushToMarketAPI,
@@ -22,6 +23,9 @@ import {
   fetchCategoryStart,
   fetchCategorySuccess,
   fetchFailure,
+  fetchGamingFailure,
+  fetchGamingStart,
+  fetchGamingSuccess,
   fetchStart,
   fetchSuccess,
   selectItemFailure,
@@ -178,6 +182,19 @@ export const getArtCategory = createAsyncThunk(
       dispatch(fetchArtSuccess(response));
     } catch (error) {
       dispatch(fetchArtFailure(error));
+    }
+  }
+);
+export const getGamingCategory = createAsyncThunk(
+  "product/getGamingCategory",
+  async (_, { dispatch }) => {
+    dispatch(fetchGamingStart());
+    try {
+      const response = await getGamingNftsAPI();
+      console.log(response, "===ireoi");
+      dispatch(fetchGamingSuccess(response));
+    } catch (error) {
+      dispatch(fetchGamingFailure(error));
     }
   }
 );
