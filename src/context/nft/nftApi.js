@@ -147,8 +147,9 @@ export const WithdrawInEthAPI = async (amt) => {
     const response = await api.patch(
       `${BASE_URL}/wallets/withdrawEth/${amt}`,
       {},
-      CreateTokenConfig()
+      tokenConfig()
     );
+    console.log(response);
   } catch (error) {
     throw error.response.data;
   }
@@ -158,8 +159,9 @@ export const WithdrawInWethAPI = async (amt) => {
     const response = await api.patch(
       `${BASE_URL}/wallets/withdrawWeth/${amt}`,
       {},
-      CreateTokenConfig()
+      tokenConfig()
     );
+    console.log(response);
   } catch (error) {
     throw error.response.data;
   }

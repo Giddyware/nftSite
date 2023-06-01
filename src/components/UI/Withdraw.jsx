@@ -31,7 +31,7 @@ const Withdraw = ({ show, modalStatus }) => {
   };
 
   const onSubmit = (data) => {
-    console.log("data======", data);
+    console.log("data======", data.amount);
     if (data.coin == "ETH") {
       dispatch(WithdrawInEth(data.amount));
     }
