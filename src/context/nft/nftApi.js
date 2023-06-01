@@ -54,6 +54,18 @@ export const getArtNftsAPI = async () => {
     throw error.response.data;
   }
 };
+export const getGamingNftsAPI = async () => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}/nft?category=gaming&sort=-priceInEtherium`,
+      tokenConfig()
+    );
+    console.log(response.data, "===resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
 
 export const selectItemAPI = async (productId) => {
   try {
