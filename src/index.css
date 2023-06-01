@@ -443,3 +443,11 @@ input[type="file"]::file-selector-button:hover {
     width: 15px;
   }
 }
+
+.cardWrapper {
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+  margin-top: 8px;
+  transition: box-shadow 0.25s ease-in-out 0s, transform 0.25s ease 0s;
+}

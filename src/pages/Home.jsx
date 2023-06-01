@@ -201,11 +201,13 @@ const Home = () => {
         </div>
       </div>
       {/* <Collection /> */}
+      {/* <div className="bg-white"> */}
       <Cards title={"Art"} />
       <Cards title={"Gaming"} />
       <Cards title={"Membership"} />
       <Cards title={"PFPs"} />
       <Cards title={"Photography"} />
+      {/* </div> */}
 
       {/* <SupportEngine /> */}
       <Footer />
