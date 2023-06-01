@@ -41,6 +41,7 @@ import Image12 from "../assets/nft/nft12.jpg";
 import Card from "../components/Cards/Card";
 
 import FullCard from "../components/Cards/FullCard";
+import { Link } from "react-router-dom";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -203,8 +204,15 @@ const Home = () => {
       </div>
       {/* <Collection /> */}
       {/* <div className="bg-white"> */}
-      <Cards title={"art"} />
-      <Cards title={"gaming"} />
+
+      <Link to="/category=arts">
+        <Cards title={"art"} />
+      </Link>
+
+      <Link to="/category=gaming">
+        <Cards title={"gaming"} />
+      </Link>
+
       <Cards title={"membership"} />
       <Cards title={"PFPs"} />
       <Cards title={"photography"} />
