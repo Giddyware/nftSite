@@ -78,7 +78,7 @@ const App = () => {
           }
         />
         <Route
-          path="/category=art"
+          path="/category=arts"
           element={
             <ProtectedRoute>
               <Art name="Art" />
