@@ -41,6 +41,7 @@ import Withdraw from "./components/UI/Withdraw";
 import Cookies from "js-cookie";
 import { loginUser } from "./context/auth/authActions";
 import LoginPage from "./pages/LoginPage";
+import Art from "./pages/Art";
 // import SupportAdmin from "./components/SupportAdmin";
 
 const App = () => {
@@ -79,7 +80,7 @@ const App = () => {
           path="/art"
           element={
             <ProtectedRoute>
-              <CollectionPage name="Art" />
+              <Art name="/Art" />
             </ProtectedRoute>
           }
         />

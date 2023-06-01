@@ -4,6 +4,7 @@ import {
   WithdrawInWethAPI,
   buyNftAPI,
   createNftAPI,
+  getCategoryAPI,
   getNftsAPI,
   pullFromMarketAPI,
   pushToMarketAPI,
@@ -13,6 +14,9 @@ import {
   buyProductFailure,
   buyProductStart,
   buyProductSuccess,
+  fetchCategoryFailure,
+  fetchCategoryStart,
+  fetchCategorySuccess,
   fetchFailure,
   fetchStart,
   fetchSuccess,
@@ -142,6 +146,20 @@ export const WithdrawInWeth = createAsyncThunk(
       console.log(response, "withdrawEth===");
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+export const getCategory = createAsyncThunk(
+  "product/getCategory",
+  async (category, { dispatch }) => {
+    dispatch(fetchCategoryStart());
+    try {
+      const cate = await getCategoryAPI(category);
+      console.log(cate, "cate");
+      dispatch(fetchCategorySuccess(cate));
+    } catch (error) {
+      dispatch(fetchCategoryFailure(error));
     }
   }
 );

@@ -203,11 +203,11 @@ const Home = () => {
       </div>
       {/* <Collection /> */}
       {/* <div className="bg-white"> */}
-      <Cards title={"Art"} />
-      <Cards title={"Gaming"} />
-      <Cards title={"Membership"} />
+      <Cards title={"art"} />
+      <Cards title={"gaming"} />
+      <Cards title={"membership"} />
       <Cards title={"PFPs"} />
-      <Cards title={"Photography"} />
+      <Cards title={"photography"} />
       {/* </div> */}
 
       {/* <SupportEngine /> */}
