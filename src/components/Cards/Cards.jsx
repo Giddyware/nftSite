@@ -27,9 +27,12 @@ import Image9 from "../../assets/nft/nft9.jpg";
 import Image10 from "../../assets/nft/nft10.png";
 import Image11 from "../../assets/nft/nft11.jpg";
 import Image12 from "../../assets/nft/nft12.jpg";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { BsFullscreenExit } from "react-icons/bs";
 import HomeCard from "./HomeCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategory } from "../../context/nft/nftActions";
+import Loading from "../Loading/Loading";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -111,10 +114,24 @@ const data = [
 const Cards = ({ title }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const dispatch = useDispatch();
 
+  const { category, isLoading, error } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    const lowerCaseTitle = title.toLowerCase();
+    dispatch(getCategory(lowerCaseTitle));
+    console.log(category, lowerCaseTitle);
+  }, [getCategory]);
+
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
   return (
     <>
-      <h1 className="px-10 mt-8 text-3xl font-bold font-poppins">{title}</h1>
+      <h1 className="px-10 mt-8 text-3xl font-bold capitalize font-poppins">
+        {title}
+      </h1>
       <div className="flex items-center w-full px-10 my-10">
         <div
           className="absolute left-0 z-50 hidden text-white bg-white rounded-full cursor-pointer shadow:4xl h-fit prevNav md:block "
@@ -155,15 +172,12 @@ const Cards = ({ title }) => {
           // pagination={{ clickable: false }}
           // scrollbar={{ draggable: false }}
         >
-          {data.map((artDatails) => (
-            <SwiperSlide>
-              <HomeCard
-                key={artDatails.id}
-                imageWidth={"full"}
-                {...artDatails}
-              />
-            </SwiperSlide>
-          ))}
+          {category &&
+            category.map((artDatails) => (
+              <SwiperSlide>
+                <HomeCard key={artDatails.id} {...artDatails} />
+              </SwiperSlide>
+            ))}
         </Swiper>
         <div
           className="absolute right-0 z-50 hidden text-white bg-white rounded-full shadow cursor-pointer h-fit prevNav md:block"

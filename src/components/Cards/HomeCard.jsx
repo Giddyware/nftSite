@@ -2,21 +2,18 @@ import { useDispatch } from "react-redux";
 import { pullFromMarket, pushToMarket } from "../../context/nft/nftActions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoVerified } from "react-icons/go";
 
 const HomeCard = ({
   id,
   nftId,
   imageWidth,
-  nftInMarket,
   photo,
-  floor,
+  nftOwner,
   totalVolume,
   priceInEtherium,
   name,
-  inDashboard,
-  imgUrl,
 }) => {
-  const [enabled, setEnabled] = useState(nftInMarket);
   const BASE_URL = "https://alphapp.tech";
   const imageURL = `${BASE_URL}${photo}`;
 
@@ -30,19 +27,25 @@ const HomeCard = ({
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col gap-2 bg-gray-100 rounded-lg shadow-lg h-[300px] mb-5"
+      className="flex flex-col h-full max-h-[320px] gap-2 mb-5 bg-gray-100 rounded-lg shadow-lg"
     >
-      <div className="w-full h-full bg-white rounded-b-2xl shadow-md">
+      <div className="w-full h-full transition-transform duration-300 transform bg-white shadow-md rounded-b-2xl hover:-translate-y-1">
         <div className="w-full h-[80%]">
           <img
             crossOrigin="anonymous"
-            src={imgUrl || imageURL}
+            src={imageURL}
             alt=""
-            className="object-cover h-full w-full rounded-t-2xl"
+            className="object-cover w-full h-full rounded-t-2xl"
           />
         </div>
-        <div className="p-4 rounded-b-xl bg-white">
-          <h3 className="pb-4 text-sm font-bold">{name}</h3>
+        <div className="p-4 bg-white rounded-b-xl">
+          <div className="flex gap-2">
+            <h3 className="pb-4 font-bold">{nftOwner?.username}</h3>
+            <span>
+              {nftOwner?.userVerified ? <GoVerified color="#2081E2" /> : null}
+            </span>
+          </div>
+          <h3 className="pb-4 text-xl font-bold">{name}</h3>
           <div className="flex justify-between font-bold">
             <div className="flex justify-between w-full">
               <p className="text-gray-600">FLOOR</p>

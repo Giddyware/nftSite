@@ -6,7 +6,8 @@ const initialState = {
   isLoading: false,
   error: null,
   nft: null,
-  selectedItem: null, 
+  selectedItem: null,
+  category: [],
 };
 
 const nftSlice = createSlice({
@@ -50,6 +51,19 @@ const nftSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    fetchCategoryStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchCategorySuccess: (state, action) => {
+      state.isLoading = false;
+      state.category = action.payload;
+      state.error = null;
+    },
+    fetchCategoryFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -63,6 +77,9 @@ export const {
   selectItemStart,
   selectItemSuccess,
   selectItemFailure,
+  fetchCategoryStart,
+  fetchCategorySuccess,
+  fetchCategoryFailure,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;

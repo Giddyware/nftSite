@@ -39,7 +39,8 @@ import Image10 from "../assets/nft/nft10.png";
 import Image11 from "../assets/nft/nft11.jpg";
 import Image12 from "../assets/nft/nft12.jpg";
 import Card from "../components/Cards/Card";
-import FullCard from "../components/Cards/fullCard";
+
+import FullCard from "../components/Cards/FullCard";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -202,11 +203,11 @@ const Home = () => {
       </div>
       {/* <Collection /> */}
       {/* <div className="bg-white"> */}
-      <Cards title={"Art"} />
-      <Cards title={"Gaming"} />
-      <Cards title={"Membership"} />
+      <Cards title={"art"} />
+      <Cards title={"gaming"} />
+      <Cards title={"membership"} />
       <Cards title={"PFPs"} />
-      <Cards title={"Photography"} />
+      <Cards title={"photography"} />
       {/* </div> */}
 
       {/* <SupportEngine /> */}

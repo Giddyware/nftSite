@@ -132,3 +132,16 @@ export const WithdrawInWethAPI = async (amt) => {
     throw error.response.data;
   }
 };
+
+export const getCategoryAPI = async (category) => {
+  try {
+    const response = await axios.get(
+      `/nft/unProtectedNft?category=${category}&sort=-priceInEtherium&limit=20`,
+      tokenConfig()
+    );
+    console.log(response, "resData");
+    return response.data.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
