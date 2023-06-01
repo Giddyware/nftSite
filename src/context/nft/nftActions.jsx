@@ -4,6 +4,7 @@ import {
   WithdrawInWethAPI,
   buyNftAPI,
   createNftAPI,
+  getArtNftsAPI,
   getCategoryAPI,
   getNftsAPI,
   pullFromMarketAPI,
@@ -14,6 +15,9 @@ import {
   buyProductFailure,
   buyProductStart,
   buyProductSuccess,
+  fetchArtFailure,
+  fetchArtStart,
+  fetchArtSuccess,
   fetchCategoryFailure,
   fetchCategoryStart,
   fetchCategorySuccess,
@@ -160,6 +164,20 @@ export const getCategory = createAsyncThunk(
       dispatch(fetchCategorySuccess(cate));
     } catch (error) {
       dispatch(fetchCategoryFailure(error));
+    }
+  }
+);
+
+export const getArtCategory = createAsyncThunk(
+  "product/getArtCategory",
+  async (_, { dispatch }) => {
+    dispatch(fetchArtStart());
+    try {
+      const response = await getArtNftsAPI();
+      console.log(response, "===ireoi");
+      dispatch(fetchArtSuccess(response));
+    } catch (error) {
+      dispatch(fetchArtFailure(error));
     }
   }
 );

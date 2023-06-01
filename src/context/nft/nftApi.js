@@ -30,8 +30,25 @@ const CreateTokenConfig = () => {
 
 export const getNftsAPI = async () => {
   try {
-    const response = await axios.get("/nft?nftInMarket=true", tokenConfig());
+    // const response = await axios.get("/nft?nftInMarket=true", tokenConfig());
+    const response = await axios.get(
+      "/nft?sort=-priceInEtherium",
+      tokenConfig()
+    );
     // console.log(response.data, "resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const getArtNftsAPI = async () => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}/nft?category=arts&sort=-priceInEtherium`,
+      tokenConfig()
+    );
+    console.log(response.data, "==resData");
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -40,7 +57,10 @@ export const getNftsAPI = async () => {
 
 export const selectItemAPI = async (productId) => {
   try {
-    const response = await axios.get(`/nft/${productId}`, tokenConfig());
+    const response = await api.get(
+      `${BASE_URL}/nft/${productId}`,
+      tokenConfig()
+    );
     // console.log(response.data.data, "resData");
     return response.data.data;
   } catch (error) {
@@ -50,8 +70,8 @@ export const selectItemAPI = async (productId) => {
 
 export const buyNftAPI = async (productId) => {
   try {
-    const response = await axios.post(
-      `/nft/buyNft/${productId}`,
+    const response = await api.post(
+      `${BASE_URL}/nft/buyNft/${productId}`,
       tokenConfig()
     );
     // console.log(response.data, "resData");

@@ -8,6 +8,7 @@ const initialState = {
   nft: null,
   selectedItem: null,
   category: [],
+  art: [],
 };
 
 const nftSlice = createSlice({
@@ -27,6 +28,8 @@ const nftSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+    // BUY NFT
     buyProductStart(state) {
       state.loading = true;
       state.error = null;
@@ -38,6 +41,8 @@ const nftSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    // SELECT NFT
     selectItemStart: (state) => {
       state.loading = true;
       state.error = null;
@@ -51,6 +56,8 @@ const nftSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    // FETCH NFT FOR THE HOMEPAGE
     fetchCategoryStart: (state) => {
       state.isLoading = true;
       state.error = null;
@@ -61,6 +68,21 @@ const nftSlice = createSlice({
       state.error = null;
     },
     fetchCategoryFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    // FETCH ART CATEGORY
+    fetchArtStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchArtSuccess: (state, action) => {
+      state.isLoading = false;
+      state.art = action.payload;
+      state.error = null;
+    },
+    fetchArtFailure: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -80,6 +102,9 @@ export const {
   fetchCategoryStart,
   fetchCategorySuccess,
   fetchCategoryFailure,
+  fetchArtStart,
+  fetchArtSuccess,
+  fetchArtFailure,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;
