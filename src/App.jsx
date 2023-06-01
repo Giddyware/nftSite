@@ -77,10 +77,10 @@ const App = () => {
           }
         />
         <Route
-          path="/art"
+          path="/category=art"
           element={
             <ProtectedRoute>
-              <Art name="/Art" />
+              <Art name="Art" />
             </ProtectedRoute>
           }
         />
