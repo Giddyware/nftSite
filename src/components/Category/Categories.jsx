@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CategoryLink = ({ text, link }) => {
   return (
     <Link to={link}>
-      <div className="p-3 px-5 mb-5 cursor-pointer white hover:bg-gray-400 rounded-xl">
+      <div className="p-3 px-5 mb-5 cursor-pointer white font-semibold hover:bg-gray-400 rounded-xl">
         {text}
       </div>
     </Link>
@@ -19,13 +19,13 @@ const Categories = () => {
     { text: `${t("home.all")}`, link: "/marketPlace" },
     { text: `${t("home.art")}`, link: "/art" },
     { text: `${t("home.gaming")}`, link: "/gaming" },
-    { text: `${t("home.membership")}`, link: "/membership" },
+    { text: `memberships`, link: "/memberships" },
     { text: `PFPs`, link: "/PFPs" },
     { text: `${t("home.photography")}`, link: "/photography" },
   ];
 
   return (
-    <div className="flex justify-between px-5 my-5 text-white md:justify-start md:gap-5 md:text-3xl font-poppins ">
+    <div className="flex justify-between capitalize px-5 my-5 md:my-12 text-white md:justify-start md:gap-5 md:text-2xl font-poppins ">
       {list.map((val) => {
         return <CategoryLink {...val} />;
       })}
