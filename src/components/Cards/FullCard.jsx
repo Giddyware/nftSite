@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
 import { pullFromMarket, pushToMarket } from "../../context/nft/nftActions";
 import { useState } from "react";
+import { GoVerified } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({
+const FullCard = ({
   id,
   nftId,
   imageWidth,
@@ -15,6 +16,7 @@ const Card = ({
   name,
   inDashboard,
   imgUrl,
+  nftName,
 }) => {
   const [enabled, setEnabled] = useState(nftInMarket);
   const BASE_URL = "https://alphapp.tech";
@@ -30,24 +32,24 @@ const Card = ({
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col gap-2 bg-gray-100 rounded-lg shadow-lg h-[300px]"
+      className="flex  min-w-[309px] min-h-[309px] flex-col gap-2 bg-gray-100 rounded-2xl shadow-lg h-[300px]"
     >
-      <div className="w-full h-[80%]">
+      <div className="relative w-full h-full rounded-2xl">
         <img
           crossOrigin="anonymous"
           src={imgUrl || imageURL}
           alt=""
-          className={`object-cover h-full rounded-t-lg ${
-            imageWidth === "full" ? "w-full" : "w-full"
-          }`}
+          className="object-cover h-full w-full rounded-2xl"
         />
-      </div>
-      <div className="p-4 ">
-        <h3 className="pb-4 text-sm font-bold">{name}</h3>
-        <div className="flex justify-between mb-5 font-bold">
-          <div className="flex justify-between w-full">
-            <p className="text-gray-600">FLOOR</p>
-            <p className="">{priceInEtherium}ETH</p>
+        <div className="absolute bottom-0 w-full rounded-2xl h-28 bg-gradient-to-b from-transparent to-black opacity-60"></div>
+        <div className="absolute bottom-0 p-4 font-poppins text-xl text-white">
+          <h3 className="pb-2 text-[15px] font-bold flex gap-3 capitalize">
+            <span>{nftName}</span>
+            <GoVerified color="#2081E2" />
+          </h3>
+          <div className="flex gap-3 mb-3 font-medium text-2xl">
+            <p className="">Floor:</p>
+            <p className="">{floor}ETH</p>
           </div>
         </div>
       </div>
@@ -77,4 +79,4 @@ const Card = ({
     // </div>
   );
 };
-export default Card;
+export default FullCard;

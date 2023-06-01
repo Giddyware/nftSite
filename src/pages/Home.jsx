@@ -39,77 +39,90 @@ import Image10 from "../assets/nft/nft10.png";
 import Image11 from "../assets/nft/nft11.jpg";
 import Image12 from "../assets/nft/nft12.jpg";
 import Card from "../components/Cards/Card";
+import FullCard from "../components/Cards/fullCard";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const data = [
   {
+    nftName: "monkey lil",
     id: "18932",
     imgUrl: Image1,
     floor: 2.3,
     totalVolume: 23233,
   },
   {
+    nftName: "ago",
     id: "18293",
     imgUrl: Image2,
     floor: 1.2,
     totalVolume: 138933,
   },
   {
+    nftName: "sheep",
     id: "83229",
     imgUrl: Image3,
     floor: 0.8,
     totalVolume: 1289233,
   },
   {
+    nftName: "atom",
     id: "5236",
     imgUrl: Image4,
     floor: 0.5,
     totalVolume: 45233,
   },
   {
+    nftName: "Free",
     id: "87483",
     imgUrl: Image5,
     floor: 0.822,
     totalVolume: 483233,
   },
   {
+    nftName: "Omo ukde",
     id: "3249",
     imgUrl: Image6,
     floor: 0.323,
     totalVolume: 75843,
   },
   {
+    nftName: "hee bold",
     id: "1493",
     imgUrl: Image7,
     floor: 2.3,
     totalVolume: 23233,
   },
   {
+    nftName: "83hjcds0",
     id: "1823",
     imgUrl: Image8,
     floor: 2.3,
     totalVolume: 23233,
   },
   {
+    nftName: "ycee held",
     id: "18430",
     imgUrl: Image9,
     floor: 2.3,
     totalVolume: 23233,
   },
   {
+    nftName: "pop jig",
     id: "1hjd3",
     imgUrl: Image10,
     floor: 2.3,
     totalVolume: 23233,
   },
   {
+    nftName: "dee fret",
     id: "1jkdx",
     imgUrl: Image11,
     floor: 2.3,
     totalVolume: 23233,
   },
   {
+    nftName: "ore iron",
     id: "189i34j",
     imgUrl: Image12,
     floor: 2.3,
@@ -177,7 +190,11 @@ const Home = () => {
           >
             {data.map((artDatails) => (
               <SwiperSlide>
-                <Card key={artDatails.id} imageWidth={"full"} {...artDatails} />
+                <FullCard
+                  key={artDatails.id}
+                  imageWidth={"full"}
+                  {...artDatails}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
