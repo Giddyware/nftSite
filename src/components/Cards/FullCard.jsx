@@ -16,6 +16,7 @@ const FullCard = ({
   name,
   inDashboard,
   imgUrl,
+  nftName,
 }) => {
   const [enabled, setEnabled] = useState(nftInMarket);
   const BASE_URL = "https://alphapp.tech";
@@ -42,13 +43,13 @@ const FullCard = ({
         />
         <div className="absolute bottom-0 w-full rounded-2xl h-28 bg-gradient-to-b from-transparent to-black opacity-60"></div>
         <div className="absolute bottom-0 p-4 font-poppins text-xl text-white">
-          <h3 className="pb-2 text-[15px] font-bold flex gap-3">
-            <span>KNDI UFDNLI: osdfj</span>
+          <h3 className="pb-2 text-[15px] font-bold flex gap-3 capitalize">
+            <span>{nftName}</span>
             <GoVerified color="#2081E2" />
           </h3>
-          <div className="flex justify-between mb-3 font-medium text-2xl">
-            <p className="mr-5">Floor:</p>
-            <p className="">{priceInEtherium}ETH</p>
+          <div className="flex gap-3 mb-3 font-medium text-2xl">
+            <p className="">Floor:</p>
+            <p className="">{floor}ETH</p>
           </div>
         </div>
       </div>
