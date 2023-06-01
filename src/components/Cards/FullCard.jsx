@@ -39,15 +39,15 @@ const FullCard = ({
           crossOrigin="anonymous"
           src={imgUrl || imageURL}
           alt=""
-          className="object-cover h-full w-full rounded-2xl"
+          className="object-cover w-full h-full rounded-2xl"
         />
         <div className="absolute bottom-0 w-full rounded-2xl h-28 bg-gradient-to-b from-transparent to-black opacity-60"></div>
-        <div className="absolute bottom-0 p-4 font-poppins text-xl text-white">
+        <div className="absolute bottom-0 p-4 text-xl text-white font-poppins">
           <h3 className="pb-2 text-[15px] font-bold flex gap-3 capitalize">
             <span>{nftName}</span>
             <GoVerified color="#2081E2" />
           </h3>
-          <div className="flex gap-3 mb-3 font-medium text-2xl">
+          <div className="flex gap-3 mb-3 text-2xl font-medium">
             <p className="">Floor:</p>
             <p className="">{floor}ETH</p>
           </div>
