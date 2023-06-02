@@ -122,7 +122,7 @@ const Dashboard = () => {
   }
   return (
     !!userDetails && (
-      <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_1fr]  md:grid-cols-[350px,_1fr] text-xl">
+      <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
         <Overlay show={showModal} clear={ModalStatus} />
         <Withdraw show={showModal} modalStatus={ModalStatus} />
 
@@ -132,7 +132,7 @@ const Dashboard = () => {
           refs={{ saleRef, nftRef, transactionRef }}
         />
 
-        <div className="w-[100%] p-8">
+        <div className="w-[100%] py-8 pr-8">
           <div className="flex items-center justify-center pb-4 mb-8 border-b">
             <div className="mr-auto">
               <h1 className="text-lg">{t("dashboard.home")}</h1>
@@ -215,9 +215,9 @@ const Dashboard = () => {
           </div>
           <div className="mt-12" id="nft" ref={nftRef}>
             <p className="text-3xl font-bold mb-7">NFTs</p>
-            <div className="grid grid-cols-4 gap-6 min-h-[350px]">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 min-h-[350px]">
               {myNft?.map((el) => (
-                <Card inDashboard={true} imageWidth={56} key={el.id} {...el} />
+                <Card inDashboard={true} key={el.id} {...el} />
               ))}
             </div>
           </div>

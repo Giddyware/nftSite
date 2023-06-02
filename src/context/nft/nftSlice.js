@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getNftsAPI } from "./nftApi";
+// import { getNftsAPI } from "./nftApi";
 
 const initialState = {
   nfts: [],

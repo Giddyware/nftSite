@@ -31,7 +31,7 @@ const FullCard = ({
     // <div className="h-56">
     <a
       href="#"
-      className="flex min-w-[200px]  md:min-w-[309px] min-h-[330px] flex-col gap-2 bg-gray-100 rounded-2xl shadow-lg h-[350px]"
+      className="flex min-w-[150px]  h-[200px] lg:min-w-[309px] md:min-h-[330px] flex-col md:gap-2 bg-gray-100 rounded-2xl shadow-lg md:h-[350px]"
     >
       <div className="relative w-full h-full rounded-2xl">
         <img

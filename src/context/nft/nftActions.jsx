@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  WithdrawInEthAPI,
-  WithdrawInWethAPI,
   buyNftAPI,
   createNftAPI,
   getArtNftsAPI,
@@ -138,29 +136,29 @@ export const pullFromMarket = createAsyncThunk(
   }
 );
 
-export const WithdrawInEth = createAsyncThunk(
-  "product/withdrawEth",
-  async (amt, { dispatch }) => {
-    try {
-      const response = await WithdrawInEthAPI(amt);
-      console.log(response, "withdrawEth===");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
+// export const WithdrawInEth = createAsyncThunk(
+//   "product/withdrawEth",
+//   async (amt, { dispatch }) => {
+//     try {
+//       const response = await WithdrawInEthAPI(amt);
+//       console.log(response, "withdrawEth===");
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
-export const WithdrawInWeth = createAsyncThunk(
-  "product/withdrawEth",
-  async (amt, { dispatch }) => {
-    try {
-      const response = await WithdrawInWethAPI(amt);
-      console.log(response, "withdrawEth===");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
+// export const WithdrawInWeth = createAsyncThunk(
+//   "product/withdrawEth",
+//   async (amt, { dispatch }) => {
+//     try {
+//       const response = await WithdrawInWethAPI(amt);
+//       console.log(response, "withdrawEth===");
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 export const getCategory = createAsyncThunk(
   "product/getCategory",

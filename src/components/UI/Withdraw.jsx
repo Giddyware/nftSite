@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineScan } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
@@ -8,8 +8,14 @@ import { FaEthereum } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { WithdrawInEth, WithdrawInWeth } from "../../context/nft/nftActions";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  WithdrawInEth,
+  WithdrawInWeth,
+} from "../../context/transaction/transactionActions";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
   amount: z.number(),
@@ -19,16 +25,33 @@ const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
   const [coin, setCoin] = useState("");
   const dispatch = useDispatch();
+  const { response, isLoading, error } = useSelector(
+    (state) => state.transaction
+  );
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm({ resolver: zodResolver(schema) });
+  const navigate = useNavigate();
 
   const changeShowMore = () => {
     setShowMore((prev) => !prev);
   };
+
+  useEffect(() => {
+    // response.success && toast.success(`${response.message}`);
+    if (!!response) {
+      toast.success(`${response?.message}🎉`);
+    }
+    if (response?.status == "error") {
+      toast.error(`${response?.message}😥`);
+    }
+
+    console.log(response, error, "response===");
+  }, [response]);
 
   const onSubmit = (data) => {
     console.log("data======", data.amount);
@@ -38,6 +61,8 @@ const Withdraw = ({ show, modalStatus }) => {
     if (data.coin == "WETH") {
       dispatch(WithdrawInWeth(data.amount));
     }
+
+    reset();
   };
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -53,39 +78,15 @@ const Withdraw = ({ show, modalStatus }) => {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="mb-3 text-4xl font-bold">Withdrawal </h1>
+        <div className="w-full flex justify-between">
+          <h1 className="mb-3 text-4xl font-bold">Withdrawal </h1>
+          <button className="relative font-bold" onClick={() => modalStatus()}>
+            X
+          </button>
+        </div>
 
         <p className="">What coin would you like to deposit?</p>
-        {/* 
-        <div className="flex flex-col gap-8 my-9">
-          <div className="px-6 py-4 bg-gray-100 cursor-pointer rounded-xl hover:bg-gray-300">
-            <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center ">
-              <div>
-                <img className="w-7" src={Ethereum_logo} alt="Ethereum_logo" />
-              </div>
-              <p>ETH</p>
-              <p className="justify-self-end">~128938</p>
-            </div>
-            <div className="flex justify-between ml-[40px] text-gray-400">
-              <p>EHT</p>
-              <p>~839</p>
-            </div>
-          </div>
 
-          <div className="px-6 py-4 bg-gray-100 cursor-pointer rounded-xl hover:bg-gray-300">
-            <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center ">
-              <div>
-                <img className="w-7" src={Weth_logo} alt="Weth_logo" />
-              </div>
-              <p>WETH</p>
-              <p className="justify-self-end">~128938</p>
-            </div>
-            <div className="flex justify-between ml-[40px] text-gray-400">
-              <p>WETH</p>
-              <p>~839</p>
-            </div>
-          </div>
-        </div> */}
         <div className="my-10">
           <label
             htmlFor="coins"
@@ -142,12 +143,14 @@ const Withdraw = ({ show, modalStatus }) => {
           />
         </div>
 
-        <button
-          className="py-5 mt-10 text-[#2196F3] capitalize px-7 bg-[#2196F3]"
-          type="submit"
-        >
-          submit
-        </button>
+        <div>
+          <button
+            className="py-5 mt-10 text-[#2196F3] capitalize px-7 bg-[#2196F3]"
+            type="submit"
+          >
+            submit
+          </button>
+        </div>
       </form>
 
       {/* <div
