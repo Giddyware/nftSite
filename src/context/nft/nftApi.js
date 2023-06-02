@@ -155,31 +155,6 @@ export const pullFromMarketAPI = async (productId) => {
   }
 };
 
-export const WithdrawInEthAPI = async (amt) => {
-  try {
-    const response = await api.patch(
-      `${BASE_URL}/wallets/withdrawEth/${amt}`,
-      {},
-      tokenConfig()
-    );
-    console.log(response);
-  } catch (error) {
-    throw error.response.data;
-  }
-};
-export const WithdrawInWethAPI = async (amt) => {
-  try {
-    const response = await api.patch(
-      `${BASE_URL}/wallets/withdrawWeth/${amt}`,
-      {},
-      tokenConfig()
-    );
-    console.log(response);
-  } catch (error) {
-    throw error.response.data;
-  }
-};
-
 export const getCategoryAPI = async (category) => {
   try {
     const response = await axios.get(

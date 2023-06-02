@@ -51,7 +51,7 @@ const SideNav = ({ modalStatus, refs }) => {
   };
   return (
     <div className="h-[100%] w-full">
-      <div className=" py-8 fixed top-0 left-0 bg-gray-100 h-full md:w-[250px] lg:w-[350px]">
+      <div className=" py-8 fixed top-0 left-0 bg-gray-100 h-full md:max-w-[250px] lg:max-w-[350px]">
         <a
           href="#"
           className="flex items-center p-2 pb-8 border-b md:justify-center "
