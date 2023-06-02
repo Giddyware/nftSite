@@ -45,7 +45,9 @@ const Login = () => {
       setLoading(true);
 
       dispatch(loginUser(validData));
-      dispatch(getUserDetails());
+      navigate("/dashboard");
+      // dispatch(getUserDetails());
+
       reset();
     } catch (error) {
       toast.error("Login failed. Please try again.");

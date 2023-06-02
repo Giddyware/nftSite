@@ -41,13 +41,11 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await loginUserAPI(userData);
+      console.log(response, "res==jkds=");
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
-      dispatch(authSuccess(response));
-      // if (response) {
-      //   <Navigate to="/marketPlace" />;
-      //   console.log(response, "user");
-      // }
+      dispatch(authSuccess(response?.data));
 
+      <Navigate to="/dashboard" />;
       toast.success("Login Successful");
     } catch (error) {
       dispatch(authFailure(error));
@@ -60,8 +58,8 @@ export const logoutUser = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       await logoutUserAPI();
-      dispatch(logoutUser());
-      dispatch(clearError());
+      dispatch(logout());
+      // dispatch(clearError());
     } catch (error) {
       dispatch(authFailure(error));
     }
@@ -74,6 +72,7 @@ export const getUserDetails = createAsyncThunk(
     try {
       dispatch(getUserDetailsStart());
       const response = await getUserDetailsRequestAPI();
+      console.log(response, "response==");
       dispatch(getUserDetailsSuccess(response.data));
     } catch (error) {
       dispatch(getUserDetailsFailure(error.message));

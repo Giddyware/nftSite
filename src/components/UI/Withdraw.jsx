@@ -2,8 +2,8 @@ import { useState } from "react";
 import { AiOutlineClose, AiOutlineScan } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
-import Weth_logo from "../../assets/weth_logo.png";
-import Ethereum_logo from "../../assets/Ethereum_logo.png";
+import Weth_logo from "../../assets/weth.png";
+import Ethereum_logo from "../../assets/eth.png";
 import { FaEthereum } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";

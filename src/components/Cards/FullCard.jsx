@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const FullCard = ({
   id,
   nftId,
-  imageWidth,
   nftInMarket,
   photo,
   floor,
@@ -32,7 +31,7 @@ const FullCard = ({
     // <div className="h-56">
     <a
       href="#"
-      className="flex  min-w-[309px] min-h-[309px] flex-col gap-2 bg-gray-100 rounded-2xl shadow-lg h-[300px]"
+      className="flex min-w-[200px]  md:min-w-[309px] min-h-[330px] flex-col gap-2 bg-gray-100 rounded-2xl shadow-lg h-[350px]"
     >
       <div className="relative w-full h-full rounded-2xl">
         <img

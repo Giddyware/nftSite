@@ -132,7 +132,7 @@ const Cards = ({ title }) => {
       <h1 className="px-10 mt-8 text-3xl font-bold capitalize font-poppins">
         {title}
       </h1>
-      <div className="flex items-center w-full px-10 my-10">
+      <div className="flex items-center  w-full px-10 my-10 min-h-[300px]">
         <div
           className="absolute left-0 z-50 hidden text-white bg-white rounded-full cursor-pointer shadow:4xl h-fit prevNav md:block "
           ref={prevRef}
@@ -174,8 +174,8 @@ const Cards = ({ title }) => {
         >
           {category &&
             category.map((artDatails) => (
-              <SwiperSlide>
-                <HomeCard key={artDatails.id} {...artDatails} />
+              <SwiperSlide key={artDatails.id}>
+                <HomeCard {...artDatails} />
               </SwiperSlide>
             ))}
         </Swiper>

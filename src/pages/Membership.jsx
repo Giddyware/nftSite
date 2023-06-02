@@ -23,26 +23,28 @@ import Image12 from "../assets/nft/nft12.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { CgLoadbar } from "react-icons/cg";
 import { BiErrorCircle } from "react-icons/bi";
-import { getGamingCategory } from "../context/nft/nftActions";
+import { getMembershipCategory } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 
-const Gaming = ({ name }) => {
+const Membership = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
 
   const dispatch = useDispatch();
-  const { gaming, isLoading, error } = useSelector((state) => state.product);
+  const { membership, isLoading, error } = useSelector(
+    (state) => state.product
+  );
 
   // Get the current pathname
   const location = useLocation();
   const currentPath = location.pathname;
 
   useEffect(() => {
-    dispatch(getGamingCategory());
-  }, [getGamingCategory]);
+    dispatch(getMembershipCategory());
+  }, [getMembershipCategory]);
 
-  console.log(gaming, "gaming===");
+  console.log(membership, "Membership===");
 
   if (isLoading) {
     return <Loading />;
@@ -123,7 +125,7 @@ const Gaming = ({ name }) => {
       </div>
 
       <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
-        {gaming?.data?.map((nft) => (
+        {membership?.data?.map((nft) => (
           <li key={nft.id}>
             <Link to={`${currentPath}/products/${nft.id}`}>
               <CollectionCard {...nft} />
@@ -136,4 +138,4 @@ const Gaming = ({ name }) => {
     </div>
   );
 };
-export default Gaming;
+export default Membership;

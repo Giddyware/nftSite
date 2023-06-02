@@ -37,7 +37,7 @@ const DashboardTable = ({ wallet }) => {
     setPage(0);
   };
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", overflow: "hidden", minHeight: 270 }}>
       <TableContainer
         sx={{ maxHeight: 440 }}
         className="px-10 py-5 bg-gray-100 rounded-3xl"
