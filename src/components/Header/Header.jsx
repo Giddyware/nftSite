@@ -60,14 +60,42 @@ const Button_Details = ({ showModal }) => {
 
 const ProfileButton = () => {
   const location = useLocation().pathname;
+  const { user, isAuthenticated, error } = useSelector((state) => state.auth);
+  console.log(user, "user====");
+  // useEffect(() => {
+  //   dispatch(getUserDetails());
+  // }
+
   return (
-    <Button>
+    // <Button>
+    //     <div className="flex items-center justify-center gap-4 text-white w-7 md:w-[24px] ">
+    //       <CgProfile size={"100%"} />
+    //     </div>
+    // </Button>
+    isAuthenticated ? (
       <Link to="/dashboard" state={{ from: location }}>
-        <div className="flex items-center justify-center gap-4 text-white w-7 md:w-[24px] ">
-          <CgProfile size={"100%"} />
+        <div className="flex justify-center bg-transparent rounded-lg font-poppins item-baseline glass__effect">
+          <div className="w-10 h-10">
+            <img
+              className="w-full h-full border border-white border-solid rounded-full"
+              src={avatar}
+              alt=""
+            />
+          </div>
+          <div className="flex flex-col items-center justify-center ml-3 mr-8">
+            <p>{user?.user?.username}</p>
+            <p className="font-bold">
+              {!!user?.userVerified ? (
+                <span className="text-green-400">Verified</span>
+              ) : (
+                <span className="text-red-400"> Unverified</span>
+              )}
+            </p>
+          </div>
+          <BiChevronUp size={15} />
         </div>
       </Link>
-    </Button>
+    ) : null
   );
 };
 const Header = ({ showModal }) => {
@@ -84,8 +112,7 @@ const Header = ({ showModal }) => {
   useEffect(() => {
     check();
   }, []);
-  let username;
-  let userVerified;
+
   return (
     <div className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-transparent font-poppins">
       <Link
@@ -98,25 +125,7 @@ const Header = ({ showModal }) => {
       {/* <DropDown /> */}
       <Search />
       <Button_Details showModal={showModal} />
-      {/* <ProfileButton /> */}
-      <div className="flex justify-center px-4 py-2 bg-transparent rounded-lg item-center">
-        <img
-          className="border border-white border-solid rounded-full h-14 w-14"
-          src={avatar}
-          alt=""
-        />
-        <div className="flex flex-col items-center justify-center ml-3 mr-8">
-          <p>{username}</p>
-          <p className="font-bold">
-            {!!userVerified ? (
-              <span className="text-green-400">Verified</span>
-            ) : (
-              <span className="text-red-400"> Unverified</span>
-            )}
-          </p>
-        </div>
-        <BiChevronUp size={15} />
-      </div>
+      <ProfileButton />
     </div>
   );
 };

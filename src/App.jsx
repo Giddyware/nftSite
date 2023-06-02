@@ -16,6 +16,7 @@ import {
   Routes,
   createBrowserRouter,
   createRoutesFromElements,
+  useLocation,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,10 +40,11 @@ import UnAuthenticated from "./Container/UnAuthenticated";
 import MarketPlace from "./pages/MarketPlace";
 import Withdraw from "./components/UI/Withdraw";
 import Cookies from "js-cookie";
-import { loginUser } from "./context/auth/authActions";
+
 import LoginPage from "./pages/LoginPage";
 import Art from "./pages/Art";
 import Gaming from "./pages/Gaming";
+import Membership from "./pages/Membership";
 // import SupportAdmin from "./components/SupportAdmin";
 
 const App = () => {
@@ -51,6 +53,8 @@ const App = () => {
   const fallbackPath = "/auth"; // Replace with the fallback path for unauthenticated users
   console.log(isAuthenticated);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const currentPath = location.pathname;
   // Check for authentication token on app initialization
   useEffect(() => {
     const token = Cookies.get("authToken");
@@ -70,7 +74,7 @@ const App = () => {
         />
         <Route path="/dashboard/verify_email" element={<VerifyEmail />} />
         <Route
-          path="/marketPlace"
+          path={`${currentPath}/products/:productId`}
           element={
             <ProtectedRoute>
               <MarketPlace name="Market Place" />
@@ -78,7 +82,7 @@ const App = () => {
           }
         />
         <Route
-          path="/category=arts"
+          path={`${currentPath}/products/:productId`}
           element={
             <ProtectedRoute>
               <Art name="Art" />
@@ -90,6 +94,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Gaming name="Gaming" />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={`${currentPath}/products/:productId`}
+          element={
+            <ProtectedRoute>
+              <Membership name="membership" />
             </ProtectedRoute>
           }
         />
@@ -130,7 +142,7 @@ const App = () => {
 
         <Route path="dashboard/buyNft" element={<Mint />} />
         <Route
-          path="/marketPlace/products/:productId"
+          path=""
           element={
             <ProtectedRoute>
               <ProductDetail />

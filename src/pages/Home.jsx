@@ -192,11 +192,7 @@ const Home = () => {
           >
             {data.map((artDatails) => (
               <SwiperSlide>
-                <FullCard
-                  key={artDatails.id}
-                  imageWidth={"full"}
-                  {...artDatails}
-                />
+                <FullCard key={artDatails.id} {...artDatails} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -206,16 +202,29 @@ const Home = () => {
       {/* <div className="bg-white"> */}
 
       <Link to="/category=arts">
-        <Cards title={"art"} />
+        <div className="min-w-[1312px] min-h-[330px]">
+          <Cards title={"art"} />
+        </div>
       </Link>
 
       <Link to="/category=gaming">
-        <Cards title={"gaming"} />
+        <div className="min-w-[1312px] min-h-[330px]">
+          <Cards title={"gaming"} />
+        </div>
       </Link>
 
-      <Cards title={"membership"} />
-      <Cards title={"PFPs"} />
-      <Cards title={"photography"} />
+      <div className="min-w-[1312px] min-h-[330px]">
+        <Cards title={"membership"} />
+      </div>
+
+      <div className="min-w-[1312px] min-h-[330px]">
+        <Cards title={"PFPs"} />
+      </div>
+
+      <div className="min-w-[1312px] min-h-[330px]">
+        <Cards title={"photography"} />
+      </div>
+
       {/* </div> */}
 
       {/* <SupportEngine /> */}

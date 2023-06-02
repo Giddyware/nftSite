@@ -13,8 +13,8 @@ import Image9 from "./../assets/nft/nft9.jpg";
 import Image10 from "./../assets/nft/nft10.png";
 import Image11 from "./../assets/nft/nft11.jpg";
 import Image12 from "./../assets/nft/nft12.jpg";
-import Ethereum_logo from "./../assets/Ethereum_logo.png";
-import Weth_logo from "./../assets/weth_logo.png";
+import Ethereum_logo from "./../assets/eth.png";
+import Weth_logo from "./../assets/weth.png";
 
 import avatar from "../assets/avatar.png";
 import Card from "./../components/Cards/Card";
@@ -111,6 +111,7 @@ const Dashboard = () => {
     userDetails;
 
   useEffect(() => {
+    console.log(userDetails, "userDetails====");
     dispatch(getUserDetails());
   }, [getUserDetails]);
 
@@ -120,7 +121,7 @@ const Dashboard = () => {
     return <Loading />;
   }
   return (
-    userDetails && (
+    !!userDetails && (
       <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_1fr]  md:grid-cols-[350px,_1fr] text-xl">
         <Overlay show={showModal} clear={ModalStatus} />
         <Withdraw show={showModal} modalStatus={ModalStatus} />
@@ -152,6 +153,7 @@ const Dashboard = () => {
                   className="border border-white border-solid rounded-full h-14 w-14"
                   src={avatar}
                   alt=""
+                  crossOrigin="anonymous"
                 />
                 <div className="flex flex-col items-center justify-center ml-3 mr-8">
                   <p>{username}</p>
@@ -179,8 +181,8 @@ const Dashboard = () => {
             id="listing"
           >
             <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">
-              <div>
-                <img className="w-5" src={Ethereum_logo} alt="Ethereum_logo" />
+              <div className="self-center">
+                <img className="w-12" src={Ethereum_logo} alt="Ethereum_logo" />
               </div>
               <p>ETH</p>
               <p className="justify-self-end">{wallet?.eth}</p>
@@ -190,8 +192,8 @@ const Dashboard = () => {
               <p>~839</p>
             </div>
             <div className="grid grid-cols-[40px,_80px_1fr]">
-              <div>
-                <img className="w-7" src={Weth_logo} alt="Weth_logo" />
+              <div className="self-center">
+                <img className="w-14" src={Weth_logo} alt="Weth_logo" />
               </div>
               <p>WETH</p>
               <p className="justify-self-end">{wallet?.weth}</p>
@@ -213,7 +215,7 @@ const Dashboard = () => {
           </div>
           <div className="mt-12" id="nft" ref={nftRef}>
             <p className="text-3xl font-bold mb-7">NFTs</p>
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-4 gap-6 min-h-[350px]">
               {myNft?.map((el) => (
                 <Card inDashboard={true} imageWidth={56} key={el.id} {...el} />
               ))}

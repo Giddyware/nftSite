@@ -61,7 +61,6 @@ const Art = ({ name }) => {
 
   return (
     <div className="relative w-full h-screen">
-      <Header />
       <div
         className=""
         style={{
@@ -71,6 +70,7 @@ const Art = ({ name }) => {
           objectFit: "cover",
         }}
       >
+        <Header />
         <div className="w-[12%] border-4 rounded-3xl absolute bottom-[-32px] left-10">
           <img src={avater} className="rounded-3xl" />
         </div>

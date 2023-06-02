@@ -53,9 +53,8 @@ export const registerUserAPI = async (userData) => {
 
 export const loginUserAPI = async (userData) => {
   try {
-    const response = await api.post(`${BASE_URL}/users/login`, userData);
+    const response = await api.post("/users/login", userData);
     return response.data;
-    console.log(response.data);
   } catch (error) {
     // if (error.isAxiosError && !error.response) {
     //   throw new Error("Network Error: Please check your internet connection.");
@@ -92,7 +91,7 @@ export const tokenConfig = () => {
 export const getUserDetailsRequestAPI = async () => {
   try {
     const response = await api.get("/users/myDetails", tokenConfig());
-    console.log(response.data, "userDetails");
+    console.log(response.data, "userDetails==");
     return response.data;
   } catch (error) {
     throw error.response.data;

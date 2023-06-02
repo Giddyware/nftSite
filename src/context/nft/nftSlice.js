@@ -10,6 +10,7 @@ const initialState = {
   category: [],
   art: [],
   gaming: [],
+  membership: [],
 };
 
 const nftSlice = createSlice({
@@ -102,6 +103,20 @@ const nftSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    // FETCH MEMBERSHIP CATEGORY
+    fetchMembershipStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchMembershipSuccess: (state, action) => {
+      state.isLoading = false;
+      state.membership = action.payload;
+      state.error = null;
+    },
+    fetchMembershipFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -124,6 +139,9 @@ export const {
   fetchGamingStart,
   fetchGamingSuccess,
   fetchGamingFailure,
+  fetchMembershipStart,
+  fetchMembershipSuccess,
+  fetchMembershipFailure,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;

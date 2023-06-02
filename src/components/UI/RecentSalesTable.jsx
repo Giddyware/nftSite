@@ -71,7 +71,7 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer
         ref={RecentSalesTableRef}
-        sx={{ maxHeight: 440 }}
+        sx={{ maxHeight: 440, minHeight: 270 }}
         className="px-10 py-5 bg-gray-100 rounded-3xl"
       >
         <Table stickyHeader aria-label="dashboard-table" className="rounded">

@@ -54,10 +54,23 @@ export const getArtNftsAPI = async () => {
     throw error.response.data;
   }
 };
+
 export const getGamingNftsAPI = async () => {
   try {
     const response = await api.get(
       `${BASE_URL}/nft?category=gaming&sort=-priceInEtherium`,
+      tokenConfig()
+    );
+    console.log(response.data, "===resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+export const getMembershipNftsAPI = async () => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}/nft?category=membership&sort=-priceInEtherium`,
       tokenConfig()
     );
     console.log(response.data, "===resData");
@@ -147,8 +160,9 @@ export const WithdrawInEthAPI = async (amt) => {
     const response = await api.patch(
       `${BASE_URL}/wallets/withdrawEth/${amt}`,
       {},
-      CreateTokenConfig()
+      tokenConfig()
     );
+    console.log(response);
   } catch (error) {
     throw error.response.data;
   }
@@ -158,8 +172,9 @@ export const WithdrawInWethAPI = async (amt) => {
     const response = await api.patch(
       `${BASE_URL}/wallets/withdrawWeth/${amt}`,
       {},
-      CreateTokenConfig()
+      tokenConfig()
     );
+    console.log(response);
   } catch (error) {
     throw error.response.data;
   }

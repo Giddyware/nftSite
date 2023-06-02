@@ -7,6 +7,7 @@ import {
   getArtNftsAPI,
   getCategoryAPI,
   getGamingNftsAPI,
+  getMembershipNftsAPI,
   getNftsAPI,
   pullFromMarketAPI,
   pushToMarketAPI,
@@ -26,6 +27,9 @@ import {
   fetchGamingFailure,
   fetchGamingStart,
   fetchGamingSuccess,
+  fetchMembershipFailure,
+  fetchMembershipStart,
+  fetchMembershipSuccess,
   fetchStart,
   fetchSuccess,
   selectItemFailure,
@@ -195,6 +199,20 @@ export const getGamingCategory = createAsyncThunk(
       dispatch(fetchGamingSuccess(response));
     } catch (error) {
       dispatch(fetchGamingFailure(error));
+    }
+  }
+);
+
+export const getMembershipCategory = createAsyncThunk(
+  "product/getMembershipCategory",
+  async (_, { dispatch }) => {
+    dispatch(fetchMembershipStart());
+    try {
+      const response = await getMembershipNftsAPI();
+      console.log(response, "===ireoi");
+      dispatch(fetchMembershipSuccess(response));
+    } catch (error) {
+      dispatch(fetchMembershipFailure(error));
     }
   }
 );
