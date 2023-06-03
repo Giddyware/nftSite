@@ -45,7 +45,7 @@ const DashboardTable = ({ wallet }) => {
         <Table stickyHeader aria-label="dashboard-table" className="rounded">
           <TableHead className="bg-gray-400 rounded">
             <TableRow className="rounded g-gray-400">
-              <TableCell className="text-black text-2xl border-none">
+              <TableCell className="text-2xl text-black border-none">
                 {t("dashboard.transaction")}
                 {/* Transaction */}
               </TableCell>
@@ -66,15 +66,15 @@ const DashboardTable = ({ wallet }) => {
               ({ id, transaction, amount, date, status }) => (
                 <TableRow hover className="" key={id}>
                   <TableCell className="text-xl text-black capitalize">
-                    {transaction === "withdraw" ? (
+                    {transaction === "withdraw" || transaction === "mint" ? (
                       <div className="flex gap-x-3">
-                        <BsArrowUpRight color="hsla(84, 100%, 44%, 1)" />
+                        <BsArrowUpRight color="hsla(0, 79%, 63%, 1)" />
                         {transaction}
                       </div>
-                    ) : transaction === "deposite" || transaction === "mint" ? (
+                    ) : transaction === "deposite" ? (
                       <div className="flex gap-x-3">
-                        <BsArrowDownLeft color="hsla(0, 79%, 63%, 1)" />
-                        {transaction}
+                        <BsArrowDownLeft color="hsla(84, 100%, 44%, 1)" />
+                        {transaction.slice(0, -1)}
                       </div>
                     ) : (
                       "undefined"

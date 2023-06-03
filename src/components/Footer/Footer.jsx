@@ -6,13 +6,13 @@ import Logo from "../../assets/logo.png";
 const Footer = () => {
   return (
     <>
-      <div className="px-10 py-16 mt-32 text-white bg-[#1868B7] text-[16px]">
+      <div className="px-10 py-16 mt-32 text-white bg-[#665F5E] text-[16px]">
         <div className="flex flex-col justify-between border-b lg:flex-row">
           <div>
-            <h2 className="text-xl font-bold">Stay in the loop</h2>
-            <p className="text-base">
+            <h2 className="text-2xl font-bold">Stay in the loop</h2>
+            <p className="text-lg">
               Join our mailing list to stay in the loop with our newest feature
-              releases, NFT drops, and tips and tricks for navigating OpenSea.
+              releases, NFT drops, and tips and tricks for navigating Artmint.
             </p>
             <div className="flex items-center">
               <div className="my-8 mr-5 w-96">
@@ -23,7 +23,7 @@ const Footer = () => {
                 />
               </div>
               <div>
-                <button className="px-5 py-3 bg-blue-500 rounded-lg">
+                <button className="px-5 py-3 bg-[#595252] rounded-lg">
                   Sign up
                 </button>
               </div>
@@ -33,19 +33,19 @@ const Footer = () => {
           <div className="text-[16px] mb-32 ">
             <h2>Join the community</h2>
             <div className="flex mt-8">
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
+              <div className="h-[36px] p-5 mr-4 bg-[#595252] w-[36px] rounded-lg hover:bg-[#515254] cursor-pointer">
                 <FaTwitter />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
+              <div className="h-[36px] p-5 mr-4 bg-[#595252] w-[36px] rounded-lg hover:bg-[#515254] cursor-pointer">
                 <FaDiscord />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
+              <div className="h-[36px] p-5 mr-4 bg-[#595252] w-[36px] rounded-lg hover:bg-[#515254] cursor-pointer">
                 <FaInstagram />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
+              <div className="h-[36px] p-5 mr-4 bg-[#595252] w-[36px] rounded-lg hover:bg-[#515254] cursor-pointer">
                 <SlSocialReddit />
               </div>
-              <div className="h-[36px] p-5 mr-4 bg-blue-500 w-[36px] rounded-lg hover:bg-blue-300">
+              <div className="h-[36px] p-5 mr-4 bg-[#595252] w-[36px] rounded-lg hover:bg-[#515254] cursor-pointer">
                 <FaYoutube />
               </div>
             </div>
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="px-10 py-8 text-white bg-[#1868B7] text-[16px] flex justify-between">
+      <div className="px-10 py-8 text-white bg-[#665F5E] text-[16px] flex justify-between">
         <div>
           <p>© 2018 - 2023 Artmint, Inc</p>
         </div>
