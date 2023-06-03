@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 function createSalesData(id, transaction, nftName, from, to, atm, status) {
   return { transaction, nftName, from, to, atm, status };
@@ -28,28 +29,28 @@ const columns = [
     id: "from",
     label: "From",
     // minWidth: 170,
-    align: "right",
+    // align: "right",
     // format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "to",
     label: "To",
     // minWidth: 170,
-    align: "right",
+    // align: "right",
     // format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "amount",
     label: "Amount",
     // minWidth: 170,
-    align: "right",
+    // align: "right",
     format: (value) => value.toFixed(2),
   },
   {
     id: "status",
     label: "Status",
     // minWidth: 140,
-    align: "right",
+    // align: "right",
   },
 ];
 
@@ -57,6 +58,10 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const { t } = useTranslation();
+
+  const { userDetails, isAuthenticated, error } = useSelector(
+    (state) => state.auth
+  );
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -114,18 +119,25 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
               ?.map(({ id, transaction, nft, From, to, amount, status }) => (
                 <TableRow hover className="" key={id}>
                   <TableCell className="text-xl text-black capitalize">
-                    {transaction}
+                    {userDetails?.username == From?.username && (
+                      <span className="text-[hsla(84,_100%,_44%,_1)]">
+                        Sell
+                      </span>
+                    )}
+                    {userDetails?.username == to?.username && (
+                      <span className="text-[hsla(28,_87%,_62%,_1)]">Buy</span>
+                    )}
                   </TableCell>
                   <TableCell className="text-xl text-black capitalize">
                     {nft?.name}
                   </TableCell>
-                  <TableCell className="text-black text-xl">
+                  <TableCell className="text-xl text-black">
                     {From.username}
                   </TableCell>
-                  <TableCell className="text-black text-xl">
+                  <TableCell className="text-xl text-black">
                     {to.username}
                   </TableCell>
-                  <TableCell className="text-black text-xl">
+                  <TableCell className="text-xl text-black">
                     {amount} ETH
                   </TableCell>
 
