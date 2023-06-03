@@ -316,6 +316,12 @@ html {
   transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
 }
 
+@media screen and (max-width: 600px) {
+  .drop-container {
+    max-width: 320px;
+  }
+}
+
 .drop-container:hover {
   background: #eee;
   border-color: #111;

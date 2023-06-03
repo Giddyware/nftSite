@@ -33,6 +33,7 @@ import Loading from "../components/Loading/Loading";
 import { Link, useLocation } from "react-router-dom";
 import { getUserDetails } from "../context/auth/authActions";
 import Deposit from "./Deposit";
+import Mint from "./Mint";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -112,6 +113,9 @@ const Dashboard = () => {
   const onDeposit = () => {
     setShowModalDeposit((prev) => !prev);
   };
+  const onMint = () => {
+    setShowModalMint((prev) => !prev);
+  };
 
   const ChangeLanguage = (code) => {
     i18next.changeLanguage(code);
@@ -139,8 +143,10 @@ const Dashboard = () => {
         <Withdraw show={showModalWithdraw} modalStatus={onWithdraw} />
         <Overlay show={showModalDeposit} clear={onDeposit} />
         <Deposit show={showModalDeposit} modalStatus={onDeposit} />
+        <Overlay show={showModalMint} clear={onMint} />
+        <Mint show={showModalMint} modalStatus={onMint} />
 
-        <SideNav refs={{ saleRef, nftRef, transactionRef }} />
+        <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 
         <div className="w-[100%] py-8 pr-8">
           <div className="flex items-center justify-center pb-4 mb-8 border-b">
