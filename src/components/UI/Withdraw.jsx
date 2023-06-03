@@ -70,7 +70,7 @@ const Withdraw = ({ show, modalStatus }) => {
   return (
     <>
       <form
-        className="fixed mx-auto sm:left-[30%] sm:top-[15%] overflow-y-auto h-[80%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        className="absolute top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
         style={{
           transform: show ? "translateY(0)" : "translateY(-1500px)",
           opacity: show ? "1" : "0",
@@ -78,8 +78,8 @@ const Withdraw = ({ show, modalStatus }) => {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="w-full flex justify-between">
-          <h1 className="mb-3 text-4xl font-bold">Withdrawal </h1>
+        <div className="flex justify-between w-full">
+          <h1 className="mb-3 text-4xl font-bold">Withdraw</h1>
           <button className="relative font-bold" onClick={() => modalStatus()}>
             X
           </button>
@@ -101,7 +101,7 @@ const Withdraw = ({ show, modalStatus }) => {
             onChange={handleChange}
           >
             <option disabled>Make a choice</option>
-            <option value="ETH">ETH</option>
+            {/* <option value="ETH">ETH</option> */}
             <option value="WETH">WETH</option>
           </select>
         </div>

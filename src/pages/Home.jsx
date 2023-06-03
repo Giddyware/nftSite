@@ -140,7 +140,6 @@ const Home = () => {
   const nextRef = useRef(null);
 
   const ModalStatus = () => {
-    console.log("working");
     setShowModal((prev) => !prev);
   };
 

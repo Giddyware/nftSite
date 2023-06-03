@@ -39,7 +39,7 @@ const handleScroll = (ref) => {
   });
 };
 
-const SideNav = ({ modalStatus, refs }) => {
+const SideNav = ({ refs }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
