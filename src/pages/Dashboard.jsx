@@ -41,7 +41,7 @@ const DashboardCard = ({ showModal, wallet }) => {
       <div>
         <p>{t("dashboard.account_balance")}</p>
         <p className="font-bold md:text-3xl">
-          {wallet?.accountBallance.toFixed(4)} ETH
+          {wallet?.accountBallance?.toFixed(4)} ETH
         </p>
       </div>
       <div className="flex text-2xl font-bold gap-x-3 md:gap-x-6">
@@ -195,7 +195,7 @@ const Dashboard = () => {
                 <p className="text-sm text-gray-400">ERC20</p>
               </div>
               <div className="text-lg font-bold justify-self-end">
-                <p>{wallet?.eth.toFixed(4)}</p>
+                <p>{wallet?.eth?.toFixed(4)}</p>
                 <p className="text-sm text-gray-400">~839</p>
               </div>
             </div>
@@ -213,7 +213,7 @@ const Dashboard = () => {
                 <p className="text-sm text-gray-400">ERC20</p>
               </div>
               <div className="text-lg font-bold justify-self-end">
-                <p>{wallet?.weth.toFixed(4)}</p>
+                <p>{wallet?.weth?.toFixed(4)}</p>
                 <p className="text-sm text-gray-400">~839</p>
               </div>
             </div>
