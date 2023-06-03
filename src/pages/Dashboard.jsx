@@ -40,7 +40,9 @@ const DashboardCard = ({ showModal, wallet }) => {
     <div className="flex flex-col gap-6 px-16 py-10 bg-gray-200 md:justify-between md:flex-row sm:justify-center sm:items-center rounded-2xl">
       <div>
         <p>{t("dashboard.account_balance")}</p>
-        <p className="font-bold md:text-3xl">{wallet?.accountBallance} ETH</p>
+        <p className="font-bold md:text-3xl">
+          {wallet?.accountBallance.toFixed(4)} ETH
+        </p>
       </div>
       <div className="flex text-2xl font-bold gap-x-3 md:gap-x-6">
         <Link to={`${location.pathname}/deposit`}>
@@ -180,27 +182,40 @@ const Dashboard = () => {
             className="flex flex-col px-8 my-10 bg-gray-200 py-7 rounded-xl"
             id="listing"
           >
-            <div className="grid grid-cols-[40px,_80px_1fr] w-full items-center">
-              <div className="self-center">
-                <img className="w-12" src={Ethereum_logo} alt="Ethereum_logo" />
+            <div className="grid grid-cols-[50px,_80px_1fr] w-full items-center mb-6">
+              <div className="w-full h-full -mt-4">
+                <img
+                  className="w-full min-h-full"
+                  src={Ethereum_logo}
+                  alt="Ethereum_logo"
+                />
               </div>
-              <p>ETH</p>
-              <p className="justify-self-end">{wallet?.eth}</p>
-            </div>
-            <div className="flex justify-between mb-10 ml-[40px] text-sm text-gray-400">
-              <p>ERC20</p>
-              <p>~839</p>
-            </div>
-            <div className="grid grid-cols-[40px,_80px_1fr]">
-              <div className="self-center">
-                <img className="w-14" src={Weth_logo} alt="Weth_logo" />
+              <div>
+                <p>ETH</p>
+                <p className="text-sm text-gray-400">ERC20</p>
               </div>
-              <p>WETH</p>
-              <p className="justify-self-end">{wallet?.weth}</p>
+              <div className="text-lg font-bold justify-self-end">
+                <p>{wallet?.eth.toFixed(4)}</p>
+                <p className="text-sm text-gray-400">~839</p>
+              </div>
             </div>
-            <div className="flex justify-between text-sm ml-[40px] text-gray-400">
-              <p>ERC20</p>
-              <p>~839</p>
+
+            <div className="grid grid-cols-[50px,_80px_1fr]">
+              <div className="w-full min-h-full">
+                <img
+                  className="w-full min-h-full"
+                  src={Weth_logo}
+                  alt="Weth_logo"
+                />
+              </div>
+              <div>
+                <p>WETH</p>
+                <p className="text-sm text-gray-400">ERC20</p>
+              </div>
+              <div className="text-lg font-bold justify-self-end">
+                <p>{wallet?.weth.toFixed(4)}</p>
+                <p className="text-sm text-gray-400">~839</p>
+              </div>
             </div>
           </div>
           <div
