@@ -202,7 +202,7 @@ const Home = () => {
 
       <Link to="/category=arts">
         <div className="min-w-[1312px] min-h-[330px]">
-          <Cards title={"art"} />
+          <Cards title={"arts"} />
         </div>
       </Link>
 

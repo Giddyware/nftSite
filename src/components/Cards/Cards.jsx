@@ -116,17 +116,21 @@ const Cards = ({ title }) => {
   const nextRef = useRef(null);
   const dispatch = useDispatch();
 
-  const { category, isLoading, error } = useSelector((state) => state.product);
+  const lowerCaseTitle = title.toLowerCase();
+  console.log(lowerCaseTitle, "lowerCaseTitle");
+  const { categories, isLoading, error } = useSelector(
+    (state) => state.product
+  );
 
   useEffect(() => {
     const lowerCaseTitle = title.toLowerCase();
     dispatch(getCategory(lowerCaseTitle));
-    console.log(category, lowerCaseTitle);
+    console.log(categories, lowerCaseTitle);
   }, [getCategory]);
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  // const lowerCaseTitle = title.toLowerCase();
+  // const artsCategory = categories.filter((item) => item.category == "art");
+  // console.log(artsCategory,'artsCategory');
   return (
     <>
       <h1 className="px-10 mt-8 text-3xl font-bold capitalize font-poppins">
@@ -146,7 +150,7 @@ const Cards = ({ title }) => {
           lazyPreloadPrevNext={true}
           breakpoints={{
             320: {
-              slidesPerView: 1.5,
+              slidesPerView: 0.5,
               spaceBetween: 40,
               centeredSlides: true,
             },
@@ -177,12 +181,52 @@ const Cards = ({ title }) => {
           // pagination={{ clickable: false }}
           // scrollbar={{ draggable: false }}
         >
-          {category &&
-            category.map((artDatails) => (
-              <SwiperSlide key={artDatails.id}>
-                <HomeCard {...artDatails} />
-              </SwiperSlide>
-            ))}
+          {categories &&
+            categories
+              .filter((item) => item.category == "membership")
+              .map((artDatails) => (
+                <SwiperSlide key={artDatails.id}>
+                  <HomeCard {...artDatails} />
+                </SwiperSlide>
+              ))}
+          {categories &&
+            lowerCaseTitle == "pfps" &&
+            categories
+              .filter((item) => item.category === "pfps")
+              .map((artDatails) => (
+                <SwiperSlide key={artDatails.id}>
+                  <HomeCard {...artDatails} />
+                </SwiperSlide>
+              ))}
+          {categories &&
+            lowerCaseTitle == "arts" &&
+            categories
+              .filter((item) => item.category == "arts")
+              .map((artDatails) => (
+                <SwiperSlide key={artDatails.id}>
+                  <HomeCard {...artDatails} />
+                </SwiperSlide>
+              ))}
+
+          {categories &&
+            lowerCaseTitle == "gaming" &&
+            categories
+              .filter((item) => item.category == "gaming")
+              .map((artDatails) => (
+                <SwiperSlide key={artDatails.id}>
+                  <HomeCard {...artDatails} />
+                </SwiperSlide>
+              ))}
+
+          {categories &&
+            lowerCaseTitle == "photography" &&
+            categories
+              .filter((item) => item.category == "photography")
+              .map((artDatails) => (
+                <SwiperSlide key={artDatails.id}>
+                  <HomeCard {...artDatails} />
+                </SwiperSlide>
+              ))}
         </Swiper>
         <div
           className="absolute right-0 z-50 hidden text-white bg-white rounded-full shadow cursor-pointer h-fit prevNav md:block"

@@ -149,7 +149,7 @@ const Mint = ({ show, modalStatus }) => {
             <select
               id="category"
               name="category"
-              className="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-600"
+              className="block w-full px-4 py-5 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-600"
               {...mintForm("category")}
             >
               <option value="">Choose a category</option>
@@ -195,11 +195,14 @@ const Mint = ({ show, modalStatus }) => {
           {...mintForm("description")}
         ></textarea>
         <div className="flex justify-between w-full mt-auto">
-          <button className="bg-[#084cdf] py-6 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
+          <button className="bg-[#084cdf] py-2 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
             Mint
           </button>
-          <button className="w-48 px-3 py-6 mt-3 text-white bg-gray-400 rounded-lg shadow-xl hover:bg-gray-600">
-            <Link to={"/dashboard"}>Go to Dashboard</Link>
+          <button
+            onClick={() => modalStatus()}
+            className="w-48 px-3 py-2 mt-3 text-white bg-gray-400 rounded-lg shadow-xl hover:bg-gray-600"
+          >
+            Go to Dashboard
           </button>
         </div>
       </div>
