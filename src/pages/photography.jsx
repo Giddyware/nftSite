@@ -4,7 +4,7 @@ import { TbNetwork } from "react-icons/tb";
 import Header from "../components/Header/Header";
 import background from "../assets/nft/nft6.jpg";
 import avater from "../assets/game.png";
-import { membershipText } from "../utils/textData";
+import { photographyText } from "../utils/textData";
 import CollectionTabs from "../components/Tabs";
 import CollectionCard from "../components/UI/CollectionCard";
 
@@ -23,16 +23,16 @@ import Image12 from "../assets/nft/nft12.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { CgLoadbar } from "react-icons/cg";
 import { BiErrorCircle } from "react-icons/bi";
-import { getMembershipCategory } from "../context/nft/nftActions";
+import { getPhotographyCategory } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 
-const Membership = ({ name }) => {
+const Photography = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
 
   const dispatch = useDispatch();
-  const { membership, isLoading, error } = useSelector(
+  const { photography, isLoading, error } = useSelector(
     (state) => state.product
   );
 
@@ -41,10 +41,10 @@ const Membership = ({ name }) => {
   const currentPath = location.pathname;
 
   useEffect(() => {
-    dispatch(getMembershipCategory());
-  }, [getMembershipCategory]);
+    dispatch(getPhotographyCategory());
+  }, [getPhotographyCategory]);
 
-  console.log(membership, "Membership===");
+  console.log(photography, "photography===");
 
   if (isLoading) {
     return <Loading />;
@@ -79,7 +79,7 @@ const Membership = ({ name }) => {
       </div>
       <div className="m-10 mt-20">
         <div className="flex justify-between ">
-          <h1 className="font-bold text-[30px] capitalize">{name}</h1>
+          <h1 className="font-bold text-[30px]">{name}</h1>
           <div>
             <TbNetwork />
           </div>
@@ -98,7 +98,7 @@ const Membership = ({ name }) => {
         </div>
 
         <p className="w-[85%] my-10 text-[14px]">
-          {showMore ? membershipText : `${membershipText.substring(0, 150)}`}{" "}
+          {showMore ? photographyText : `${photographyText.substring(0, 150)}`}{" "}
           <b className="cursor-pointer" onClick={() => setShowMore(!showMore)}>
             {showMore ? "See less" : "...See more"}
           </b>
@@ -125,7 +125,7 @@ const Membership = ({ name }) => {
       </div>
 
       <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
-        {membership?.data?.map((nft) => (
+        {photography?.data?.map((nft) => (
           <li key={nft.id}>
             <Link to={`${currentPath}/products/${nft.id}`}>
               <CollectionCard {...nft} />
@@ -138,4 +138,4 @@ const Membership = ({ name }) => {
     </div>
   );
 };
-export default Membership;
+export default Photography;

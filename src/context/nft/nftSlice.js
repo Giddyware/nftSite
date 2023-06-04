@@ -11,6 +11,8 @@ const initialState = {
   art: [],
   gaming: [],
   membership: [],
+  pfps: [],
+  photography: [],
 };
 
 const nftSlice = createSlice({
@@ -103,6 +105,7 @@ const nftSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
     // FETCH MEMBERSHIP CATEGORY
     fetchMembershipStart: (state) => {
       state.isLoading = true;
@@ -114,6 +117,36 @@ const nftSlice = createSlice({
       state.error = null;
     },
     fetchMembershipFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    // FETCH PFPS CATEGORY
+    fetchPfpsStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchPfpsSuccess: (state, action) => {
+      state.isLoading = false;
+      state.pfps = action.payload;
+      state.error = null;
+    },
+    fetchPfpsFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    // FETCH PHOTOGRAPH CATEGORY
+    fetchPhotographyStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchPhotographySuccess: (state, action) => {
+      state.isLoading = false;
+      state.photography = action.payload;
+      state.error = null;
+    },
+    fetchPhotographyFailure: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -142,6 +175,12 @@ export const {
   fetchMembershipStart,
   fetchMembershipSuccess,
   fetchMembershipFailure,
+  fetchPfpsStart,
+  fetchPfpsSuccess,
+  fetchPfpsFailure,
+  fetchPhotographyStart,
+  fetchPhotographySuccess,
+  fetchPhotographyFailure,
 } = nftSlice.actions;
 
 export default nftSlice.reducer;
