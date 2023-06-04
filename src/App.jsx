@@ -82,7 +82,7 @@ const App = () => {
           }
         />
         <Route
-          path={`${currentPath}/products/:productId`}
+          path={`/category=arts`}
           element={
             <ProtectedRoute>
               <Art name="Art" />
@@ -98,7 +98,7 @@ const App = () => {
           }
         />
         <Route
-          path={`${currentPath}/products/:productId`}
+          path={`/category=membership`}
           element={
             <ProtectedRoute>
               <Membership name="membership" />
