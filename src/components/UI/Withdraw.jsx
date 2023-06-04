@@ -102,7 +102,7 @@ const Withdraw = ({ show, modalStatus }) => {
           >
             <option disabled>Make a choice</option>
             {/* <option value="ETH">ETH</option> */}
-            <option value="WETH">WETH</option>
+            <option value="WETH">WETH (ERC20)</option>
           </select>
         </div>
         <label
@@ -126,12 +126,22 @@ const Withdraw = ({ show, modalStatus }) => {
         </div>
 
         <div className="">
-          <label
-            htmlFor="network"
-            className="block my-8 font-bold text-gray-900 dark:text-white"
-          >
-            Enter amount
-          </label>
+          <div className="flex items-baseline justify-between">
+            <div>
+              <label
+                htmlFor="network"
+                className="block w-full mt-8 mb-2 font-bold text-gray-900 dark:text-white"
+              >
+                <span>Enter amount</span>
+              </label>
+            </div>
+            <span className="text-2xl text-gray-600">
+              WETH:{" "}
+              <span className="font-bold">
+                110 <span className="text-lg">WETH</span>{" "}
+              </span>
+            </span>
+          </div>
           {/* <p className="text-2xl font-bold">Ethereum (ERC-20)</p> */}
           <input
             type="number"
@@ -142,13 +152,21 @@ const Withdraw = ({ show, modalStatus }) => {
             })}
           />
         </div>
+        <p className="mt-3 text-2xl text-gray-600">
+          fee: 20% <span className="font-bold">~20 ETH</span>
+        </p>
 
+        <h3 className="my-10 text-2xl text-gray-600">
+          Eth bal: <span className="font-bold">7329 ETH</span>
+        </h3>
         <div>
           <button
-            className="py-5 mt-10 text-[#2196F3] capitalize px-7 bg-[#2196F3]"
+            className="mx-auto  mt-10 capitalize bg-[#2196F3]"
             type="submit"
           >
-            submit
+            <span className="w-full p-5 rounded bg-[#2196f3] text-white">
+              submit
+            </span>
           </button>
         </div>
       </form>
