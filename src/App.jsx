@@ -108,9 +108,9 @@ const App = () => {
         <Route
           path="/dashboard"
           element={
-            // <ProtectedRoute>
-            <Dashboard />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
           }
         />
 
@@ -126,9 +126,9 @@ const App = () => {
         <Route
           path="/dashboard/deposit"
           element={
-            // <ProtectedRoute>
-            <Deposit />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <Deposit />
+            </ProtectedRoute>
           }
         />
         <Route
