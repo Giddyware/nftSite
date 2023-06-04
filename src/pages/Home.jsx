@@ -212,9 +212,11 @@ const Home = () => {
         </div>
       </Link>
 
-      <div className="min-w-[1312px] min-h-[330px]">
-        <Cards title={"membership"} />
-      </div>
+      <Link to="/category=membership">
+        <div className="min-w-[1312px] min-h-[330px]">
+          <Cards title={"membership"} />
+        </div>
+      </Link>
 
       <div className="min-w-[1312px] min-h-[330px]">
         <Cards title={"PFPs"} />

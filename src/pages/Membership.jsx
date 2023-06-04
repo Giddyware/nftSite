@@ -4,7 +4,7 @@ import { TbNetwork } from "react-icons/tb";
 import Header from "../components/Header/Header";
 import background from "../assets/nft/nft6.jpg";
 import avater from "../assets/game.png";
-import { textData } from "../utils/textData";
+import { membershipText } from "../utils/textData";
 import CollectionTabs from "../components/Tabs";
 import CollectionCard from "../components/UI/CollectionCard";
 
@@ -98,7 +98,7 @@ const Membership = ({ name }) => {
         </div>
 
         <p className="w-[85%] my-10 text-[14px]">
-          {showMore ? textData : `${textData.substring(0, 150)}`}{" "}
+          {showMore ? membershipText : `${membershipText.substring(0, 150)}`}{" "}
           <b className="cursor-pointer" onClick={() => setShowMore(!showMore)}>
             {showMore ? "See less" : "...See more"}
           </b>

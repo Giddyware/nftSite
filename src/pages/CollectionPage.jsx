@@ -4,7 +4,7 @@ import { TbNetwork } from "react-icons/tb";
 import Header from "../components/Header/Header";
 import background from "../assets/nft/nft6.jpg";
 import avater from "../assets/game.png";
-import { textData } from "../utils/textData";
+import { marketplaceText } from "../utils/textData";
 import CollectionTabs from "../components/Tabs";
 import CollectionCard from "../components/UI/CollectionCard";
 
@@ -94,7 +94,7 @@ const CollectionPage = ({ name }) => {
         </div>
 
         <p className="w-[85%] my-10 text-[14px]">
-          {showMore ? textData : `${textData.substring(0, 150)}`}{" "}
+          {showMore ? marketplaceText : `${marketplaceText.substring(0, 150)}`}{" "}
           <b className="cursor-pointer" onClick={() => setShowMore(!showMore)}>
             {showMore ? "See less" : "...See more"}
           </b>
@@ -120,7 +120,7 @@ const CollectionPage = ({ name }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 m-10">
+      <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
         {nfts?.data?.map((nft) => (
           <li key={nft.id}>
             <Link to={`${currentPath}/products/${nft.id}`}>
