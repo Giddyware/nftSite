@@ -7,7 +7,7 @@ const initialState = {
   error: null,
   nft: null,
   selectedItem: null,
-  category: [],
+  categories: [],
   art: [],
   gaming: [],
   membership: [],
@@ -66,7 +66,7 @@ const nftSlice = createSlice({
     },
     fetchCategorySuccess: (state, action) => {
       state.isLoading = false;
-      state.category = action.payload;
+      state.categories = action.payload;
       state.error = null;
     },
     fetchCategoryFailure: (state, action) => {
