@@ -140,20 +140,25 @@ const Cards = ({ title }) => {
           <MdOutlineNavigateBefore size={50} color="grey" />
         </div>
         <Swiper
-          slidesPerGroup={5}
+          slidesPerGroup={3}
+          centeredSlides={true}
           slidesPerView={"auto"}
+          lazyPreloadPrevNext={true}
           breakpoints={{
             320: {
-              slidesPerView: 1,
+              slidesPerView: 1.5,
               spaceBetween: 40,
+              centeredSlides: true,
             },
             640: {
-              slidesPerView: 3,
+              slidesPerView: 3.5,
               spaceBetween: 10,
+              centeredSlides: true,
             },
             1000: {
-              slidesPerView: 5,
+              slidesPerView: 5.5,
               spaceBetween: 20,
+              centeredSlides: true,
             },
           }}
           loop={true}
