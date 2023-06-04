@@ -22,7 +22,7 @@ import Cookies from "js-cookie";
 
 import avatar from "../../assets/avatar.png";
 
-const Button_Details = ({ showModal }) => {
+const Button_Details = () => {
   const { t } = useTranslation();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const ProfileButton = () => {
     ) : null
   );
 };
-const Header = ({ showModal }) => {
+const Header = () => {
   const [bg, setBg] = useState(false);
 
   const check = () => {
@@ -124,7 +124,7 @@ const Header = ({ showModal }) => {
 
       {/* <DropDown /> */}
       <Search />
-      <Button_Details showModal={showModal} />
+      <Button_Details />
       <ProfileButton />
     </div>
   );

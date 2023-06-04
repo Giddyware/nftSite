@@ -32,7 +32,7 @@ const schema = object({
   // image: object().required(),
 });
 
-const Mint = () => {
+const Mint = ({ show, modalStatus }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -93,14 +93,22 @@ const Mint = () => {
   };
   return (
     // <div className="max-w-[400px] border-2  px-5 py-4 rounded-2xl">
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="absolute top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+      style={{
+        transform: show ? "translateY(0)" : "translateY(-1500px)",
+        opacity: show ? "1" : "0",
+        transition: "all 1s",
+      }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-col items-start justify-center min-h-[100%] bg-white  px-10 py-12 border-2 rounded-2xl max-w-[450px] my-6 mx-auto text-[#04111D]">
         <p className="text-5xl font-bold">Create New Item</p>
 
         <p className="text-2xl font-bold">Image *</p>
         <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
         <div>
-          <label htmlFor="photo" className=" drop-container">
+          <label htmlFor="photo" className="drop-container">
             <span className="drop-title">Drop files here</span>
             or
             <input

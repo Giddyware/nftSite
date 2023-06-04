@@ -39,7 +39,7 @@ const handleScroll = (ref) => {
   });
 };
 
-const SideNav = ({ modalStatus, refs }) => {
+const SideNav = ({ refs, showMint }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,15 +79,16 @@ const SideNav = ({ modalStatus, refs }) => {
               name={t("dashboard.NFT_Collection")}
             />
           </li>
-          <Link
-            to={`${location.pathname}/createNft`}
+          <button
+            // to={`${location.pathname}/createNft`}
+            onClick={() => showMint()}
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
           >
             <DashboardLinks
               icon={<IoCreateOutline size={"20"} />}
               name="Mint"
             />
-          </Link>
+          </button>
           <li
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
             onClick={() => {

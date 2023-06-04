@@ -32,8 +32,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading/Loading";
 import { Link, useLocation } from "react-router-dom";
 import { getUserDetails } from "../context/auth/authActions";
+import Deposit from "./Deposit";
+import Mint from "./Mint";
 
-const DashboardCard = ({ showModal, wallet }) => {
+const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
   const { t } = useTranslation();
   return (
@@ -45,14 +47,17 @@ const DashboardCard = ({ showModal, wallet }) => {
         </p>
       </div>
       <div className="flex text-2xl font-bold gap-x-3 md:gap-x-6">
-        <Link to={`${location.pathname}/deposit`}>
-          <button className="px-16 py-6 bg-blue-500 rounded-lg cursor-pointer md:px-24 md:py-8">
-            {t("dashboard.Deposit")}
-          </button>
-        </Link>
+        {/* <Link to={`${location.pathname}/deposit`}> */}
+        <button
+          onClick={() => showDeposit()}
+          className="px-16 py-6 bg-blue-500 rounded-lg cursor-pointer md:px-24 md:py-8"
+        >
+          {t("dashboard.Deposit")}
+        </button>
+        {/* </Link> */}
         <button
           className="px-16 py-6 text-gray-400 bg-white rounded-lg cursor-pointer md:px-24 md:py-8"
-          onClick={() => showModal()}
+          onClick={() => showWithdraw()}
         >
           {t("dashboard.withdrawal")}
         </button>
@@ -97,10 +102,19 @@ const Dashboard = () => {
   const nftRef = useRef(null);
   const transactionRef = useRef(null);
   const { t } = useTranslation();
-  const [showModal, setShowModal] = useState(false);
+  const [showModalWithdraw, setShowModalWithdraw] = useState(false);
+  const [showModalDeposit, setShowModalDeposit] = useState(false);
+  const [showModalMint, setShowModalMint] = useState(false);
   const dispatch = useDispatch();
-  const ModalStatus = () => {
-    setShowModal((prev) => !prev);
+
+  const onWithdraw = () => {
+    setShowModalWithdraw((prev) => !prev);
+  };
+  const onDeposit = () => {
+    setShowModalDeposit((prev) => !prev);
+  };
+  const onMint = () => {
+    setShowModalMint((prev) => !prev);
   };
 
   const ChangeLanguage = (code) => {
@@ -125,14 +139,14 @@ const Dashboard = () => {
   return (
     !!userDetails && (
       <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
-        <Overlay show={showModal} clear={ModalStatus} />
-        <Withdraw show={showModal} modalStatus={ModalStatus} />
+        <Overlay show={showModalWithdraw} clear={onWithdraw} />
+        <Withdraw show={showModalWithdraw} modalStatus={onWithdraw} />
+        <Overlay show={showModalDeposit} clear={onDeposit} />
+        <Deposit show={showModalDeposit} modalStatus={onDeposit} />
+        <Overlay show={showModalMint} clear={onMint} />
+        <Mint show={showModalMint} modalStatus={onMint} />
 
-        <SideNav
-          show={showModal}
-          modalStatus={ModalStatus}
-          refs={{ saleRef, nftRef, transactionRef }}
-        />
+        <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 
         <div className="w-[100%] py-8 pr-8">
           <div className="flex items-center justify-center pb-4 mb-8 border-b">
@@ -175,7 +189,8 @@ const Dashboard = () => {
           <DashboardCard
             id="home"
             wallet={!!wallet && wallet}
-            showModal={ModalStatus}
+            showDeposit={onDeposit}
+            showWithdraw={onWithdraw}
           />
 
           <div
