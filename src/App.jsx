@@ -45,6 +45,8 @@ import LoginPage from "./pages/LoginPage";
 import Art from "./pages/Art";
 import Gaming from "./pages/Gaming";
 import Membership from "./pages/Membership";
+import Pfps from "./pages/Pfps";
+import Photography from "./pages/photography";
 // import SupportAdmin from "./components/SupportAdmin";
 
 const App = () => {
@@ -101,7 +103,23 @@ const App = () => {
           path={`/category=membership`}
           element={
             <ProtectedRoute>
-              <Membership name="membership" />
+              <Membership name="Membership" />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={`/category=pfps`}
+          element={
+            <ProtectedRoute>
+              <Pfps name="PFPs" />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={`/category=photography`}
+          element={
+            <ProtectedRoute>
+              <Photography name="Photography" />
             </ProtectedRoute>
           }
         />

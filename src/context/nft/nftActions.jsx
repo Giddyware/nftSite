@@ -7,6 +7,8 @@ import {
   getGamingNftsAPI,
   getMembershipNftsAPI,
   getNftsAPI,
+  getPfpsNftsAPI,
+  getPhotographyNftsAPI,
   pullFromMarketAPI,
   pushToMarketAPI,
   selectItemAPI,
@@ -28,6 +30,12 @@ import {
   fetchMembershipFailure,
   fetchMembershipStart,
   fetchMembershipSuccess,
+  fetchPfpsFailure,
+  fetchPfpsStart,
+  fetchPfpsSuccess,
+  fetchPhotographyFailure,
+  fetchPhotographyStart,
+  fetchPhotographySuccess,
   fetchStart,
   fetchSuccess,
   selectItemFailure,
@@ -211,6 +219,33 @@ export const getMembershipCategory = createAsyncThunk(
       dispatch(fetchMembershipSuccess(response));
     } catch (error) {
       dispatch(fetchMembershipFailure(error));
+    }
+  }
+);
+
+export const getPfpsCategory = createAsyncThunk(
+  "product/getPfpsCategory",
+  async (_, { dispatch }) => {
+    dispatch(fetchPfpsStart());
+    try {
+      const response = await getPfpsNftsAPI();
+      console.log(response, "===ireoi");
+      dispatch(fetchPfpsSuccess(response));
+    } catch (error) {
+      dispatch(fetchPfpsFailure(error));
+    }
+  }
+);
+export const getPhotographyCategory = createAsyncThunk(
+  "product/getPhotographyCategory",
+  async (_, { dispatch }) => {
+    dispatch(fetchPhotographyStart());
+    try {
+      const response = await getPhotographyNftsAPI();
+      console.log(response, "===ireoi");
+      dispatch(fetchPhotographySuccess(response));
+    } catch (error) {
+      dispatch(fetchPhotographyFailure(error));
     }
   }
 );

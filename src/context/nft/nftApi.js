@@ -79,6 +79,30 @@ export const getMembershipNftsAPI = async () => {
     throw error.response.data;
   }
 };
+export const getPfpsNftsAPI = async () => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}/nft?category=pfps&sort=-priceInEtherium`,
+      tokenConfig()
+    );
+    console.log(response.data, "===resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+export const getPhotographyNftsAPI = async () => {
+  try {
+    const response = await api.get(
+      `${BASE_URL}/nft?category=photography&sort=-priceInEtherium`,
+      tokenConfig()
+    );
+    console.log(response.data, "===resData");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
 
 export const selectItemAPI = async (productId) => {
   try {
