@@ -249,7 +249,9 @@ const Dashboard = () => {
               </div>
               <div className="text-lg font-bold justify-self-end">
                 <p>{wallet?.weth?.toFixed(4)}</p>
-                <p className="text-sm text-gray-400">{usdRate}</p>
+                <p className="text-sm text-gray-400">
+                  {(usdRate * wallet?.weth?.toFixed(4)).toFixed(4)}
+                </p>
               </div>
             </div>
           </div>
