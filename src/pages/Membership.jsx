@@ -73,8 +73,8 @@ const Membership = ({ name }) => {
         }}
       >
         <Header />
-        <div className="w-[12%] border-4 rounded-3xl absolute bottom-[-32px] left-10">
-          <img src={avater} className="rounded-3xl" />
+        <div className="w-48 rounded md:w-[12%]  border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
+          <img src={avater} className="rounded md:rounded-3xl" />
         </div>
       </div>
       <div className="m-10 mt-20">
@@ -127,7 +127,7 @@ const Membership = ({ name }) => {
       <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
         {membership?.data?.map((nft) => (
           <li key={nft.id}>
-            <Link to={`${currentPath}/products/${nft.id}`}>
+            <Link to={`/products/${nft.id}`}>
               <CollectionCard {...nft} />
             </Link>
           </li>

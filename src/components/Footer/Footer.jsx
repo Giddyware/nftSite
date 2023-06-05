@@ -64,9 +64,12 @@ const Footer = () => {
           </div>
           <div className="flex flex-col items-center gap-y-5 ">
             <h1 className="font-bold">Marketplace</h1>
-            <Link to={"/marketPlace"}>All NFTs</Link>
-            <Link to={"/nfts/art"}>Art</Link>
-            <Link to={"/nfts/gaming"}>Gaming</Link>
+            <Link to={"/category=marketplace"}>All NFTs</Link>
+            <Link to={"/category=art"}>Art</Link>
+            <Link to={"/category=gaming"}>Gaming</Link>
+            <Link to={"/category=membership"}>Membership</Link>
+            <Link to={"/category=pfps"}>PFPs</Link>
+            <Link to={"/category=photography"}>Photography</Link>
           </div>
           <div className="flex flex-col items-center gap-y-5">
             <h1 className="font-bold">My Account</h1>

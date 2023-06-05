@@ -46,7 +46,7 @@ import Art from "./pages/Art";
 import Gaming from "./pages/Gaming";
 import Membership from "./pages/Membership";
 import Pfps from "./pages/Pfps";
-import Photography from "./pages/photography";
+import Photography from "./pages/Photography";
 // import SupportAdmin from "./components/SupportAdmin";
 
 const App = () => {
@@ -76,7 +76,7 @@ const App = () => {
         />
         <Route path="/dashboard/verify_email" element={<VerifyEmail />} />
         <Route
-          path={`${currentPath}/products/:productId`}
+          path={`/category=marketplace`}
           element={
             <ProtectedRoute>
               <MarketPlace name="Market Place" />
@@ -141,14 +141,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/dashboard/deposit"
           element={
             <ProtectedRoute>
               <Deposit />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/dashboard/withdraw"
           element={
@@ -158,9 +158,9 @@ const App = () => {
           }
         />
 
-        <Route path="dashboard/buyNft" element={<Mint />} />
+        {/* <Route path="dashboard/buyNft" element={<Mint />} /> */}
         <Route
-          path=""
+          path={`products/:productId`}
           element={
             <ProtectedRoute>
               <ProductDetail />

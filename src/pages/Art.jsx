@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { TbNetwork } from "react-icons/tb";
 
 import Header from "../components/Header/Header";
-import background from "../assets/nft/nft6.jpg";
-import avater from "../assets/game.png";
-import { artText } from "../utils/textData.js";
+import background from "../assets/cover/art_banner.jpg";
+import profile from "../assets/cover/art_profile.jpg";
 import CollectionTabs from "../components/Tabs";
 import CollectionCard from "../components/UI/CollectionCard";
 
@@ -27,6 +26,7 @@ import { getArtCategory, getNfts } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
+import { artText } from "../utils/textData";
 
 const Art = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -69,8 +69,8 @@ const Art = ({ name }) => {
         }}
       >
         <Header />
-        <div className="w-[12%] border-4 rounded-3xl absolute bottom-[-32px] left-10">
-          <img src={avater} className="rounded-3xl" />
+        <div className="w-48 rounded md:w-[12%] border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
+          <img src={profile} className="rounded md:rounded-3xl" />
         </div>
       </div>
       <div className="m-10 mt-20">
