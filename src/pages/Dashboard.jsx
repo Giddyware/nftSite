@@ -34,6 +34,7 @@ import { Link, useLocation } from "react-router-dom";
 import { getUserDetails } from "../context/auth/authActions";
 import Deposit from "./Deposit";
 import Mint from "./Mint";
+import axios from "axios";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -104,6 +105,7 @@ const Dashboard = () => {
   const { t } = useTranslation();
   const [showModalWithdraw, setShowModalWithdraw] = useState(false);
   const [showModalDeposit, setShowModalDeposit] = useState(false);
+  const [usdRate, setUsdRate] = useState(0);
   const [showModalMint, setShowModalMint] = useState(false);
   const dispatch = useDispatch();
 
@@ -129,7 +131,22 @@ const Dashboard = () => {
   useEffect(() => {
     console.log(userDetails, "userDetails====");
     dispatch(getUserDetails());
-  }, [getUserDetails]);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+      )
+      .then((response) => {
+        const data = response.data;
+        setUsdRate(data.ethereum.usd);
+        console.log(data.ethereum, "data");
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  }, []);
 
   console.log(userDetails, "userDetails====");
 
@@ -211,7 +228,9 @@ const Dashboard = () => {
               </div>
               <div className="text-lg font-bold justify-self-end">
                 <p>{wallet?.eth?.toFixed(4)}</p>
-                <p className="text-sm text-gray-400">~839</p>
+                <p className="text-sm text-gray-400">
+                  {(usdRate * wallet?.eth?.toFixed(4)).toFixed(4)}
+                </p>
               </div>
             </div>
 
@@ -229,7 +248,7 @@ const Dashboard = () => {
               </div>
               <div className="text-lg font-bold justify-self-end">
                 <p>{wallet?.weth?.toFixed(4)}</p>
-                <p className="text-sm text-gray-400">~839</p>
+                <p className="text-sm text-gray-400">{usdRate}</p>
               </div>
             </div>
           </div>
