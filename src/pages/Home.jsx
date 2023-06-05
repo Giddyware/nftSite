@@ -42,6 +42,7 @@ import Card from "../components/Cards/Card";
 
 import FullCard from "../components/Cards/FullCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -135,6 +136,8 @@ const data = [
 const Home = () => {
   const [count, setCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const { user, isAuthenticated, error } = useSelector((state) => state.auth);
+  console.log(user?.user?.emailVerified, "user==");
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -176,10 +179,10 @@ const Home = () => {
             loop={true}
             modules={[Navigation, Autoplay, Pagination, A11y]}
             // navigation={true}
-            navigation={{
-              prevEl: prevRef.current ? prevRef.current : undefined,
-              nextEl: nextRef.current ? nextRef.current : undefined,
-            }}
+            // navigation={{
+            //   prevEl: prevRef.current ? prevRef.current : undefined,
+            //   nextEl: nextRef.current ? nextRef.current : undefined,
+            // }}
             onBeforeInit={(swiper) => {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;

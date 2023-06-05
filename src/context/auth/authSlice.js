@@ -9,6 +9,7 @@ const initialState = {
   error: null,
   token: Cookies.get("authToken") ? Cookies.get("authToken") : null,
   userDetails: {},
+  isEmailVerified: false,
 };
 
 const authSlice = createSlice({
@@ -23,6 +24,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
+
       state.error = null;
     },
     authFailure: (state, action) => {
