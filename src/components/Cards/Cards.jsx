@@ -181,7 +181,8 @@ const Cards = ({ title }) => {
           // pagination={{ clickable: false }}
           // scrollbar={{ draggable: false }}
         >
-          {categories &&
+          {lowerCaseTitle == "membership" &&
+            categories &&
             categories
               .filter((item) => item.category == "membership")
               .map((artDatails) => (
@@ -189,8 +190,8 @@ const Cards = ({ title }) => {
                   <HomeCard {...artDatails} />
                 </SwiperSlide>
               ))}
-          {categories &&
-            lowerCaseTitle == "pfps" &&
+          {lowerCaseTitle == "pfps" &&
+            categories &&
             categories
               .filter((item) => item.category === "pfps")
               .map((artDatails) => (
@@ -198,8 +199,8 @@ const Cards = ({ title }) => {
                   <HomeCard {...artDatails} />
                 </SwiperSlide>
               ))}
-          {categories &&
-            lowerCaseTitle == "arts" &&
+          {lowerCaseTitle == "arts" &&
+            categories &&
             categories
               .filter((item) => item.category == "arts")
               .map((artDatails) => (
@@ -208,8 +209,8 @@ const Cards = ({ title }) => {
                 </SwiperSlide>
               ))}
 
-          {categories &&
-            lowerCaseTitle == "gaming" &&
+          {lowerCaseTitle == "gaming" &&
+            categories &&
             categories
               .filter((item) => item.category == "gaming")
               .map((artDatails) => (
@@ -218,8 +219,8 @@ const Cards = ({ title }) => {
                 </SwiperSlide>
               ))}
 
-          {categories &&
-            lowerCaseTitle == "photography" &&
+          {lowerCaseTitle == "photography" &&
+            categories &&
             categories
               .filter((item) => item.category == "photography")
               .map((artDatails) => (

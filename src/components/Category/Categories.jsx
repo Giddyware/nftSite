@@ -16,12 +16,12 @@ const Categories = () => {
   const { t } = useTranslation();
 
   const list = [
-    { text: `${t("home.all")}`, link: "/marketPlace" },
-    { text: `${t("home.art")}`, link: "/art" },
-    { text: `${t("home.gaming")}`, link: "/gaming" },
-    { text: `memberships`, link: "/memberships" },
-    { text: `PFPs`, link: "/PFPs" },
-    { text: `${t("home.photography")}`, link: "/photography" },
+    { text: `${t("home.all")}`, link: "/category=marketplace" },
+    { text: `${t("home.art")}`, link: "/category=art" },
+    { text: `${t("home.gaming")}`, link: "/category=gaming" },
+    { text: `memberships`, link: "c/ategory=memberships" },
+    { text: `PFPs`, link: "/category=pfps" },
+    { text: `${t("home.photography")}`, link: "/category=photography" },
   ];
 
   return (

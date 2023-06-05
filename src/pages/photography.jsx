@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { TbNetwork } from "react-icons/tb";
 
 import Header from "../components/Header/Header";
-import background from "../assets/nft/nft6.jpg";
-import avater from "../assets/game.png";
+import background from "../assets/cover/photography_banner.jpg";
+import profile from "../assets/cover/photography_profile.jpg";
 import { photographyText } from "../utils/textData";
 import CollectionTabs from "../components/Tabs";
 import CollectionCard from "../components/UI/CollectionCard";
@@ -70,11 +70,12 @@ const Photography = ({ name }) => {
           "backdrop-filter": "blur(5px)",
           height: "40%",
           objectFit: "cover",
+          width: "100%",
         }}
       >
         <Header />
-        <div className="w-[12%] border-4 rounded-3xl absolute bottom-[-32px] left-10">
-          <img src={avater} className="rounded-3xl" />
+        <div className="w-48 rounded md:w-[12%]  border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
+          <img src={profile} className="rounded md:rounded-3xl" />
         </div>
       </div>
       <div className="m-10 mt-20">
@@ -127,7 +128,7 @@ const Photography = ({ name }) => {
       <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
         {photography?.data?.map((nft) => (
           <li key={nft.id}>
-            <Link to={`${currentPath}/products/${nft.id}`}>
+            <Link to={`products/${nft.id}`}>
               <CollectionCard {...nft} />
             </Link>
           </li>
