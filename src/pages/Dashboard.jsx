@@ -156,12 +156,13 @@ const Dashboard = () => {
   return (
     !!userDetails && (
       <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
-        <Overlay show={showModalWithdraw} clear={onWithdraw} />
         <Withdraw show={showModalWithdraw} modalStatus={onWithdraw} />
-        <Overlay show={showModalDeposit} clear={onDeposit} />
         <Deposit show={showModalDeposit} modalStatus={onDeposit} />
-        <Overlay show={showModalMint} clear={onMint} />
         <Mint show={showModalMint} modalStatus={onMint} />
+        {/* <Overlay show={showModalWithdraw} clear={onWithdraw} /> */}
+        {/* <Overlay show={showModalDeposit} clear={onDeposit} />
+        <Overlay show={showModalMint} clear={onMint} />
+        */}
 
         <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 

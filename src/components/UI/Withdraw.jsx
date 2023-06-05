@@ -16,6 +16,7 @@ import {
 } from "../../context/transaction/transactionActions";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Overlay from "./Overlay";
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
   amount: z.number(),
@@ -69,6 +70,7 @@ const Withdraw = ({ show, modalStatus }) => {
   };
   return (
     <>
+      <Overlay show={show} clear={modalStatus} />
       <form
         className="absolute top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
         style={{
