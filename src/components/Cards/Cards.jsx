@@ -144,7 +144,7 @@ const Cards = ({ title }) => {
           <MdOutlineNavigateBefore size={50} color="grey" />
         </div>
         <Swiper
-          slidesPerGroup={3}
+          slidesPerGroup={1}
           centeredSlides={true}
           slidesPerView={"auto"}
           lazyPreloadPrevNext={true}
