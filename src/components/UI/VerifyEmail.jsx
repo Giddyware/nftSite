@@ -17,13 +17,13 @@ const VerifyEmail = () => {
     dispatch(createEmailToken());
   };
   return (
-    <div className="h-[92%] border-solid border mt-[5%]  shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] min-w-fit bg-gray-100 mx-10 md:mx-96">
+    <div className="max-h-[50%] max-w-[800px] border-solid border mt-[5%]  shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] min-w-fit bg-gray-100 mx-10 md:mx-96">
       <header className="mx-auto">
         <img className="w-72" src={logo} />
       </header>
       <main className="flex flex-col items-center text-3xl gap-7">
         {/* <BsEnvelopeExclamation size={94}/> */}
-        <div className="my-16 md:my-32">
+        <div className="my-10 md:my-16">
           <img className="w-72" src={envelope} />
         </div>
 

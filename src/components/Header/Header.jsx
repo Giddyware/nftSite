@@ -60,8 +60,8 @@ const Button_Details = () => {
 
 const ProfileButton = () => {
   const location = useLocation().pathname;
-  const { user, isAuthenticated, error } = useSelector((state) => state.auth);
-  console.log(user, "user====");
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  console.log(user?.user?.emailVerified, "user====");
   // useEffect(() => {
   //   dispatch(getUserDetails());
   // }

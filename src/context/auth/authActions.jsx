@@ -44,7 +44,7 @@ export const loginUser = createAsyncThunk(
       console.log(response, "res==jkds=");
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
       dispatch(authSuccess(response?.data));
-
+      console.log(response.data.user.emailVerified, "useMe873iuhjed");
       <Navigate to="/dashboard" />;
       toast.success("Login Successful");
     } catch (error) {
@@ -86,12 +86,12 @@ export const createEmailToken = createAsyncThunk(
     try {
       const email = await createEmailTokenAPI();
       console.log("EMAIL", email);
-      dispatch(authSuccess(email));
+      // dispatch(authSuccess(email));
       toast.success(
         "Congratulations🎉, You can now check you email to confirm!"
       );
     } catch (error) {
-      dispatch(authFailure(error));
+      // dispatch(authFailure(error));
     }
   }
 );
