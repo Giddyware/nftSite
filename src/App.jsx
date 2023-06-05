@@ -46,7 +46,7 @@ import Art from "./pages/Art";
 import Gaming from "./pages/Gaming";
 import Membership from "./pages/Membership";
 import Pfps from "./pages/Pfps";
-// import Photography from "./pages/Photography";
+import Photography from "./pages/Photography";
 
 // import SupportAdmin from "./components/SupportAdmin";
 
@@ -116,14 +116,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        {/* <Route
+        <Route
           path={`/category=photography`}
           element={
             <ProtectedRoute>
               <Photography name="Photography" />
             </ProtectedRoute>
           }
-        /> */}
+        />
         <Route
           path="/dashboard"
           element={
