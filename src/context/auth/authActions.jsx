@@ -87,6 +87,9 @@ export const createEmailToken = createAsyncThunk(
       const email = await createEmailTokenAPI();
       console.log("EMAIL", email);
       dispatch(authSuccess(email));
+      toast.success(
+        "Congratulations🎉, You can now check you email to confirm!"
+      );
     } catch (error) {
       dispatch(authFailure(error));
     }

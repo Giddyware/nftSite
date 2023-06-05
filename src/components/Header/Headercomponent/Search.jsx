@@ -9,7 +9,7 @@ const Search = () => {
       <input
         type="text"
         placeholder="Search items, collections and accounts"
-        className="w-full text-white bg-transparent text-md md:text-3xl"
+        className="w-full text-white bg-transparent text-md md:text-3xl outline-none"
       />
       {/* <label
         for="small"

@@ -98,23 +98,29 @@ const ProfileButton = () => {
     ) : null
   );
 };
-const Header = () => {
-  const [bg, setBg] = useState(false);
+const Header = ({ addBg }) => {
+  // const [bg, setBg] = useState(false);
 
-  const check = () => {
-    if (window.scrollY > 20) {
-      setBg(true);
-    } else {
-      setBg(false);
-    }
-  };
+  // const check = () => {
+  //   if (window.scrollY > 20) {
+  //     setBg(true);
+  //   } else {
+  //     setBg(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    check();
-  }, []);
+  // useEffect(() => {
+  //   check();
+  // }, []);
 
   return (
-    <div className="flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-transparent font-poppins">
+    <div
+      className={
+        addBg
+          ? "bg-[#665F5E] flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white font-poppins"
+          : "flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-transparent font-poppins"
+      }
+    >
       <Link
         to="/"
         className="border-right-solid border-right-[1px] border-right-black w-48 md:w-52"

@@ -40,8 +40,8 @@ const RegisterForm = () => {
 
       reset();
 
+      toast("Registration successful🎉");
       navigate("/auth");
-      toast("You can now log in");
     } catch (error) {
       console.error(error);
     }

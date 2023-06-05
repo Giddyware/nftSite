@@ -34,7 +34,6 @@ import Deposit from "./pages/Deposit";
 import SupportAdmin from "./components/SupportAdmin/SupportAdmin";
 import ProtectedRoute from "./Container/ProtectedRoute";
 import NotFound from "./pages/NotFound";
-import VerifyEmail from "./components/UI/VerifyEmail";
 
 import UnAuthenticated from "./Container/UnAuthenticated";
 import MarketPlace from "./pages/MarketPlace";
@@ -47,6 +46,7 @@ import Gaming from "./pages/Gaming";
 import Membership from "./pages/Membership";
 import Pfps from "./pages/Pfps";
 import Photography from "./pages/Photography";
+import Verification from "./pages/Verification";
 
 // import SupportAdmin from "./components/SupportAdmin";
 
@@ -75,7 +75,7 @@ const App = () => {
             </UnAuthenticated>
           }
         />
-        <Route path="/dashboard/verify_email" element={<VerifyEmail />} />
+        <Route path="/verify_email" element={<Verification />} />
         <Route
           path={`/category=marketplace`}
           element={
