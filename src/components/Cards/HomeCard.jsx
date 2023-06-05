@@ -27,7 +27,7 @@ const HomeCard = ({
     // <div className="h-56">
     <a
       href="#"
-      className="flex flex-col h-[308px] hover:rounded-lg gap-2 pb-10 mb-5 bg-gray-100 rounded-lg shadow-lg"
+      className="flex flex-col sm:max-w-[340px] h-[308px] hover:rounded-lg gap-2 pb-10 mb-5 bg-gray-100 rounded-lg shadow-lg"
     >
       <div className="w-full h-full transition-transform duration-300 transform bg-white shadow-md hover:rounded-lg rounded-b-2xl hover:-translate-y-3">
         <div className="w-full h-[80%] rounded-lg">
