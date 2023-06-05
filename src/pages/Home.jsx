@@ -144,11 +144,11 @@ const Home = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen">
+    <div className="relative min-w-full min-h-screen">
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <ConnectWallet show={showModal} modalStatus={ModalStatus} /> */}
       <AddFundModal show={showModal} modalStatus={ModalStatus} />
-      <div className="pb-20 backgroundFade">
+      <div className="pb-20 backgroundFade w-full">
         <Header showModal={ModalStatus} />
         <Categories />
         <div className="px-10">
@@ -201,31 +201,31 @@ const Home = () => {
       {/* <div className="bg-white"> */}
 
       <Link to="/category=arts">
-        <div className="min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] min-h-[330px]">
           <Cards title={"arts"} />
         </div>
       </Link>
 
       <Link to="/category=gaming">
-        <div className="min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] min-h-[330px]">
           <Cards title={"gaming"} />
         </div>
       </Link>
 
       <Link to="/category=membership">
-        <div className="min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] min-h-[330px]">
           <Cards title={"membership"} />
         </div>
       </Link>
 
       <Link to="/category=pfps">
-        <div className="min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] min-h-[330px]">
           <Cards title={"PFPs"} />
         </div>
       </Link>
 
       <Link to="/category=photography">
-        <div className="min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] min-h-[330px]">
           <Cards title={"photography"} />
         </div>
       </Link>

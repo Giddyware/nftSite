@@ -150,7 +150,7 @@ const Cards = ({ title }) => {
           lazyPreloadPrevNext={true}
           breakpoints={{
             320: {
-              slidesPerView: 0.5,
+              slidesPerView: 1.5,
               spaceBetween: 40,
               centeredSlides: true,
             },
