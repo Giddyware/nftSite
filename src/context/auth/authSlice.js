@@ -6,6 +6,9 @@ const initialState = {
   user: null,
   isAuthenticated: Cookies.get("authToken") ? true : false,
   isLoading: false,
+  isEmailVerified: localStorage.getItem("isEmailVerified")
+    ? localStorage.getItem("isEmailVerified")
+    : false,
   error: null,
   token: Cookies.get("authToken") ? Cookies.get("authToken") : null,
   userDetails: {},
@@ -36,6 +39,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.user = null;
       state.error = null;
+      state.isEmailVerified = false;
     },
     getUserDetailsStart(state) {
       state.loading = true;
@@ -49,6 +53,9 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getEmailVerified(state, action) {
+      state.isEmailVerified = action.payload;
+    },
   },
 });
 
@@ -60,6 +67,7 @@ export const {
   getUserDetailsStart,
   getUserDetailsSuccess,
   getUserDetailsFailure,
+  getEmailVerified,
 } = authSlice.actions;
 
 export default authSlice.reducer;

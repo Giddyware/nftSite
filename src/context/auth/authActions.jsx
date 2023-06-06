@@ -6,6 +6,7 @@ import {
   logout,
   getUserDetailsStart,
   getUserDetailsSuccess,
+  getEmailVerified,
 } from "./authSlice";
 import {
   createEmailTokenAPI,
@@ -41,9 +42,11 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await loginUserAPI(userData);
-      console.log(response, "res==jkds=");
+      console.log(response.data.user.emailVerified, "res==jkds=");
+      dispatch(getEmailVerified(response.data.user.emailVerified));
+      localStorage.setItem("isEmailVerified", response.data.user.emailVerified);
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
-      dispatch(authSuccess(response?.data));
+      dispatch(authSuccess(response.data));
 
       <Navigate to="/dashboard" />;
       toast.success("Login Successful");
