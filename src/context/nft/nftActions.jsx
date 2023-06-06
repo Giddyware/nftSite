@@ -50,7 +50,7 @@ export const getNfts = createAsyncThunk(
     dispatch(fetchStart());
     try {
       const nfts = await getNftsAPI();
-      console.log(nfts, "nfts");
+
       dispatch(fetchSuccess(nfts));
     } catch (error) {
       dispatch(fetchFailure(error));
@@ -64,7 +64,7 @@ export const selectProduct = createAsyncThunk(
     dispatch(selectItemStart());
     try {
       const selected = await selectItemAPI(productId);
-      console.log(selected, "selected");
+
       dispatch(selectItemSuccess(selected));
     } catch (error) {
       dispatch(selectItemFailure(error));
@@ -78,7 +78,7 @@ export const buyProduct = createAsyncThunk(
     dispatch(buyProductStart());
     try {
       const bought = await buyNftAPI(productId);
-      console.log(bought, "bought");
+
       toast.success("Congratulations🎉, You have successfully bought an NFT", {
         position: toast.POSITION.TOP_CENTER,
         className: "toast-message",
@@ -97,7 +97,7 @@ export const createNft = createAsyncThunk(
     dispatch(fetchStart());
     try {
       const nft = await createNftAPI(nftData);
-      console.log(nft, nft);
+
       dispatch(fetchSuccess(nft));
       toast.success("Minting Successful .🎉");
     } catch (error) {
@@ -113,7 +113,6 @@ export const pushToMarket = createAsyncThunk(
       const response = await pushToMarketAPI(id);
       // const state = getState().auth.userDetails.myNft;
 
-      console.log("pushToMarket", response);
       toast.success(
         "Congratulations🎉, You have successfully PUSH an NFT to the market. 🚀"
       );
@@ -135,7 +134,7 @@ export const pullFromMarket = createAsyncThunk(
     );
     try {
       const response = await pullFromMarketAPI(id);
-      console.log("pullFromMarket", response);
+
       toast.success("You have successfully PULL an NFT from the market. 🎉");
       dispatch(fetchSuccess(response));
     } catch (error) {
@@ -174,7 +173,7 @@ export const getCategory = createAsyncThunk(
     dispatch(fetchCategoryStart());
     try {
       const cate = await getCategoryAPI(category);
-      console.log(cate, "cate");
+
       dispatch(fetchCategorySuccess(cate));
     } catch (error) {
       dispatch(fetchCategoryFailure(error));
@@ -188,7 +187,7 @@ export const getArtCategory = createAsyncThunk(
     dispatch(fetchArtStart());
     try {
       const response = await getArtNftsAPI();
-      console.log(response, "===ireoi");
+
       dispatch(fetchArtSuccess(response));
     } catch (error) {
       dispatch(fetchArtFailure(error));
@@ -201,7 +200,7 @@ export const getGamingCategory = createAsyncThunk(
     dispatch(fetchGamingStart());
     try {
       const response = await getGamingNftsAPI();
-      console.log(response, "===ireoi");
+
       dispatch(fetchGamingSuccess(response));
     } catch (error) {
       dispatch(fetchGamingFailure(error));
@@ -215,7 +214,7 @@ export const getMembershipCategory = createAsyncThunk(
     dispatch(fetchMembershipStart());
     try {
       const response = await getMembershipNftsAPI();
-      console.log(response, "===ireoi");
+
       dispatch(fetchMembershipSuccess(response));
     } catch (error) {
       dispatch(fetchMembershipFailure(error));
@@ -229,7 +228,7 @@ export const getPfpsCategory = createAsyncThunk(
     dispatch(fetchPfpsStart());
     try {
       const response = await getPfpsNftsAPI();
-      console.log(response, "===ireoi");
+
       dispatch(fetchPfpsSuccess(response));
     } catch (error) {
       dispatch(fetchPfpsFailure(error));
@@ -242,7 +241,7 @@ export const getPhotographyCategory = createAsyncThunk(
     dispatch(fetchPhotographyStart());
     try {
       const response = await getPhotographyNftsAPI();
-      console.log(response, "===ireoi");
+
       dispatch(fetchPhotographySuccess(response));
     } catch (error) {
       dispatch(fetchPhotographyFailure(error));
