@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 function ProtectedRoute({ children }) {
-  const { user, isAuthenticated } = useSelector((state) => state.auth);
-  const isEmailVerified = useSelector(
-    (state) => state.auth.user?.user?.emailVerified
+  const { user, isEmailVerified, isAuthenticated } = useSelector(
+    (state) => state.auth
   );
+
   const location = useLocation().pathname;
 
   // return isAuthenticated ? (

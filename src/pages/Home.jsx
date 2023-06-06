@@ -151,7 +151,7 @@ const Home = () => {
       <Overlay show={showModal} clear={ModalStatus} />
       {/* <ConnectWallet show={showModal} modalStatus={ModalStatus} /> */}
       <AddFundModal show={showModal} modalStatus={ModalStatus} />
-      <div className="pb-20 backgroundFade w-full">
+      <div className="w-full pb-20 backgroundFade">
         <Header showModal={ModalStatus} />
         <Categories />
         <div className="px-10">
@@ -204,31 +204,31 @@ const Home = () => {
       {/* <div className="bg-white"> */}
 
       <Link to="/category=arts">
-        <div className="lg:min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] mt-20 min-h-[330px]">
           <Cards title={"arts"} />
         </div>
       </Link>
 
       <Link to="/category=gaming">
-        <div className="lg:min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] mt-20 min-h-[330px]">
           <Cards title={"gaming"} />
         </div>
       </Link>
 
       <Link to="/category=membership">
-        <div className="lg:min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] mt-20 min-h-[330px]">
           <Cards title={"membership"} />
         </div>
       </Link>
 
       <Link to="/category=pfps">
-        <div className="lg:min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] mt-20 min-h-[330px]">
           <Cards title={"PFPs"} />
         </div>
       </Link>
 
       <Link to="/category=photography">
-        <div className="lg:min-w-[1312px] min-h-[330px]">
+        <div className="lg:min-w-[1312px] mt-20 min-h-[330px]">
           <Cards title={"photography"} />
         </div>
       </Link>
