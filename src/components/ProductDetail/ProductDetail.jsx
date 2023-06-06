@@ -87,7 +87,7 @@ const ProductDetail = () => {
     );
   }
 
-  if (error === "you dont have enough balance to buy this Nft") {
+  if (error === "you don't have enough balance to buy this Nft") {
     return (
       <div>
         {toast.warning(
@@ -110,7 +110,7 @@ const ProductDetail = () => {
     selectedItem;
   return (
     <>
-      <Header />
+      <Header addBg={true} />
       <div className="w-full px-10">
         <div className="flex gap-5 flex-col lg:flex-row">
           <Product photo={photo} />

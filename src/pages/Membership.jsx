@@ -27,6 +27,7 @@ import { getMembershipCategory } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
+import Categories from "../components/Category/Categories";
 
 const Membership = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -73,6 +74,7 @@ const Membership = ({ name }) => {
         }}
       >
         <Header />
+        <Categories />
         <div className="w-48 rounded md:w-[12%]  border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
           <img src={avater} className="rounded md:rounded-3xl" />
         </div>

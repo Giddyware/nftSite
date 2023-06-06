@@ -97,7 +97,7 @@ const Mint = ({ show, modalStatus }) => {
       <Overlay show={show} clear={modalStatus} />
 
       <form
-        className="absolute top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        className="fixed h-[90%] top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
         style={{
           transform: show ? "translateY(0)" : "translateY(-1500px)",
           opacity: show ? "1" : "0",
@@ -198,14 +198,14 @@ const Mint = ({ show, modalStatus }) => {
             {...mintForm("description")}
           ></textarea>
           <div className="flex justify-between w-full mt-auto">
-            <button className="bg-[#084cdf] py-2 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
+            <button className="bg-[#084cdf] py-5 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
               Mint
             </button>
             <button
               onClick={() => modalStatus()}
-              className="w-48 px-3 py-2 mt-3 text-white bg-gray-400 rounded-lg shadow-xl hover:bg-gray-600"
+              className="w-48 px-3 py-5 mt-3 text-white bg-gray-400 rounded-lg shadow-xl hover:bg-gray-600"
             >
-              Go to Dashboard
+              Cancel
             </button>
           </div>
         </div>

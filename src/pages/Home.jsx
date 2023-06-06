@@ -137,7 +137,6 @@ const Home = () => {
   const [count, setCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const { user, isAuthenticated, error } = useSelector((state) => state.auth);
-  console.log(user?.user?.emailVerified, "user==");
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -193,8 +192,8 @@ const Home = () => {
             // scrollbar={{ draggable: false }}
           >
             {data.map((artDatails) => (
-              <SwiperSlide>
-                <FullCard key={artDatails.id} {...artDatails} />
+              <SwiperSlide key={artDatails.id}>
+                <FullCard {...artDatails} />
               </SwiperSlide>
             ))}
           </Swiper>

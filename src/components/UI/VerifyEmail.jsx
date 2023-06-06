@@ -23,15 +23,15 @@ const VerifyEmail = () => {
       </header>
       <main className="flex flex-col items-center text-3xl gap-7">
         {/* <BsEnvelopeExclamation size={94}/> */}
-        <div className="my-10 md:my-16">
+        <div className="my-10 md:my-12">
           <img className="w-72" src={envelope} />
         </div>
 
         <h1 className="text-4xl font-bold">
           Your email has not been verified.
         </h1>
-        <p>Send a verification email to </p>
-        <div className="px-24 mx-auto mt-6  rounded-lg hover:bg-neutral-100 hover:text-blue-500">
+        <p>Click the button below to verified </p>
+        <div className="px-24 mx-auto  rounded-lg hover:bg-neutral-100 hover:text-blue-500">
           <button
             // type="submit"
             // disabled={loading}
@@ -41,14 +41,14 @@ const VerifyEmail = () => {
             Send verification Email
           </button>
         </div>
+        <p
+          onClick={() => handleClick()}
+          className="text-[16px] mt-10 hover:underline cursor-pointer"
+        >
+          Link not received? click here to Resend link
+        </p>
       </main>
-
-      <footer className="flex mx-auto mt-20 text-blue-500  gap-3 mb-8">
-        <BsDiscord size={30} />
-        <BsTwitter size={30} />
-        <BsFacebook size={30} />
-        <BsTelegram size={30} />
-      </footer>
+      >
     </div>
   );
 };

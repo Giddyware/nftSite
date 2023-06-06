@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { TbNetwork } from "react-icons/tb";
 
 import Header from "../components/Header/Header";
-import background from "../assets/cover/pfps_banner.jpg";
-import profile from "../assets/cover/pfps_profile.jpg";
+import profile from "../assets/cover/pfps_banner.jpg";
+import background from "../assets/cover/pfps_profile.jpg";
 import { pfpsText } from "../utils/textData";
 import CollectionTabs from "../components/Tabs";
 import CollectionCard from "../components/UI/CollectionCard";
@@ -27,6 +27,7 @@ import { getPfpsCategory } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
+import Categories from "../components/Category/Categories";
 
 const Pfps = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -71,6 +72,7 @@ const Pfps = ({ name }) => {
         }}
       >
         <Header />
+        <Categories />
         <div className="w-48 rounded md:w-[12%]  border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
           <img src={profile} className="rounded md:rounded-3xl" />
         </div>

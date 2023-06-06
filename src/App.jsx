@@ -54,7 +54,7 @@ const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   // TODO:Replace with the fallback path for unauthenticated users
   const fallbackPath = "/auth"; // Replace with the fallback path for unauthenticated users
-  console.log(isAuthenticated);
+
   const dispatch = useDispatch();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -161,7 +161,7 @@ const App = () => {
 
         {/* <Route path="dashboard/buyNft" element={<Mint />} /> */}
         <Route
-          path={`products/:productId`}
+          path={`/products/:productId`}
           element={
             <ProtectedRoute>
               <ProductDetail />

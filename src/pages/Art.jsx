@@ -27,6 +27,7 @@ import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 import { artText } from "../utils/textData";
+import Categories from "../components/Category/Categories";
 
 const Art = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -66,9 +67,11 @@ const Art = ({ name }) => {
           "backdrop-filter": "blur(5px)",
           height: "40%",
           objectFit: "cover",
+          filter: "brightness(80%)",
         }}
       >
-        <Header />
+        <Header addBg={true} />
+        <Categories />
         <div className="w-48 rounded md:w-[12%] border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
           <img src={profile} className="rounded md:rounded-3xl" />
         </div>
@@ -123,7 +126,7 @@ const Art = ({ name }) => {
       <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
         {art?.data?.map((nft) => (
           <li key={nft.id}>
-            <Link to={`${currentPath}/products/${nft.id}`}>
+            <Link to={`/products/${nft.id}`}>
               <CollectionCard {...nft} />
             </Link>
           </li>
