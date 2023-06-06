@@ -117,7 +117,7 @@ const Cards = ({ title }) => {
   const dispatch = useDispatch();
 
   const lowerCaseTitle = title.toLowerCase();
-  console.log(lowerCaseTitle, "lowerCaseTitle");
+
   const { categories, isLoading, error } = useSelector(
     (state) => state.product
   );
@@ -125,7 +125,6 @@ const Cards = ({ title }) => {
   useEffect(() => {
     const lowerCaseTitle = title.toLowerCase();
     dispatch(getCategory(lowerCaseTitle));
-    console.log(categories, lowerCaseTitle);
   }, [getCategory]);
 
   // const lowerCaseTitle = title.toLowerCase();

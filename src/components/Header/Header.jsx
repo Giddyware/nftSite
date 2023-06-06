@@ -61,7 +61,7 @@ const Button_Details = () => {
 const ProfileButton = () => {
   const location = useLocation().pathname;
   const { user, isAuthenticated } = useSelector((state) => state.auth);
-  console.log(user?.user?.emailVerified, "user====");
+
   // useEffect(() => {
   //   dispatch(getUserDetails());
   // }
@@ -99,20 +99,6 @@ const ProfileButton = () => {
   );
 };
 const Header = ({ addBg }) => {
-  // const [bg, setBg] = useState(false);
-
-  // const check = () => {
-  //   if (window.scrollY > 20) {
-  //     setBg(true);
-  //   } else {
-  //     setBg(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   check();
-  // }, []);
-
   return (
     <div
       className={

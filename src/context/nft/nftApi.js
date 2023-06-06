@@ -48,7 +48,7 @@ export const getArtNftsAPI = async () => {
       `${BASE_URL}/nft?category=arts&sort=-priceInEtherium`,
       tokenConfig()
     );
-    console.log(response.data, "==resData");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -61,7 +61,7 @@ export const getGamingNftsAPI = async () => {
       `${BASE_URL}/nft?category=gaming&sort=-priceInEtherium`,
       tokenConfig()
     );
-    console.log(response.data, "===resData");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -73,7 +73,7 @@ export const getMembershipNftsAPI = async () => {
       `${BASE_URL}/nft?category=membership&sort=-priceInEtherium`,
       tokenConfig()
     );
-    console.log(response.data, "===resData");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -85,7 +85,7 @@ export const getPfpsNftsAPI = async () => {
       `${BASE_URL}/nft?category=pfps&sort=-priceInEtherium`,
       tokenConfig()
     );
-    console.log(response.data, "===resData");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -97,7 +97,7 @@ export const getPhotographyNftsAPI = async () => {
       `${BASE_URL}/nft?category=photography&sort=-priceInEtherium`,
       tokenConfig()
     );
-    console.log(response.data, "===resData");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -110,7 +110,7 @@ export const selectItemAPI = async (productId) => {
       `${BASE_URL}/nft/${productId}`,
       tokenConfig()
     );
-    // console.log(response.data.data, "resData");
+
     return response.data.data;
   } catch (error) {
     throw error.response.data;
@@ -123,7 +123,7 @@ export const buyNftAPI = async (productId) => {
       `${BASE_URL}/nft/buyNft/${productId}`,
       tokenConfig()
     );
-    // console.log(response.data, "resData");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -140,13 +140,11 @@ export const createNftAPI = async (nftData) => {
     const responseData = response.data;
     console.log(response);
     if (responseData) {
-      console.log(responseData);
       return responseData;
     } else {
       throw new Error("Invalid response data");
     }
   } catch (error) {
-    console.log(error.response.data);
     throw error.response.data;
   }
 };
@@ -158,7 +156,7 @@ export const pushToMarketAPI = async (productId) => {
       {},
       tokenConfig()
     );
-    console.log(response, "pushToMarket");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -172,7 +170,7 @@ export const pullFromMarketAPI = async (productId) => {
       {},
       tokenConfig()
     );
-    console.log(response, "pullFromMarket");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -182,7 +180,7 @@ export const pullFromMarketAPI = async (productId) => {
 export const getCategoryAPI = async (category) => {
   try {
     const response = await axios.get(`/nft/unProtectedNft`, tokenConfig());
-    console.log(response, "resData");
+
     return response.data.data;
   } catch (error) {
     throw error.response.data;

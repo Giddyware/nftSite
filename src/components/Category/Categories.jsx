@@ -27,7 +27,7 @@ const Categories = () => {
   return (
     <div className="flex justify-between capitalize px-5 my-5 md:my-12 text-white md:justify-start md:gap-5 md:text-2xl font-poppins ">
       {list.map((val) => {
-        return <CategoryLink {...val} />;
+        return <CategoryLink key={val.link} {...val} />;
       })}
     </div>
   );

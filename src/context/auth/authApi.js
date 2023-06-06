@@ -12,7 +12,6 @@ const authToken = Cookies.get("authToken"); // Retrieve the authToken from cooki
 axios.interceptors.request.use((config) => {
   if (authToken) {
     config.headers["Authorization"] = `Bearer ${authToken}`; // Add the authToken to the request headers
-    console.log(authToken, "authToken");
   }
   return config;
 });
@@ -40,13 +39,11 @@ export const registerUserAPI = async (userData) => {
     const responseData = response.data;
 
     if (responseData) {
-      console.log(responseData);
       return responseData;
     } else {
       throw new Error("Invalid response data");
     }
   } catch (error) {
-    console.log(error.response?.data);
     throw error.response?.data;
   }
 };
@@ -59,7 +56,7 @@ export const loginUserAPI = async (userData) => {
     // if (error.isAxiosError && !error.response) {
     //   throw new Error("Network Error: Please check your internet connection.");
     // }
-    console.log(error);
+
     throw error;
   }
 };
@@ -91,7 +88,7 @@ export const tokenConfig = () => {
 export const getUserDetailsRequestAPI = async () => {
   try {
     const response = await api.get("/users/myDetails", tokenConfig());
-    console.log(response.data, "userDetails==");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -105,7 +102,7 @@ export const createEmailTokenAPI = async () => {
       {},
       tokenConfig()
     );
-    console.log(response, "emailAPI");
+
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -115,7 +112,7 @@ export const createEmailTokenAPI = async () => {
 export const getNftsAPI = async () => {
   try {
     const response = await api.get("/nft");
-    console.log(response, "reps nft");
+
     return response.data;
   } catch (error) {
     throw error.response.data;

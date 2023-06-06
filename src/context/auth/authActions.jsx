@@ -42,9 +42,9 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await loginUserAPI(userData);
-      console.log(response.data.user.emailVerified, "res==jkds=");
+
       dispatch(getEmailVerified(response.data.user.emailVerified));
-      localStorage.setItem("isEmailVerified", response.data.user.emailVerified);
+      localStorage.setItem("isEmailVerified", response.data.user.emailVerified); //* Store the emailVerified in the localStorage
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
       dispatch(authSuccess(response.data));
 
@@ -62,7 +62,6 @@ export const logoutUser = createAsyncThunk(
     try {
       await logoutUserAPI();
       dispatch(logout());
-      // dispatch(clearError());
     } catch (error) {
       dispatch(authFailure(error));
     }
@@ -75,7 +74,7 @@ export const getUserDetails = createAsyncThunk(
     try {
       dispatch(getUserDetailsStart());
       const response = await getUserDetailsRequestAPI();
-      console.log(response, "response==");
+
       dispatch(getUserDetailsSuccess(response.data));
     } catch (error) {
       dispatch(getUserDetailsFailure(error.message));
