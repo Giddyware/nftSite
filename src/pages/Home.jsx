@@ -155,15 +155,15 @@ const Home = () => {
         <Categories />
         <div className="px-10">
           <Swiper
-            slidesPerGroup={4}
+            slidesPerGroup={1}
             slidesPerView={"auto"}
             autoplay={{
-              delay: 2500,
+              delay: 1500,
               disableOnInteraction: false,
             }}
             breakpoints={{
               320: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 20,
               },
               640: {
