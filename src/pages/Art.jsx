@@ -28,6 +28,7 @@ import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 import { artText } from "../utils/textData";
 import Categories from "../components/Category/Categories";
+import HomeCard from "../components/Cards/HomeCard";
 
 const Art = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -127,7 +128,7 @@ const Art = ({ name }) => {
         {art?.data?.map((nft) => (
           <li key={nft.id}>
             <Link to={`/products/${nft.id}`}>
-              <CollectionCard {...nft} />
+              <HomeCard {...nft} />
             </Link>
           </li>
         ))}

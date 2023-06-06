@@ -28,6 +28,7 @@ import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 import Categories from "../components/Category/Categories";
+import HomeCard from "../components/Cards/HomeCard";
 
 const Membership = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -130,7 +131,7 @@ const Membership = ({ name }) => {
         {membership?.data?.map((nft) => (
           <li key={nft.id}>
             <Link to={`/products/${nft.id}`}>
-              <CollectionCard {...nft} />
+              <HomeCard {...nft} />
             </Link>
           </li>
         ))}
