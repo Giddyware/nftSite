@@ -4,6 +4,7 @@ import QRCodeGenerator from "../components/QRCodeGenerator";
 import Loading from "../components/Loading/Loading";
 import { getUserDetails } from "../context/auth/authActions";
 import Overlay from "../components/UI/Overlay";
+import CopyOnClick from "../components/CopyOnClick";
 
 const Deposit = ({ show, modalStatus }) => {
   const { userDetails, isLoading, error } = useSelector((state) => state.auth);
@@ -46,18 +47,17 @@ const Deposit = ({ show, modalStatus }) => {
             </div>
             <div className="flex flex-col text-center opacity-[0.7] text-[1.25rem] px-[12px]">
               <p className="text-left">Send only ETH to this deposit address</p>
-              {/* <p>
-              This address does not support deposit of non-fungible token,
-              please go to NFT page to deposit NFT
-            </p> */}
             </div>
           </div>
 
           <div className=" px-[12px] gap-3 mb-8 flex flex-col text-center opacity-[0.7] text-[1.25rem]">
             <p className="text-left font-semibold mt-5">Wallet Address</p>
-            <p className="font-bold text-left text-2xl">
-              {userDetails?.wallet?.address}
-            </p>
+            <div className="font-bold text-left text-2xl">
+              <span>
+                {userDetails?.wallet?.address}
+                <CopyOnClick text={userDetails?.wallet?.address} />
+              </span>
+            </div>
           </div>
 
           <div className="px-[12px] flex flex-col opacity-[0.7] text-[1.25rem] font-bold">
