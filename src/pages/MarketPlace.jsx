@@ -28,6 +28,7 @@ import { getNfts } from "../context/nft/nftActions";
 import { Link, useLocation } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
+import Categories from "../components/Category/Categories";
 
 const MarketPlace = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -60,7 +61,6 @@ const MarketPlace = ({ name }) => {
 
   return (
     <div className="relative w-full h-screen">
-      <Header />
       <div
         className=""
         style={{
@@ -70,6 +70,10 @@ const MarketPlace = ({ name }) => {
           objectFit: "cover",
         }}
       >
+        <Header addBg={true} />
+
+        <Categories />
+
         <div className="w-48 rounded md:w-[12%]  border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
           <img src={profile} className="rounded md:rounded-3xl" />
         </div>
@@ -124,7 +128,7 @@ const MarketPlace = ({ name }) => {
       <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
         {nfts?.data?.map((nft) => (
           <li key={nft.id}>
-            <Link to={`products/${nft.id}`}>
+            <Link to={`/products/${nft.id}`}>
               <CollectionCard {...nft} />
             </Link>
           </li>

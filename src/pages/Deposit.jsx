@@ -21,7 +21,7 @@ const Deposit = ({ show, modalStatus }) => {
       <Overlay show={show} clear={modalStatus} />
       {userDetails && (
         <div
-          className="absolute top-0 right-0 left-0 bottom-0  mx-auto  overflow-y-auto max-h-[80%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+          className="fixed top-0 right-0 left-0 bottom-0  mx-auto  overflow-y-auto max-h-[80%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
           style={{
             transform: show ? "translateY(0)" : "translateY(-1500px)",
             opacity: show ? "1" : "0",
@@ -54,8 +54,8 @@ const Deposit = ({ show, modalStatus }) => {
           </div>
 
           <div className=" px-[12px] gap-3 mb-8 flex flex-col text-center opacity-[0.7] text-[1.25rem]">
-            <p className="text-left">Wallet Address</p>
-            <p className="font-bold text-left">
+            <p className="text-left font-semibold mt-5">Wallet Address</p>
+            <p className="font-bold text-left text-2xl">
               {userDetails?.wallet?.address}
             </p>
           </div>

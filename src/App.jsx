@@ -161,7 +161,7 @@ const App = () => {
 
         {/* <Route path="dashboard/buyNft" element={<Mint />} /> */}
         <Route
-          path={`products/:productId`}
+          path={`/products/:productId`}
           element={
             <ProtectedRoute>
               <ProductDetail />

@@ -126,7 +126,7 @@ const SideNav = ({ refs, showMint }) => {
           </li>
 
           <Link
-            to={`/marketPlace`}
+            to={`/category=marketplace`}
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
           >
             <DashboardLinks

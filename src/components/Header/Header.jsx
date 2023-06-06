@@ -103,7 +103,7 @@ const Header = ({ addBg }) => {
     <div
       className={
         addBg
-          ? "bg-[#665F5E] flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white font-poppins"
+          ? `bg-[#665F5E] flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white font-poppins`
           : "flex flex-row items-center justify-between w-full gap-5 px-5 py-5 text-white bg-transparent font-poppins"
       }
     >
