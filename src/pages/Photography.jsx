@@ -66,18 +66,18 @@ const Photography = ({ name }) => {
   return (
     <div className="relative w-full h-screen">
       <div
-        className=""
+        className="h-[20%] md:h-[40%] lg:h-[40%]"
         style={{
           backgroundImage: `url(${background})`,
           "backdrop-filter": "blur(5px)",
-          height: "40%",
+          // height: "40%",
           objectFit: "cover",
           width: "100%",
         }}
       >
         <Header />
         <Categories />
-        <div className="w-48 rounded md:w-[12%]  border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
+        <div className="w-36 h-36 md:w-48 md:h-48 rounded border-4 md:rounded-3xl absolute bottom-[-32px] left-10">
           <img src={profile} className="rounded md:rounded-3xl" />
         </div>
       </div>
