@@ -22,7 +22,7 @@ const Deposit = ({ show, modalStatus }) => {
       <Overlay show={show} clear={modalStatus} />
       {userDetails && (
         <div
-          className="fixed top-0 right-0 left-0 bottom-0  mx-auto  overflow-y-auto max-h-[80%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+          className="fixed top-0 right-0 left-0 bottom-0  mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
           style={{
             transform: show ? "translateY(0)" : "translateY(-1500px)",
             opacity: show ? "1" : "0",
@@ -38,11 +38,9 @@ const Deposit = ({ show, modalStatus }) => {
               X
             </button>
           </div>
-          {/* <div className="h-[90vh] border-solid border mt-[5vh] border-black shadow-lg  mx-auto font-poppins text-[1rem]  justify-between flex flex-col px-8 py-12 max-w-xl rounded-[10px]"> */}
-          {/* <p className="text-[2rem] px-[12px] font-bold">Deposit ETH</p> */}
 
           <div>
-            <div className="w-[150px] h-[150px] border-solid border mx-auto mb-10">
+            <div className="w-[150px]  h-[150px] border-solid border mx-auto mb-10">
               <QRCodeGenerator qrCode={userDetails?.wallet?.qrCode} />
             </div>
             <div className="flex flex-col text-center opacity-[0.7] text-[1.25rem] px-[12px]">
@@ -52,8 +50,8 @@ const Deposit = ({ show, modalStatus }) => {
 
           <div className=" px-[12px] gap-3 mb-8 flex flex-col text-center opacity-[0.7] text-[1.25rem]">
             <p className="text-left font-semibold mt-5">Wallet Address</p>
-            <div className="font-bold text-left text-2xl">
-              <span>
+            <div className="text-black font-extrabold text-left text-2xl">
+              <span className="text-black">
                 {userDetails?.wallet?.address}
                 <CopyOnClick text={userDetails?.wallet?.address} />
               </span>

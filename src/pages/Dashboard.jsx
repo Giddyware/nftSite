@@ -60,7 +60,7 @@ const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
           className="px-16 py-6 text-gray-400 bg-white rounded-lg cursor-pointer md:px-24 md:py-8"
           onClick={() => showWithdraw()}
         >
-          {t("dashboard.withdrawal")}
+          Withdraw
         </button>
       </div>
     </div>

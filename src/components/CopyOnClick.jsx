@@ -7,7 +7,7 @@ const CopyOnClick = ({ text }) => {
   const handleCopyClick = async () => {
     try {
       await navigator.clipboard.writeText(text);
-      console.log(text, "text==");
+
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
@@ -18,9 +18,9 @@ const CopyOnClick = ({ text }) => {
   };
 
   return (
-    <div className="inline-flex ml-8">
+    <div className="inline-flex ml-8 text-black">
       <button onClick={handleCopyClick}>
-        {isCopied ? "Copied!" : <MdContentCopy />}
+        {isCopied ? "Copied!" : <MdContentCopy size={22} />}
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineClose, AiOutlineScan } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
@@ -17,6 +17,8 @@ import {
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Overlay from "./Overlay";
+
+import PasteOnClick from "../PasteOnClick";
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
   amount: z.number(),
@@ -24,11 +26,19 @@ const schema = z.object({
 });
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
+
   const [coin, setCoin] = useState("");
   const dispatch = useDispatch();
   const { response, isLoading, error } = useSelector(
     (state) => state.transaction
   );
+
+  const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
+
+  const handlePaste = (text) => {
+    setInputValue(text);
+  };
 
   const {
     register,
@@ -98,7 +108,7 @@ const Withdraw = ({ show, modalStatus }) => {
           </label>
           <select
             id="coins"
-            className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 "
             {...register("coin")}
             onChange={handleChange}
           >
@@ -114,15 +124,15 @@ const Withdraw = ({ show, modalStatus }) => {
           Address
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-            <CgProfile className="text-gray-500" />
-            <AiOutlineScan className="mx-3 text-gray-500" />
-          </div>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"></div>
+          <PasteOnClick onPaste={handlePaste} />
           <input
             type="text"
+            ref={inputRef}
             id="address"
-            className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50  "
             placeholder="Enter your address"
+            value={inputValue}
             {...register("address")}
           />
         </div>
@@ -138,7 +148,7 @@ const Withdraw = ({ show, modalStatus }) => {
               </label>
             </div>
             <span className="text-2xl text-gray-600">
-              WETH:{" "}
+              WETH bal:{" "}
               <span className="font-bold">
                 110 <span className="text-lg">WETH</span>{" "}
               </span>
@@ -154,23 +164,17 @@ const Withdraw = ({ show, modalStatus }) => {
             })}
           />
         </div>
-        <p className="mt-3 text-2xl text-gray-600">
+        {/* <p className="mt-3 text-2xl text-gray-600">
           fee: 20% <span className="font-bold">~20 ETH</span>
-        </p>
+        </p> */}
 
         <h3 className="my-10 text-2xl text-gray-600">
-          Eth bal: <span className="font-bold">7329 ETH</span>
+          ETH bal: <span className="font-bold">7329 ETH</span>
         </h3>
-        <div>
-          <button
-            className="mx-auto  mt-10 capitalize bg-[#2196F3]"
-            type="submit"
-          >
-            <span className="w-full p-5 rounded bg-[#2196f3] text-white">
-              submit
-            </span>
-          </button>
-        </div>
+
+        <button className="w-full mt-10 capitalize bg-[#2196F3] text-white p-4 md:p-6">
+          submit
+        </button>
       </form>
 
       {/* <div

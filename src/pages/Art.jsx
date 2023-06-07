@@ -76,7 +76,7 @@ const Art = ({ name }) => {
         </div>
       </div>
       <div className="m-10 mt-20">
-        <div className="flex justify-between ">
+        <div className="flex justify-between">
           <h1 className="font-bold text-[30px]">{name}</h1>
           <div>
             <TbNetwork />
