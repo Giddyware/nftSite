@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { AuthContext } from "../../Container/Auth";
 import {
@@ -15,7 +16,7 @@ import {
   loginUser,
 } from "../../context/auth/authActions";
 import { getNfts } from "../../context/nft/nftActions";
-import { zodResolver } from "@hookform/resolvers/zod";
+import logo from "../../assets/logo.png";
 
 const schema = z.object({
   email: z.string().nonempty("Email is required").email("Invalid email format"),
@@ -58,15 +59,19 @@ const Login = () => {
   };
 
   return (
+    // <div className="flex">
     <form
-      className="w-[90%] md:w-full max-w-[40rem] rounded-3xl px-12 py-16 shadow-100  bg-white border outline-slate-700 outline-4"
+      className="w-[90%] flex flex-col gap-12 md:w-full max-w-[40rem] gap-12 rounded-3xl px-12 py-16 shadow-100  bg-white border outline-slate-700 outline-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       {isAuthenticated && (
         <Navigate to={state !== null ? state.from : "/marketPlace"} />
       )}
+      <header className="mx-auto">
+        <img className="w-64" alt="Artmint" src={logo} />
+      </header>
       <fieldset className="grid grid-cols-6 gap-8">
-        <p as="legend" className="text-5xl font-normal tracking-300">
+        <p as="legend" className="mx-auto text-5xl font-normal tracking-300">
           Login
         </p>
 
@@ -144,6 +149,7 @@ const Login = () => {
         </div>
       </fieldset>
     </form>
+    // </div>
   );
 };
 

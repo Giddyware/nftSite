@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthContext } from "../../Container/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import logo from "../../assets/logo.png";
 
 const schema = z.object({
   username: z.string().nonempty("UserName is required"),
@@ -48,9 +49,12 @@ const RegisterForm = () => {
   };
   return (
     <form
-      className="w-[90%] max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100  mt-24 bg-white border outline-slate-700 outline-4"
+      className="w-[90%] flex flex-col gap-12 max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100  mt-24 bg-white border outline-slate-700 outline-4"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <header className="mx-auto">
+        <img className="w-64" alt="Artmint" src={logo} />
+      </header>
       <fieldset className="grid grid-cols-6 gap-8">
         <p as="legend" className="text-5xl font-normal tracking-300">
           Register
