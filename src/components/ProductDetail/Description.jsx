@@ -1,5 +1,6 @@
 import React from "react";
 import { CgNotes } from "react-icons/cg";
+import { GoVerified } from "react-icons/go";
 
 const Description = ({ description, nftOwner }) => {
   return (
@@ -8,13 +9,19 @@ const Description = ({ description, nftOwner }) => {
         <CgNotes />
         Description
       </p>
-      <p className="p-10 text-xl bg-[#FBFDFF]">
-        <p className="">
-          By
-          <span className="ml-2 font-bold">{nftOwner?.username}</span>
-        </p>
+
+      <div className="p-10 text-xl">
+        <div className="flex">
+          <h3>By</h3>
+          <span className="ml-2 font-bold hover:text-gray-500">
+            {nftOwner?.username}
+          </span>
+          <span className="ml-2">
+            {nftOwner?.userVerified ? <GoVerified color="#2081E2" /> : null}
+          </span>
+        </div>
         <div className="h-[210px] overflow-y-auto py-4">{description}</div>
-      </p>
+      </div>
     </div>
   );
 };

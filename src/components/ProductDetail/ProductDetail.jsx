@@ -109,11 +109,12 @@ const ProductDetail = () => {
 
   const { id, photo, description, name, nftOwner, priceInEtherium } =
     selectedItem;
+  console.log(selectedItem, "selectedItem");
   return (
     <>
       <Header addBg={true} />
       <div className="w-full px-10 mt-8 md:mt-12 ">
-        <div className="flex gap-5 flex-col lg:flex-row">
+        <div className="flex flex-col gap-5 lg:flex-row">
           <Product photo={photo} />
           <DetailText
             productId={id}
@@ -129,7 +130,7 @@ const ProductDetail = () => {
           <p className="p-12 text-3xl font-bold font-poppins">
             More On Collection
           </p>
-          <div className="grid py-5 w-full grid-cols-4 gap-20 mb-10 overflow-x-scroll bg-blue-50">
+          <div className="grid w-full grid-cols-4 gap-20 py-5 mb-10 overflow-x-scroll">
             {coll.map((lec) => (
               <HomeCard key={lec.image} {...lec} />
             ))}
