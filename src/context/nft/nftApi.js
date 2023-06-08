@@ -32,7 +32,7 @@ export const getNftsAPI = async () => {
   try {
     // const response = await axios.get("/nft?nftInMarket=true", tokenConfig());
     const response = await axios.get(
-      "/nft?sort=-priceInEtherium",
+      "/nft?sort=-priceInEtherium&nftInMarket=true",
       tokenConfig()
     );
     // console.log(response.data, "resData");
