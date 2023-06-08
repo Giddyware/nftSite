@@ -134,8 +134,8 @@ const Dashboard = () => {
     userDetails;
 
   useEffect(() => {
-    console.log(userDetails, "userDetails====");
     dispatch(getUserDetails());
+    console.log(userDetails, "userDetails====");
   }, []);
 
   useEffect(() => {
@@ -146,7 +146,6 @@ const Dashboard = () => {
       .then((response) => {
         const data = response.data;
         setUsdRate(data.ethereum.usd);
-        console.log(data.ethereum, "data");
       })
       .catch((error) => {
         console.log("Error", error);
@@ -156,6 +155,9 @@ const Dashboard = () => {
   if (isLoading) {
     return <Loading />;
   }
+  const baseUrl = "https://alphapp.tech";
+  const imgUrl = `${baseUrl}${photo}`;
+  console.log(imgUrl, "imgUrl");
   return (
     !!userDetails && (
       <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
@@ -187,8 +189,8 @@ const Dashboard = () => {
                 onClick={() => onProfile()}
               >
                 <img
-                  className="border border-white border-solid rounded-full h-14 w-14"
-                  src={avatar}
+                  className="bg-black border border-white border-solid rounded-full h-14 w-14"
+                  src={photo && imgUrl}
                   alt=""
                   crossOrigin="anonymous"
                 />

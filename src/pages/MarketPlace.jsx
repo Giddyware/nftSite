@@ -43,8 +43,6 @@ const MarketPlace = ({ name }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  console.log(nfts, "nfts");
-
   useEffect(() => {
     dispatch(getNfts());
   }, [dispatch]);
