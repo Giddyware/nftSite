@@ -189,7 +189,7 @@ const Dashboard = () => {
                 onClick={() => onProfile()}
               >
                 <img
-                  className="bg-black border border-white border-solid rounded-full h-14 w-14"
+                  className="bg-gray-200 border border-white border-solid rounded-full h-14 w-14"
                   src={photo && imgUrl}
                   alt=""
                   crossOrigin="anonymous"

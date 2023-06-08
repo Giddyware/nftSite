@@ -110,7 +110,7 @@ const Mint = ({ show, modalStatus }) => {
 
           <p className="text-2xl font-bold">Image *</p>
           <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
-          <div>
+          <div className="max-w-[290px] md:max-w-[350px] lg:max-w-[350px]">
             <label htmlFor="photo" className="drop-container">
               <span className="drop-title">Drop files here</span>
               or
