@@ -37,21 +37,21 @@ export const Data = [
   },
 ];
 
-const Detailtext = () => {
+const Detailtext = ({ description, priceInEtherium, name }) => {
   return (
     <div className="font-poppins flex-1">
-      <div className="bg-blue-50 mt-20 rounded-[5px] border px-5 w-full py-10">
+      <div className="rounded-[5px] border px-5 w-full py-10">
         <p>Best offer</p>
         <p className="text-[30px] font-bold">
-          2.7115 WETH $5{" "}
-          <span className="text-2xl font-[300] text-[#eee]">$5,060.78</span>{" "}
+          {priceInEtherium} ETH
+          <span className="text-base text-gray-400">$5,060.78</span>
         </p>
-        <button>
-          <span className="text-blue"> Buy Now </span>
+        <button className="w-[330px] bg-[#2295EF] py-6 rounded-lg">
+          <span className="text-white text-center text-xl"> Buy Now </span>
         </button>
       </div>
 
-      <Description />
+      <Description description={description} />
     </div>
   );
 };

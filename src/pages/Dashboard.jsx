@@ -35,6 +35,7 @@ import { getUserDetails } from "../context/auth/authActions";
 import Deposit from "./Deposit";
 import Mint from "./Mint";
 import axios from "axios";
+import Profile from "../components/Profile";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -107,6 +108,7 @@ const Dashboard = () => {
   const [showModalDeposit, setShowModalDeposit] = useState(false);
   const [usdRate, setUsdRate] = useState(0);
   const [showModalMint, setShowModalMint] = useState(false);
+  const [showModalProfile, setShowModalProfile] = useState(false);
   const dispatch = useDispatch();
 
   const onWithdraw = () => {
@@ -117,6 +119,9 @@ const Dashboard = () => {
   };
   const onMint = () => {
     setShowModalMint((prev) => !prev);
+  };
+  const onProfile = () => {
+    setShowModalProfile((prev) => !prev);
   };
 
   const ChangeLanguage = (code) => {
@@ -148,8 +153,6 @@ const Dashboard = () => {
       });
   }, []);
 
-  console.log(userDetails, "userDetails====");
-
   if (isLoading) {
     return <Loading />;
   }
@@ -159,10 +162,7 @@ const Dashboard = () => {
         <Withdraw show={showModalWithdraw} modalStatus={onWithdraw} />
         <Deposit show={showModalDeposit} modalStatus={onDeposit} />
         <Mint show={showModalMint} modalStatus={onMint} />
-        {/* <Overlay show={showModalWithdraw} clear={onWithdraw} /> */}
-        {/* <Overlay show={showModalDeposit} clear={onDeposit} />
-        <Overlay show={showModalMint} clear={onMint} />
-        */}
+        <Profile show={showModalProfile} modalStatus={onProfile} />
 
         <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 
@@ -182,7 +182,10 @@ const Dashboard = () => {
                   ))}
                 </select>
               </div>
-              <div className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center">
+              <div
+                className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center"
+                onClick={() => onProfile()}
+              >
                 <img
                   className="border border-white border-solid rounded-full h-14 w-14"
                   src={avatar}

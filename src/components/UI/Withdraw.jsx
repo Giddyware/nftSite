@@ -65,13 +65,13 @@ const Withdraw = ({ show, modalStatus }) => {
   }, [response]);
 
   const onSubmit = (data) => {
-    console.log("data======", data.amount);
-    if (data.coin == "ETH") {
-      dispatch(WithdrawInEth(data.amount));
-    }
-    if (data.coin == "WETH") {
-      dispatch(WithdrawInWeth(data.amount));
-    }
+    console.log("data======", data);
+    // if (data.coin == "ETH") {
+    //   dispatch(WithdrawInEth(data.amount));
+    // }
+    // if (data.coin == "WETH") {
+    //   dispatch(WithdrawInWeth(data.amount));
+    // }
 
     reset();
   };
