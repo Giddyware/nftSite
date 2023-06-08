@@ -24,7 +24,9 @@ import avatar from "../../assets/avatar.png";
 
 const Button_Details = () => {
   const { t } = useTranslation();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const { isAuthenticated, isEmailVerified } = useSelector(
+    (state) => state.auth
+  );
   const dispatch = useDispatch();
   const LogMeOut = () => {
     dispatch(logout());
@@ -60,8 +62,11 @@ const Button_Details = () => {
 
 const ProfileButton = () => {
   const location = useLocation().pathname;
-  const { user, isAuthenticated } = useSelector((state) => state.auth);
-  console.log(user, "user");
+  const { user, isAuthenticated, isEmailVerified } = useSelector(
+    (state) => state.auth
+  );
+
+  // console.log(user, "user");
 
   // useEffect(() => {
   //   dispatch(getUserDetails());
@@ -86,7 +91,7 @@ const ProfileButton = () => {
           <div className="flex flex-col items-center justify-center ml-3 mr-8">
             <p>{user && user.user.username}</p>
             <p className="font-bold">
-              {user && user.user.userVerified ? (
+              {user && (isEmailVerified || user?.user?.emailVerified) ? (
                 <span className="text-green-500">Verified</span>
               ) : (
                 <span className="text-red-500"> Unverified</span>

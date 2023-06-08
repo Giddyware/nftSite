@@ -30,6 +30,8 @@ import Loading from "../components/Loading/Loading";
 import Footer from "../components/Footer/Footer";
 import Categories from "../components/Category/Categories";
 import HomeCard from "../components/Cards/HomeCard";
+import { formatToThousand } from "../utils/formatToThousand";
+import { generateRandomNumber } from "../utils/generateRandomNumber";
 
 const Gaming = ({ name }) => {
   const [showMore, setShowMore] = useState(false);
@@ -93,7 +95,10 @@ const Gaming = ({ name }) => {
         <div className="w-[85%]">
           <div className="flex flex-wrap text-[14px]">
             <p className="mr-6">
-              Items <span className="font-bold">1,071</span>
+              Items
+              <span className="font-bold">
+                {formatToThousand(gaming?.results * 23)}
+              </span>
             </p>
 
             <p>
@@ -111,19 +116,24 @@ const Gaming = ({ name }) => {
 
         <div className="flex gap-6 flex-wrap text-[14px]">
           <p className="flex flex-col mr-6">
-            <span className="font-bold">1 ETH</span> <span>total volume</span>
+            <span className="font-bold">
+              {formatToThousand(gaming?.results * 87)} ETH
+            </span>{" "}
+            <span>total volume</span>
           </p>
 
           <p className="flex flex-col mr-6">
-            <span className="font-bold">1%</span>
+            <span className="font-bold">{generateRandomNumber(60, 95)}%</span>
             <span>listed</span>
           </p>
           <p className="flex flex-col mr-6">
-            <span className="font-bold">63</span>
+            <span className="font-bold">
+              {Number(formatToThousand(gaming?.results * 23 * 0.3)).toFixed(2)}
+            </span>
             <span>owners</span>
           </p>
           <p className="flex flex-col mr-6">
-            <span className="font-bold">6%</span>
+            <span className="font-bold">{generateRandomNumber(10, 20)}%</span>
             <span>unique owners</span>
           </p>
         </div>

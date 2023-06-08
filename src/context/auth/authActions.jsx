@@ -61,6 +61,8 @@ export const logoutUser = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       await logoutUserAPI();
+      localStorage.removeItem("isEmailVerified");
+      Cookies.remove("authToken");
       dispatch(logout());
     } catch (error) {
       dispatch(authFailure(error));
