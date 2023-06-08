@@ -120,12 +120,10 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
                 <TableRow hover className="" key={id}>
                   <TableCell className="text-xl text-black capitalize">
                     {userDetails?.username == From?.username && (
-                      <span className="text-[hsla(84,_100%,_44%,_1)]">
-                        Sell
-                      </span>
+                      <span className="text-[hsla(28,_87%,_62%,_1)]">Sell</span>
                     )}
                     {userDetails?.username == to?.username && (
-                      <span className="text-[hsla(28,_87%,_62%,_1)]">Buy</span>
+                      <span className="text-[hsla(84,_100%,_44%,_1)]">Buy</span>
                     )}
                   </TableCell>
                   <TableCell className="text-xl text-black capitalize">
