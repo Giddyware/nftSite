@@ -61,7 +61,7 @@ const Login = () => {
   return (
     // <div className="flex">
     <form
-      className="w-[90%] flex flex-col gap-12 md:w-full max-w-[40rem] gap-12 rounded-3xl px-12 py-16 shadow-100  bg-white border outline-slate-700 outline-4"
+      className="w-[90%] flex flex-col md:w-full max-w-[40rem] gap-12 rounded-3xl px-12 py-16 shadow-100  bg-white border outline-slate-700 outline-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       {isAuthenticated && (

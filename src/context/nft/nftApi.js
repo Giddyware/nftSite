@@ -45,7 +45,7 @@ export const getNftsAPI = async () => {
 export const getArtNftsAPI = async () => {
   try {
     const response = await api.get(
-      `${BASE_URL}/nft?category=arts&sort=-priceInEtherium`,
+      `${BASE_URL}/nft?category=arts&sort=-priceInEtherium&nftInMarket=true`,
       tokenConfig()
     );
 
@@ -58,7 +58,7 @@ export const getArtNftsAPI = async () => {
 export const getGamingNftsAPI = async () => {
   try {
     const response = await api.get(
-      `${BASE_URL}/nft?category=gaming&sort=-priceInEtherium`,
+      `${BASE_URL}/nft?category=gaming&sort=-priceInEtherium&nftInMarket=true`,
       tokenConfig()
     );
 
@@ -70,7 +70,7 @@ export const getGamingNftsAPI = async () => {
 export const getMembershipNftsAPI = async () => {
   try {
     const response = await api.get(
-      `${BASE_URL}/nft?category=membership&sort=-priceInEtherium`,
+      `${BASE_URL}/nft?category=membership&sort=-priceInEtherium&nftInMarket=true`,
       tokenConfig()
     );
 
@@ -82,7 +82,7 @@ export const getMembershipNftsAPI = async () => {
 export const getPfpsNftsAPI = async () => {
   try {
     const response = await api.get(
-      `${BASE_URL}/nft?category=pfps&sort=-priceInEtherium`,
+      `${BASE_URL}/nft?category=pfps&sort=-priceInEtherium&nftInMarket=true`,
       tokenConfig()
     );
 
@@ -94,7 +94,7 @@ export const getPfpsNftsAPI = async () => {
 export const getPhotographyNftsAPI = async () => {
   try {
     const response = await api.get(
-      `${BASE_URL}/nft?category=photography&sort=-priceInEtherium`,
+      `${BASE_URL}/nft?category=photography&sort=-priceInEtherium&nftInMarket=true`,
       tokenConfig()
     );
 
@@ -179,7 +179,10 @@ export const pullFromMarketAPI = async (productId) => {
 
 export const getCategoryAPI = async (category) => {
   try {
-    const response = await axios.get(`/nft/unProtectedNft`, tokenConfig());
+    const response = await axios.get(
+      `/nft/unProtectedNft?nftInMarket=true`,
+      tokenConfig()
+    );
 
     return response.data.data;
   } catch (error) {

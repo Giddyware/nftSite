@@ -27,6 +27,7 @@ import NotFound from "../../pages/NotFound";
 import { Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading";
+import HomeCard from "../Cards/HomeCard";
 
 const coll = [
   {
@@ -111,26 +112,26 @@ const ProductDetail = () => {
   return (
     <>
       <Header addBg={true} />
-      <div className="w-full px-10">
+      <div className="w-full px-10 mt-8 md:mt-12 ">
         <div className="flex gap-5 flex-col lg:flex-row">
           <Product photo={photo} />
           <DetailText
             productId={id}
             description={description}
-            nam={name}
+            name={name}
             priceInEtherium={priceInEtherium}
             nftOwner={nftOwner}
           />
         </div>
 
-        <Activity />
+        {/* <Activity /> */}
         <div className="border-solid border-[#eee] border rounded-[14px] mt-20 ">
           <p className="p-12 text-3xl font-bold font-poppins">
             More On Collection
           </p>
-          <div className="grid w-full grid-cols-4 gap-20 mb-10 overflow-x-scroll bg-blue-50">
+          <div className="grid py-5 w-full grid-cols-4 gap-20 mb-10 overflow-x-scroll bg-blue-50">
             {coll.map((lec) => (
-              <ColllectionCard key={lec.image} {...lec} />
+              <HomeCard key={lec.image} {...lec} />
             ))}
           </div>
         </div>
