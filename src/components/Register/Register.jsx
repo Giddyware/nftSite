@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -8,20 +8,39 @@ import { AuthContext } from "../../Container/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
+import { resetError } from "../../context/auth/authSlice";
 
-const schema = z.object({
-  username: z.string().nonempty("UserName is required"),
-  email: z.string().nonempty("Email is required").email("Invalid email format"),
-  password: z.string().nonempty("Password is required"),
-  passwordConfirm: z.string().nonempty("Confirm Password is required"),
-});
+const schema = z
+  .object({
+    username: z
+      .string()
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "Username can only contain letters, numbers, and underscore.(please make sure it only containers these)"
+      )
+      .nonempty("UserName is required")
+      .min(5, "Username must be at least 5 character long"),
+    email: z
+      .string()
+      .nonempty("Email is required")
+      .email("Please enter a valid email address"),
+    password: z
+      .string()
+      .nonempty("Password is required")
+      .min(8, "Password must be at least 8 characters long."),
+    passwordConfirm: z.string().nonempty("Confirm Password is required"),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords do not match. Please try again.",
+    path: ["passwordConfirm"],
+  });
 
 const RegisterForm = () => {
   const { status, changeStatus } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error);
+  const { error } = useSelector((state) => state.auth);
   const {
     register: registerForm,
     handleSubmit,
@@ -30,7 +49,6 @@ const RegisterForm = () => {
   } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       const validData = schema.parse(data);
       setLoading(true);
@@ -41,15 +59,25 @@ const RegisterForm = () => {
 
       reset();
 
-      toast("Registration successful🎉");
+      // toast("Registration successful🎉");
       navigate("/auth");
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const resetTimeout = setTimeout(() => {
+      dispatch(resetError());
+    }, 1200);
+
+    return () => {
+      clearTimeout(resetTimeout);
+    };
+  }, [dispatch]);
   return (
     <form
-      className="w-[90%] flex flex-col gap-12 max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100  mt-24 bg-white border outline-slate-700 outline-4"
+      className="w-[90%] flex flex-col gap-4 max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100  mt-24 bg-white border outline-slate-700 outline-4 font-poppins"
       onSubmit={handleSubmit(onSubmit)}
     >
       <header className="mx-auto">
@@ -60,72 +88,72 @@ const RegisterForm = () => {
           Register
         </p>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10">
+        <div className="flex flex-col col-span-6 gap-4 mt-6">
+          <div className="flex items-center justify-between text-xl">
+            <label htmlFor="username">Username</label>
+          </div>
           <input
-            className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-black caret-brand-500 outline-none focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 '
+            className="w-full px-8 py-6 font-bold text-black border rounded-lg  border-[hsl(218,_92%,_95%)] bg-neutral-100 "
             type="username"
             id="username"
             {...registerForm("username")}
           />
-          <div className='flex items-center justify-between text-xl text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
-            <label htmlFor="username">Username</label>
-            {errors.username && (
-              <span className="text-red-200 font-semibold leading-200 tracking-[-0.21px]">
-                {errors.username.message}
-              </span>
-            )}
-          </div>
+          {errors.username && (
+            <div className="font-semibold text-red-400 ">
+              {errors.username.message}
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10 text-xl">
+        <div className="flex flex-col col-span-6 gap-4 mt-6 text-xl">
+          <div className="flex items-center justify-between">
+            <label htmlFor="email">Email</label>
+          </div>
           <input
-            className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-black caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500'
+            className="w-full px-8 py-6 font-bold text-black border rounded-lg  border-[hsl(218,_92%,_95%)] bg-neutral-100 "
             type="email"
             id="email"
             {...registerForm("email")}
           />
-          <div className='flex items-center justify-between text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
-            <label htmlFor="email">Email</label>
-            {errors.email && (
-              <span className="text-200 font-semibold leading-200 tracking-[-0.21px]">
-                {errors.email.message}
-              </span>
-            )}
-          </div>
+          {errors.email && (
+            <span className="font-semibold text-red-400">
+              {errors.email.message}
+            </span>
+          )}
         </div>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10 text-xl">
+        <div className="flex flex-col col-span-6 gap-4 mt-10 text-xl">
+          <div className="flex items-center justify-between">
+            <label htmlFor="password"> Password </label>
+          </div>
           <input
-            className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-black caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 '
+            className="w-full px-8 py-6 font-bold text-black border rounded-lg  border-[hsl(218,_92%,_95%)] bg-neutral-100 "
             type="password"
             id="password"
             {...registerForm("password")}
           />
-          <div className='flex items-center justify-between text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
-            <label htmlFor="password"> Password </label>
-            {errors.password && (
-              <span className="text-200 font-semibold leading-200 tracking-[-0.21px]">
-                {errors.password.message}
-              </span>
-            )}
-          </div>
+          {errors.password && (
+            <span className="font-semibold text-red-400">
+              {errors.password.message}
+            </span>
+          )}
         </div>
 
-        <div className="flex flex-col-reverse col-span-6 gap-4 mt-10 text-xl">
+        <div className="flex flex-col col-span-6 gap-4 mt-6 text-xl">
+          <div className="flex items-center justify-between">
+            <label htmlFor="passwordConfirm">Confirm Password </label>
+          </div>
           <input
-            className='body-100 peer w-full rounded-lg border border-brand-100 bg-neutral-100 px-8 py-6 font-bold text-black caret-brand-500 outline-none autofill:bg-neutral-100 focus:border-brand-500 aria-[invalid="true"]:!border-accent-200 aria-[invalid="true"]:!text-accent-200 focus:aria-[invalid="true"]:!border-accent-200 focus:aria-[invalid="true"]:!ring-accent-200 hover:border-brand-500 '
+            className="w-full px-8 py-6 font-bold text-black border rounded-lg  border-[hsl(218,_92%,_95%)] bg-neutral-100 "
             type="password"
             id="passwordConfirm"
             {...registerForm("passwordConfirm")}
           />
-          <div className='flex items-center justify-between text-brand-400 peer-aria-[invalid="true"]:!text-accent-200 dark:text-brand-300'>
-            <label htmlFor="passwordConfirm">Confirm Password </label>
-            {errors.passwordConfirm && (
-              <span className="text-200 font-semibold leading-200 tracking-[-0.21px]">
-                {errors.passwordConfirm.message}
-              </span>
-            )}
-          </div>
+          {errors.passwordConfirm && (
+            <span className="font-semibold text-red-400">
+              {errors.passwordConfirm.message}
+            </span>
+          )}
         </div>
 
         <div className="col-span-6 mt-6 bg-blue-500 rounded-lg hover:bg-neutral-100 hover:text-blue-500">
@@ -137,10 +165,9 @@ const RegisterForm = () => {
             {loading ? <span>Signing up...</span> : <span>Sign Up.</span>}
           </button>
         </div>
-
         {error && (
-          <span className="width-max-context text-200 text-red-500 font-semibold leading-200 tracking-[-0.21px]">
-            {error.status}: *{error.message}
+          <span className="flex w-[280px] md:w-[330px] font-semibold text-red-400">
+            {error.message.split(": ")[1]}
           </span>
         )}
 
