@@ -12,7 +12,7 @@ const Product = ({ photo }) => {
         crossOrigin="anonymous"
         src={imageURL}
         alt={imageURL}
-        className="w-full h-full rounded-xl"
+        className="object-cover w-full min-h-full rounded-xl"
       />
     </div>
   );

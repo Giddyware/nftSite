@@ -165,7 +165,7 @@ const Mint = ({ show, modalStatus }) => {
               </select>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 ml-auto w-fit">
               <label htmlFor="priceInEtherium" className="text-2xl font-bold">
                 Price *
               </label>
