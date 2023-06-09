@@ -36,6 +36,7 @@ import Deposit from "./Deposit";
 import Mint from "./Mint";
 import axios from "axios";
 import Profile from "../components/Profile";
+import { formatToThousand } from "../utils/formatToThousand.js";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -157,7 +158,7 @@ const Dashboard = () => {
   }
   const baseUrl = "https://alphapp.tech";
   const imgUrl = `${baseUrl}${photo}`;
-  console.log(imgUrl, "imgUrl");
+  // console.log(imgUrl, "imgUrl");
   return (
     !!userDetails && (
       <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
@@ -232,10 +233,10 @@ const Dashboard = () => {
                 <p>ETH</p>
                 <p className="text-sm text-gray-400">ERC20</p>
               </div>
-              <div className="text-lg font-bold justify-self-end">
+              <div className="text-lg font-bold text-right justify-self-end">
                 <p>{wallet?.eth?.toFixed(4)}</p>
                 <p className="text-sm text-gray-400">
-                  {(usdRate * wallet?.eth?.toFixed(4)).toFixed(4)}
+                  ~${Number(formatToThousand(usdRate * wallet?.eth)).toFixed(2)}
                 </p>
               </div>
             </div>
@@ -252,10 +253,11 @@ const Dashboard = () => {
                 <p>WETH</p>
                 <p className="text-sm text-gray-400">ERC20</p>
               </div>
-              <div className="text-lg font-bold justify-self-end">
+              <div className="text-lg font-bold text-right justify-self-end">
                 <p>{wallet?.weth?.toFixed(4)}</p>
                 <p className="text-sm text-gray-400">
-                  {(usdRate * wallet?.weth?.toFixed(4)).toFixed(4)}
+                  ~$
+                  {Number(formatToThousand(usdRate * wallet?.weth)).toFixed(2)}
                 </p>
               </div>
             </div>
@@ -272,7 +274,7 @@ const Dashboard = () => {
           </div>
           <div className="mt-12" id="nft" ref={nftRef}>
             <p className="text-3xl font-bold mb-7">NFTs</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 min-h-[350px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 min-h-[350px]">
               {myNft?.map((el) => (
                 <Card inDashboard={true} key={el.id} {...el} />
               ))}
