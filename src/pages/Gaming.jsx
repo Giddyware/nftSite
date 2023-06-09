@@ -47,8 +47,6 @@ const Gaming = ({ name }) => {
     dispatch(getGamingCategory());
   }, [getGamingCategory]);
 
-  console.log(gaming, "gaming===");
-
   if (isLoading) {
     return <Loading />;
   }

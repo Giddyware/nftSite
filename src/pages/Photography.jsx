@@ -48,8 +48,6 @@ const Photography = ({ name }) => {
     dispatch(getPhotographyCategory());
   }, [getPhotographyCategory]);
 
-  console.log(photography, "photography===");
-
   if (isLoading) {
     return <Loading />;
   }

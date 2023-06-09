@@ -32,28 +32,28 @@ const Card = ({
       href="#"
       className="flex flex-col gap-2 bg-white rounded-lg shadow-lg min-h-[350px] min-w-220px]"
     >
-      <div className="w-full h-full bg-white rounded-b-2xl shadow-md">
+      <div className="w-full h-full bg-white shadow-md rounded-b-2xl">
         <div className="w-full h-[75%]">
           <img
             crossOrigin="anonymous"
             src={imgUrl || imageURL}
             alt=""
-            className="object-cover h-full w-full rounded-t-2xl"
+            className="object-cover w-full h-full rounded-t-2xl"
           />
         </div>
-        <div className="p-4 relative rounded-b-2xl flex flex-col h-fit">
+        <div className="relative flex flex-col p-4 rounded-b-2xl h-fit">
           <h3 className="pb-4 text-sm font-bold">{name}</h3>
           <div className="flex justify-between mb-5 font-bold">
             <div className="flex justify-between w-full">
               <p className="text-gray-600">FLOOR</p>
-              <p className="">{priceInEtherium}ETH</p>
+              <p className="">{priceInEtherium} ETH</p>
             </div>
           </div>
           {inDashboard && (
             <>
-              <div className="mb-10">
+              <div className="md:mb-10 lg:mb-10">
                 <label className="relative inline-flex items-center mb-5 ml-auto mr-auto cursor-pointer">
-                  <span className="mr-3 font-medium text-gray-900 dark:text-gray-300">
+                  <span className="mr-3 font-medium text-gray-900 ">
                     Push to market
                   </span>
                   <input
@@ -111,27 +111,27 @@ export default Card;
 //     enabled ? dispatch(pullFromMarket(id)) : dispatch(pushToMarket(id));
 //   };
 //   return (
-//     <div className="w-full inline-block">
+//     <div className="inline-block w-full">
 //       <a href="" className="">
 //         <div className="cardWrapper">
 //           <div className="h-0 relative pb-[66.6667%]">
-//             <span className="inline-block overflow-hidden max-w-full m-0 p-0 opacity-1 relative border-0 h-initial">
+//             <span className="relative inline-block max-w-full p-0 m-0 overflow-hidden border-0 opacity-1 h-initial">
 //               <img
 //                 crossOrigin="anonymous"
 //                 src={imgUrl || imageURL}
 //                 alt=""
-//                 className="w-0 h-0 absolute min-w-full max-w-full min-h-full max-h-full object-cover block m-auto"
+//                 className="absolute block object-cover w-0 h-0 max-w-full max-h-full min-w-full min-h-full m-auto"
 //               />
 //             </span>
 //           </div>
 //           <div className="absolute invisible w-1 h-1 z-[-9999]"></div>
-//           <div className="p-4 rounded-xl flex">
-//             <div className="flex flex-col overflow-hidden w-full">
-//               <div className="flex justify-start items-center">
+//           <div className="flex p-4 rounded-xl">
+//             <div className="flex flex-col w-full overflow-hidden">
+//               <div className="flex items-center justify-start">
 //                 <h3 className="pb-4 text-sm font-bold">{name || "Giddy"}</h3>
 //                 <GoVerified color="#2081E2" />
 //               </div>
-//               <div className="flex  mb-5 font-bold">
+//               <div className="flex mb-5 font-bold">
 //                 <p className="text-gray-600">FLOOR</p>
 //                 <p className="">{priceInEtherium}ETH</p>
 //               </div>

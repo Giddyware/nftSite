@@ -95,6 +95,34 @@ export const getUserDetailsRequestAPI = async () => {
   }
 };
 
+export const updateProfilePicAPI = async (photo) => {
+  try {
+    const response = await api.patch(`/users/myDetails`, photo, tokenConfig());
+
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const updatePasswordAPI = async (
+  currentPassword,
+  password,
+  passwordConfirm
+) => {
+  try {
+    const response = await api.patch(
+      `/users/chaingeMyPassword`,
+      photo,
+      tokenConfig()
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
 export const createEmailTokenAPI = async () => {
   try {
     const response = await api.patch(

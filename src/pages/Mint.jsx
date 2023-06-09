@@ -54,7 +54,7 @@ const Mint = ({ show, modalStatus }) => {
 
       const validData = schema.parse(data); //Validating the data
 
-      console.log(validData, "validData");
+      // console.log(validData, "validData");
 
       const formData = new FormData();
       formData.append("photo", data.photo[0]); // Append the image file to the FormData object
@@ -66,7 +66,7 @@ const Mint = ({ show, modalStatus }) => {
         }
       });
 
-      console.log(formData, "formData");
+      // console.log(formData, "formData");
 
       dispatch(createNft(formData));
 
@@ -110,7 +110,7 @@ const Mint = ({ show, modalStatus }) => {
 
           <p className="text-2xl font-bold">Image *</p>
           <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
-          <div>
+          <div className="max-w-[290px] md:max-w-[350px] lg:max-w-[350px]">
             <label htmlFor="photo" className="drop-container">
               <span className="drop-title">Drop files here</span>
               or
@@ -141,18 +141,18 @@ const Mint = ({ show, modalStatus }) => {
             />
           </div>
 
-          <div className="flex items-baseline justify-between w-full">
+          <div className="flex justify-between min-w-full mt-auto">
             <div className="flex flex-col gap-3">
               <label
                 htmlFor="category"
-                className="block text-2xl font-bold text-gray-900 dark:text-white"
+                className="text-2xl font-bold text-gray-900"
               >
                 Categories *
               </label>
               <select
                 id="category"
                 name="category"
-                className="block w-full px-4 py-5 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-600"
+                className="w-full px-4 py-5 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
                 {...mintForm("category")}
               >
                 <option value="">Choose a category</option>
@@ -165,7 +165,7 @@ const Mint = ({ show, modalStatus }) => {
               </select>
             </div>
 
-            <div className="flex flex-col gap-3 ">
+            <div className="flex flex-col gap-3 ml-auto w-fit">
               <label htmlFor="priceInEtherium" className="text-2xl font-bold">
                 Price *
               </label>
@@ -175,7 +175,7 @@ const Mint = ({ show, modalStatus }) => {
                 placeholder="NFT Price"
                 id="priceInEtherium"
                 name="priceInEtherium"
-                className="w-2/3 p-4 border rounded focus:border-blue-600"
+                className="w-2/3 p-4 border rounded "
                 {...mintForm("priceInEtherium")}
               />
               {errors.price && (
@@ -186,7 +186,7 @@ const Mint = ({ show, modalStatus }) => {
             </div>
           </div>
 
-          <p className="my-5 text-2xl font-bold">Description</p>
+          <p className="mt-12 text-2xl font-bold">Description</p>
 
           <textarea
             className="w-full p-5 my-5 border-2 rounded-md"
@@ -198,7 +198,7 @@ const Mint = ({ show, modalStatus }) => {
             {...mintForm("description")}
           ></textarea>
           <div className="flex justify-between w-full mt-auto">
-            <button className="bg-[#084cdf] py-5 px-3 w-48  text-white rounded-lg mt-3 hover:bg-blue-800 shadow-xl">
+            <button className="bg-[#2196F3] py-5 px-3 w-48  text-white rounded-lg mt-3 hover:bg-[hsl(207,_90%,_74%)] shadow-xl">
               Mint
             </button>
             <button

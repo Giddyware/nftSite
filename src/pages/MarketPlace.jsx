@@ -43,8 +43,6 @@ const MarketPlace = ({ name }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  console.log(nfts, "nfts");
-
   useEffect(() => {
     dispatch(getNfts());
   }, [dispatch]);
@@ -139,7 +137,7 @@ const MarketPlace = ({ name }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-10 m-10 md:grid-cols-3 lg:grid-cols-4">
         {nfts?.data?.map((nft) => (
           <li key={nft.id}>
             <Link to={`/products/${nft.id}`}>

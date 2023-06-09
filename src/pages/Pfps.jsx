@@ -46,8 +46,6 @@ const Pfps = ({ name }) => {
     dispatch(getPfpsCategory());
   }, [getPfpsCategory]);
 
-  console.log(pfps, "pfps===");
-
   if (isLoading) {
     return <Loading />;
   }

@@ -48,8 +48,6 @@ const Membership = ({ name }) => {
     dispatch(getMembershipCategory());
   }, [getMembershipCategory]);
 
-  console.log(membership, "Membership===");
-
   if (isLoading) {
     return <Loading />;
   }
