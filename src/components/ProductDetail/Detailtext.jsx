@@ -17,7 +17,6 @@ const DetailText = ({
 }) => {
   const { error } = useSelector((state) => state.product);
   const dispatch = useDispatch();
-
   const handleBuyProduct = () => {
     dispatch(buyProduct(productId));
     toast.error(error);
@@ -31,7 +30,7 @@ const DetailText = ({
           <span className="ml-3 text-base text-gray-600">$5,060.78</span>
         </p>
         <button
-          onClick={handleBuyProduct()}
+          onClick={() => handleBuyProduct()}
           className="w-full px-5 py-8 text-2xl font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-300"
         >
           Buy now
