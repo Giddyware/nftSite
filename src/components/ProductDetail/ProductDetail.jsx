@@ -24,7 +24,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { useEffect, useRef } from "react";
 import { getCategory, selectProduct } from "../../context/nft/nftActions";
 import NotFound from "../../pages/NotFound";
-import { Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading";
 import HomeCard from "../Cards/HomeCard";
@@ -78,7 +78,8 @@ const ProductDetail = () => {
   const { selectedItem, categories, isLoading, error } = useSelector(
     (state) => state.product
   );
-
+  const { id, photo, description, name, nftOwner, priceInEtherium, category } =
+    selectedItem;
   useEffect(() => {
     dispatch(selectProduct(productId));
   }, [dispatch, productId]);
@@ -89,12 +90,7 @@ const ProductDetail = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return (
-      <div>
-        Loading...
-        <CgLoadbar />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error === "this Nft already belong to you") {
@@ -128,8 +124,6 @@ const ProductDetail = () => {
     return <Loading />;
   }
 
-  const { id, photo, description, name, nftOwner, priceInEtherium } =
-    selectedItem;
   console.log(selectedItem, "selectedItem");
 
   return (
@@ -206,10 +200,12 @@ const ProductDetail = () => {
               >
                 {categories &&
                   categories
-                    .filter((item) => item.category == "gaming")
-                    .map((artDatails) => (
-                      <SwiperSlide key={artDatails.id}>
-                        <HomeCard {...artDatails} />
+                    .filter((item) => item.category == category)
+                    .map((nft) => (
+                      <SwiperSlide key={nft.id}>
+                        <Link to={`/products/${nft.id}`}>
+                          <HomeCard {...nft} />
+                        </Link>
                       </SwiperSlide>
                     ))}
               </Swiper>
