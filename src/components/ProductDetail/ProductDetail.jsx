@@ -110,6 +110,7 @@ const ProductDetail = () => {
   const { id, photo, description, name, nftOwner, priceInEtherium } =
     selectedItem;
   console.log(selectedItem, "selectedItem");
+
   return (
     <>
       <Header addBg={true} />

@@ -84,6 +84,7 @@ export const buyProduct = createAsyncThunk(
         className: "toast-message",
       });
       dispatch(buyProductSuccess());
+      console.log(bought, "buyPro===");
     } catch (error) {
       dispatch(buyProductFailure(error.message));
     }

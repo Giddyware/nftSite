@@ -4,42 +4,20 @@ import { BsEye } from "react-icons/bs";
 import { BsFillHeartFill } from "react-icons/bs";
 import Description from "../Description";
 import axios from "axios";
+import { buyProduct } from "../../../context/nft/nftActions";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
-export const Data = [
-  {
-    id: 1,
-    year: 2016,
-    userGain: 80000,
-    userLost: 823,
-  },
-  {
-    id: 2,
-    year: 2017,
-    userGain: 45677,
-    userLost: 345,
-  },
-  {
-    id: 3,
-    year: 2018,
-    userGain: 78888,
-    userLost: 555,
-  },
-  {
-    id: 4,
-    year: 2019,
-    userGain: 90000,
-    userLost: 4555,
-  },
-  {
-    id: 5,
-    year: 2020,
-    userGain: 4300,
-    userLost: 234,
-  },
-];
-
-const Detailtext = ({ description, priceInEtherium, name, nftOwner }) => {
+const Detailtext = ({
+  description,
+  priceInEtherium,
+  name,
+  productId,
+  nftOwner,
+}) => {
   const [usdRate, setUsdRate] = useState(0);
+  const { error } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get(
@@ -55,6 +33,11 @@ const Detailtext = ({ description, priceInEtherium, name, nftOwner }) => {
       });
   }, []);
 
+  const handleBuyProduct = () => {
+    dispatch(buyProduct(productId));
+    toast.error(error);
+  };
+
   return (
     <div className="flex-1 font-poppins">
       <div className="rounded-[5px] border px-5 w-full py-10">
@@ -62,10 +45,13 @@ const Detailtext = ({ description, priceInEtherium, name, nftOwner }) => {
         <p className="text-[30px] font-bold">
           {priceInEtherium} ETH
           <span className="ml-2 text-lg text-gray-400">
-            ${usdRate * priceInEtherium}
+            ${(usdRate * priceInEtherium).toFixed(2)}
           </span>
         </p>
-        <button className="w-full bg-[#2295EF] py-6 rounded-lg">
+        <button
+          className="w-full bg-[#2295EF] py-6 rounded-lg"
+          onClick={() => handleBuyProduct()}
+        >
           <span className="text-xl text-center text-white"> Buy Now </span>
         </button>
       </div>
