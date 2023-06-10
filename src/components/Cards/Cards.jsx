@@ -125,7 +125,7 @@ const Cards = ({ title }) => {
   useEffect(() => {
     const lowerCaseTitle = title.toLowerCase();
     dispatch(getCategory(lowerCaseTitle));
-  }, [getCategory]);
+  }, [dispatch]);
 
   // const lowerCaseTitle = title.toLowerCase();
   // const artsCategory = categories.filter((item) => item.category == "art");

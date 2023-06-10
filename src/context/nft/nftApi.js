@@ -121,6 +121,7 @@ export const buyNftAPI = async (productId) => {
   try {
     const response = await api.post(
       `${BASE_URL}/nft/buyNft/${productId}`,
+      {},
       tokenConfig()
     );
 

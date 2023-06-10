@@ -49,6 +49,7 @@ const Login = () => {
       setLoading(true);
 
       dispatch(loginUser(validData));
+      setLoading(false);
       navigate("/dashboard");
       // dispatch(getUserDetails());
 
@@ -57,7 +58,6 @@ const Login = () => {
       toast.error("Login failed. Please try again.");
       console.error(error);
     } finally {
-      setLoading(false);
     }
   };
 
@@ -133,7 +133,7 @@ const Login = () => {
             {loading ? (
               <span>Logging you in...</span>
             ) : (
-              " Login to your account"
+              <span>Login to your account</span>
             )}
           </button>
         </div>
