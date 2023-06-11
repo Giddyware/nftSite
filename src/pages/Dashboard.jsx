@@ -37,6 +37,7 @@ import Mint from "./Mint";
 import axios from "axios";
 import Profile from "../components/Profile";
 import { formatToThousand } from "../utils/formatToThousand.js";
+import SupportChat from "../components/SupportChat";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -292,6 +293,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        <SupportChat />
       </div>
     )
   );
