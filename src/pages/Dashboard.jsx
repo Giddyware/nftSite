@@ -237,7 +237,7 @@ const Dashboard = () => {
               <div className="text-lg font-bold text-right justify-self-end">
                 <p>{wallet?.eth?.toFixed(4)}</p>
                 <p className="text-sm text-gray-400">
-                  ~${Number(formatToThousand(usdRate * wallet?.eth)).toFixed(2)}
+                  ~${formatToThousand(Number(usdRate * wallet?.eth).toFixed(2))}
                 </p>
               </div>
             </div>
@@ -258,7 +258,7 @@ const Dashboard = () => {
                 <p>{wallet?.weth?.toFixed(4)}</p>
                 <p className="text-sm text-gray-400">
                   ~$
-                  {Number(formatToThousand(usdRate * wallet?.weth)).toFixed(2)}
+                  {formatToThousand(Number(usdRate * wallet?.weth).toFixed(2))}
                 </p>
               </div>
             </div>
