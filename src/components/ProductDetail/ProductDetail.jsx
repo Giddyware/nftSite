@@ -78,8 +78,8 @@ const ProductDetail = () => {
   const { selectedItem, categories, isLoading, error } = useSelector(
     (state) => state.product
   );
-  // const { id, photo, description, name, nftOwner, priceInEtherium, category } =
-  //   selectedItem;
+  const productDetailsRef = useRef(null); //Scroll to top
+
   useEffect(() => {
     dispatch(selectProduct(productId));
   }, [dispatch, productId]);
