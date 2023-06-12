@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import Overlay from "./Overlay";
 
 import PasteOnClick from "../PasteOnClick";
+import { formatToThousand } from "../../utils/formatToThousand";
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
   amount: z.number(),
@@ -36,10 +37,24 @@ const Withdraw = ({ show, modalStatus }) => {
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
 
+  // const handlePaste = async () => {
+  //   if (navigator.clipboard && navigator.clipboard.readText) {
+  //     try {
+  //       const text = await navigator.clipboard.readText();
+  //       setInputValue(text);
+  //     } catch (error) {
+  //       console.error("Failed to read clipboard text:", error);
+  //     }
+  //   }
+  // };
+
   const handlePaste = (text) => {
     setInputValue(text);
   };
 
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
   const {
     register,
     handleSubmit,
@@ -66,17 +81,14 @@ const Withdraw = ({ show, modalStatus }) => {
 
   const onSubmit = (data) => {
     console.log("data======", data);
-    // if (data.coin == "ETH") {
-    //   dispatch(WithdrawInEth(data.amount));
-    // }
+    if (data.coin == "ETH") {
+      dispatch(WithdrawInEth(data.amount));
+    }
     // if (data.coin == "WETH") {
     //   dispatch(WithdrawInWeth(data.amount));
     // }
 
     reset();
-  };
-  const handleChange = (event) => {
-    console.log(event.target.value);
   };
   return (
     <>
@@ -105,7 +117,7 @@ const Withdraw = ({ show, modalStatus }) => {
             id="coins"
             className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg  block w-full p-2.5  "
             {...register("coin")}
-            onChange={handleChange}
+            // onChange={handleChange}
           >
             <option disabled>Make a choice</option>
             {/* <option value="ETH">ETH</option> */}
@@ -122,10 +134,10 @@ const Withdraw = ({ show, modalStatus }) => {
             type="text"
             ref={inputRef}
             id="address"
-            className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 "
+            className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
             placeholder="Enter your address"
             value={inputValue}
-            {...register("address")}
+            onChange={handleInputChange}
           />
         </div>
 
@@ -161,7 +173,8 @@ const Withdraw = ({ show, modalStatus }) => {
         </p> */}
 
         <h3 className="my-10 text-2xl text-gray-600">
-          ETH bal: <span className="font-bold">7329 ETH</span>
+          ETH bal:{" "}
+          <span className="font-bold">{formatToThousand(7329)} ETH</span>
         </h3>
 
         <button className="w-full mt-10 capitalize bg-[#2196F3] text-white p-4 md:p-6">
