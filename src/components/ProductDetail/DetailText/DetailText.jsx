@@ -8,16 +8,12 @@ import { buyProduct } from "../../../context/nft/nftActions";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const Detailtext = ({
-  description,
-  priceInEtherium,
-  name,
-  productId,
-  nftOwner,
-}) => {
+const Detailtext = ({ selectedItem }) => {
   const [usdRate, setUsdRate] = useState(0);
   const { error } = useSelector((state) => state.product);
   const dispatch = useDispatch();
+  const { id, description, name, nftOwner, priceInEtherium, category } =
+    selectedItem;
   useEffect(() => {
     axios
       .get(

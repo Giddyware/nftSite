@@ -167,7 +167,7 @@ const Mint = ({ show, modalStatus }) => {
 
             <div className="flex flex-col gap-3 ml-auto w-fit">
               <label htmlFor="priceInEtherium" className="text-2xl font-bold">
-                Price *
+                Price in ETH *
               </label>
               <input
                 type="number"

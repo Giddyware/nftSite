@@ -78,8 +78,8 @@ const ProductDetail = () => {
   const { selectedItem, categories, isLoading, error } = useSelector(
     (state) => state.product
   );
-  const { id, photo, description, name, nftOwner, priceInEtherium, category } =
-    selectedItem;
+  // const { id, photo, description, name, nftOwner, priceInEtherium, category } =
+  //   selectedItem;
   useEffect(() => {
     dispatch(selectProduct(productId));
   }, [dispatch, productId]);
@@ -131,14 +131,8 @@ const ProductDetail = () => {
       <Header addBg={true} />
       <div className="w-full px-10 mt-8 md:mt-12 ">
         <div className="flex flex-col gap-5 lg:flex-row">
-          <Product photo={photo} />
-          <DetailText
-            productId={id}
-            description={description}
-            name={name}
-            priceInEtherium={priceInEtherium}
-            nftOwner={nftOwner}
-          />
+          <Product photo={selectedItem?.photo} />
+          {selectedItem && <DetailText selectedItem={selectedItem} />}
         </div>
 
         {/* <Activity /> */}
@@ -200,7 +194,7 @@ const ProductDetail = () => {
               >
                 {categories &&
                   categories
-                    .filter((item) => item.category == category)
+                    .filter((item) => item.category == selectedItem?.category)
                     .map((nft) => (
                       <SwiperSlide key={nft.id}>
                         <Link to={`/products/${nft.id}`}>
