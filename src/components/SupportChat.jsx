@@ -1,132 +1,24 @@
-// import React, { useState, useEffect } from "react";
-// import { BsFillChatDotsFill } from "react-icons/bs";
-// import io from "socket.io-client";
-
-// const SupportChat = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [message, setMessage] = useState("");
-//   const [adminMessages, setAdminMessages] = useState([]);
-//   const [userMessages, setUserMessages] = useState([]);
-
-//   const toggleChat = () => {
-//     setIsOpen((prevIsOpen) => !prevIsOpen);
-//   };
-
-//   const sendMessage = () => {
-//     if (message.trim() === "") {
-//       return;
-//     }
-
-//     // Send the user message
-//     setUserMessages((prevMessages) => [...prevMessages, message]);
-//     setMessage("");
-
-//     // Implement the logic to send the message to the server
-//     // For example, using the socket.emit method
-//     // socket.emit('userMessage', message);
-//   };
-
-//   useEffect(() => {
-//     // Connect to the web socket
-//     const socket = io("http://localhost:3000"); // Replace with your server URL
-
-//     // Listen for admin messages
-//     socket.on("adminMessage", (message) => {
-//       setAdminMessages((prevMessages) => [...prevMessages, message]);
-//     });
-
-//     // Clean up the socket connection
-//     return () => {
-//       socket.disconnect();
-//     };
-//   }, []);
-
-//   return (
-//     <div className="fixed z-10 right-4 bottom-4">
-//       <div
-//         className={`bg-[hsl(207,_89%,_86%)] rounded-full p-5 cursor-pointer ${
-//           isOpen ? "bg-[hsl(207,_90%,_54%)]" : ""
-//         }`}
-//         onClick={toggleChat}
-//       >
-//         <BsFillChatDotsFill className="w-20 h-20 text-[hsl(207,_90%,_54%)]" />
-//         {adminMessages.length + userMessages.length > 0 && (
-//           <div className="absolute flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-yellow-400 rounded-full -top-2 -right-2">
-//             {adminMessages.length + userMessages.length}
-//           </div>
-//         )}
-//       </div>
-
-//       {isOpen && (
-//         <div className="fixed z-10 bg-white min-h-[546px] min-w-[400px] rounded-3xl shadow-lg right-4 bottom-16 w-80">
-//           <div className="flex items-center justify-between px-4 py-2 text-white bg-[hsl(207,_90%,_54%)]">
-//             <h2 className="text-lg font-medium">Support Chat</h2>
-//             <button
-//               className="text-white hover:text-white focus:outline-none"
-//               onClick={toggleChat}
-//             >
-//               <BsFillChatDotsFill className="w-6 h-6" />
-//             </button>
-//           </div>
-//           <div className="p-4">
-//             {/* Render user messages */}
-//             {userMessages.map((message, index) => (
-//               <div key={index} className="flex flex-col items-end mb-4">
-//                 <div className="flex items-center justify-end">
-//                   <div className="max-w-xs px-4 py-2 text-white bg-blue-500 rounded-lg">
-//                     {message}
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-
-//             {/* Render admin messages */}
-//             {adminMessages.map((message, index) => (
-//               <div key={index} className="flex flex-col items-start mb-4">
-//                 <div className="flex items-center justify-start">
-//                   <div className="max-w-xs px-4 py-2 text-gray-800 bg-gray-200 rounded-lg">
-//                     {message}
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-
-//           <div className="flex items-center px-4 py-2">
-//             <input
-//               type="text"
-//               className="flex-grow px-3 py-2 border border-gray-300 rounded-l-lg outline-none focus:border-blue-500"
-//               placeholder="Type your message..."
-//               value={message}
-//               onChange={(e) => setMessage(e.target.value)}
-//             />
-//             <button
-//               className="px-4 py-2 text-white bg-blue-500 rounded-r-lg hover:bg-blue-600"
-//               onClick={sendMessage}
-//             >
-//               Send
-//             </button>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default SupportChat;
-
-import React, { useState, useEffect } from "react";
-import { BsFillChatDotsFill } from "react-icons/bs";
+import React, { useState, useEffect, useRef } from "react";
+import { BsFillChatDotsFill, BsSendFill } from "react-icons/bs";
 import io from "socket.io-client";
 import { format, isSameDay } from "date-fns";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
+import { IoAttachSharp } from "react-icons/io5";
 
 const SupportChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [adminMessages, setAdminMessages] = useState([]);
   const [userMessages, setUserMessages] = useState([]);
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [adminMessages, userMessages]);
 
   const toggleChat = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -168,6 +60,12 @@ const SupportChat = () => {
     };
   }, []);
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
   const formatTimestamp = (timestamp) => {
     if (isSameDay(timestamp, new Date())) {
       return format(timestamp, "h:mm a");
@@ -219,8 +117,11 @@ const SupportChat = () => {
               anyone.
             </p>
           </div>
-          <div className="h-full max-h-[400px] overflow-y-auto relative">
-            <div className="h-full p-4 mt-auto">
+          <div
+            className="flex-grow max-h-[400px] overflow-y-auto flex flex-col-reverse"
+            ref={chatContainerRef}
+          >
+            <div className="flex flex-col justify-end h-full p-4 mt-auto">
               {/* Render user messages */}
               {userMessages.map((message, index) => (
                 <div key={index} className="flex flex-col items-end mb-4">
@@ -260,19 +161,21 @@ const SupportChat = () => {
               ))}
             </div>
 
-            <div className="fixed bg-white flex items-center min-w-full px-4 py-3 h-48 mt-auto bottom-[45px]">
+            <div className="fixed bg-white flex items-center max-w-[490px] px-4 py-3 h-48 mt-auto bottom-[45px]">
               <input
                 type="text"
-                className="flex-grow px-6 bg-[hsl(220,_14%,_96%)] py-4 border border-gray-300 rounded-l-lg outline-none focus:border-blue-500"
+                className="flex-grow px-6 bg-[hsl(220,_14%,_96%)] w-[350px] py-4 border border-gray-300 rounded-l-lg outline-none focus:border-blue-500"
                 placeholder="What can we help you with today?"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
               />
+              <IoAttachSharp className="absolute w-10 h-10 text-gray-700 cursor-pointer right-20 hover:text-gray-400" />
               <button
-                className="px-4 py-2 text-white bg-blue-500 rounded-r-lg hover:bg-blue-600"
+                className="px-4 py-6 text-white bg-[hsl(207,_50%,_54%)] rounded-r-lg hover:bg-[hsl(207,51%,39%)]"
                 onClick={sendMessage}
               >
-                Send
+                <BsSendFill className="h-full text-white" />
               </button>
             </div>
           </div>
