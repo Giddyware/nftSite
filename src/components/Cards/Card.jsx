@@ -33,7 +33,7 @@ const Card = ({
       className="flex flex-col gap-2 bg-white rounded-lg shadow-lg min-h-[350px] min-w-220px]"
     >
       <div className="w-full h-full bg-white shadow-md rounded-b-2xl">
-        <div className="w-full h-[75%]">
+        <div className="w-full h-[75%] max-h-[290px]">
           <img
             crossOrigin="anonymous"
             src={imgUrl || imageURL}
