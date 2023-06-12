@@ -14,7 +14,7 @@ import Connect from "./ConnectWallet/Connect";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { logoutUser } from "../../context/auth/authActions";
+import { getUserDetails, logoutUser } from "../../context/auth/authActions";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/auth/authSlice";
 import { CgProfile } from "react-icons/cg";
@@ -62,16 +62,20 @@ const Button_Details = () => {
 
 const ProfileButton = () => {
   const location = useLocation().pathname;
-  const { user, isAuthenticated, isEmailVerified } = useSelector(
+  const dispatch = useDispatch();
+  const { userDetails, isAuthenticated, isEmailVerified } = useSelector(
     (state) => state.auth
   );
+  const { photo, userVerified, username } = userDetails;
 
   // console.log(user, "user");
 
-  // useEffect(() => {
-  //   dispatch(getUserDetails());
-  // }
-
+  useEffect(() => {
+    dispatch(getUserDetails());
+    console.log(userDetails, "userDetails====");
+  }, []);
+  const baseUrl = "https://alphapp.tech";
+  const imgUrl = `${baseUrl}${photo}`;
   return (
     // <Button>
     //     <div className="flex items-center justify-center gap-4 text-white w-7 md:w-[24px] ">
@@ -84,17 +88,18 @@ const ProfileButton = () => {
           <div className="w-10 h-10">
             <img
               className="w-full h-full border border-white border-solid rounded-full"
-              src={avatar}
+              src={photo && imgUrl}
               alt=""
+              crossOrigin="anonymous"
             />
           </div>
           <div className="flex flex-col items-center justify-center ml-3 mr-8">
-            <p>{user && user.user.username}</p>
+            <p>{username}</p>
             <p className="font-bold">
-              {user && (isEmailVerified || user?.user?.emailVerified) ? (
-                <span className="text-green-500">Verified</span>
+              {!!userVerified ? (
+                <span className="text-green-400">Verified</span>
               ) : (
-                <span className="text-red-500"> Unverified</span>
+                <span className="text-red-400"> Unverified</span>
               )}
             </p>
           </div>
