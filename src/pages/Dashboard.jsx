@@ -38,6 +38,7 @@ import axios from "axios";
 import Profile from "../components/Profile";
 import { formatToThousand } from "../utils/formatToThousand.js";
 import SupportChat from "../components/SupportChat";
+import WithdrawalSubmitted from "../components/WithdrawalSubmitted";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -111,6 +112,7 @@ const Dashboard = () => {
   const [usdRate, setUsdRate] = useState(0);
   const [showModalMint, setShowModalMint] = useState(false);
   const [showModalProfile, setShowModalProfile] = useState(false);
+  const [showWithdrawalSubmitted, setShowWithdrawalSubmitted] = useState(false);
   const dispatch = useDispatch();
 
   const onWithdraw = () => {
@@ -124,6 +126,10 @@ const Dashboard = () => {
   };
   const onProfile = () => {
     setShowModalProfile((prev) => !prev);
+  };
+
+  const onWithdrawSubmit = () => {
+    setShowWithdrawalSubmitted((prev) => !prev);
   };
 
   const ChangeLanguage = (code) => {
@@ -167,7 +173,10 @@ const Dashboard = () => {
         <Deposit show={showModalDeposit} modalStatus={onDeposit} />
         <Mint show={showModalMint} modalStatus={onMint} />
         <Profile show={showModalProfile} modalStatus={onProfile} />
-
+        <WithdrawalSubmitted
+          show={showWithdrawalSubmitted}
+          modalStatus={onWithdrawSubmit}
+        />
         <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 
         <div className="w-[100%] py-8 pr-8">
@@ -231,7 +240,7 @@ const Dashboard = () => {
                 />
               </div>
               <div>
-                <p>ETH</p>
+                <p onClick={() => onWithdrawSubmit()}>ETH</p>
                 <p className="text-sm text-gray-400">ERC20</p>
               </div>
               <div className="text-lg font-bold text-right justify-self-end">
