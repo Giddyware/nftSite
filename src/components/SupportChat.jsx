@@ -94,7 +94,7 @@ const SupportChat = () => {
         <div className="fixed z-10 bg-white min-h-[546px] min-w-[400px] rounded-3xl shadow-lg right-4 bottom-16 w-80">
           <div className="flex flex-col py-10 px-12 rounded-t-3xl text-white bg-[hsl(207,_50%,_54%)]">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-3xl font-bold">Armint Customer service</h2>
+              <h2 className="text-3xl font-bold">Artmint Customer service</h2>
               <button
                 className="text-white hover:text-white focus:outline-none"
                 onClick={toggleChat}

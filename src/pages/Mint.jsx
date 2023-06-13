@@ -141,7 +141,7 @@ const Mint = ({ show, modalStatus }) => {
             />
           </div>
 
-          <div className="flex justify-between min-w-full mt-auto">
+          <div className="flex justify-between min-w-[400px] md:min-w-[420px] lg:min-w-[470px] mt-auto overflow-x-hidden">
             <div className="flex flex-col gap-3">
               <label
                 htmlFor="category"
@@ -152,10 +152,10 @@ const Mint = ({ show, modalStatus }) => {
               <select
                 id="category"
                 name="category"
-                className="w-full px-4 py-5 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                className="w-full min-w-[80px] px-4 py-4 text-2xl text-gray-900 border border-gray-300 rounded-lg "
                 {...mintForm("category")}
               >
-                <option value="">Choose a category</option>
+                <option value="">Choose category</option>
                 <option value="arts">Arts</option>
                 <option value="gaming">Gaming</option>
                 <option value="membership">Membership</option>

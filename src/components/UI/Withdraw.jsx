@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { AiOutlineClose, AiOutlineScan } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiOutlineLoading,
+  AiOutlineScan,
+} from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 
 import Weth_logo from "../../assets/weth.png";
@@ -20,33 +24,34 @@ import Overlay from "./Overlay";
 
 import PasteOnClick from "../PasteOnClick";
 import { formatToThousand } from "../../utils/formatToThousand";
+import { getUserDetails } from "../../context/auth/authActions";
+
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
-  amount: z.number(),
+  // amount: z.number().nonempty("please enter the amount your want to withdraw"),
+  amount: z
+    .number("Please enter a valid number")
+    .refine((value) => value !== undefined && value !== null, {
+      message: "Please enter a valid number.",
+    }),
+});
+const AddressSchema = z.object({
   address: z.string().nonempty("Please enter your address here"),
 });
+
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
+  const [addressError, setAddressError] = useState("");
 
   const [coin, setCoin] = useState("");
   const dispatch = useDispatch();
   const { response, isLoading, error } = useSelector(
     (state) => state.transaction
   );
+  const { userDetails } = useSelector((state) => state.auth);
 
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
-
-  // const handlePaste = async () => {
-  //   if (navigator.clipboard && navigator.clipboard.readText) {
-  //     try {
-  //       const text = await navigator.clipboard.readText();
-  //       setInputValue(text);
-  //     } catch (error) {
-  //       console.error("Failed to read clipboard text:", error);
-  //     }
-  //   }
-  // };
 
   const handlePaste = (text) => {
     setInputValue(text);
@@ -66,6 +71,9 @@ const Withdraw = ({ show, modalStatus }) => {
   const changeShowMore = () => {
     setShowMore((prev) => !prev);
   };
+  useEffect(() => {
+    dispatch(getUserDetails());
+  }, []);
 
   useEffect(() => {
     // response.success && toast.success(`${response.message}`);
@@ -81,12 +89,28 @@ const Withdraw = ({ show, modalStatus }) => {
 
   const onSubmit = (data) => {
     console.log("data======", data);
-    if (data.coin == "ETH") {
-      dispatch(WithdrawInEth(data.amount));
-    }
-    // if (data.coin == "WETH") {
-    //   dispatch(WithdrawInWeth(data.amount));
+    // if (data.coin == "ETH") {
+    //   dispatch(WithdrawInEth(data.amount));
     // }
+
+    // Manually validate the address field using Zod
+    // const addressValidation = AddressSchema.parse({ address: data. }).validate(
+    //   data
+    // );
+    // if (addressValidation.error) {
+    //   setAddressError(addressValidation.error.message);
+    //   return;
+    // }
+    // setAddressError("");
+    if (data.amount > userDetails?.wallet?.weth) {
+      toast.error(
+        `You don't have up to ${data.amount} WETH in your WETH Account`
+      );
+      return;
+    }
+    if (data.coin == "WETH") {
+      dispatch(WithdrawInWeth(data.amount));
+    }
 
     reset();
   };
@@ -123,22 +147,32 @@ const Withdraw = ({ show, modalStatus }) => {
             {/* <option value="ETH">ETH</option> */}
             <option value="WETH">WETH (ERC20)</option>
           </select>
+          {errors.coin && (
+            <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
+              {errors.coin.message}
+            </div>
+          )}
         </div>
         <label htmlFor="address" className="flex mb-2 font-bold text-gray-900">
           <span className="mr-auto">Address</span>
           <PasteOnClick onPaste={handlePaste} />
         </label>
         <div className="relative">
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"></div>
           <input
             type="text"
-            ref={inputRef}
+            // ref={inputRef}
             id="address"
             className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
             placeholder="Enter your address"
             value={inputValue}
             onChange={handleInputChange}
+            // {...register("address")}
           />
+          {addressError && (
+            <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
+              {addressError}
+            </div>
+          )}
         </div>
 
         <div className="">
@@ -154,7 +188,8 @@ const Withdraw = ({ show, modalStatus }) => {
             <span className="text-2xl text-gray-600">
               WETH bal:{" "}
               <span className="font-bold">
-                110 <span className="text-lg">WETH</span>{" "}
+                {formatToThousand(userDetails?.wallet?.weth)}{" "}
+                <span className="text-lg">WETH</span>{" "}
               </span>
             </span>
           </div>
@@ -167,6 +202,11 @@ const Withdraw = ({ show, modalStatus }) => {
               valueAsNumber: true,
             })}
           />
+          {errors.amount && (
+            <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
+              {errors.amount.message}
+            </div>
+          )}
         </div>
         {/* <p className="mt-3 text-2xl text-gray-600">
           fee: 20% <span className="font-bold">~20 ETH</span>
@@ -174,11 +214,20 @@ const Withdraw = ({ show, modalStatus }) => {
 
         <h3 className="my-10 text-2xl text-gray-600">
           ETH bal:{" "}
-          <span className="font-bold">{formatToThousand(7329)} ETH</span>
+          <span className="font-bold">
+            {formatToThousand(userDetails?.wallet?.eth)} ETH
+          </span>
         </h3>
 
-        <button className="w-full mt-10 capitalize bg-[#2196F3] text-white p-4 md:p-6">
-          submit
+        <button className="w-full mt-10 capitalize bg-[#2196F3] hover:bg-[#7cbdf3]  text-white p-4 md:p-6">
+          {isLoading ? (
+            <span>
+              submitting
+              <AiOutlineLoading className="animate-spin inline ml-3" />
+            </span>
+          ) : (
+            <span>submit</span>
+          )}
         </button>
       </form>
 
