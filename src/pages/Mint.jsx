@@ -69,7 +69,7 @@ const Mint = ({ show, modalStatus }) => {
       // console.log(formData, "formData");
 
       dispatch(createNft(formData));
-
+      toast.success("Minting Successful .🎉");
       reset();
     } catch (error) {
       toast.error("Minting failed. Please try again.");
@@ -108,7 +108,7 @@ const Mint = ({ show, modalStatus }) => {
         <div className="flex flex-col items-start justify-center min-h-[100%] bg-white  px-10 py-12 border-2 rounded-2xl max-w-[450px] my-6 mx-auto text-[#04111D]">
           <p className="text-5xl font-bold">Create New Item</p>
 
-          <p className="text-2xl font-bold">Image *</p>
+          {/* <p className="text-2xl font-bold">Image *</p> */}
           <p className="my-5 text-lg">File types supported: JPG, PNG, JPEG</p>
           <div className="max-w-[290px] md:max-w-[350px] lg:max-w-[350px]">
             <label htmlFor="photo" className="drop-container">

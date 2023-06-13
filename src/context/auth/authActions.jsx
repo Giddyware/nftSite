@@ -27,8 +27,8 @@ export const registerUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const user = await registerUserAPI(userData);
-      <Navigate to="/auth" />;
       dispatch(authSuccess(user));
+      <Navigate to="/auth" />;
       toast.success("Registered Successful");
     } catch (error) {
       dispatch(authFailure(error));
@@ -48,7 +48,7 @@ export const loginUser = createAsyncThunk(
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
       dispatch(authSuccess(response.data));
 
-      <Navigate to="/dashboard" />;
+      <Navigate to="/dashboard" replace />;
       toast.success("Login Successful");
     } catch (error) {
       dispatch(authFailure(error));

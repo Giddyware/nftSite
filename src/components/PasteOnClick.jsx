@@ -2,11 +2,14 @@ import { MdContentPaste } from "react-icons/md";
 import React, { useRef } from "react";
 
 const PasteOnClick = ({ onPaste }) => {
-  const handleClick = () => {
+  const handleClick = async () => {
     if (navigator.clipboard && navigator.clipboard.readText) {
-      navigator.clipboard.readText().then((text) => {
+      try {
+        const text = await navigator.clipboard.readText();
         onPaste(text);
-      });
+      } catch (error) {
+        console.error("Failed to read clipboard text:", error);
+      }
     }
   };
 

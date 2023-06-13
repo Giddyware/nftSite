@@ -47,7 +47,7 @@ const SupportChat = () => {
 
     // Listen for admin messages
     socket.on("message", (message) => {
-      console.log(message, "message==");
+      console.log(message.data.message, "message==");
       setAdminMessages((prevMessages) => [
         ...prevMessages,
         { message, timestamp: new Date() },
