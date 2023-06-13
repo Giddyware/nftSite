@@ -80,7 +80,7 @@ const App = () => {
           path={`/category=marketplace`}
           element={
             <ProtectedRoute>
-              <MarketPlace name="Market Place" />
+              <MarketPlace name="Marketplace" />
             </ProtectedRoute>
           }
         />

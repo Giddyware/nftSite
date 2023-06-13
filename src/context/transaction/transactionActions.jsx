@@ -20,7 +20,7 @@ export const WithdrawInEth = createAsyncThunk(
 );
 
 export const WithdrawInWeth = createAsyncThunk(
-  "transaction/withdrawEth",
+  "transaction/withdrawWeth",
   async (amt, { dispatch }) => {
     dispatch(fetchStart());
     try {
