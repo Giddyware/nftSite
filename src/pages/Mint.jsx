@@ -138,7 +138,7 @@ const Mint = ({ show, modalStatus }) => {
               )}
               {errors.photo && (
                 <span className="text-red-500  col-span-6 font-semibold tracking-[-0.21px]">
-                  >{errors.photo.message}
+                  {errors.photo.message}
                 </span>
               )}
             </label>
