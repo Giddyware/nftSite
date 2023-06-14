@@ -104,15 +104,15 @@ const SupportChat = () => {
             </div>
 
             <p className="max-w-[280px]">
-              Welcome to Armint live chat, Drop your message, our team will get
+              Welcome to Artmint live chat, Drop your message, our team will get
               in touch asap.
             </p>
           </div>
           <div className="flex items-center gap-2 py-10 border px-11 border-b-[1px] border-[hsla(0,_0%,_88%,_1)]">
             <RiErrorWarningLine className="self-start w-20 h-20" />
             <p className="text-base">
-              Armint reminds you to pay attention to account security, please do
-              not disclose your account, password, verification code, PIKEY
+              Artmint reminds you to pay attention to account security, please
+              do not disclose your account, password, verification code, PIKEY
               Identity authentication kev and other security Information to
               anyone.
             </p>

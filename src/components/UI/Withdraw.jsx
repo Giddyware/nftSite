@@ -188,7 +188,7 @@ const Withdraw = ({ show, modalStatus }) => {
             <span className="text-2xl text-gray-600">
               WETH bal:{" "}
               <span className="font-bold">
-                {formatToThousand(userDetails?.wallet?.weth)}{" "}
+                {formatToThousand(userDetails?.wallet?.weth.toFixed(4))}{" "}
                 <span className="text-lg">WETH</span>{" "}
               </span>
             </span>
@@ -223,7 +223,7 @@ const Withdraw = ({ show, modalStatus }) => {
           {isLoading ? (
             <span>
               submitting
-              <AiOutlineLoading className="animate-spin inline ml-3" />
+              <AiOutlineLoading className="inline ml-3 animate-spin" />
             </span>
           ) : (
             <span>submit</span>
