@@ -25,13 +25,13 @@ import Overlay from "./Overlay";
 import PasteOnClick from "../PasteOnClick";
 import { formatToThousand } from "../../utils/formatToThousand";
 import { getUserDetails } from "../../context/auth/authActions";
+import WithdrawalSubmitted from "../WithdrawalSubmitted";
 
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
-  address: z.string({
-    required_error: "Name is required",
-    invalid_type_error: "Name must be a string",
-  }),
+
+  address: z.string().nonempty("Please enter your address here"),
+
   amount: z
     .number({
       required_error: "Amount is required",
@@ -42,7 +42,8 @@ const schema = z.object({
 
 const Withdraw = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
-  const [addressError, setAddressError] = useState("");
+  // const [addressError, setAddressError] = useState("");
+  const [showWithdrawalSubmitted, setShowWithdrawalSubmitted] = useState(false);
 
   const [coin, setCoin] = useState("");
   const dispatch = useDispatch();
@@ -71,6 +72,9 @@ const Withdraw = ({ show, modalStatus }) => {
   } = useForm({ resolver: zodResolver(schema) });
   const navigate = useNavigate();
 
+  const onWithdrawSubmit = () => {
+    setShowWithdrawalSubmitted((prev) => !prev);
+  };
   const changeShowMore = () => {
     setShowMore((prev) => !prev);
   };
@@ -81,6 +85,8 @@ const Withdraw = ({ show, modalStatus }) => {
   useEffect(() => {
     if (!!response) {
       toast.success(`${response?.message}🎉`);
+      modalStatus();
+      onWithdrawSubmit();
     }
     if (response?.status == "error") {
       toast.error(`${response?.message}😥`);
@@ -98,11 +104,14 @@ const Withdraw = ({ show, modalStatus }) => {
     if (data.coin == "WETH") {
       dispatch(WithdrawInWeth(amount));
     }
-
     reset();
   };
   return (
     <>
+      <WithdrawalSubmitted
+        show={showWithdrawalSubmitted}
+        modalStatus={onWithdrawSubmit}
+      />
       <Overlay show={show} clear={modalStatus} />
       <form
         className="fixed top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
@@ -153,6 +162,7 @@ const Withdraw = ({ show, modalStatus }) => {
             {...register("address")}
             onChange={(e) => setValue("address", e.target.value)}
           />
+          {console.log(errors, "errors")}
           {errors.address && (
             <div className="text-red-500 text-xl mt-2 col-span-6 font-semibold tracking-[-0.21px]">
               {errors.address.message}
