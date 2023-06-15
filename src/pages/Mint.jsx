@@ -16,9 +16,20 @@ const ACCEPTED_IMAGE_TYPES = [
   "image/webp",
 ];
 const schema = object({
-  name: string().nonempty("Name is required"),
-  category: string().nonempty("Category is required"),
-  priceInEtherium: number().min(0.0001, "Price must be a positive number"),
+  name: string({
+    required_error: "Name is required",
+    invalid_type_error: "Name must be a string",
+  }).nonempty("Name is required"),
+
+  category: string({
+    required_error: "Category is required",
+    invalid_type_error: "Category must be a string",
+  }).nonempty("Category is required"),
+
+  priceInEtherium: number({
+    required_error: "Price is required",
+    invalid_type_error: "Price is required and  must be a number",
+  }).positive("Price must be greater than 0"),
   description: string().nonempty("Description can not be left empty"),
   // image: string().nonempty("Image is required"), // Update the schema to include the image field
   photo: any()
@@ -44,15 +55,15 @@ const Mint = ({ show, modalStatus }) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = (data) => {
     console.log(data);
     try {
       setLoading(true);
-      data.priceInEtherium = parseFloat(data.priceInEtherium); // Convert the price to a number
+      // data.priceInEtherium = parseFloat(data.priceInEtherium); // Convert the price to a number
 
-      const validData = schema.parse(data); //Validating the data
+      // const validData = schema.parse(data); //Validating the data
 
       // console.log(validData, "validData");
 
@@ -125,7 +136,11 @@ const Mint = ({ show, modalStatus }) => {
               {previewImage && (
                 <img className="w-20 h-20" src={previewImage} alt="Preview" />
               )}
-              {errors.photo && <span>{errors.photo.message}</span>}
+              {errors.photo && (
+                <span className="text-red-500  col-span-6 font-semibold tracking-[-0.21px]">
+                  {errors.photo.message}
+                </span>
+              )}
             </label>
           </div>
 
@@ -139,6 +154,11 @@ const Mint = ({ show, modalStatus }) => {
               } `}
               {...mintForm("name")}
             />
+            {errors.name && (
+              <div className="text-red-500 text-xl mt-2  col-span-6 font-semibold tracking-[-0.21px]">
+                {errors.name.message}
+              </div>
+            )}
           </div>
 
           <div className="flex justify-between min-w-[400px] md:min-w-[420px] lg:min-w-[470px] mt-auto overflow-x-hidden">
@@ -152,7 +172,9 @@ const Mint = ({ show, modalStatus }) => {
               <select
                 id="category"
                 name="category"
-                className="w-full min-w-[80px] px-4 py-4 text-2xl text-gray-900 border border-gray-300 rounded-lg "
+                className={`w-full min-w-[80px] px-4 py-4 text-2xl text-gray-900 border border-gray-300 rounded-lg ${
+                  errors.category ? "border-red-500" : ""
+                }`}
                 {...mintForm("category")}
               >
                 <option value="">Choose category</option>
@@ -163,6 +185,11 @@ const Mint = ({ show, modalStatus }) => {
                 <option value="pfps">PFPS</option>
                 <option value="others">Others</option>
               </select>
+              {errors.category && (
+                <div className="text-red-500 text-xl mt-2  font-semibold tracking-[-0.21px]">
+                  {errors.category.message}
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col gap-3 ml-auto w-fit">
@@ -171,17 +198,21 @@ const Mint = ({ show, modalStatus }) => {
               </label>
               <input
                 type="number"
-                step={0.001}
+                step="any"
                 placeholder="NFT Price"
                 id="priceInEtherium"
                 name="priceInEtherium"
-                className="w-2/3 p-4 border rounded "
-                {...mintForm("priceInEtherium")}
+                className={`w-2/3 p-4 border rounded ${
+                  errors.priceInEtherium ? "border-red-500" : ""
+                }`}
+                {...mintForm("priceInEtherium", {
+                  valueAsNumber: true,
+                })}
               />
-              {errors.price && (
-                <span className="text-red-400 font-semibold leading-200 tracking-[-0.21px]">
-                  {errors.price.message}
-                </span>
+              {errors.priceInEtherium && (
+                <div className="text-red-500 text-xl mt-2 max-w-[180px] font-semibold tracking-[-0.21px]">
+                  {errors.priceInEtherium.message}
+                </div>
               )}
             </div>
           </div>
@@ -189,7 +220,9 @@ const Mint = ({ show, modalStatus }) => {
           <p className="mt-12 text-2xl font-bold">Description</p>
 
           <textarea
-            className="w-full p-5 my-5 border-2 rounded-md"
+            className={`w-full p-5 my-5 border rounded-md ${
+              errors.description ? "border-red-500" : ""
+            }`}
             name="description"
             id="description"
             cols="30"
@@ -197,6 +230,11 @@ const Mint = ({ show, modalStatus }) => {
             placeholder="Provide a detailed description of your NFT."
             {...mintForm("description")}
           ></textarea>
+          {errors.description && (
+            <div className="text-red-500 text-xl font-semibold tracking-[-0.21px]">
+              {errors.description.message}
+            </div>
+          )}
           <div className="flex justify-between w-full mt-auto">
             <button className="bg-[#2196F3] py-5 px-3 w-48  text-white rounded-lg mt-3 hover:bg-[hsl(207,_90%,_74%)] shadow-xl">
               Mint

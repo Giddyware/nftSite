@@ -28,15 +28,16 @@ import { getUserDetails } from "../../context/auth/authActions";
 
 const schema = z.object({
   coin: z.string().nonempty("Please select a coin of your choice"),
-  // amount: z.number().nonempty("please enter the amount your want to withdraw"),
+  address: z.string({
+    required_error: "Name is required",
+    invalid_type_error: "Name must be a string",
+  }),
   amount: z
-    .number("Please enter a valid number")
-    .refine((value) => value !== undefined && value !== null, {
-      message: "Please enter a valid number.",
-    }),
-});
-const AddressSchema = z.object({
-  address: z.string().nonempty("Please enter your address here"),
+    .number({
+      required_error: "Amount is required",
+      invalid_type_error: "Amount is required and  must be a number",
+    })
+    .positive("You can't withdraw less than zero"),
 });
 
 const Withdraw = ({ show, modalStatus }) => {
@@ -50,20 +51,22 @@ const Withdraw = ({ show, modalStatus }) => {
   );
   const { userDetails } = useSelector((state) => state.auth);
 
-  const inputRef = useRef(null);
-  const [inputValue, setInputValue] = useState("");
-
-  const handlePaste = (text) => {
-    setInputValue(text);
+  const handlePaste = async () => {
+    if (navigator.clipboard && navigator.clipboard.readText) {
+      try {
+        const text = await navigator.clipboard.readText();
+        setValue("address", text); // Set the value of 'address' input
+      } catch (error) {
+        console.error("Failed to read clipboard text:", error);
+      }
+    }
   };
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
   } = useForm({ resolver: zodResolver(schema) });
   const navigate = useNavigate();
@@ -76,40 +79,24 @@ const Withdraw = ({ show, modalStatus }) => {
   }, []);
 
   useEffect(() => {
-    // response.success && toast.success(`${response.message}`);
     if (!!response) {
       toast.success(`${response?.message}🎉`);
     }
     if (response?.status == "error") {
       toast.error(`${response?.message}😥`);
     }
-
-    console.log(response, error, "response===");
   }, [response]);
 
   const onSubmit = (data) => {
-    console.log("data======", data);
-    // if (data.coin == "ETH") {
-    //   dispatch(WithdrawInEth(data.amount));
-    // }
+    const { amount } = data;
 
-    // Manually validate the address field using Zod
-    // const addressValidation = AddressSchema.parse({ address: data. }).validate(
-    //   data
-    // );
-    // if (addressValidation.error) {
-    //   setAddressError(addressValidation.error.message);
-    //   return;
-    // }
-    // setAddressError("");
-    if (data.amount > userDetails?.wallet?.weth) {
-      toast.error(
-        `You don't have up to ${data.amount} WETH in your WETH Account`
-      );
+    if (data.amount >= userDetails?.wallet?.weth) {
+      toast.error(`You don't have up to ${amount} WETH in your WETH Account`);
       return;
     }
+
     if (data.coin == "WETH") {
-      dispatch(WithdrawInWeth(data.amount));
+      dispatch(WithdrawInWeth(amount));
     }
 
     reset();
@@ -148,7 +135,7 @@ const Withdraw = ({ show, modalStatus }) => {
             <option value="WETH">WETH (ERC20)</option>
           </select>
           {errors.coin && (
-            <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
+            <div className="text-red-500  col-span-6 font-semibold tracking-[-0.21px]">
               {errors.coin.message}
             </div>
           )}
@@ -160,17 +147,15 @@ const Withdraw = ({ show, modalStatus }) => {
         <div className="relative">
           <input
             type="text"
-            // ref={inputRef}
             id="address"
             className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
             placeholder="Enter your address"
-            value={inputValue}
-            onChange={handleInputChange}
-            // {...register("address")}
+            {...register("address")}
+            onChange={(e) => setValue("address", e.target.value)}
           />
-          {addressError && (
-            <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
-              {addressError}
+          {errors.address && (
+            <div className="text-red-500 text-xl mt-2 col-span-6 font-semibold tracking-[-0.21px]">
+              {errors.address.message}
             </div>
           )}
         </div>
@@ -179,7 +164,7 @@ const Withdraw = ({ show, modalStatus }) => {
           <div className="flex items-baseline justify-between">
             <div>
               <label
-                htmlFor="network"
+                htmlFor="amount"
                 className="block w-full mt-8 mb-2 font-bold text-gray-900 "
               >
                 <span>Enter amount</span>
@@ -188,34 +173,32 @@ const Withdraw = ({ show, modalStatus }) => {
             <span className="text-2xl text-gray-600">
               WETH bal:{" "}
               <span className="font-bold">
-                {formatToThousand(userDetails?.wallet?.weth)}{" "}
+                {formatToThousand(userDetails?.wallet?.weth.toFixed(4))}{" "}
                 <span className="text-lg">WETH</span>{" "}
               </span>
             </span>
           </div>
-          {/* <p className="text-2xl font-bold">Ethereum (ERC-20)</p> */}
+
           <input
             type="number"
-            id="network"
+            step="any"
+            id="amount"
             className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 "
             {...register("amount", {
               valueAsNumber: true,
             })}
           />
           {errors.amount && (
-            <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
+            <div className="text-red-500 text-xl mt-2 col-span-6 font-semibold tracking-[-0.21px]">
               {errors.amount.message}
             </div>
           )}
         </div>
-        {/* <p className="mt-3 text-2xl text-gray-600">
-          fee: 20% <span className="font-bold">~20 ETH</span>
-        </p> */}
 
         <h3 className="my-10 text-2xl text-gray-600">
           ETH bal:{" "}
           <span className="font-bold">
-            {formatToThousand(userDetails?.wallet?.eth)} ETH
+            {formatToThousand(userDetails?.wallet?.eth.toFixed(4))} ETH
           </span>
         </h3>
 
@@ -223,23 +206,13 @@ const Withdraw = ({ show, modalStatus }) => {
           {isLoading ? (
             <span>
               submitting
-              <AiOutlineLoading className="animate-spin inline ml-3" />
+              <AiOutlineLoading className="inline ml-3 animate-spin" />
             </span>
           ) : (
             <span>submit</span>
           )}
         </button>
       </form>
-
-      {/* <div
-        className="fixed mx-auto sm:left-[30%] sm:top-[15%] h-[70%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
-        style={{
-          transform: show ? "translateY(0)" : "translateY(-1500px)",
-          opacity: show ? "1" : "0",
-          transition: "all 1s",
-        }}
-      >
-      </div> */}
     </>
   );
 };

@@ -6,7 +6,11 @@ const Verification = () => {
   return (
     <>
       <Header addBg={true} />
-      <VerifyEmail />
+      <div className="mx-10">
+        <main className="w-full mx-auto">
+          <VerifyEmail />
+        </main>
+      </div>
       <Footer />
     </>
   );

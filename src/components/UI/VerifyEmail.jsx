@@ -17,7 +17,7 @@ const VerifyEmail = () => {
     dispatch(createEmailToken());
   };
   return (
-    <div className="max-h-[50%] max-w-[800px] border-solid border mt-[5%]  shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] min-w-fit bg-gray-100 mx-10 md:mx-96">
+    <div className="max-h-[50%] max-w-[800px] border-solid border mt-[5%] mx-auto shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] bg-gray-100">
       <header className="mx-auto">
         <img className="w-72" alt="Artmint" src={logo} />
       </header>
@@ -27,7 +27,7 @@ const VerifyEmail = () => {
           <img className="w-72" src={envelope} />
         </div>
 
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-4xl font-bold text-center">
           Your email has not been verified.
         </h1>
         <p>Click the button below to verified </p>
@@ -43,7 +43,7 @@ const VerifyEmail = () => {
         </div>
         <p
           onClick={() => handleClick()}
-          className="text-[16px] mt-10 hover:underline cursor-pointer"
+          className="text-[16px] mt-10 hover:underline cursor-pointer w-full text-center"
         >
           Link not received? click here to Resend link
         </p>
