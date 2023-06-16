@@ -12,8 +12,6 @@ import { getUserDetails } from "../context/auth/authActions";
 const SupportChat = () => {
   const { userDetails } = useSelector((state) => state.auth);
 
-  // const adminChat = userDetails?.chat?.filter((e) => e.role === "admin");
-
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -34,9 +32,12 @@ const SupportChat = () => {
   }, [messages]);
 
   useEffect(() => {
-    dispatch(getUserDetails);
-    setMessages([...userDetails?.chat]);
+    dispatch(getUserDetails());
   }, [dispatch]);
+
+  useEffect(() => {
+    setMessages([...(userDetails?.chat || [])]);
+  }, [userDetails]);
 
   const toggleChat = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -68,8 +69,6 @@ const SupportChat = () => {
     });
 
     socket.on("message", (message) => {
-      console.log(message, "message===");
-
       setMessages((prevMessages) => [
         ...prevMessages,
         {
@@ -77,6 +76,14 @@ const SupportChat = () => {
           timestamp: new Date(),
           photo: message.data.photo,
         },
+        // {
+        //   _id: message._id,
+        //   messageId: message.messageId,
+        //   message: message.message,
+        //   role: message.role,
+        //   date: message.date,
+        //   photo: message.photo,
+        // },
       ]);
     });
 
@@ -91,7 +98,6 @@ const SupportChat = () => {
   };
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    // console.log(file);
     setSelectedImage(file);
   };
 
@@ -118,11 +124,6 @@ const SupportChat = () => {
         onClick={toggleChat}
       >
         <BsFillChatDotsFill className="w-14 h-14 text-[hsl(207,_90%,_54%)]" />
-        {/* {adminMessages.length + userMessages.length > 0 && (
-          <div className="absolute flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-yellow-500 rounded-full -top-2 -right-2">
-            {adminMessages.length + userMessages.length}
-          </div>
-        )} */}
       </div>
 
       {isOpen && (
@@ -159,7 +160,6 @@ const SupportChat = () => {
             <div className="flex flex-col justify-end h-full p-4 mt-auto mb-20">
               {!!messages &&
                 messages.map((message, index) => {
-                  console.log("message", message);
                   const isAdminMessage = userDetails?.chat
                     ?.filter((e) => e.role === "admin")
                     ?.includes(message);
@@ -177,27 +177,42 @@ const SupportChat = () => {
                         } justify-${isAdminMessage ? "start" : "end"}`}
                       >
                         {message?.photo && (
-                          <img
-                            src={`${BASE_URL}${message.photo}`}
-                            crossOrigin="anonymous"
-                            alt={`${
-                              isAdminMessage ? "Admin" : "User"
-                            } Message Image`}
-                            className={`object-cover w-28 h-28 mr-2 rounded-lg ${
-                              isAdminMessage ? "" : "self-end"
-                            }`}
-                          />
+                          <div className="bg-[hsl(0,_0%,_98%)] border p-2 rounded">
+                            <div className="w-32 h-28">
+                              <img
+                                src={`${BASE_URL}${message.photo}`}
+                                crossOrigin="anonymous"
+                                alt={`${
+                                  isAdminMessage ? "Admin" : "User"
+                                } Message Image`}
+                                className={`object-cover w-full max-h-28 mr-2 rounded-lg ${
+                                  isAdminMessage ? "" : "self-end"
+                                }`}
+                              />
+                            </div>
+                            <div
+                              className={`max-w-xs px-4 py-2 block rounded-lg ${
+                                isAdminMessage
+                                  ? "text-gray-800 bg-gray-200"
+                                  : "text-white bg-[hsl(207,_50%,_54%)]"
+                              }`}
+                            >
+                              {message.message}
+                            </div>
+                          </div>
                         )}
 
-                        <div
-                          className={`max-w-xs px-4 py-2 block rounded-lg ${
-                            isAdminMessage
-                              ? "text-gray-800 bg-gray-200"
-                              : "text-white bg-[hsl(207,_50%,_54%)]"
-                          }`}
-                        >
-                          {message.message}
-                        </div>
+                        {!message?.photo && (
+                          <div
+                            className={`max-w-xs px-4 py-2 block rounded-lg ${
+                              isAdminMessage
+                                ? "text-gray-800 bg-gray-200"
+                                : "text-white bg-[hsl(207,_50%,_54%)]"
+                            }`}
+                          >
+                            {message.message}
+                          </div>
+                        )}
                       </div>
                       <p className="text-xs text-left text-gray-500">
                         {/* {formatTimestamp(message.timestamp || message.date)} */}
