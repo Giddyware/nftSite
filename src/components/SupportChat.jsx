@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BsFillChatDotsFill, BsSendFill } from "react-icons/bs";
 import io from "socket.io-client";
-import { format, isSameDay } from "date-fns";
+import { format, isSameDay, isValid } from "date-fns";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import { IoAttachSharp } from "react-icons/io5";
@@ -11,7 +11,7 @@ import { getUserDetails } from "../context/auth/authActions";
 
 const SupportChat = () => {
   const { userDetails } = useSelector((state) => state.auth);
-  // console.log(userDetails, "userDetails");
+  console.log(userDetails, "userDetails");
 
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -113,11 +113,38 @@ const SupportChat = () => {
       sendMessage();
     }
   };
-  const formatTimestamp = (timestamp) => {
-    if (isSameDay(timestamp, new Date())) {
-      return format(timestamp, "h:mm a");
+  // const formatTimestamp = (timestamp) => {
+  //   console.log(timestamp, "timestamp");
+  //   if (isSameDay(timestamp, new Date())) {
+  //     return format(timestamp, "h:mm a");
+  //   } else {
+  //     return format(timestamp, "dd MMM yyyy");
+  //   }
+  // };
+
+  // const formatTimestamp = (timestamp) => {
+  //   console.log(timestamp, "timestamp");
+
+  //   if (!isValid(timestamp)) {
+  //     console.error("Invalid timestamp:", timestamp);
+  //     return ""; // or any default value you prefer
+  //   }
+
+  //   if (isSameDay(timestamp, new Date())) {
+  //     return format(timestamp, "h:mm a");
+  //   } else {
+  //     return format(timestamp, "dd MMM yyyy");
+  //   }
+  // };
+
+  const formatDateString = (dateString) => {
+    const date = new Date(dateString);
+    const currentDate = new Date();
+
+    if (isSameDay(date, currentDate)) {
+      return format(date, "h:mm a");
     } else {
-      return format(timestamp, "dd MMM yyyy");
+      return format(date, "dd MMM yyyy");
     }
   };
 
@@ -182,6 +209,10 @@ const SupportChat = () => {
                           isAdminMessage ? "start" : "end"
                         } justify-${isAdminMessage ? "start" : "end"}`}
                       >
+                        {console.log(
+                          userDetails?.myPendingChart,
+                          "myPendingChart"
+                        )}
                         {message?.photo && (
                           <div className="bg-[hsl(0,_0%,_98%)] border p-2 rounded">
                             <div className="w-32 h-28">
@@ -220,8 +251,12 @@ const SupportChat = () => {
                           </div>
                         )}
                       </div>
-                      <p className="text-xs text-left text-gray-500">
-                        {/* {formatTimestamp(message.timestamp || message.date)} */}
+                      <p
+                        className={`text-xs text-gray-500 ${
+                          isAdminMessage ? "text-left" : "text-right"
+                        }`}
+                      >
+                        {formatDateString(message.date)}
                       </p>
                     </div>
                   );

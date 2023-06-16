@@ -84,7 +84,7 @@ const Withdraw = ({ show, modalStatus }) => {
 
   useEffect(() => {
     if (!!response) {
-      toast.success(`${response?.message}🎉`);
+      // toast.success(`${response?.message}🎉`);
       modalStatus();
       onWithdrawSubmit();
     }
@@ -97,7 +97,11 @@ const Withdraw = ({ show, modalStatus }) => {
     const { amount } = data;
 
     if (data.amount >= userDetails?.wallet?.weth) {
-      toast.error(`You don't have up to ${amount} WETH in your WETH Account`);
+      modalStatus();
+      toast.error(`You don't have up to ${amount} WETH in your WETH Account`, {
+        position: toast.POSITION.TOP_CENTER,
+        className: "toast-message",
+      });
       return;
     }
 

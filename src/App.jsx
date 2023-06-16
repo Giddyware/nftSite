@@ -47,6 +47,7 @@ import Membership from "./pages/Membership";
 import Pfps from "./pages/Pfps";
 import Photography from "./pages/Photography";
 import Verification from "./pages/Verification";
+import ForgotPassword from "./pages/ForgotPassword";
 
 // import SupportAdmin from "./components/SupportAdmin";
 
@@ -158,8 +159,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/forgotPassword"
+          element={
+            <ProtectedRoute>
+              <ForgotPassword />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* <Route path="dashboard/buyNft" element={<Mint />} /> */}
         <Route
           path={`/products/:productId`}
           element={

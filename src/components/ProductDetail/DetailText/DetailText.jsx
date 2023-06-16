@@ -13,6 +13,7 @@ import { Navigate } from "react-router-dom";
 const Detailtext = ({ selectedItem }) => {
   const [usdRate, setUsdRate] = useState(0);
   const { error, isLoading } = useSelector((state) => state.product);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { id, description, name, nftOwner, priceInEtherium, category } =
     selectedItem;
@@ -24,7 +25,6 @@ const Detailtext = ({ selectedItem }) => {
       .then((response) => {
         const data = response.data;
         setUsdRate(data.ethereum.usd);
-        console.log(data.ethereum, "data");
       })
       .catch((error) => {
         console.log("Error", error);
@@ -32,36 +32,38 @@ const Detailtext = ({ selectedItem }) => {
   }, []);
 
   const handleBuyProduct = () => {
+    setLoading(true);
     dispatch(buyProduct(id));
-    error && toast.error(error);
-  };
+    setLoading(false);
 
-  if (error === "this Nft already belong to you") {
-    return (
-      <div>
-        {toast.warning("This NFT is already yours! \n \n Try to buy other", {
-          position: toast.POSITION.TOP_CENTER,
-          className: "toast-message",
-        })}
-        <Navigate to={"/category=marketPlace"} />
-      </div>
-    );
-  }
-
-  if (error === "you don't have enough balance to buy this Nft") {
-    return (
-      <div>
-        {toast.warning(
-          "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
-          {
+    // error && toast.error(error);
+    if (error === "this Nft already belong to you") {
+      return (
+        <div>
+          {toast.warning("This NFT is already yours! \n \n Try to buy other", {
             position: toast.POSITION.TOP_CENTER,
             className: "toast-message",
-          }
-        )}
-        <Navigate to={"/category=marketPlace"} />
-      </div>
-    );
-  }
+          })}
+          {/* <Navigate to={"/category=marketPlace"} /> */}
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div>
+          {toast.warning(
+            "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
+            {
+              position: toast.POSITION.TOP_CENTER,
+              className: "toast-message",
+            }
+          )}
+          {/* <Navigate to={"/category=marketPlace"} /> */}
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="flex-1 font-poppins">
@@ -78,7 +80,7 @@ const Detailtext = ({ selectedItem }) => {
           onClick={() => handleBuyProduct()}
         >
           <span className="text-xl text-center text-white">
-            {isLoading ? (
+            {loading ? (
               <span>
                 Processing..."
                 <AiOutlineLoading className="inline ml-3 animate-spin" />

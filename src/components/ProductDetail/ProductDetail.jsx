@@ -121,11 +121,9 @@ const ProductDetail = () => {
   //   );
   // }
 
-  if (!selectedItem) {
-    return <Loading />;
-  }
-
-  console.log(selectedItem, "selectedItem");
+  // if (!selectedItem) {
+  //   return <Loading />;
+  // }
 
   return (
     <>
