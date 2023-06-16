@@ -11,6 +11,7 @@ import { getUserDetails } from "../context/auth/authActions";
 
 const SupportChat = () => {
   const { userDetails } = useSelector((state) => state.auth);
+  // console.log(userDetails, "userDetails");
 
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -68,30 +69,35 @@ const SupportChat = () => {
       console.log("connected");
     });
 
-    socket.on("message", (message) => {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          message: message.data.message,
-          timestamp: new Date(),
-          photo: message.data.photo,
-        },
-        // {
-        //   _id: message._id,
-        //   messageId: message.messageId,
-        //   message: message.message,
-        //   role: message.role,
-        //   date: message.date,
-        //   photo: message.photo,
-        // },
-      ]);
+    socket.on("message", (mess) => {
+      console.log(mess.sender, "sender==");
+
+      console.log(messages, "prev");
+      console.log(mess.data, "new");
+      console.log(mess.data, "message===");
+
+      mess.messageId === userDetails?.id
+        ? setMessages((prevMessages) => [
+            ...prevMessages,
+            mess.data,
+            // {
+            // role: mess.data.role,
+            // timestamp: new Date(),
+            //   _id: message._id,
+            //   messageId: message.messageId,
+            //   message: message.message,
+            //   date: message.date,
+            //   photo: message.photo,
+            // },
+          ])
+        : null;
     });
 
     // Clean up the socket connection
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [userDetails, setMessage]);
 
   const handleUserMessage = (e) => {
     setMessage(e.target.value);
@@ -160,7 +166,7 @@ const SupportChat = () => {
             <div className="flex flex-col justify-end h-full p-4 mt-auto mb-20">
               {!!messages &&
                 messages.map((message, index) => {
-                  const isAdminMessage = userDetails?.chat
+                  const isAdminMessage = messages
                     ?.filter((e) => e.role === "admin")
                     ?.includes(message);
 
