@@ -7,6 +7,7 @@ import { createNft } from "../context/nft/nftActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Overlay from "../components/UI/Overlay";
+import { AiOutlineLoading } from "react-icons/ai";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -46,9 +47,9 @@ const schema = object({
 
 const Mint = ({ show, modalStatus }) => {
   const [previewImage, setPreviewImage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.product.error);
+  const { error, isLoading } = useSelector((state) => state.product);
 
   const {
     register: mintForm,
@@ -60,13 +61,6 @@ const Mint = ({ show, modalStatus }) => {
   const onSubmit = (data) => {
     console.log(data);
     try {
-      setLoading(true);
-      // data.priceInEtherium = parseFloat(data.priceInEtherium); // Convert the price to a number
-
-      // const validData = schema.parse(data); //Validating the data
-
-      // console.log(validData, "validData");
-
       const formData = new FormData();
       formData.append("photo", data.photo[0]); // Append the image file to the FormData object
 
@@ -77,8 +71,6 @@ const Mint = ({ show, modalStatus }) => {
         }
       });
 
-      // console.log(formData, "formData");
-
       dispatch(createNft(formData));
       toast.success("Minting Successful .🎉");
       reset();
@@ -86,7 +78,7 @@ const Mint = ({ show, modalStatus }) => {
       toast.error("Minting failed. Please try again.");
       console.error(error);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
@@ -237,7 +229,14 @@ const Mint = ({ show, modalStatus }) => {
           )}
           <div className="flex justify-between w-full mt-auto">
             <button className="bg-[#2196F3] py-5 px-3 w-48  text-white rounded-lg mt-3 hover:bg-[hsl(207,_90%,_74%)] shadow-xl">
-              Mint
+              {isLoading ? (
+                <span>
+                  Minting...
+                  <AiOutlineLoading className="inline ml-3 animate-spin" />
+                </span>
+              ) : (
+                <span>Mint</span>
+              )}
             </button>
             <button
               onClick={() => modalStatus()}

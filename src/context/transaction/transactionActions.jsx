@@ -1,7 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { WithdrawInEthAPI, WithdrawInWethAPI } from "./transactionApi";
-import { fetchFailure, fetchStart, fetchSuccess } from "./transactionSlice";
+import {
+  WithdrawInEthAPI,
+  WithdrawInWethAPI,
+  createChatAPI,
+} from "./transactionApi";
+import {
+  fetchChatFailure,
+  fetchChatStart,
+  fetchChatSuccess,
+  fetchFailure,
+  fetchStart,
+  fetchSuccess,
+} from "./transactionSlice";
 
 export const WithdrawInEth = createAsyncThunk(
   "transaction/withdrawEth",
@@ -25,7 +36,7 @@ export const WithdrawInWeth = createAsyncThunk(
     dispatch(fetchStart());
     try {
       const response = await WithdrawInWethAPI(amt);
-      console.log(response, "withdrawEth===");
+      // console.log(response, "withdrawEth===");
       if (response?.status == "error") {
         toast.error(`${response?.message}🎉`);
       }
@@ -33,6 +44,21 @@ export const WithdrawInWeth = createAsyncThunk(
     } catch (error) {
       console.log(error);
       dispatch(fetchFailure(error));
+    }
+  }
+);
+
+//* createChat  action
+export const createChat = createAsyncThunk(
+  "product/createNft",
+  async (chatData, { dispatch }) => {
+    dispatch(fetchChatStart());
+    try {
+      const chat = await createChatAPI(chatData);
+
+      dispatch(fetchChatSuccess(chat));
+    } catch (error) {
+      dispatch(fetchChatFailure(error));
     }
   }
 );

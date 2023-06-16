@@ -12,7 +12,7 @@ const Deposit = ({ show, modalStatus }) => {
 
   useEffect(() => {
     dispatch(getUserDetails());
-  }, [userDetails]);
+  }, [dispatch]);
 
   if (isLoading) {
     return <Loading />;
@@ -49,8 +49,8 @@ const Deposit = ({ show, modalStatus }) => {
           </div>
 
           <div className=" px-[12px] gap-3 mb-8 flex flex-col text-center opacity-[0.7] text-[1.25rem]">
-            <p className="text-left font-semibold mt-5">Wallet Address</p>
-            <div className="text-black font-extrabold text-left text-2xl">
+            <p className="mt-5 font-semibold text-left">Wallet Address</p>
+            <div className="text-2xl font-extrabold text-left text-black">
               <span className="text-black">
                 {userDetails?.wallet?.address}
                 <CopyOnClick text={userDetails?.wallet?.address} />

@@ -35,11 +35,11 @@ const nftSlice = createSlice({
 
     // BUY NFT
     buyProductStart(state) {
-      state.loading = true;
+      state.isLoading = true;
       state.error = null;
     },
     buyProductSuccess(state) {
-      state.loading = false;
+      state.isLoading = false;
     },
     buyProductFailure(state, action) {
       state.loading = false;

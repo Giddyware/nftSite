@@ -78,6 +78,7 @@ const ProductDetail = () => {
   const { selectedItem, categories, isLoading, error } = useSelector(
     (state) => state.product
   );
+  console.log(selectedItem, "selectedItem");
   const productDetailsRef = useRef(null); //Scroll to top
 
   useEffect(() => {
@@ -93,32 +94,32 @@ const ProductDetail = () => {
     return <Loading />;
   }
 
-  if (error === "this Nft already belong to you") {
-    return (
-      <div>
-        {toast.warning("This NFT is already yours! \n \n Try to buy other", {
-          position: toast.POSITION.TOP_CENTER,
-          className: "toast-message",
-        })}
-        <Navigate to={"/marketPlace"} />
-      </div>
-    );
-  }
+  // if (error === "this Nft already belong to you") {
+  //   return (
+  //     <div>
+  //       {toast.warning("This NFT is already yours! \n \n Try to buy other", {
+  //         position: toast.POSITION.TOP_CENTER,
+  //         className: "toast-message",
+  //       })}
+  //       <Navigate to={"/category=marketPlace"} />
+  //     </div>
+  //   );
+  // }
 
-  if (error === "you don't have enough balance to buy this Nft") {
-    return (
-      <div>
-        {toast.warning(
-          "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
-          {
-            position: toast.POSITION.TOP_CENTER,
-            className: "toast-message",
-          }
-        )}
-        <Navigate to={"/marketPlace"} />
-      </div>
-    );
-  }
+  // if (error === "you don't have enough balance to buy this Nft") {
+  //   return (
+  //     <div>
+  //       {toast.warning(
+  //         "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
+  //         {
+  //           position: toast.POSITION.TOP_CENTER,
+  //           className: "toast-message",
+  //         }
+  //       )}
+  //       <Navigate to={"/category=marketPlace"} />
+  //     </div>
+  //   );
+  // }
 
   if (!selectedItem) {
     return <Loading />;

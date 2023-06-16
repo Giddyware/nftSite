@@ -5,52 +5,78 @@ import { format, isSameDay } from "date-fns";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import { IoAttachSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { createChat } from "../context/transaction/transactionActions";
+import { getUserDetails } from "../context/auth/authActions";
 
 const SupportChat = () => {
+  const { userDetails } = useSelector((state) => state.auth);
+
+  // const adminChat = userDetails?.chat?.filter((e) => e.role === "admin");
+
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [adminMessages, setAdminMessages] = useState([]);
-  const [userMessages, setUserMessages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const [messages, setMessages] = useState([]);
+  const [messageHistory, setMessageHistory] = useState([]);
   const chatContainerRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const BASE_URL = "https://alphapp.tech";
 
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
-  }, [adminMessages, userMessages]);
+  }, [messages]);
+
+  useEffect(() => {
+    dispatch(getUserDetails);
+    setMessages([...userDetails?.chat]);
+  }, [dispatch]);
 
   const toggleChat = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const sendMessage = () => {
-    if (message.trim() === "") {
+    if (message.trim() === "" && !selectedImage) {
       return;
     }
 
-    // Send the user message
-    setUserMessages((prevMessages) => [
-      ...prevMessages,
-      { message, timestamp: new Date() },
-    ]);
-    setMessage("");
+    if (selectedImage) {
+      const formData = new FormData();
+      formData.append("message", message);
+      formData.append("photo", selectedImage);
 
-    // Implement the logic to send the message to the server
-    // For example, using the socket.emit method
-    // socket.emit('userMessage', message);
+      dispatch(createChat(formData));
+    } else {
+      dispatch(createChat({ message, timestamp: new Date() }));
+    }
+
+    setMessage("");
+    setSelectedImage(null);
   };
 
   useEffect(() => {
-    // Connect to the web socket
-    const socket = io("https://alphapp.tech/"); // Replace with your server URL
+    const socket = io(BASE_URL);
+    socket.on("connect", () => {
+      console.log("connected");
+    });
 
-    // Listen for admin messages
     socket.on("message", (message) => {
-      console.log(message.data.message, "message==");
-      setAdminMessages((prevMessages) => [
+      console.log(message, "message===");
+
+      setMessages((prevMessages) => [
         ...prevMessages,
-        { message, timestamp: new Date() },
+        {
+          message: message.data.message,
+          timestamp: new Date(),
+          photo: message.data.photo,
+        },
       ]);
     });
 
@@ -59,6 +85,15 @@ const SupportChat = () => {
       socket.disconnect();
     };
   }, []);
+
+  const handleUserMessage = (e) => {
+    setMessage(e.target.value);
+  };
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    // console.log(file);
+    setSelectedImage(file);
+  };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -83,11 +118,11 @@ const SupportChat = () => {
         onClick={toggleChat}
       >
         <BsFillChatDotsFill className="w-14 h-14 text-[hsl(207,_90%,_54%)]" />
-        {adminMessages.length + userMessages.length > 0 && (
+        {/* {adminMessages.length + userMessages.length > 0 && (
           <div className="absolute flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-yellow-500 rounded-full -top-2 -right-2">
             {adminMessages.length + userMessages.length}
           </div>
-        )}
+        )} */}
       </div>
 
       {isOpen && (
@@ -121,56 +156,82 @@ const SupportChat = () => {
             className="flex-grow max-h-[400px] overflow-y-auto flex flex-col-reverse"
             ref={chatContainerRef}
           >
-            <div className="flex flex-col justify-end h-full p-4 mt-auto">
-              {/* Render user messages */}
-              {userMessages.map((message, index) => (
-                <div key={index} className="flex flex-col items-end mb-4">
-                  <div className="flex items-center justify-end">
-                    <img
-                      src="/user-avatar.png"
-                      alt="User Avatar"
-                      className="w-8 h-8 mr-2 rounded-full"
-                    />
-                    <div className="max-w-xs px-4 py-2 text-white bg-[hsl(207,_50%,_54%)] rounded-lg">
-                      {message.message}
-                    </div>
-                  </div>
-                  <p className="text-xs text-right text-gray-500">
-                    {formatTimestamp(message.timestamp)}
-                  </p>
-                </div>
-              ))}
+            <div className="flex flex-col justify-end h-full p-4 mt-auto mb-20">
+              {!!messages &&
+                messages.map((message, index) => {
+                  console.log("message", message);
+                  const isAdminMessage = userDetails?.chat
+                    ?.filter((e) => e.role === "admin")
+                    ?.includes(message);
 
-              {/* Render admin messages */}
-              {adminMessages.map((message, index) => (
-                <div key={index} className="flex flex-col items-start mb-4">
-                  <div className="flex items-center justify-start">
-                    <img
-                      src="/admin-avatar.png"
-                      alt="Admin Avatar"
-                      className="w-8 h-8 mr-2 rounded-full"
-                    />
-                    <div className="max-w-xs px-4 py-2 text-gray-800 bg-gray-200 rounded-lg">
-                      {message.message}
+                  return (
+                    <div
+                      key={index}
+                      className={`flex flex-col items-${
+                        isAdminMessage ? "start" : "end"
+                      } mb-4`}
+                    >
+                      <div
+                        className={`flex items-${
+                          isAdminMessage ? "start" : "end"
+                        } justify-${isAdminMessage ? "start" : "end"}`}
+                      >
+                        {message?.photo && (
+                          <img
+                            src={`${BASE_URL}${message.photo}`}
+                            crossOrigin="anonymous"
+                            alt={`${
+                              isAdminMessage ? "Admin" : "User"
+                            } Message Image`}
+                            className={`object-cover w-28 h-28 mr-2 rounded-lg ${
+                              isAdminMessage ? "" : "self-end"
+                            }`}
+                          />
+                        )}
+
+                        <div
+                          className={`max-w-xs px-4 py-2 block rounded-lg ${
+                            isAdminMessage
+                              ? "text-gray-800 bg-gray-200"
+                              : "text-white bg-[hsl(207,_50%,_54%)]"
+                          }`}
+                        >
+                          {message.message}
+                        </div>
+                      </div>
+                      <p className="text-xs text-left text-gray-500">
+                        {/* {formatTimestamp(message.timestamp || message.date)} */}
+                      </p>
                     </div>
-                  </div>
-                  <p className="text-xs text-left text-gray-500">
-                    {formatTimestamp(message.timestamp)}
-                  </p>
-                </div>
-              ))}
+                  );
+                })}
             </div>
 
-            <div className="fixed bg-white flex items-center max-w-[490px] px-4 py-3 h-48 mt-auto bottom-[45px]">
+            <div className="fixed bg-white flex items-center max-w-[490px] px-4 py-3 h-20 mt-auto bottom-[45px]">
               <input
                 type="text"
-                className="flex-grow px-6 bg-[hsl(220,_14%,_96%)] w-[350px] py-4 border border-gray-300 rounded-l-lg outline-none focus:border-blue-500"
+                className="flex-grow px-6 bg-[hsl(220,_14%,_96%)] w-[350px] py-4 border border-gray-300 rounded-l-lg outline-none focus:border-blue-500 relative"
                 placeholder="What can we help you with today?"
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={handleUserMessage}
                 onKeyPress={handleKeyPress}
               />
-              <IoAttachSharp className="absolute w-10 h-10 text-gray-700 cursor-pointer right-20 hover:text-gray-400" />
+              {selectedImage && (
+                <img
+                  src={URL.createObjectURL(selectedImage)}
+                  alt="Selected"
+                  className="absolute w-10 h-10 right-28"
+                />
+              )}
+              <label htmlFor="file-upload" className="relative cursor-pointer">
+                <IoAttachSharp className="absolute w-10 h-10 text-gray-700 cursor-pointer right-2 -top-5 hover:text-gray-400" />
+              </label>
+              <input
+                type="file"
+                id="file-upload"
+                className="hidden"
+                onChange={handleFileUpload}
+              />
               <button
                 className="px-4 py-6 text-white bg-[hsl(207,_50%,_54%)] rounded-r-lg hover:bg-[hsl(207,51%,39%)]"
                 onClick={sendMessage}

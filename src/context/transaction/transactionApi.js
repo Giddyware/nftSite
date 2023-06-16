@@ -39,6 +39,7 @@ export const WithdrawInEthAPI = async (amt) => {
     throw error.response.data;
   }
 };
+
 export const WithdrawInWethAPI = async (amt) => {
   try {
     const response = await api.post(
@@ -47,6 +48,26 @@ export const WithdrawInWethAPI = async (amt) => {
       tokenConfig()
     );
     return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
+export const createChatAPI = async (chatData) => {
+  console.log(chatData, "chatData==");
+  try {
+    const response = await api.post(
+      `${BASE_URL}/chat/messages`,
+      chatData,
+      CreateTokenConfig()
+    );
+    const responseData = response.data;
+    console.log(response, "messklsk");
+    if (responseData) {
+      return responseData;
+    } else {
+      throw new Error("Invalid response data");
+    }
   } catch (error) {
     throw error.response.data;
   }

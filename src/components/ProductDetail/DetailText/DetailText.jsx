@@ -7,10 +7,12 @@ import axios from "axios";
 import { buyProduct } from "../../../context/nft/nftActions";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { AiOutlineLoading } from "react-icons/ai";
+import { Navigate } from "react-router-dom";
 
 const Detailtext = ({ selectedItem }) => {
   const [usdRate, setUsdRate] = useState(0);
-  const { error } = useSelector((state) => state.product);
+  const { error, isLoading } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   const { id, description, name, nftOwner, priceInEtherium, category } =
     selectedItem;
@@ -30,9 +32,36 @@ const Detailtext = ({ selectedItem }) => {
   }, []);
 
   const handleBuyProduct = () => {
-    dispatch(buyProduct(productId));
-    toast.error(error);
+    dispatch(buyProduct(id));
+    error && toast.error(error);
   };
+
+  if (error === "this Nft already belong to you") {
+    return (
+      <div>
+        {toast.warning("This NFT is already yours! \n \n Try to buy other", {
+          position: toast.POSITION.TOP_CENTER,
+          className: "toast-message",
+        })}
+        <Navigate to={"/category=marketPlace"} />
+      </div>
+    );
+  }
+
+  if (error === "you don't have enough balance to buy this Nft") {
+    return (
+      <div>
+        {toast.warning(
+          "You don't have enough balance to buy this NFT. \n  \n Kindly fund your wallet to make your purchase",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toast-message",
+          }
+        )}
+        <Navigate to={"/category=marketPlace"} />
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 font-poppins">
@@ -48,7 +77,16 @@ const Detailtext = ({ selectedItem }) => {
           className="w-full bg-[#2295EF] py-6 rounded-lg"
           onClick={() => handleBuyProduct()}
         >
-          <span className="text-xl text-center text-white"> Buy Now </span>
+          <span className="text-xl text-center text-white">
+            {isLoading ? (
+              <span>
+                Processing..."
+                <AiOutlineLoading className="inline ml-3 animate-spin" />
+              </span>
+            ) : (
+              "Buy Now"
+            )}
+          </span>
         </button>
       </div>
 

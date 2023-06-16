@@ -39,6 +39,7 @@ import Profile from "../components/Profile";
 import { formatToThousand } from "../utils/formatToThousand.js";
 import SupportChat from "../components/SupportChat";
 import WithdrawalSubmitted from "../components/WithdrawalSubmitted";
+import AddFundsModal from "../components/UI/AddFundsModal";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -113,6 +114,7 @@ const Dashboard = () => {
   const [showModalMint, setShowModalMint] = useState(false);
   const [showModalProfile, setShowModalProfile] = useState(false);
   const [showWithdrawalSubmitted, setShowWithdrawalSubmitted] = useState(false);
+  const [showAddFunds, setShowAddFunds] = useState(false);
   const dispatch = useDispatch();
 
   const onWithdraw = () => {
@@ -131,6 +133,11 @@ const Dashboard = () => {
   const onWithdrawSubmit = () => {
     setShowWithdrawalSubmitted((prev) => !prev);
   };
+  const onAddFunds = () => {
+    if (wallet?.myMintFee > wallet?.accountBallance) {
+      showAddFunds(true);
+    }
+  };
 
   const ChangeLanguage = (code) => {
     i18next.changeLanguage(code);
@@ -143,8 +150,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getUserDetails());
-    console.log(userDetails, "userDetails====");
-  }, []);
+    // console.log(userDetails, "userDetails====");
+  }, [dispatch]);
+  // console.log(userDetails, "userDetails====");
 
   useEffect(() => {
     axios
@@ -177,6 +185,7 @@ const Dashboard = () => {
           show={showWithdrawalSubmitted}
           modalStatus={onWithdrawSubmit}
         />
+        <AddFundsModal show={showAddFunds} modalStatus={onAddFunds} />
         <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 
         <div className="w-[100%] py-8 pr-8">
