@@ -162,7 +162,7 @@ const Withdraw = ({ show, modalStatus }) => {
             {...register("address")}
             onChange={(e) => setValue("address", e.target.value)}
           />
-          {console.log(errors, "errors")}
+          {/* {console.log(errors, "errors")} */}
           {errors.address && (
             <div className="text-red-500 text-xl mt-2 col-span-6 font-semibold tracking-[-0.21px]">
               {errors.address.message}

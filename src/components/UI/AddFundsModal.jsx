@@ -7,9 +7,7 @@ import walletConnect from "./../../assets/walletConnect.svg";
 import { BsArrowRight } from "react-icons/bs";
 import { useState } from "react";
 
-
-
-const AddFundModal = ({ show, modalStatus }) => {
+const AddFundsModal = ({ show, modalStatus }) => {
   const [showMore, setShowMore] = useState(false);
 
   const changeShowMore = () => {
@@ -17,7 +15,7 @@ const AddFundModal = ({ show, modalStatus }) => {
   };
   return (
     <div
-      className="fixed mx-auto sm:left-[30%] sm:top-[15%] h-[70%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[10000]"
+      className="fixed mx-auto sm:left-[30%] sm:top-[15%] h-[70%] w-[90%] sm:w-[40%] text-3xl font-poppins font-[500] z-[100000]"
       style={{
         transform: show ? "translateY(0)" : "translateY(-1500px)",
         opacity: show ? "1" : "0",
@@ -64,4 +62,4 @@ const AddFundModal = ({ show, modalStatus }) => {
   );
 };
 
-export default AddFundModal;
+export default AddFundsModal;

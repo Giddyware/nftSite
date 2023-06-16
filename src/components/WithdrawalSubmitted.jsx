@@ -9,7 +9,7 @@ const WithdrawalSubmitted = ({ show, modalStatus }) => {
         //    clear={modalStatus}
       />
       <div
-        className="fixed top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        className="fixed top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[100000] text-black bg-white rounded-2xl px-10 py-12"
         style={{
           transform: show ? "translateY(0)" : "translateY(-1500px)",
           opacity: show ? "1" : "0",

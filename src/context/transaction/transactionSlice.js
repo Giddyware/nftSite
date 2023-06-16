@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   error: null,
   response: null,
+  chat: [],
 };
 
 const transactionSlice = createSlice({
@@ -23,10 +24,29 @@ const transactionSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    fetchChatStart: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchChatSuccess: (state, action) => {
+      state.isLoading = false;
+      state.chat = action.payload;
+      state.error = null;
+    },
+    fetchChatFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { fetchStart, fetchSuccess, fetchFailure } =
-  transactionSlice.actions;
+export const {
+  fetchStart,
+  fetchSuccess,
+  fetchFailure,
+  fetchChatStart,
+  fetchChatSuccess,
+  fetchChatFailure,
+} = transactionSlice.actions;
 
 export default transactionSlice.reducer;
