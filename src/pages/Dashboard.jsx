@@ -261,7 +261,7 @@ const Dashboard = () => {
             </div>
 
             <div className="grid grid-cols-[50px,_80px_1fr]">
-              <div className="w-full min-h-full">
+              <div className="w-full min-h-full m-auto">
                 <img
                   className="w-full min-h-full"
                   src={Weth_logo}

@@ -106,9 +106,9 @@ const Withdraw = ({ show, modalStatus }) => {
     }
 
     if (data.coin == "WETH") {
-      dispatch(WithdrawInWeth(amount));
+      dispatch(WithdrawInWeth(data));
     }
-    reset();
+    // reset();
   };
   return (
     <>
