@@ -26,10 +26,17 @@ export const registerUser = createAsyncThunk(
   async (userData, { dispatch }) => {
     dispatch(authStart());
     try {
-      const user = await registerUserAPI(userData);
-      dispatch(authSuccess(user));
-      <Navigate to="/auth" />;
-      toast.success("Registered Successful");
+      const response = await registerUserAPI(userData);
+
+      dispatch(getEmailVerified(response.data.user.emailVerified));
+      localStorage.setItem("isEmailVerified", response.data.user.emailVerified); //* Store the emailVerified in the localStorage
+      Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
+      dispatch(authSuccess(response));
+      if (response.status === "success") {
+        toast.success("Registered Successful");
+        dispatch(createEmailToken());
+        <Navigate to="/verify_email" />;
+      }
     } catch (error) {
       dispatch(authFailure(error));
     }
@@ -43,12 +50,10 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await loginUserAPI(userData);
 
-      dispatch(getEmailVerified(response.data.user.emailVerified));
-      localStorage.setItem("isEmailVerified", response.data.user.emailVerified); //* Store the emailVerified in the localStorage
       Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
       dispatch(authSuccess(response.data));
 
-      <Navigate to="/dashboard" replace />;
+      <Navigate to="/dashboard" />;
       toast.success("Login Successful");
     } catch (error) {
       dispatch(authFailure(error));
@@ -88,12 +93,17 @@ export const createEmailToken = createAsyncThunk(
   "auth/createEmailToken",
   async (_, { dispatch }) => {
     try {
-      const email = await createEmailTokenAPI();
-      console.log("EMAIL", email);
-      // dispatch(authSuccess(email));
-      toast.success(
-        "Congratulations🎉, You can now check you email to confirm!"
-      );
+      const response = await createEmailTokenAPI();
+
+      if (response.status === "success") {
+        toast.success(
+          "Congratulations🎉, You can now check you email to confirm!",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toast-message",
+          }
+        );
+      }
     } catch (error) {
       // dispatch(authFailure(error));
     }

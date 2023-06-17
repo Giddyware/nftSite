@@ -22,7 +22,7 @@ const Auth = () => {
     <AuthContext.Provider
       value={{ status: status, changeStatus: changeStatus }}
     >
-      <div className="flex items-center justify-center h-screen w-[100%]">
+      <div className="flex items-center justify-center h-screen w-[100%] py-5">
         {status === "login" ? <Login /> : <RegisterForm />}
       </div>
       ;

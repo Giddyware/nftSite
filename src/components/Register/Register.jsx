@@ -53,14 +53,13 @@ const RegisterForm = () => {
       const validData = schema.parse(data);
       setLoading(true);
 
-      console.log(validData, "val");
       await dispatch(registerUser(validData));
       setLoading(false);
 
-      reset();
+      // reset();
 
       // toast("Registration successful🎉");
-      navigate("/auth");
+      navigate("/verify_email");
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +76,7 @@ const RegisterForm = () => {
   }, [dispatch]);
   return (
     <form
-      className="w-[90%] flex flex-col gap-4 max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100  mt-24 bg-white border outline-slate-700 outline-4 font-poppins"
+      className="w-[90%] flex flex-col gap-4 max-w-[40rem] rounded-3xl px-12 text-xl py-16 shadow-100  mt-36 bg-white border outline-slate-700 outline-4 font-poppins"
       onSubmit={handleSubmit(onSubmit)}
     >
       <header className="mx-auto">
