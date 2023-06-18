@@ -185,7 +185,7 @@ const Dashboard = () => {
           show={showWithdrawalSubmitted}
           modalStatus={onWithdrawSubmit}
         />
-        <AddFundsModal show={showAddFunds} modalStatus={onAddFunds} />
+        {/* <AddFundsModal show={showAddFunds} modalStatus={onAddFunds} /> */}
         <SideNav showMint={onMint} refs={{ saleRef, nftRef, transactionRef }} />
 
         <div className="w-[100%] py-8 pr-8">
@@ -249,7 +249,7 @@ const Dashboard = () => {
                 />
               </div>
               <div>
-                <p onClick={() => onWithdrawSubmit()}>ETH</p>
+                <p>ETH</p>
                 <p className="text-sm text-gray-400">ERC20</p>
               </div>
               <div className="text-lg font-bold text-right justify-self-end">
@@ -261,7 +261,7 @@ const Dashboard = () => {
             </div>
 
             <div className="grid grid-cols-[50px,_80px_1fr]">
-              <div className="w-full min-h-full">
+              <div className="w-full min-h-full m-auto">
                 <img
                   className="w-full min-h-full"
                   src={Weth_logo}

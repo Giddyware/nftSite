@@ -118,12 +118,12 @@ const SideNav = ({ refs, showMint }) => {
             />
             {/* </Link> */}
           </li>
-          <li className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300">
+          {/* <li className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300">
             <DashboardLinks
               icon={<BiSupport size={"20px"} />}
               name={t("dashboard.support")}
             />
-          </li>
+          </li> */}
 
           <Link
             to={`/category=marketplace`}

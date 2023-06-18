@@ -40,11 +40,11 @@ export const WithdrawInEthAPI = async (amt) => {
   }
 };
 
-export const WithdrawInWethAPI = async (amt) => {
+export const WithdrawInWethAPI = async (data) => {
   try {
     const response = await api.post(
-      `${BASE_URL}/wallets/withdrawWeth/${amt}`,
-      {},
+      `${BASE_URL}/wallets/withdrawWeth/${data.amount}`,
+      { data },
       tokenConfig()
     );
     return response.data;

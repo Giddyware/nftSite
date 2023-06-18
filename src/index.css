@@ -251,6 +251,15 @@ html {
   scroll-behavior: smooth;
 }
 
+.Toastify__toast {
+  z-index: 999999999999999; /* Set your desired z-index value */
+}
+.Toastify {
+  z-index: 999999999999999; /* Set your desired z-index value */
+}
+#toast-container {
+  z-index: 999999999999999; /* Set your desired z-index value */
+}
 .backgroundFade {
   position: relative;
   top: 0;

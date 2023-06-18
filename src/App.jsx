@@ -47,6 +47,9 @@ import Membership from "./pages/Membership";
 import Pfps from "./pages/Pfps";
 import Photography from "./pages/Photography";
 import Verification from "./pages/Verification";
+import ForgotPassword from "./pages/ForgotPassword";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 // import SupportAdmin from "./components/SupportAdmin";
 
@@ -76,6 +79,8 @@ const App = () => {
           }
         />
         <Route path="/verify_email" element={<Verification />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-conditions" element={<Terms />} />
         <Route
           path={`/category=marketplace`}
           element={
@@ -158,8 +163,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/forgotPassword"
+          element={
+            <ProtectedRoute>
+              <ForgotPassword />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* <Route path="dashboard/buyNft" element={<Mint />} /> */}
         <Route
           path={`/products/:productId`}
           element={

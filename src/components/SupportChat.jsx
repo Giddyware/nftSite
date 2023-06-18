@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BsFillChatDotsFill, BsSendFill } from "react-icons/bs";
 import io from "socket.io-client";
-import { format, isSameDay } from "date-fns";
+import { format, isSameDay, isValid } from "date-fns";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import { IoAttachSharp } from "react-icons/io5";
@@ -11,8 +11,7 @@ import { getUserDetails } from "../context/auth/authActions";
 
 const SupportChat = () => {
   const { userDetails } = useSelector((state) => state.auth);
-
-  // const adminChat = userDetails?.chat?.filter((e) => e.role === "admin");
+  console.log(userDetails, "userDetails");
 
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -34,9 +33,12 @@ const SupportChat = () => {
   }, [messages]);
 
   useEffect(() => {
-    dispatch(getUserDetails);
-    setMessages([...userDetails?.chat]);
+    dispatch(getUserDetails());
   }, [dispatch]);
+
+  useEffect(() => {
+    setMessages([...(userDetails?.chat || [])]);
+  }, [userDetails]);
 
   const toggleChat = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -67,31 +69,41 @@ const SupportChat = () => {
       console.log("connected");
     });
 
-    socket.on("message", (message) => {
-      console.log(message, "message===");
+    socket.on("message", (mess) => {
+      console.log(mess.sender, "sender==");
 
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        {
-          message: message.data.message,
-          timestamp: new Date(),
-          photo: message.data.photo,
-        },
-      ]);
+      console.log(messages, "prev");
+      console.log(mess.data, "new");
+      console.log(mess.data, "message===");
+
+      mess.messageId === userDetails?.id
+        ? setMessages((prevMessages) => [
+            ...prevMessages,
+            mess.data,
+            // {
+            // role: mess.data.role,
+            // timestamp: new Date(),
+            //   _id: message._id,
+            //   messageId: message.messageId,
+            //   message: message.message,
+            //   date: message.date,
+            //   photo: message.photo,
+            // },
+          ])
+        : null;
     });
 
     // Clean up the socket connection
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [userDetails, setMessage]);
 
   const handleUserMessage = (e) => {
     setMessage(e.target.value);
   };
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    // console.log(file);
     setSelectedImage(file);
   };
 
@@ -101,11 +113,38 @@ const SupportChat = () => {
       sendMessage();
     }
   };
-  const formatTimestamp = (timestamp) => {
-    if (isSameDay(timestamp, new Date())) {
-      return format(timestamp, "h:mm a");
+  // const formatTimestamp = (timestamp) => {
+  //   console.log(timestamp, "timestamp");
+  //   if (isSameDay(timestamp, new Date())) {
+  //     return format(timestamp, "h:mm a");
+  //   } else {
+  //     return format(timestamp, "dd MMM yyyy");
+  //   }
+  // };
+
+  // const formatTimestamp = (timestamp) => {
+  //   console.log(timestamp, "timestamp");
+
+  //   if (!isValid(timestamp)) {
+  //     console.error("Invalid timestamp:", timestamp);
+  //     return ""; // or any default value you prefer
+  //   }
+
+  //   if (isSameDay(timestamp, new Date())) {
+  //     return format(timestamp, "h:mm a");
+  //   } else {
+  //     return format(timestamp, "dd MMM yyyy");
+  //   }
+  // };
+
+  const formatDateString = (dateString) => {
+    const date = new Date(dateString);
+    const currentDate = new Date();
+
+    if (isSameDay(date, currentDate)) {
+      return format(date, "h:mm a");
     } else {
-      return format(timestamp, "dd MMM yyyy");
+      return format(date, "dd MMM yyyy");
     }
   };
 
@@ -118,11 +157,6 @@ const SupportChat = () => {
         onClick={toggleChat}
       >
         <BsFillChatDotsFill className="w-14 h-14 text-[hsl(207,_90%,_54%)]" />
-        {/* {adminMessages.length + userMessages.length > 0 && (
-          <div className="absolute flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-yellow-500 rounded-full -top-2 -right-2">
-            {adminMessages.length + userMessages.length}
-          </div>
-        )} */}
       </div>
 
       {isOpen && (
@@ -159,8 +193,7 @@ const SupportChat = () => {
             <div className="flex flex-col justify-end h-full p-4 mt-auto mb-20">
               {!!messages &&
                 messages.map((message, index) => {
-                  console.log("message", message);
-                  const isAdminMessage = userDetails?.chat
+                  const isAdminMessage = messages
                     ?.filter((e) => e.role === "admin")
                     ?.includes(message);
 
@@ -176,31 +209,54 @@ const SupportChat = () => {
                           isAdminMessage ? "start" : "end"
                         } justify-${isAdminMessage ? "start" : "end"}`}
                       >
+                        {console.log(
+                          userDetails?.myPendingChart,
+                          "myPendingChart"
+                        )}
                         {message?.photo && (
-                          <img
-                            src={`${BASE_URL}${message.photo}`}
-                            crossOrigin="anonymous"
-                            alt={`${
-                              isAdminMessage ? "Admin" : "User"
-                            } Message Image`}
-                            className={`object-cover w-28 h-28 mr-2 rounded-lg ${
-                              isAdminMessage ? "" : "self-end"
-                            }`}
-                          />
+                          <div className="bg-[hsl(0,_0%,_98%)] border p-2 rounded">
+                            <div className="w-32 h-28">
+                              <img
+                                src={`${BASE_URL}${message.photo}`}
+                                crossOrigin="anonymous"
+                                alt={`${
+                                  isAdminMessage ? "Admin" : "User"
+                                } Message Image`}
+                                className={`object-cover w-full max-h-28 mr-2 rounded-lg ${
+                                  isAdminMessage ? "" : "self-end"
+                                }`}
+                              />
+                            </div>
+                            <div
+                              className={`max-w-xs px-4 py-2 block rounded-lg ${
+                                isAdminMessage
+                                  ? "text-gray-800 bg-gray-200"
+                                  : "text-white bg-[hsl(207,_50%,_54%)]"
+                              }`}
+                            >
+                              {message.message}
+                            </div>
+                          </div>
                         )}
 
-                        <div
-                          className={`max-w-xs px-4 py-2 block rounded-lg ${
-                            isAdminMessage
-                              ? "text-gray-800 bg-gray-200"
-                              : "text-white bg-[hsl(207,_50%,_54%)]"
-                          }`}
-                        >
-                          {message.message}
-                        </div>
+                        {!message?.photo && (
+                          <div
+                            className={`max-w-xs px-4 py-2 block rounded-lg ${
+                              isAdminMessage
+                                ? "text-gray-800 bg-gray-200"
+                                : "text-white bg-[hsl(207,_50%,_54%)]"
+                            }`}
+                          >
+                            {message.message}
+                          </div>
+                        )}
                       </div>
-                      <p className="text-xs text-left text-gray-500">
-                        {/* {formatTimestamp(message.timestamp || message.date)} */}
+                      <p
+                        className={`text-xs text-gray-500 ${
+                          isAdminMessage ? "text-left" : "text-right"
+                        }`}
+                      >
+                        {formatDateString(message.date)}
                       </p>
                     </div>
                   );

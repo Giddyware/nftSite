@@ -92,7 +92,7 @@ const DashboardTable = ({ wallet }) => {
                         ? "text-[hsla(28,_87%,_62%,_1)]"
                         : status === "completed"
                         ? "text-[hsla(84,_100%,_44%,_1)]"
-                        : status === "cancelled"
+                        : status === "failed"
                         ? "text-[hsla(0,_79%,_63%,_1)]"
                         : "undefined"
                     }`}

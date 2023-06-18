@@ -78,7 +78,7 @@ const ProductDetail = () => {
   const { selectedItem, categories, isLoading, error } = useSelector(
     (state) => state.product
   );
-  console.log(selectedItem, "selectedItem");
+  // console.log(selectedItem, "selectedItem");
   const productDetailsRef = useRef(null); //Scroll to top
 
   useEffect(() => {
@@ -121,11 +121,9 @@ const ProductDetail = () => {
   //   );
   // }
 
-  if (!selectedItem) {
-    return <Loading />;
-  }
-
-  console.log(selectedItem, "selectedItem");
+  // if (!selectedItem) {
+  //   return <Loading />;
+  // }
 
   return (
     <>

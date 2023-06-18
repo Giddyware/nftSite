@@ -113,9 +113,9 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
           </TableHead>
 
           <TableBody className="">
+            {console.log(myNftTransaction, "myNftTransaction")}
             {myNftTransaction
               ?.filter(Boolean)
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.map(({ id, transaction, nft, From, to, amount, status }) => (
                 <TableRow hover className="" key={id}>
                   <TableCell className="text-xl text-black capitalize">

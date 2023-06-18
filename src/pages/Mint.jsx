@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { object, string, number, any } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Overlay from "../components/UI/Overlay";
 import { AiOutlineLoading } from "react-icons/ai";
+import { getUserDetails } from "../context/auth/authActions";
+import AddFundsModal from "../components/UI/AddFundsModal";
+import WithdrawalSubmitted from "../components/WithdrawalSubmitted";
+import AddFunds from "../components/UI/AddFunds";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -47,9 +51,12 @@ const schema = object({
 
 const Mint = ({ show, modalStatus }) => {
   const [previewImage, setPreviewImage] = useState(null);
-  // const [loading, setLoading] = useState(false);
+  // const [show, setLoading] = useState(false);
+  const [showAddFund, setShowAddFund] = useState(false);
   const dispatch = useDispatch();
   const { error, isLoading } = useSelector((state) => state.product);
+  const { userDetails } = useSelector((state) => state.auth);
+  console.log(userDetails, "userDetails===Mint");
 
   const {
     register: mintForm,
@@ -58,6 +65,13 @@ const Mint = ({ show, modalStatus }) => {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
+  useEffect(() => {
+    dispatch(getUserDetails());
+  }, [dispatch]);
+
+  const onAddFund = () => {
+    setShowAddFund((prev) => !prev);
+  };
   const onSubmit = (data) => {
     console.log(data);
     try {
@@ -70,9 +84,28 @@ const Mint = ({ show, modalStatus }) => {
           formData.append(key, value);
         }
       });
+      if (userDetails?.wallet?.mintFee > userDetails?.wallet?.eth) {
+        modalStatus();
 
-      dispatch(createNft(formData));
-      toast.success("Minting Successful .🎉");
+        return (
+          <div>
+            {toast.warning(
+              `You need ${userDetails?.wallet?.mintFee} ETH to create an item`,
+              {
+                position: toast.POSITION.TOP_CENTER,
+                className: "toast-message",
+              }
+            )}
+          </div>
+        );
+      } else {
+        dispatch(createNft(formData));
+        modalStatus();
+        toast.success("Minting Successful .🎉", {
+          position: toast.POSITION.TOP_CENTER,
+          className: "toast-message",
+        });
+      }
       reset();
     } catch (error) {
       toast.error("Minting failed. Please try again.");
@@ -95,14 +128,20 @@ const Mint = ({ show, modalStatus }) => {
       setPreviewImage(null);
     }
   };
+  let showWithdrawalSubmitted;
+  let onWithdrawSubmit;
   return (
     <>
+      {/* <AddFunds show={showAddFund} modalStatus={onAddFund} />; */}
+      {/* <WithdrawalSubmitted
+        show={showWithdrawalSubmitted}
+        modalStatus={onWithdrawSubmit}
+      /> */}
       <Overlay show={show} clear={modalStatus} />
-
       <form
-        className="fixed h-[90%] top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12"
+        className="fixed h-[90%] top-0 right-0 left-0 bottom-0 mx-auto  overflow-y-auto max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[20000] text-black bg-white rounded-2xl px-10 py-12"
         style={{
-          transform: show ? "translateY(0)" : "translateY(-1500px)",
+          transform: show ? "translateY(0)" : "translateY(-15000px)",
           opacity: show ? "1" : "0",
           transition: "all 1s",
         }}

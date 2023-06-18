@@ -32,10 +32,10 @@ export const WithdrawInEth = createAsyncThunk(
 
 export const WithdrawInWeth = createAsyncThunk(
   "transaction/withdrawWeth",
-  async (amt, { dispatch }) => {
+  async (data, { dispatch }) => {
     dispatch(fetchStart());
     try {
-      const response = await WithdrawInWethAPI(amt);
+      const response = await WithdrawInWethAPI(data);
       // console.log(response, "withdrawEth===");
       if (response?.status == "error") {
         toast.error(`${response?.message}🎉`);
