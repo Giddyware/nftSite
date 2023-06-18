@@ -57,9 +57,9 @@ const RegisterForm = () => {
       setLoading(false);
 
       // reset();
+      console.log(error, "error");
 
-      // toast("Registration successful🎉");
-      navigate("/verify_email");
+      !error && navigate("/verify_email");
     } catch (error) {
       console.error(error);
     }

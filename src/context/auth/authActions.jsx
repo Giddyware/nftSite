@@ -27,12 +27,16 @@ export const registerUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await registerUserAPI(userData);
-
-      dispatch(getEmailVerified(response.data.user.emailVerified));
-      localStorage.setItem("isEmailVerified", response.data.user.emailVerified); //* Store the emailVerified in the localStorage
-      Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
-      dispatch(authSuccess(response));
+      console.log(response, "response==");
       if (response.status === "success") {
+        dispatch(getEmailVerified(response.data.user.emailVerified));
+        console.log(response.data.user.emailVerified, "isEmailVerified==");
+        localStorage.setItem(
+          "isEmailVerified",
+          response.data.user.emailVerified
+        ); //* Store the emailVerified in the localStorage
+        Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
+        dispatch(authSuccess(response));
         toast.success("Registered Successful");
         dispatch(createEmailToken());
         <Navigate to="/verify_email" />;
@@ -50,11 +54,19 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await loginUserAPI(userData);
 
-      Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
-      dispatch(authSuccess(response.data));
+      if (response.status === "success") {
+        dispatch(getEmailVerified(response.data.user.emailVerified));
+        console.log(response.data.user.emailVerified, "isEmailVerified==");
+        localStorage.setItem(
+          "isEmailVerified",
+          response.data.user.emailVerified
+        ); //* Store the emailVerified in the localStorage
+        Cookies.set("authToken", response.token, { expires: 0.625 }); // Store the authentication token in a cookie
+        dispatch(authSuccess(response.data));
 
-      <Navigate to="/dashboard" />;
-      toast.success("Login Successful");
+        <Navigate to="/dashboard" />;
+        toast.success("Login Successful");
+      }
     } catch (error) {
       dispatch(authFailure(error));
     }

@@ -18,7 +18,7 @@ function ProtectedRoute({ children }) {
     return <Navigate to="/auth" state={{ from: location }} />;
   }
 
-  if (!isEmailVerified) {
+  if (isEmailVerified === false) {
     // User's email is not verified, redirect to the verify_email page
     return <Navigate to="/verify_email" replace />;
   }
