@@ -48,7 +48,8 @@ import Pfps from "./pages/Pfps";
 import Photography from "./pages/Photography";
 import Verification from "./pages/Verification";
 import ForgotPassword from "./pages/ForgotPassword";
-import PrivacyTerm from "./pages/PrivacyTerm";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 // import SupportAdmin from "./components/SupportAdmin";
 
@@ -78,7 +79,8 @@ const App = () => {
           }
         />
         <Route path="/verify_email" element={<Verification />} />
-        <Route path="/privacyPolicy_Terms" element={<PrivacyTerm />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-conditions" element={<Terms />} />
         <Route
           path={`/category=marketplace`}
           element={
