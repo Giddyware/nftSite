@@ -66,15 +66,15 @@ const SupportChat = () => {
   useEffect(() => {
     const socket = io(BASE_URL);
     socket.on("connect", () => {
-      console.log("connected");
+      // console.log("connected");
     });
 
     socket.on("message", (mess) => {
-      console.log(mess.sender, "sender==");
+      // console.log(mess.sender, "sender==");
 
-      console.log(messages, "prev");
-      console.log(mess.data, "new");
-      console.log(mess.data, "message===");
+      // console.log(messages, "prev");
+      // console.log(mess.data, "new");
+      // console.log(mess.data, "message===");
 
       mess.messageId === userDetails?.id
         ? setMessages((prevMessages) => [
