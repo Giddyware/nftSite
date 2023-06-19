@@ -56,7 +56,7 @@ const Mint = ({ show, modalStatus }) => {
   const dispatch = useDispatch();
   const { error, isLoading } = useSelector((state) => state.product);
   const { userDetails } = useSelector((state) => state.auth);
-  console.log(userDetails, "userDetails===Mint");
+  // console.log(userDetails, "userDetails===Mint");
 
   const {
     register: mintForm,
