@@ -241,7 +241,10 @@ const Dashboard = () => {
             id="listing"
           >
             <div className="grid grid-cols-[50px,_80px_1fr] w-full items-center mb-6">
-              <div className="w-full h-full -mt-4" style={{ flexShrink: 0 }}>
+              <div
+                className="w-full h-full max-h-[50px] -mt-4"
+                style={{ flexShrink: 0 }}
+              >
                 <img
                   className="w-full min-h-full"
                   src={Ethereum_logo}
@@ -262,7 +265,7 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-[50px,_80px_1fr]">
               <div
-                className="w-full min-h-full m-auto"
+                className="w-full  max-h-[50px] min-h-full m-auto"
                 style={{ flexShrink: 0 }}
               >
                 <img
