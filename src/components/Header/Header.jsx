@@ -68,11 +68,8 @@ const ProfileButton = () => {
   );
   const { photo, userVerified, username } = userDetails;
 
-  // console.log(user, "user");
-
   useEffect(() => {
     dispatch(getUserDetails());
-    console.log(userDetails, "userDetails====");
   }, []);
   const baseUrl = "https://alphapp.tech";
   const imgUrl = `${baseUrl}${photo}`;

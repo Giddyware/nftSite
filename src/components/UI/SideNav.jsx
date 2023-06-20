@@ -70,7 +70,6 @@ const SideNav = ({ refs, showMint }) => {
           <li
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
             onClick={() => {
-              console.log(refs.nftRef, "nftRef");
               refs.nftRef.current.scrollIntoView();
             }}
           >
@@ -92,8 +91,6 @@ const SideNav = ({ refs, showMint }) => {
           <li
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
             onClick={() => {
-              console.log(refs.transactionRef, "transactionRef");
-
               refs.transactionRef.current.scrollIntoView();
             }}
           >
@@ -106,7 +103,6 @@ const SideNav = ({ refs, showMint }) => {
           <li
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
             onClick={() => {
-              console.log(refs.saleRef, "salesRef");
               refs.saleRef.current.scrollIntoView();
             }}
           >
