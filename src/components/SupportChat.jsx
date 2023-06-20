@@ -11,7 +11,6 @@ import { getUserDetails } from "../context/auth/authActions";
 
 const SupportChat = () => {
   const { userDetails } = useSelector((state) => state.auth);
-  console.log(userDetails, "userDetails");
 
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -65,17 +64,9 @@ const SupportChat = () => {
 
   useEffect(() => {
     const socket = io(BASE_URL);
-    socket.on("connect", () => {
-      // console.log("connected");
-    });
+    socket.on("connect", () => {});
 
     socket.on("message", (mess) => {
-      // console.log(mess.sender, "sender==");
-
-      // console.log(messages, "prev");
-      // console.log(mess.data, "new");
-      // console.log(mess.data, "message===");
-
       mess.messageId === userDetails?.id
         ? setMessages((prevMessages) => [
             ...prevMessages,
@@ -114,7 +105,7 @@ const SupportChat = () => {
     }
   };
   // const formatTimestamp = (timestamp) => {
-  //   console.log(timestamp, "timestamp");
+
   //   if (isSameDay(timestamp, new Date())) {
   //     return format(timestamp, "h:mm a");
   //   } else {
@@ -123,10 +114,9 @@ const SupportChat = () => {
   // };
 
   // const formatTimestamp = (timestamp) => {
-  //   console.log(timestamp, "timestamp");
 
   //   if (!isValid(timestamp)) {
-  //     console.error("Invalid timestamp:", timestamp);
+
   //     return ""; // or any default value you prefer
   //   }
 
@@ -209,10 +199,6 @@ const SupportChat = () => {
                           isAdminMessage ? "start" : "end"
                         } justify-${isAdminMessage ? "start" : "end"}`}
                       >
-                        {console.log(
-                          userDetails?.myPendingChart,
-                          "myPendingChart"
-                        )}
                         {message?.photo && (
                           <div className="bg-[hsl(0,_0%,_98%)] border p-2 rounded">
                             <div className="w-32 h-28">

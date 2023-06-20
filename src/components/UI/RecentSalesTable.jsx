@@ -113,7 +113,6 @@ const RecentSalesTable = ({ RecentSalesTableRef, myNftTransaction }) => {
           </TableHead>
 
           <TableBody className="">
-            {console.log(myNftTransaction, "myNftTransaction")}
             {myNftTransaction
               ?.filter(Boolean)
               ?.map(({ id, transaction, nft, From, to, amount, status }) => (

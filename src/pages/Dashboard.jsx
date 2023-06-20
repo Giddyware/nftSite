@@ -237,7 +237,7 @@ const Dashboard = () => {
           />
 
           <div
-            className="flex flex-col px-8 my-10 bg-gray-200 py-7 rounded-xl"
+            className="flex flex-col px-8 my-10 bg-gray-200 py-7 rounded-xl max-h-[110px]"
             id="listing"
           >
             <div className="grid grid-cols-[50px,_80px_1fr] w-full items-center mb-6">
