@@ -9,177 +9,278 @@ const Terms = () => {
         </h1>
         <div className="">
           <div className="mx-10">
-            {" "}
-            Last Updated: 20/01/2023 Please read these Terms of Service
+            <h1 className="py-4 mb-4 text-3xl font-bold">
+              Artmint NFT Marketplace{" "}
+            </h1>
+            <p className="mb-4 text-xl">
+              Welcome to Artmint, an online marketplace for trading Non-Fungible
+              Tokens (NFTs). These Terms and Conditions outline the rules and
+              guidelines for using our marketplace. By accessing and using
+              Artmint, you agree to be bound by these terms. Please read them
+              carefully before participating in any transactions on our
+              marketplace.
+            </p>
+            {/* Last Updated: 20/01/2023 Please read these Terms of Service
             ("Terms") carefully before accessing or using the ARTMINT.shop NFT
             marketplace platform ("Platform") operated by ARTMINT.shop ("we,"
             "us," or "our"). These Terms govern your use of the Platform and
-            constitute a legally binding agreement between you and ARTMINT.shop.{" "}
+            constitute a legally binding agreement between you and ARTMINT.shop.{" "} */}
+            <h1 className="mt-8 mb-4 text-2xl font-bold">1. General Terms</h1>
+            <div className="flex flex-col gap-4 ml-6">
+              <p>
+                1.1. Eligibility: In order to participate in the Artmint NFT
+                marketplace, you must meet the eligibility requirements. This
+                means that you must be at least 18 years old or have the legal
+                capacity to enter into contracts as per the laws of your
+                jurisdiction. By accessing and using Artmint platform, you
+                confirm that you meet these eligibility criteria.
+              </p>
+              <p>
+                1.2. Account Creation: To engage in NFT trading on Artmint, you
+                are required to create a user account on Artmint. During the
+                account creation process, you will be asked to provide certain
+                information, including personal details and contact information.
+                It is your responsibility to ensure that the information you
+                provide is accurate, up-to-date, and complete. You are also
+                responsible for maintaining the confidentiality of your account
+                credentials and for all activities that occur under your
+                account. You must promptly notify Artmint if you become aware of
+                any unauthorized access or use of your account.
+              </p>
+              <p>
+                1.3. Compliance with Laws: When using the Artmint platform, you
+                agree to comply with all applicable laws, rules, and regulations
+                governing the purchase, sale, and trading of NFTs. It is your
+                responsibility to understand and adhere to the legal
+                requirements specific to your jurisdiction. By accessing and
+                using Artmint, you confirm that your activities on the platform
+                are lawful in your jurisdiction and that you will not engage in
+                any illegal or prohibited activities.
+              </p>
+              <p>
+                1.4. Platform Usage: Artmint serves as an online marketplace
+                that facilitates the buying, selling, and trading of NFTs. It is
+                important to note that Artmint does not own or endorse any of
+                the NFTs listed on the platform. We act as an intermediary,
+                providing the platform for users to connect and transact. As
+                such, any transactions, agreements, or interactions between
+                users are solely the responsibility of the participating users.
+                Artmint does not guarantee the accuracy, quality, legality, or
+                authenticity of the NFTs listed on the platform. It is your
+                responsibility to conduct due diligence and assess the
+                authenticity, ownership rights, and accuracy of the NFTs before
+                engaging in any transactions.
+              </p>
+            </div>
             <h1 className="mt-8 mb-4 text-2xl font-bold">
-              1.Acceptance of Terms By accessing or using the Platform, you
-              agree to be bound by these Terms and any additional terms and
-              conditions referenced herein. If you do not agree to these Terms,
-              you may not access or use the Platform.
+              2. NFT Listings and Transactions
             </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">2.User Eligibility</h1>
-            <p>
-              2.1 Age Requirement You must be at least 18 years old or the legal
-              age of majority in your jurisdiction to access and use the
-              Platform. By accessing the Platform, you represent and warrant
-              that you meet the age requirement.
-            </p>
-            <p>
-              2.2 Compliance with Laws You agree to comply with all applicable
-              laws, rules, and regulations when using the Platform. It is your
-              responsibility to ensure that your use of the Platform is legal
-              and does not violate any applicable laws or regulations.
-            </p>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">3.User Accounts</h1>
-            <p>
-              3.1 Account Registration To access certain features of the
-              Platform, you may be required to create a user account. You agree
-              to provide accurate, complete, and up-to-date information during
-              the registration process. You are solely responsible for
-              maintaining the confidentiality of your account credentials and
-              for all activities that occur under your account.
-            </p>
-            <p>
-              {" "}
-              3.2 Account Termination We reserve the right to suspend or
-              terminate your account at any time, without notice, for any
-              reason, including but not limited to violation of these Terms or
-              fraudulent or unauthorized activities.
-            </p>
+            <div className="flex flex-col gap-4 ml-6">
+              <p>
+                2.1. Ownership and Authenticity: As a seller on Artmint, it is
+                imperative that you have the legal rights to sell the NFTs you
+                list on the platform. By listing an NFT for sale, you represent
+                and warrant that you are the rightful owner of the NFT and have
+                the authority to transfer ownership to the buyer. Artmint may
+                require you to undergo an insurance verification process to
+                confirm your ownership rights and to provide a level of
+                assurance to potential buyers.
+                <span>
+                  Additionally, in certain cases, Artmint may collect a
+                  refundable fee from the seller to further ensure the
+                  authenticity and legitimacy of the NFT. This fee will be
+                  refunded to the seller upon successful completion of the
+                  transaction and verification of ownership.
+                </span>{" "}
+                It is your responsibility to ensure that the NFTs you list are
+                accurately described and that the images and information
+                provided reflect the actual item for sale.
+              </p>
+              <p>
+                2.2. Prohibited Content: Artmint strictly prohibits the listing
+                or trading of NFTs that are illegal, fraudulent, offensive,
+                infringe on intellectual property rights, or violate these Terms
+                and Conditions. You may not list NFTs that contain explicit or
+                adult content, promote hate speech, or engage in any form of
+                illegal activity. Artmint reserves the right to remove any
+                content that violates these guidelines and may take appropriate
+                action, including suspending or terminating the accounts of
+                users who repeatedly violate these rules.
+              </p>
+              <p>
+                2.3. Disputes and Refunds: In the event of any disputes between
+                buyers and sellers, Artmint encourages users to resolve such
+                issues amicably. Artmint does not act as an arbiter in these
+                disputes and is not responsible for mediating or resolving them.
+                The resolution of disputes, including refunds or returns of
+                NFTs, is at the discretion of the seller unless otherwise
+                required by applicable laws or regulations. It is recommended
+                that buyers and sellers communicate openly and honestly to
+                address any concerns or discrepancies that may arise during the
+                transaction process.
+              </p>
+              <p>
+                2.4. Fees and Payments: When creating and listing new art or
+                items on Artmint, a minting fee of <span>0.2</span> ETH will be
+                charged per art or item.{" "}
+                <span>
+                  Artmint may charge transaction fees or commissions on NFT
+                  sales conducted on the platform.
+                </span>{" "}
+                It is your responsibility as a seller to review and understand
+                the applicable fees associated with each transaction. These fees
+                will be clearly communicated to you before you confirm the
+                listing of your NFT. Payments for NFT purchases will be
+                processed securely through our designated payment processor.
+              </p>
+            </div>
             <h1 className="mt-8 mb-4 text-2xl font-bold">
-              {" "}
-              4.Use of the Platform
+              3 .Intellectual Property{" "}
             </h1>
-            <p>
-              4.1 License Subject to your compliance with these Terms, we grant
-              you a limited, non-exclusive, non-transferable, and revocable
-              license to access and use the Platform for your personal,
-              non-commercial use.
-            </p>
-            <p>
-              4.2 Prohibited Activities You agree not to engage in any of the
-              following activities when using the Platform: Violating any
-              applicable laws or regulations. Infringing upon the intellectual
-              property rights of others. Uploading, posting, or transmitting
-              any content that is unlawful, harmful, defamatory, obscene, or
-              otherwise objectionable. Interfering with the operation or
-              security of the Platform or attempting to gain unauthorized access
-              to the Platform or its related systems or networks. Engaging in
-              any fraudulent or deceptive activities. Using the Platform for
-              any commercial or unauthorized purposes without our prior written
-              consent.
-            </p>
-            <p>
-              4.3 Content Ownership You retain all ownership rights to the
-              content you create and upload to the Platform. However, by
-              uploading content to the Platform, you grant us a non-exclusive,
-              worldwide, royalty-free license to use, reproduce, distribute,
-              modify, and publicly display your content for the purpose of
-              operating and promoting the Platform.
-            </p>
+            <div className="flex flex-col gap-4 ml-6">
+              <p>
+                3.1. Copyright: Artmint expects all users to respect the
+                intellectual property rights of others. You may not use,
+                reproduce, distribute, or modify any copyrighted material
+                without proper authorization from the rights holder. When
+                listing an NFT for sale on Artmint, you must ensure that you
+                have the necessary rights, licenses, or permissions to include
+                any copyrighted material within the NFT. By listing an NFT on
+                the platform, you affirm that you are not infringing upon any
+                third party intellectual property rights.
+              </p>
+              <p>
+                3.2. License: By listing an NFT for sale on Artmint, you grant
+                Artmint a non-exclusive, worldwide, royalty-free license to
+                display, reproduce, and promote the NFT for the purpose of
+                facilitating transactions on the platform. This license allows
+                Artmint to showcase the NFT in listings, search results,
+                promotional materials, and other marketing efforts related to
+                the platform. The license granted to Artmint is limited to the
+                extent necessary to provide the services and functionalities of
+                the platform.
+                <br />
+                Please note that this license does not transfer ownership of the
+                NFT to Artmint or any other users. Ownership rights remain with
+                the respective NFT owners, and Artmint does not claim any
+                ownership or control over the NFTs listed on the platform. It is
+                your responsibility as a user to ensure that your actions on
+                Artmint comply with applicable intellectual property laws and
+                respect the rights of others. Artmint reserves the right to
+                remove any NFT listings or take appropriate action in response
+                to notices of alleged copyright infringement or other
+                intellectual property violations. If you believe that your
+                copyrighted work has been infringed upon on the Artmint
+                platform, please follow the procedures outlined in our Copyright
+                Policy to report the infringement.
+              </p>
+            </div>
             <h1 className="mt-8 mb-4 text-2xl font-bold">
-              5.Intellectual Property
+              4. Termination and Suspension
             </h1>
-            <p>
-              5.1 Platform Content The Platform and its contents, including but
-              not limited to text, graphics, images, logos, and software, are
-              the intellectual property of ARTMINT.shop or its licensors and are
-              protected by copyright, trademark, and other intellectual property
-              laws.
-            </p>
-            <p>
-              5.2 Trademarks ARTMINT.shop and its associated logos are
-              trademarks owned by ARTMINT.shop. You may not use these trademarks
-              without our prior written permission.
-            </p>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">6.Fee Structures</h1>
-            <p>
-              6.1 Mint Fee When you mint an NFT on the Platform, a mint fee will
-              be charged in ETH (ERC20) based on the current fee structure. The
-              mint fee covers the cost of processing and storing your NFT on the
-              blockchain. The specific amount of the mint fee will be
-              communicated to you prior to the minting process.
-            </p>
-            <p>
-              6.2 Sales Fee/Commission When you successfully sell an NFT on the
-              Platform, a sales fee or commission will be charged in ETH (ERC20)
-              based on the current fee structure. The sales fee is deducted from
-              the total sale price of your NFT and covers the cost of
-              facilitating the transaction upon withdrawal. The specific
-              percentage or amount of the sales fee will be communicated to you
-              prior to listing your NFT for sale.
-            </p>
-            <p>
-              6.3 Insurance Fee If you opt to purchase insurance for your NFT,
-              an insurance fee will be charged in ETH (ERC20) based on the
-              current fee structure. The insurance fee covers the cost of
-              insuring your NFT against loss or damage. The specific amount of
-              the insurance fee will be communicated to you prior to purchasing
-              insurance for your NFT.
-            </p>
-            <p>
-              6.4 Activation Fee If you choose to activate certain premium
-              features or services offered on the Platform, an activation fee
-              may be charged in ETH (ERC20) based on the current fee structure.
-              The activation fee covers the cost of enabling the selected
-              features or services. The specific amount of the activation fee
-              will be communicated to you prior to activating the premium
-              features or services.
-            </p>
+            <div className="flex flex-col gap-4 ml-6">
+              <p>
+                {" "}
+                4.1. Termination: Artmint reserves the right to suspend or
+                terminate your account or access to the platform at any time and
+                for any reason. This includes, but is not limited to, violations
+                of these Terms and Conditions suspected fraudulent activity, or
+                any other conduct that Artmint deems inappropriate or harmful to
+                the platform or its users. In the event of termination, you will
+                no longer have access to your account and any ongoing
+                transactions or listings may be canceled.
+              </p>
+              <p>
+                4.2. Account Deletion: If you wish to delete your account on
+                Artmint, please contact our support team or follow the account
+                deletion procedures specified on the platform. Deleting your
+                account will permanently remove your personal information and
+                any associated data from the platform. Please note that once
+                your account is deleted, it cannot be restored, and any ongoing
+                transactions or listings will be canceled. Artmint reserves the
+                right to retain certain information related to your account, as
+                required by law or for legitimate business purposes, even after
+                account deletion. Such retained information will be handled in
+                accordance with Artmint's Privacy Policy.
+              </p>
+            </div>
+
             <h1 className="mt-8 mb-4 text-2xl font-bold">
-              8.Limitation of Liability IN NO EVENT SHALL ARTMINT.SHOP, ITS
-              OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY
-              INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES
-              ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE PLATFORM,
-              EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR TOTAL
-              LIABILITY TO YOU FOR ANY CLAIMS ARISING OUT OF OR RELATED TO THE
-              PLATFORM SHALL NOT EXCEED THE AMOUNT PAID BY YOU, IF ANY, TO US
-              DURING THE TWELVE (12) MONTHS PRIOR TO THE CLAIM.
+              5. Limitation of Liability{" "}
             </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">
-              9.Indemnification You agreeto indemnify, defend, and hold harmless
-              ARTMINT.shop, its officers, directors, employees, and agents from
-              any claims, damages, liabilities, losses, costs, or expenses
-              arising out of or related to your use of the Platform, violation
-              of these Terms, or infringement of any rights of a third party.{" "}
-            </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">
-              10.Modification of Terms We reserve the right to modify or update
-              these Terms at any time, without prior notice. Any changes will be
-              effective immediately upon posting of the revised Terms on the
-              Platform. Your continued use of the Platform after the posting of
-              any changes constitutes your acceptance of the modified Terms.
-            </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">
-              11.Governing Law and Jurisdiction These Terms shall be governed by
-              and construed in accordance with the laws of [Jurisdiction]. Any
-              disputes arising out of or related to these Terms or your use of
-              the Platform shall be submitted to the exclusive jurisdiction of
-              the courts located in [Jurisdiction].
-            </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">
-              12.Severability If any provision of these Terms is held to be
-              invalid, illegal, or unenforceable, the remaining provisions shall
-              continue in full force and effect.
-            </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">
-              13.Entire Agreement These Terms constitute the entire agreement
-              between you and ARTMINT.shop regarding your use of the Platform
-              and supersede any prior or contemporaneous agreements,
-              communications, or understandings, whether oral or written.
-            </h1>
-            <h1 className="mt-8 mb-4 text-2xl font-bold">
-              14.Contact Us If you have any questions, concerns, or requests
-              regarding these Terms, please contact us at [contact email]. We
-              will make every effort to address your inquiries in a timely
-              manner. By accessing or using the ARTMINT.shop Platform, you
-              acknowledge that you have read, understood, and agree to the terms
-              and conditions of these Terms of Service.
-            </h1>
+            <div className="flex flex-col gap-4 ml-6">
+              <p>
+                5.1. Artmint and its affiliates will not be liable for any
+                direct, indirect, incidental, consequential, or punitive damages
+                arising from the use of the platform. This includes but is not
+                limited to, loss of profits, data, or reputation, even if
+                Artmint has been advised of the possibility of such damages.
+              </p>
+              <p>
+                5.2. Artmint strives to provide a secure and reliable platform
+                for NFT trading, but we do not guarantee the continuous
+                availability, accuracy, or reliability of the platform or its
+                services. While we take reasonable measures to maintain the
+                security of user accounts and transactions, Artmint cannot
+                guarantee that unauthorized third parties will not gain access
+                to user information or interfere with the platform's operations.
+                Therefore, you agree to use Artmint at your own risk.
+              </p>
+              <p>
+                5.3. Artmint is not responsible for any disputes, disagreements,
+                or issues that may arise between users in connection with NFT
+                transactions conducted on the platform. Any transactions,
+                agreements, or interactions between users are solely the
+                responsibility of the participating users. Artmint encourages
+                users to communicate openly and resolve disputes amicably.
+                However, Artmint is not liable for any losses or damages
+                resulting from such disputes.
+              </p>
+              <p>
+                5.4. Some jurisdictions do not allow the exclusion or limitation
+                of liability for certain types of damages. Therefore, to the
+                extent that such exclusions or limitations are not permitted
+                under applicable law, the above limitations may not apply to
+                you. By using Artmint, you agree to release and hold harmless
+                Artmint and its affiliates from any claims, demands, or damages,
+                whether direct or indirect, arising out of or in connection with
+                your use of the platform.
+              </p>
+            </div>
+
+            <h1 className="mt-8 mb-4 text-2xl font-bold">6. Amendments </h1>
+            <div className="flex flex-col gap-4 ml-6">
+              <p>
+                6.1. Artmint reserves the right to modify these Terms and
+                Conditions at any time without prior notice. Any changes or
+                updates to these terms will be effective immediately upon
+                posting on Artmint website or through other means of
+                communication provided by Artmint. It is your responsibility to
+                review these Terms and Conditions periodically to stay informed
+                of any changes.
+              </p>
+              <p>
+                6.2. By continuing to use Artmint after any modifications to the
+                Terms and Conditions have been made, you acknowledge and agree
+                to be bound by the revised terms. If you do not agree with the
+                modified terms, you must stop using Artmint.
+              </p>
+              <p>
+                6.3. Artmint may also introduce additional terms, policies, or
+                guidelines that govern specific features, services, or offerings
+                provided on the platform. Such additional terms will be
+                presented to you and will be considered as part of these Terms
+                and Conditions.
+              </p>
+              <p>
+                6.4. In the event of any conflict or inconsistency between these
+                Terms and Conditions and any additional terms or policies, the
+                additional terms or policies will prevail to the extent of the
+                inconsistency. Artmint encourages you to regularly review the
+                Terms and Conditions to ensure that you are aware of any updates
+                or changes that may affect your use of the platform.
+              </p>
+            </div>
           </div>
         </div>
       </div>
