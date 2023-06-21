@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import RootLayout from "../layout/RootLayout";
 
 const Terms = () => {
+  const mint = useSelector((state) => state.auth.userDetails.wallet?.mintFee);
+
   return (
     <RootLayout>
       <div className="container mx-auto mt-10 text-xl">
@@ -121,8 +124,8 @@ const Terms = () => {
               </p>
               <p>
                 2.4. Fees and Payments: When creating and listing new art or
-                items on Artmint, a minting fee of <span>0.2</span> ETH will be
-                charged per art or item.{" "}
+                items on Artmint, a minting fee of <span>{mint}</span> ETH will
+                be charged per art or item.{" "}
                 <span>
                   Artmint may charge transaction fees or commissions on NFT
                   sales conducted on the platform.
