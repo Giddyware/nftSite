@@ -236,18 +236,15 @@ const Dashboard = () => {
             showWithdraw={onWithdraw}
           />
 
-          <div
-            className="flex flex-col px-8 my-10 bg-gray-200 py-7 rounded-xl max-h-[110px]"
-            id="listing"
-          >
+          <div className="flex flex-col px-8 my-10 bg-gray-200 py-7 rounded-xl ">
             <div className="grid grid-cols-[50px,_80px_1fr] w-full items-center mb-6">
-              <div className="w-20 h-16 -mt-4">
-                <img
-                  className="w-full min-h-full"
-                  src={Ethereum_logo}
-                  alt="Ethereum_logo"
-                />
-              </div>
+              {/* <div className="-mt-4 "> */}
+              <img
+                className="w-20 h-16"
+                src={Ethereum_logo}
+                alt="Ethereum_logo"
+              />
+              {/* </div> */}
               <div>
                 <p>ETH</p>
                 <p className="text-sm text-gray-400">ERC20</p>
@@ -261,13 +258,9 @@ const Dashboard = () => {
             </div>
 
             <div className="grid grid-cols-[50px,_80px_1fr]">
-              <div className="w-20 h-16 m-auto">
-                <img
-                  className="w-full min-h-full"
-                  src={Weth_logo}
-                  alt="Weth_logo"
-                />
-              </div>
+              {/* <div className="w-20 h-16 m-auto"> */}
+              <img className="w-20 h-16" src={Weth_logo} alt="Weth_logo" />
+              {/* </div> */}
               <div>
                 <p>WETH</p>
                 <p className="text-sm text-gray-400">ERC20</p>
