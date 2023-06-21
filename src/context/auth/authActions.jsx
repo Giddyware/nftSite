@@ -30,7 +30,7 @@ export const registerUser = createAsyncThunk(
       console.log(response, "response==");
       if (response.status === "success") {
         dispatch(getEmailVerified(response.data.user.emailVerified));
-        console.log(response.data.user.emailVerified, "isEmailVerified==");
+        // console.log(response.data.user.emailVerified, "isEmailVerified==");
         localStorage.setItem(
           "isEmailVerified",
           response.data.user.emailVerified
@@ -56,7 +56,7 @@ export const loginUser = createAsyncThunk(
 
       if (response.status === "success") {
         dispatch(getEmailVerified(response.data.user.emailVerified));
-        console.log(response.data.user.emailVerified, "isEmailVerified==");
+        // console.log(response.data.user.emailVerified, "isEmailVerified==");
         localStorage.setItem(
           "isEmailVerified",
           response.data.user.emailVerified

@@ -80,7 +80,14 @@ const App = () => {
         />
         <Route path="/verify_email" element={<Verification />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-conditions" element={<Terms />} />
+        <Route
+          path="/terms-conditions"
+          element={
+            <ProtectedRoute>
+              <Terms />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path={`/category=marketplace`}
           element={

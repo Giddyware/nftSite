@@ -85,7 +85,10 @@ const Footer = () => {
           <p>© 2018 - 2023 Artmint, Inc</p>
         </div>
         <div className="flex gap-x-6">
-          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/privacy-policy" className="">
+            Privacy Policy
+          </Link>
+          <div className="border-r-[3px]"></div>
           <Link to="/terms-conditions">Terms of Service</Link>
         </div>
       </div>
