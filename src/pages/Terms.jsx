@@ -2,7 +2,11 @@ import { useSelector } from "react-redux";
 import RootLayout from "../layout/RootLayout";
 
 const Terms = () => {
-  const mint = useSelector((state) => state.auth.userDetails.wallet?.mintFee);
+  const { wallet, termsRefund, termsCommission } = useSelector(
+    (state) => state.auth.userDetails
+  );
+
+  console.log(termsCommission);
 
   return (
     <RootLayout>
@@ -89,11 +93,12 @@ const Terms = () => {
                 confirm your ownership rights and to provide a level of
                 assurance to potential buyers.
                 <span>
-                  Additionally, in certain cases, Artmint may collect a
+                  {/* Additionally, in certain cases, Artmint may collect a
                   refundable fee from the seller to further ensure the
                   authenticity and legitimacy of the NFT. This fee will be
                   refunded to the seller upon successful completion of the
-                  transaction and verification of ownership.
+                  transaction and verification of ownership. */}
+                  {termsRefund}
                 </span>{" "}
                 It is your responsibility to ensure that the NFTs you list are
                 accurately described and that the images and information
@@ -124,11 +129,13 @@ const Terms = () => {
               </p>
               <p>
                 2.4. Fees and Payments: When creating and listing new art or
-                items on Artmint, a minting fee of <span>{mint}</span> ETH will
-                be charged per art or item.{" "}
+                items on Artmint, a minting fee of{" "}
+                <span>{wallet?.mintFee}</span> ETH will be charged per art or
+                item.{" "}
                 <span>
-                  Artmint may charge transaction fees or commissions on NFT
-                  sales conducted on the platform.
+                  {/* Artmint may charge transaction fees or commissions on NFT
+                  sales conducted on the platform. */}
+                  {termsCommission}
                 </span>{" "}
                 It is your responsibility as a seller to review and understand
                 the applicable fees associated with each transaction. These fees
