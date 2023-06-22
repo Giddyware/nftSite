@@ -34,7 +34,9 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const state = useLocation().state;
-  const { isAuthenticated, error } = useSelector((state) => state.auth);
+  const { isAuthenticated, error, isLoading } = useSelector(
+    (state) => state.auth
+  );
 
   const {
     register: loginForm,
@@ -53,7 +55,7 @@ const Login = () => {
       navigate("/dashboard");
       // dispatch(getUserDetails());
 
-      reset();
+      // reset();
     } catch (error) {
       toast.error("Login failed. Please try again.");
       console.error(error);
@@ -127,10 +129,10 @@ const Login = () => {
         <div className="col-span-6 mt-6 text-xl bg-blue-500 hover:bg-neutral-100 hover:text-blue-500">
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || isLoading}
             className="w-full p-6 font-normal transition duration-500 bg-red-400 border-none rounded-lg outline-none btn text-500 text-neutral-100 focus:bg-neutral-100 focus:text-blue-500 hover:bg-neutral-200 hover:text-blue-500"
           >
-            {loading ? (
+            {loading || isLoading ? (
               <span>Logging you in...</span>
             ) : (
               <span>Login to your account</span>
