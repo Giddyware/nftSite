@@ -240,7 +240,7 @@ const Dashboard = () => {
             <div className="grid grid-cols-[50px,_80px_1fr] w-full items-center mb-6">
               {/* <div className="-mt-4 "> */}
               <img
-                className="w-20 h-16"
+                className="w-20 h-16 -mt-2"
                 src={Ethereum_logo}
                 alt="Ethereum_logo"
               />
@@ -259,7 +259,11 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-[50px,_80px_1fr]">
               {/* <div className="w-20 h-16 m-auto"> */}
-              <img className="w-20 h-16" src={Weth_logo} alt="Weth_logo" />
+              <img
+                className="w-20 h-16 -mt-3"
+                src={Weth_logo}
+                alt="Weth_logo"
+              />
               {/* </div> */}
               <div>
                 <p>WETH</p>
