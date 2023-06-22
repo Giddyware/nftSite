@@ -308,7 +308,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <SupportChat />
+        {/* <SupportChat /> */}
       </div>
     )
   );
