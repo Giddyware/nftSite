@@ -145,7 +145,7 @@ const Dashboard = () => {
 
   const { userDetails, isLoading, error } = useSelector((state) => state.auth);
 
-  const { myNftTransaction, myNft, wallet, photo, userVerified, username } =
+  const { myNftTransaction, myNft, wallet, photo, emailVerified, username } =
     userDetails;
 
   useEffect(() => {
@@ -217,7 +217,7 @@ const Dashboard = () => {
                 <div className="flex flex-col items-center justify-center ml-3 mr-8">
                   <p>{username}</p>
                   <p className="font-bold">
-                    {!!userVerified ? (
+                    {!!emailVerified ? (
                       <span className="text-green-400">Verified</span>
                     ) : (
                       <span className="text-red-400"> Unverified</span>
