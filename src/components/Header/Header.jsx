@@ -93,11 +93,12 @@ const ProfileButton = () => {
           <div className="flex flex-col items-center justify-center ml-3 mr-8">
             <p>{username}</p>
             <p className="font-bold">
-              {!!emailVerified ? (
-                <span className="text-green-400">Verified</span>
-              ) : (
-                <span className="text-red-400"> Unverified</span>
-              )}
+              {userDetails &&
+                (!!emailVerified ? (
+                  <span className="text-green-400">Verified</span>
+                ) : (
+                  <span className="text-red-400"> Unverified</span>
+                ))}
             </p>
           </div>
           <BiChevronUp size={15} />

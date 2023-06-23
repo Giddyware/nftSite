@@ -13,7 +13,7 @@ import AddFundsModal from "../components/UI/AddFundsModal";
 import WithdrawalSubmitted from "../components/WithdrawalSubmitted";
 import AddFunds from "../components/UI/AddFunds";
 
-const MAX_FILE_SIZE = 5000000;
+const MAX_FILE_SIZE = 50000000;
 const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",

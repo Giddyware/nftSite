@@ -124,7 +124,7 @@ const SideNav = ({ refs, showMint }) => {
           <Link
             to={`/category=marketplace`}
             className="px-5 py-3 ml-3 rounded-l-full cursor-pointer md:ml-28 hover:bg-gray-300"
-            target="_blank"
+            // target="_blank"
           >
             <DashboardLinks
               icon={<RiLuggageDepositLine size={"20px"} />}
