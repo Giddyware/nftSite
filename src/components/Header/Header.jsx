@@ -66,7 +66,7 @@ const ProfileButton = () => {
   const { userDetails, isAuthenticated, isEmailVerified } = useSelector(
     (state) => state.auth
   );
-  const { photo, userVerified, username } = userDetails;
+  const { photo, emailVerified, username } = userDetails;
 
   useEffect(() => {
     dispatch(getUserDetails());
@@ -93,7 +93,7 @@ const ProfileButton = () => {
           <div className="flex flex-col items-center justify-center ml-3 mr-8">
             <p>{username}</p>
             <p className="font-bold">
-              {!!userVerified ? (
+              {!!emailVerified ? (
                 <span className="text-green-400">Verified</span>
               ) : (
                 <span className="text-red-400"> Unverified</span>
