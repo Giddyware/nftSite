@@ -70,6 +70,15 @@ export const logoutUserAPI = async () => {
   }
 };
 
+export const forgotPasswordAPI = async (email) => {
+  try {
+    const response = await api.post(`${BASE_URL}/users/forgotPassword`, email);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
 export const tokenConfig = () => {
   const authToken = Cookies.get("authToken");
   const config = {
