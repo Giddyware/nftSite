@@ -15,6 +15,7 @@ import {
   loginUserAPI,
   logoutUserAPI,
   registerUserAPI,
+  updatePasswordAPI,
 } from "./authApi";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -86,6 +87,16 @@ export const logoutUser = createAsyncThunk(
     }
   }
 );
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (email, { dispatch }) => {
+    try {
+      await forgotPasswordAPI(email);
+    } catch (error) {
+      dispatch(authFailure(error));
+    }
+  }
+);
 
 export const getUserDetails = createAsyncThunk(
   "auth/getUserDetails",
@@ -106,6 +117,47 @@ export const createEmailToken = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       const response = await createEmailTokenAPI();
+
+      if (response.status === "success") {
+        toast.success(
+          "Congratulations🎉, You can now check you email to confirm!",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toast-message",
+          }
+        );
+      }
+    } catch (error) {
+      // dispatch(authFailure(error));
+    }
+  }
+);
+
+export const updatePassword = createAsyncThunk(
+  "auth/updatePassword",
+  async (_, { dispatch }) => {
+    try {
+      const response = await updatePasswordAPI();
+
+      if (response.status === "success") {
+        toast.success(
+          "Congratulations🎉, You can now check you email to confirm!",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toast-message",
+          }
+        );
+      }
+    } catch (error) {
+      // dispatch(authFailure(error));
+    }
+  }
+);
+export const updateProfilePic = createAsyncThunk(
+  "auth/updateProfilePic",
+  async (_, { dispatch }) => {
+    try {
+      const response = await updateProfilePicAPI();
 
       if (response.status === "success") {
         toast.success(
