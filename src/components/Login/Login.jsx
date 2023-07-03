@@ -51,8 +51,7 @@ const Login = () => {
       setLoading(true);
 
       dispatch(loginUser(validData));
-      setLoading(false);
-      navigate("/dashboard");
+      // navigate("/dashboard");
       // dispatch(getUserDetails());
 
       // reset();
@@ -60,6 +59,7 @@ const Login = () => {
       toast.error("Login failed. Please try again.");
       console.error(error);
     } finally {
+      setLoading(false);
     }
   };
 
