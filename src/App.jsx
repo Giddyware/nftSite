@@ -173,9 +173,9 @@ const App = () => {
         <Route
           path="/forgotPassword"
           element={
-            <ProtectedRoute>
+            <UnAuthenticated>
               <ForgotPassword />
-            </ProtectedRoute>
+            </UnAuthenticated>
           }
         />
 

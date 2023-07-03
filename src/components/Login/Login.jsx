@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -141,9 +141,9 @@ const Login = () => {
         </div>
         <p className="col-span-5 col-start-2 text-xl cursor-pointer">
           Forgot password?{" "}
-          <span className="underline hover:no-underline">
+          <Link to="/forgotPassword" className="underline hover:no-underline">
             Click here to reset
-          </span>
+          </Link>
         </p>
 
         {error && (
