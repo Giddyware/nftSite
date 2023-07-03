@@ -91,8 +91,11 @@ const ForgotPassword = () => {
           to="/auth"
           className="flex items-center justify-center col-span-6 gap-2 text-xl cursor-pointer group"
         >
-          <BsArrowLeft size={20} className="group-hover:-translate-x-1" />{" "}
-          <span className="group-hover:underline">Back to log in</span>
+          <BsArrowLeft
+            size={20}
+            className="group-hover:-translate-x-0.5 group-hover:text-gray-500"
+          />{" "}
+          <span className="group-hover:underline ">Back to log in</span>
         </Link>
       </form>
     </div>
