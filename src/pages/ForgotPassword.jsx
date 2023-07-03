@@ -7,7 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { BsArrowLeft } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { forgotPassword } from "../context/auth/authActions";
 
 const schema = z.object({
   email: z
@@ -18,8 +20,10 @@ const schema = z.object({
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
-    register: forgotPassword,
+    register: forgotPasswordForm,
     handleSubmit,
     formState: { errors },
     reset,
@@ -28,15 +32,15 @@ const ForgotPassword = () => {
     try {
       const validData = schema.parse(data);
       setLoading(true);
-      console.log(data, "data");
+    
 
-      // dispatch(loginUser(validData));
+      dispatch(forgotPassword(validData));
       setLoading(false);
-      navigate("/auth");
     } catch (error) {
       toast.error("something went wrong. Please try again.");
       console.error(error);
     } finally {
+      setLoading(false);
     }
   };
   return (
@@ -66,7 +70,7 @@ const ForgotPassword = () => {
             className="w-full px-8 py-6 text-2xl font-bold text-black border rounded-lg body-100 peer bg-neutral-100"
             type="email"
             id="email"
-            {...forgotPassword("email")}
+            {...forgotPasswordForm("email")}
           />
           {errors.email && (
             <div className="text-red-400 col-span-6 font-semibold tracking-[-0.21px]">
