@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'poppins': ['Poppins'],
-        'lato': ['lato']
-      }
+        poppins: ["Poppins", "san-serif"],
+        lato: ["lato"],
+      },
     },
   },
   plugins: [],
