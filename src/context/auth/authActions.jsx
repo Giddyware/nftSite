@@ -7,9 +7,12 @@ import {
   getUserDetailsStart,
   getUserDetailsSuccess,
   getEmailVerified,
+  changePasswordStart,
+  changePasswordFailure,
 } from "./authSlice";
 import {
   createEmailTokenAPI,
+  forgotPasswordAPI,
   getNftsAPI,
   getUserDetailsRequestAPI,
   loginUserAPI,
@@ -28,7 +31,7 @@ export const registerUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await registerUserAPI(userData);
-      console.log(response, "response==");
+      // console.log(response, "response==");
       if (response.status === "success") {
         dispatch(getEmailVerified(response.data.user.emailVerified));
         // console.log(response.data.user.emailVerified, "isEmailVerified==");
@@ -91,7 +94,10 @@ export const forgotPassword = createAsyncThunk(
   "auth/forgotPassword",
   async (email, { dispatch }) => {
     try {
-      await forgotPasswordAPI(email);
+      const response = await forgotPasswordAPI(email);
+      if (response.status === "success") {
+        toast.success("Token sent to email!");
+      }
     } catch (error) {
       dispatch(authFailure(error));
     }
@@ -135,9 +141,10 @@ export const createEmailToken = createAsyncThunk(
 
 export const updatePassword = createAsyncThunk(
   "auth/updatePassword",
-  async (_, { dispatch }) => {
+  async (data, { dispatch }) => {
+    dispatch(changePasswordStart(data));
     try {
-      const response = await updatePasswordAPI();
+      const response = await updatePasswordAPI(data);
 
       if (response.status === "success") {
         toast.success(
@@ -149,15 +156,18 @@ export const updatePassword = createAsyncThunk(
         );
       }
     } catch (error) {
-      // dispatch(authFailure(error));
+      dispatch(changePasswordFailure(error));
     }
   }
 );
+
 export const updateProfilePic = createAsyncThunk(
   "auth/updateProfilePic",
-  async (_, { dispatch }) => {
+  async (data, { dispatch }) => {
+    dispatch(changePasswordStart);
     try {
-      const response = await updateProfilePicAPI();
+      const response = await updateProfilePicAPI(data);
+      console.log(response, "response");
 
       if (response.status === "success") {
         toast.success(

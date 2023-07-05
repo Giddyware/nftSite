@@ -73,6 +73,7 @@ export const logoutUserAPI = async () => {
 export const forgotPasswordAPI = async (email) => {
   try {
     const response = await api.post(`${BASE_URL}/users/forgotPassword`, email);
+    console.log(response, "response");
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -114,15 +115,11 @@ export const updateProfilePicAPI = async (photo) => {
   }
 };
 
-export const updatePasswordAPI = async (
-  currentPassword,
-  password,
-  passwordConfirm
-) => {
+export const updatePasswordAPI = async (data) => {
   try {
     const response = await api.patch(
       `/users/chaingeMyPassword`,
-      photo,
+      data,
       tokenConfig()
     );
 

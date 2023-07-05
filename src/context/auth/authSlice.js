@@ -12,6 +12,8 @@ const initialState = {
   error: null,
   token: Cookies.get("authToken") ? Cookies.get("authToken") : null,
   userDetails: {},
+  changePassword: null,
+  updateProfile: null,
 };
 
 const authSlice = createSlice({
@@ -32,6 +34,20 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isAuthenticated = false;
       state.user = null;
+      state.error = action.payload;
+    },
+    changePasswordStart: (state) => {
+      state.isLoading = false;
+      state.error = null;
+    },
+    changePasswordSuccess: (state, action) => {
+      state.isLoading = false;
+      state.changePassword = action.payload;
+      state.error = null;
+    },
+    changePasswordFailure: (state, action) => {
+      state.isLoading = false;
+      state.changePassword = null;
       state.error = action.payload;
     },
     resetError: (state) => {
@@ -66,6 +82,9 @@ export const {
   authStart,
   authSuccess,
   authFailure,
+  changePasswordStart,
+  changePasswordSuccess,
+  changePasswordFailure,
   logout,
   resetError,
   getUserDetailsStart,

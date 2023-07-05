@@ -32,7 +32,6 @@ const ForgotPassword = () => {
     try {
       const validData = schema.parse(data);
       setLoading(true);
-    
 
       dispatch(forgotPassword(validData));
       setLoading(false);
@@ -82,10 +81,10 @@ const ForgotPassword = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full p-6 font-normal transition duration-500 bg-red-400 border-none rounded-lg outline-none btn text-500 text-neutral-100 focus:bg-neutral-100 focus:text-blue-500 hover:bg-neutral-200 hover:text-blue-500"
+            className="w-full p-6 font-normal transition duration-500 bg-red-400 border-none rounded-lg outline-none disabled:cursor-not-allowed btn text-500 text-neutral-100 focus:bg-neutral-100 focus:text-blue-500 hover:bg-neutral-200 hover:text-blue-500"
           >
             {loading ? (
-              <span>Resetting password..</span>
+              <span>Resetting password...</span>
             ) : (
               <span>Reset password</span>
             )}
