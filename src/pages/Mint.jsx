@@ -73,7 +73,7 @@ const Mint = ({ show, modalStatus }) => {
     setShowAddFund((prev) => !prev);
   };
   const onSubmit = (data) => {
-    console.log(data);
+  
     try {
       const formData = new FormData();
       formData.append("photo", data.photo[0]); // Append the image file to the FormData object
