@@ -4,7 +4,7 @@ import Overlay from "./UI/Overlay";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updatePassword, updateProfilePic } from "../context/auth/authActions";
 
 const MAX_FILE_SIZE = 50000000;
@@ -14,32 +14,7 @@ const ACCEPTED_IMAGE_TYPES = [
   "image/png",
   "image/webp",
 ];
-// const schema = z
-//   .object({
-//     photo: z
-//       .any()
-//       .refine(
-//         (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-//         `Max image size is 50MB.`
-//       )
-//       .refine(
-//         (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-//         "Only .jpg, .jpeg, .png and .webp formats are supported."
-//       ),
-//     currentPassword: z
-//       .string()
-//       .nonempty("Password is required")
-//       .min(8, "Password must be at least 8 characters long."),
-//     password: z
-//       .string()
-//       .nonempty("New Password is required")
-//       .min(8, "Password must be at least 8 characters long."),
-//     passwordConfirm: z.string().nonempty("Confirm Password is required"),
-//   })
-//   .refine((data) => data.password === data.passwordConfirm, {
-//     message: "Passwords do not match. Please try again.",
-//     path: ["passwordConfirm"],
-//   });
+
 const schema = z
   .object({
     photo: z
@@ -72,15 +47,9 @@ const schema = z
 
 const Profile = ({ show, modalStatus }) => {
   const [previewImage, setPreviewImage] = useState(null);
+  const { isLoading, error } = useSelector();
   const dispatch = useDispatch();
 
-  // const {
-  //   register: profileForm,
-  //   handleSubmit,
-  //   formState: { errors },
-  //   reset,
-  //   getValues,
-  // } = useForm({ resolver: zodResolver(schema) });
   const {
     register: profileForm,
     handleSubmit,
@@ -88,51 +57,6 @@ const Profile = ({ show, modalStatus }) => {
     reset,
     getValues,
   } = useForm();
-
-  // const onSubmit = (data) => {
-  //   try {
-  //     if (data.photo) {
-  //       const formData = new FormData();
-  //       formData.append("photo", data.photo[0]);
-  //       console.log(formData);
-  //       // dispatch(updateProfilePic(formData));
-  //     } else {
-  //       const currentPassword = getValues("currentPassword");
-  //       const newPassword = getValues("password");
-  //       const passwordConfirm = getValues("passwordConfirm");
-  //       const dataPass = { currentPassword, password, passwordConfirm };
-  //       console.log(dataPass);
-  //       // dispatch(updatePassword(dataPass));
-  //     }
-  //     reset();
-  //   } catch (error) {
-  //     console.log(error, "error");
-  //   }
-  // };
-
-  // const onSubmit = (data) => {
-  //   console.log(data, "data");
-  //   try {
-  //     if (data.photo) {
-  //       const formData = new FormData();
-  //       formData.append("photo", data.photo[0]);
-  //       console.log(formData, "form");
-  //       // dispatch(updateProfilePic(formData));
-  //     }
-  //     if (data.currentPassword && data.password && data.passwordConfirm) {
-  //       const currentPassword = data.currentPassword;
-  //       const newPassword = data.password;
-  //       const passwordConfirm = data.passwordConfirm;
-  //       console.log({ currentPassword, newPassword, passwordConfirm }, "hello");
-  //       // dispatch(
-  //       //   updatePassword({ currentPassword, newPassword, passwordConfirm })
-  //       // );
-  //     }
-  //     reset();
-  //   } catch (error) {
-  //     console.log(error, "error");
-  //   }
-  // };
 
   const photoSchema = z.object({
     photo: z
@@ -200,33 +124,6 @@ const Profile = ({ show, modalStatus }) => {
     // dispatch(updatePassword(data));
   };
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     // Read the selected image file and set the preview image
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setPreviewImage(reader.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setPreviewImage(null);
-  //   }
-  // };
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     // Read the selected image file and set the preview image
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setPreviewImage(reader.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setPreviewImage(null);
-  //   }
-  //   setValue("photo", file); // Set the value of the photo field
-  // };
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -261,30 +158,6 @@ const Profile = ({ show, modalStatus }) => {
         </div>
 
         <div className="flex items-center justify-center w-full mb-10">
-          {/* <label htmlFor="photo" className="w-48 h-48">
-            {!previewImage && (
-              <img
-                src={blankPIc}
-                alt=""
-                className="object-cover w-full h-full rounded-full"
-              />
-            )}
-            {previewImage && (
-              <img
-                src={previewImage}
-                alt=""
-                className="object-cover w-full h-full rounded-full"
-              />
-            )}
-          </label>
-        </div>
-        <input
-          type="file"
-          // name="profileImg"
-          className="mx-auto"
-          onChange={handleImageChange}
-          {...profileForm("photo")}
-        /> */}
           <label htmlFor="profileImg" className="w-48 h-48">
             {!previewImage && (
               <img
@@ -313,7 +186,7 @@ const Profile = ({ show, modalStatus }) => {
           // onClick={handleSubmit(() => updateProfilePicture())}
           className="w-full mt-10 capitalize bg-[#2196F3] rounded hover:bg-[hsl(207,_90%,_70%)] text-white p-4 md:p-6"
         >
-          Update Profile picture
+          {isLoading ? "Processing" : "Update Profile picture"}
         </button>
         <div className="flex flex-col gap-5 mt-16">
           <h3 className="w-full mb-4 text-4xl font-bold text-center text-gray-800">
@@ -330,6 +203,11 @@ const Profile = ({ show, modalStatus }) => {
               placeholder="Enter current password"
               {...profileForm("currentPassword")}
             />
+            {errors.currentPassword && (
+              <div className="font-semibold text-red-400">
+                {errors.currentPassword.message}
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <label className="mb-2" htmlFor="newPassword">
@@ -342,6 +220,11 @@ const Profile = ({ show, modalStatus }) => {
               placeholder="Enter new password"
               {...profileForm("password")}
             />
+            {errors.password && (
+              <div className="font-semibold text-red-400">
+                {errors.password.message}
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <label className="mb-2" htmlFor="confirmPassword">
@@ -354,12 +237,20 @@ const Profile = ({ show, modalStatus }) => {
               placeholder="Confirm Password"
               {...profileForm("passwordConfirm")}
             />
+            {errors.confirmPassword && (
+              <div className="font-semibold text-red-400">
+                {errors.confirmPassword.message}
+              </div>
+            )}
           </div>
+
           <button
             // onClick={handleSubmit(() => changePassword())}
-            className="w-full mt-10 capitalize bg-[#2196F3] rounded hover:bg-[hsl(207,_90%,_70%)] text-white p-4 md:p-6"
+            className={`w-full mt-10 capitalize bg-[#2196F3] rounded hover:bg-[hsl(207,_90%,_70%)] text-white p-4 md:p-6 ${
+              isLoading ? "" : ""
+            }`}
           >
-            Change Password
+            {isLoading ? "Processing" : " Change Password"}
           </button>
         </div>
       </form>
