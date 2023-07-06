@@ -57,6 +57,7 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await loginUserAPI(userData);
+      console.log(response, "response");
 
       if (response.status === "success") {
         dispatch(getEmailVerified(response.data.user.emailVerified));
@@ -73,6 +74,7 @@ export const loginUser = createAsyncThunk(
       }
     } catch (error) {
       dispatch(authFailure(error));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -87,6 +89,7 @@ export const logoutUser = createAsyncThunk(
       dispatch(logout());
     } catch (error) {
       dispatch(authFailure(error));
+      toast.error("Something went wrong");
     }
   }
 );
@@ -100,6 +103,7 @@ export const forgotPassword = createAsyncThunk(
       }
     } catch (error) {
       dispatch(authFailure(error));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -114,6 +118,7 @@ export const getUserDetails = createAsyncThunk(
       dispatch(getUserDetailsSuccess(response.data));
     } catch (error) {
       dispatch(getUserDetailsFailure(error.message));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -134,7 +139,7 @@ export const createEmailToken = createAsyncThunk(
         );
       }
     } catch (error) {
-      // dispatch(authFailure(error));
+      toast.error("Something went wrong😢");
     }
   }
 );
@@ -157,6 +162,7 @@ export const updatePassword = createAsyncThunk(
       }
     } catch (error) {
       dispatch(changePasswordFailure(error));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -180,6 +186,7 @@ export const updateProfilePic = createAsyncThunk(
       }
     } catch (error) {
       // dispatch(authFailure(error));
+      toast.error("Something went wrong😢");
     }
   }
 );

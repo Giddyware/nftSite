@@ -51,12 +51,9 @@ export const registerUserAPI = async (userData) => {
 export const loginUserAPI = async (userData) => {
   try {
     const response = await api.post("/users/login", userData);
+
     return response.data;
   } catch (error) {
-    // if (error.isAxiosError && !error.response) {
-    //   throw new Error("Network Error: Please check your internet connection.");
-    // }
-
     throw error;
   }
 };
