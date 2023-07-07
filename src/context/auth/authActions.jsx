@@ -19,6 +19,7 @@ import {
   logoutUserAPI,
   registerUserAPI,
   updatePasswordAPI,
+  updateProfilePicAPI,
 } from "./authApi";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -57,6 +58,7 @@ export const loginUser = createAsyncThunk(
     dispatch(authStart());
     try {
       const response = await loginUserAPI(userData);
+      console.log(response, "response");
 
       if (response.status === "success") {
         dispatch(getEmailVerified(response.data.user.emailVerified));
@@ -73,6 +75,7 @@ export const loginUser = createAsyncThunk(
       }
     } catch (error) {
       dispatch(authFailure(error));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -87,6 +90,7 @@ export const logoutUser = createAsyncThunk(
       dispatch(logout());
     } catch (error) {
       dispatch(authFailure(error));
+      toast.error("Something went wrong");
     }
   }
 );
@@ -100,6 +104,7 @@ export const forgotPassword = createAsyncThunk(
       }
     } catch (error) {
       dispatch(authFailure(error));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -114,6 +119,7 @@ export const getUserDetails = createAsyncThunk(
       dispatch(getUserDetailsSuccess(response.data));
     } catch (error) {
       dispatch(getUserDetailsFailure(error.message));
+      toast.error("Invalid credentials");
     }
   }
 );
@@ -134,7 +140,7 @@ export const createEmailToken = createAsyncThunk(
         );
       }
     } catch (error) {
-      // dispatch(authFailure(error));
+      toast.error("Something went wrong😢");
     }
   }
 );
@@ -145,18 +151,22 @@ export const updatePassword = createAsyncThunk(
     dispatch(changePasswordStart(data));
     try {
       const response = await updatePasswordAPI(data);
+      console.log(response, "response");
 
       if (response.status === "success") {
         toast.success(
-          "Congratulations🎉, You can now check you email to confirm!",
+          "Congratulations🎉, You have successfully change your password",
           {
             position: toast.POSITION.TOP_CENTER,
             className: "toast-message",
           }
         );
+
+      dispatch(logoutUser)
       }
     } catch (error) {
       dispatch(changePasswordFailure(error));
+      toast.error("Invalid credentials, please check current password");
     }
   }
 );
@@ -166,12 +176,13 @@ export const updateProfilePic = createAsyncThunk(
   async (data, { dispatch }) => {
     dispatch(changePasswordStart);
     try {
+      console.log(data, "data");
       const response = await updateProfilePicAPI(data);
       console.log(response, "response");
 
       if (response.status === "success") {
         toast.success(
-          "Congratulations🎉, You can now check you email to confirm!",
+          "Congratulations🎉, You have changed your Profile picture!",
           {
             position: toast.POSITION.TOP_CENTER,
             className: "toast-message",
@@ -180,6 +191,7 @@ export const updateProfilePic = createAsyncThunk(
       }
     } catch (error) {
       // dispatch(authFailure(error));
+      toast.error("Something went wrong😢");
     }
   }
 );

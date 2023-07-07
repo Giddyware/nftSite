@@ -73,9 +73,11 @@ const Mint = ({ show, modalStatus }) => {
     setShowAddFund((prev) => !prev);
   };
   const onSubmit = (data) => {
-  
     try {
       const formData = new FormData();
+      console.log(data, "data");
+      console.log(data.photo, "photo");
+      console.log(data.photo[0], "photo[0]");
       formData.append("photo", data.photo[0]); // Append the image file to the FormData object
 
       // Append the rest of the form data to the FormData object
@@ -101,10 +103,6 @@ const Mint = ({ show, modalStatus }) => {
       } else {
         dispatch(createNft(formData));
         modalStatus();
-        toast.success("Minting Successful .🎉", {
-          position: toast.POSITION.TOP_CENTER,
-          className: "toast-message",
-        });
       }
       reset();
     } catch (error) {

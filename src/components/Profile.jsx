@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePassword, updateProfilePic } from "../context/auth/authActions";
+import { toast } from "react-toastify";
 
 const MAX_FILE_SIZE = 50000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -30,24 +31,33 @@ const schema = z
           path: ["photo"],
         }
       ),
-    currentPassword: z
-      .string()
-      .min(8, "Password must be at least 8 characters long.")
-      .optional(),
-    password: z
-      .string()
-      .min(8, "Password must be at least 8 characters long.")
-      .optional(),
-    passwordConfirm: z.string().nonempty("Confirm Password is required"),
+    // currentPassword: z
+    //   .string()
+    //   .min(8, "Password must be at least 8 characters long.")
+    //   .optional(),
+    // password: z
+    //   .string()
+    //   .min(8, "Password must be at least 8 characters long.")
+    //   .optional(),
+    // passwordConfirm: z.string().nonempty("Confirm Password is required"),
   })
   .refine((data) => !data.password || data.password === data.passwordConfirm, {
     message: "Passwords do not match. Please try again.",
     path: ["passwordConfirm"],
   });
 
+const passwordSchema = z.object({
+  currentPassword: z
+    .string()
+    .min(8, "Password must be at least 8 characters long."),
+  password: z.string().min(8, "Password must be at least 8 characters long."),
+  passwordConfirm: z.string().nonempty("Confirm Password is required"),
+});
+
 const Profile = ({ show, modalStatus }) => {
   const [previewImage, setPreviewImage] = useState(null);
-  const { isLoading, error } = useSelector();
+  const { isLoading, error } = useSelector((state) => state.auth);
+  // const [imageFile, setImageFile] = useState(null);
   const dispatch = useDispatch();
 
   const {
@@ -56,72 +66,35 @@ const Profile = ({ show, modalStatus }) => {
     formState: { errors },
     reset,
     getValues,
-  } = useForm();
-
-  const photoSchema = z.object({
-    photo: z
-      .any()
-      .refine(
-        (files) =>
-          !files ||
-          (files[0]?.size <= MAX_FILE_SIZE &&
-            ACCEPTED_IMAGE_TYPES.includes(files[0]?.type)),
-        {
-          message:
-            "Invalid image format or size. Only .jpg, .jpeg, .png and .webp formats are supported, and the max size is 50MB.",
-          path: ["photo"],
-        }
-      ),
-  });
-
-  const passwordSchema = z.object({
-    currentPassword: z
-      .string()
-      .min(8, "Password must be at least 8 characters long."),
-    password: z.string().min(8, "Password must be at least 8 characters long."),
-    passwordConfirm: z.string().nonempty("Confirm Password is required"),
-  });
+  } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = (data) => {
     try {
       if (data.photo) {
-        const photoData = photoSchema.parse(data);
+        // const photoData = photoSchema.parse(data);
         const formData = new FormData();
-        formData.append("photo", photoData.photo[0]);
-        console.log(data, "formData");
-        // dispatch(updateProfilePic(formData));
+        formData.append("photo", data.photo[0]);
+        // console.log(data.photo, "formData");
+        dispatch(updateProfilePic(formData));
         reset({ photo: null }); // Reset only the photo field
-      }
-
-      if (data.currentPassword && data.password && data.passwordConfirm) {
-        const passwordData = passwordSchema.parse(data);
-
-        console.log(passwordData, "hello");
-        dispatch(updatePassword(passwordData));
-        // dispatch(updatePassword(currentPassword, newPassword));
-        reset(); // Reset only the password fields
+        modalStatus();
       }
     } catch (error) {
       console.log(error, "error");
     }
   };
 
-  const updateProfilePicture = () => {
-    const photo = getValues("photo");
-    console.log(photo, "phkls");
-    const formData = new FormData();
-    formData.append("photo", photo[0]);
-    console.log(formData, "phkls");
-    // dispatch(updateProfilePic(formData));
-  };
-
-  const changePassword = () => {
-    const currentPassword = getValues("currentPassword");
-    const newPassword = getValues("password");
-    const passwordConfirm = getValues("passwordConfirm");
-    const data = { currentPassword, newPassword, passwordConfirm };
-    console.log(data);
-    // dispatch(updatePassword(data));
+  const updateProfilePicture = (e) => {
+    e.preventDefault();
+    if (imageFile) {
+      console.log(imageFile, "image");
+      const formData = new FormData();
+      formData.append("photo", imageFile[0]);
+      dispatch(updateProfilePic(formData));
+      modalStatus();
+    } else {
+      toast.error("No image file selected");
+    }
   };
 
   const handleImageChange = (e) => {
@@ -133,17 +106,18 @@ const Profile = ({ show, modalStatus }) => {
         setPreviewImage(reader.result);
       };
       reader.readAsDataURL(file);
-      setValue("photo", file); // Set the value of the photo field
+      console.log(e.target.files, "file");
+      setImageFile(e.target.files); // Set the selected image file in state
     } else {
       setPreviewImage(null);
-      setValue("photo", null); // Reset the value of the photo field
+      setImageFile(null); // Reset the image file in state
     }
   };
   return (
     <>
       <Overlay show={show} clear={modalStatus} />
       <form
-        className="fixed top-0 right-0 left-0 bottom-0  mx-auto lg:h-full  max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12 overflow-y-auto"
+        className="fixed top-0 right-0 left-0 bottom-0  mx-auto lg:h-fit  max-h-fit sm:w-[40%] text-3xl font-poppins font-[500] z-[10000] text-black bg-white rounded-2xl px-10 py-12 overflow-y-auto"
         style={{
           transform: show ? "translateY(0)" : "translateY(-1500px)",
           opacity: show ? "1" : "0",
@@ -182,77 +156,13 @@ const Profile = ({ show, modalStatus }) => {
           onChange={handleImageChange}
           {...profileForm("photo")}
         />
+
         <button
-          // onClick={handleSubmit(() => updateProfilePicture())}
+          // onClick={updateProfilePicture}
           className="w-full mt-10 capitalize bg-[#2196F3] rounded hover:bg-[hsl(207,_90%,_70%)] text-white p-4 md:p-6"
         >
-          {isLoading ? "Processing" : "Update Profile picture"}
+          {isLoading ? "Updating..." : " Update Profile picture"}
         </button>
-        <div className="flex flex-col gap-5 mt-16">
-          <h3 className="w-full mb-4 text-4xl font-bold text-center text-gray-800">
-            Change Password
-          </h3>
-          <div className="mb-4">
-            <label className="mb-2" htmlFor="oldPassword">
-              Current Password
-            </label>
-            <input
-              type="password"
-              id="oldPassword"
-              className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 "
-              placeholder="Enter current password"
-              {...profileForm("currentPassword")}
-            />
-            {errors.currentPassword && (
-              <div className="font-semibold text-red-400">
-                {errors.currentPassword.message}
-              </div>
-            )}
-          </div>
-          <div className="mb-4">
-            <label className="mb-2" htmlFor="newPassword">
-              New Password
-            </label>
-            <input
-              type="password"
-              id="newPassword"
-              className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 "
-              placeholder="Enter new password"
-              {...profileForm("password")}
-            />
-            {errors.password && (
-              <div className="font-semibold text-red-400">
-                {errors.password.message}
-              </div>
-            )}
-          </div>
-          <div className="mb-4">
-            <label className="mb-2" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              className="block w-full p-6 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 "
-              placeholder="Confirm Password"
-              {...profileForm("passwordConfirm")}
-            />
-            {errors.confirmPassword && (
-              <div className="font-semibold text-red-400">
-                {errors.confirmPassword.message}
-              </div>
-            )}
-          </div>
-
-          <button
-            // onClick={handleSubmit(() => changePassword())}
-            className={`w-full mt-10 capitalize bg-[#2196F3] rounded hover:bg-[hsl(207,_90%,_70%)] text-white p-4 md:p-6 ${
-              isLoading ? "" : ""
-            }`}
-          >
-            {isLoading ? "Processing" : " Change Password"}
-          </button>
-        </div>
       </form>
     </>
   );

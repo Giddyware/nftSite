@@ -30,7 +30,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="text-[16px] mb-32 ">
+          {/* <div className="text-[16px] mb-32 ">
             <h2>Join the community</h2>
             <div className="flex mt-8">
               <div className="h-[36px] p-5 mr-4 bg-[#595252] w-[36px] rounded-lg hover:bg-[#515254] cursor-pointer">
@@ -49,7 +49,7 @@ const Footer = () => {
                 <FaYoutube />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="grid my-32 lg:grid-cols-[320px_repeat(2,_1fr)] gap-x-32 grid-cols-1 md:grid-cols-3  gap-y-8 lg:gap-y-0">
           <div className=" mt--6">

@@ -100,6 +100,13 @@ export const createNft = createAsyncThunk(
       const nft = await createNftAPI(nftData);
 
       dispatch(fetchSuccess(nft));
+
+      if (nft.status === "success") {
+        toast.success("Minting Successful .🎉", {
+          position: toast.POSITION.TOP_CENTER,
+          className: "toast-message",
+        });
+      }
     } catch (error) {
       dispatch(fetchFailure(error));
     }

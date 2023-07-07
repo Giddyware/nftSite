@@ -51,12 +51,9 @@ export const registerUserAPI = async (userData) => {
 export const loginUserAPI = async (userData) => {
   try {
     const response = await api.post("/users/login", userData);
+
     return response.data;
   } catch (error) {
-    // if (error.isAxiosError && !error.response) {
-    //   throw new Error("Network Error: Please check your internet connection.");
-    // }
-
     throw error;
   }
 };
@@ -108,7 +105,7 @@ export const getUserDetailsRequestAPI = async () => {
 export const updateProfilePicAPI = async (photo) => {
   try {
     const response = await api.patch(`/users/myDetails`, photo, tokenConfig());
-
+    console.log(response, "responseApi");
     return response.data;
   } catch (error) {
     throw error.response.data;
