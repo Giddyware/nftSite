@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { BiChevronUp } from "react-icons/bi";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 import Image1 from "./../assets/nft/nft1.jpg";
 import Image2 from "./../assets/nft/nft2.jpg";
@@ -40,6 +40,8 @@ import { formatToThousand } from "../utils/formatToThousand.js";
 import SupportChat from "../components/SupportChat";
 import WithdrawalSubmitted from "../components/WithdrawalSubmitted";
 import AddFundsModal from "../components/UI/AddFundsModal";
+import MenuItem from "../components/MenuItem";
+import ChangePass from "../components/ChangePass";
 
 const DashboardCard = ({ showDeposit, showWithdraw, wallet }) => {
   const location = useLocation();
@@ -113,10 +115,15 @@ const Dashboard = () => {
   const [usdRate, setUsdRate] = useState(0);
   const [showModalMint, setShowModalMint] = useState(false);
   const [showModalProfile, setShowModalProfile] = useState(false);
+  const [showModalPassword, setShowModalPassword] = useState(false);
   const [showWithdrawalSubmitted, setShowWithdrawalSubmitted] = useState(false);
   const [showAddFunds, setShowAddFunds] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const toggleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
   const onWithdraw = () => {
     setShowModalWithdraw((prev) => !prev);
   };
@@ -128,6 +135,9 @@ const Dashboard = () => {
   };
   const onProfile = () => {
     setShowModalProfile((prev) => !prev);
+  };
+  const onPassword = () => {
+    setShowModalPassword((prev) => !prev);
   };
 
   const onWithdrawSubmit = () => {
@@ -152,7 +162,7 @@ const Dashboard = () => {
     dispatch(getUserDetails());
     // console.log(userDetails, "userDetails====");
   }, [dispatch]);
-  // console.log(userDetails, "userDetails====");
+  console.log(userDetails, "userDetails====");
 
   useEffect(() => {
     axios
@@ -173,14 +183,15 @@ const Dashboard = () => {
   }
   const baseUrl = "https://alphapp.tech";
   const imgUrl = `${baseUrl}${photo}`;
-  // console.log(imgUrl, "imgUrl");
+  console.log(imgUrl, "imgUrl");
   return (
     !!userDetails && (
-      <div className="grid min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
+      <div className="grid  min-h-screen text-gray bg-[white] grid-cols-[60px,_minmax(140px,_1fr)]  md:grid-cols-[280px,_minmax(320px,_1fr)] text-xl">
         <Withdraw show={showModalWithdraw} modalStatus={onWithdraw} />
         <Deposit show={showModalDeposit} modalStatus={onDeposit} />
         <Mint show={showModalMint} modalStatus={onMint} />
         <Profile show={showModalProfile} modalStatus={onProfile} />
+        <ChangePass show={showModalPassword} modalStatus={onPassword} />
         <WithdrawalSubmitted
           show={showWithdrawalSubmitted}
           modalStatus={onWithdrawSubmit}
@@ -193,7 +204,7 @@ const Dashboard = () => {
             <div className="mr-auto">
               <h1 className="text-lg">{t("dashboard.home")}</h1>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center min-w-[20%]">
               <div>
                 <select
                   name="devices"
@@ -206,15 +217,17 @@ const Dashboard = () => {
               </div>
               <div
                 className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center"
-                onClick={() => onProfile()}
+                onClick={toggleOpen}
               >
-                <img
-                  className="bg-gray-200 border border-white border-solid rounded-full h-14 w-14"
-                  src={photo && imgUrl}
-                  alt=""
-                  crossOrigin="anonymous"
-                />
-                <div className="flex flex-col items-center justify-center ml-3 mr-8">
+                <div className="h-14 w-14">
+                  <img
+                    className="bg-gray-200 border border-white border-solid w-full h-full object-cover rounded-full"
+                    src={photo && imgUrl}
+                    alt=""
+                    crossOrigin="anonymous"
+                  />
+                </div>
+                <div className="flex items-center w-full justify-between">
                   <p>{username}</p>
                   <p className="font-bold">
                     {!!emailVerified ? (
@@ -223,8 +236,20 @@ const Dashboard = () => {
                       <span className="text-red-400"> Unverified</span>
                     )}
                   </p>
+                  {!isOpen && <BiChevronUp size={15} />}
+                  {isOpen && <BiChevronDown size={15} />}
                 </div>
-                <BiChevronUp size={15} />
+                {isOpen && (
+                  <div className="absolute shadow-md rounded-xl w-[20vw] md:w-[150px] bg-white overflow-hidden right-8 top-28 text-sm">
+                    <div className="flex flex-col cursor-pointer">
+                      <MenuItem
+                        onClick={onProfile}
+                        label="Update Profile Pic"
+                      />
+                      <MenuItem onClick={onPassword} label="Change password" />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
