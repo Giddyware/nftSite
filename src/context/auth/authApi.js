@@ -105,7 +105,7 @@ export const getUserDetailsRequestAPI = async () => {
 export const updateProfilePicAPI = async (photo) => {
   try {
     const response = await api.patch(`/users/myDetails`, photo, tokenConfig());
-
+    console.log(response, "responseApi");
     return response.data;
   } catch (error) {
     throw error.response.data;
