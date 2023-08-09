@@ -28,10 +28,10 @@ const Terms = () => {
               marketplace.
             </p>
             {/* Last Updated: 20/01/2023 Please read these Terms of Service
-            ("Terms") carefully before accessing or using the ARTMINT.shop NFT
-            marketplace platform ("Platform") operated by ARTMINT.shop ("we,"
+            ("Terms") carefully before accessing or using the ARTMINT NFT
+            marketplace platform ("Platform") operated by ARTMINT ("we,"
             "us," or "our"). These Terms govern your use of the Platform and
-            constitute a legally binding agreement between you and ARTMINT.shop.{" "} */}
+            constitute a legally binding agreement between you and ARTMINT.{" "} */}
             <h1 className="mt-8 mb-4 text-2xl font-bold">1. General Terms</h1>
             <div className="flex flex-col gap-4 ml-6">
               <p>
