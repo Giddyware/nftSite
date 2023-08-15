@@ -12,7 +12,7 @@ const Footer = () => {
             <h2 className="text-2xl font-bold">Stay in the loop</h2>
             <p className="text-lg">
               Join our mailing list to stay in the loop with our newest feature
-              releases, NFT drops, and tips and tricks for navigating Artmint.
+              releases, NFT drops, and tips and tricks for navigating Omega.
             </p>
             <div className="flex items-center">
               <div className="my-8 mr-5 w-96">
@@ -82,7 +82,7 @@ const Footer = () => {
       </div>
       <div className="px-10 py-8 text-white bg-[#665F5E] text-[16px] flex justify-between">
         <div>
-          <p>© 2018 - 2023 Artmint, Inc</p>
+          <p>© 2018 - 2023 Omega, Inc</p>
         </div>
         <div className="flex gap-x-6">
           <Link to="/privacy-policy" className="">
