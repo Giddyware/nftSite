@@ -49,7 +49,7 @@ const ForgotPassword = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <header className="mx-auto">
-          <img className="w-64" alt="Artmint" src={logo} />
+          <img className="w-64" alt="Omega" src={logo} />
         </header>
         <div className="grid grid-cols-6 gap-8">
           <p className="col-span-6 text-5xl font-normal tracking-300">

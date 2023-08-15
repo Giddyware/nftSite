@@ -83,7 +83,7 @@ const Login = () => {
         <Navigate to={state !== null ? state.from : "/marketPlace"} />
       )}
       <header className="mx-auto">
-        <img className="w-64" alt="Artmint" src={logo} />
+        <img className="w-64" alt="Omega" src={logo} />
       </header>
       <fieldset className="grid grid-cols-6 gap-8">
         <p as="legend" className="mx-auto text-5xl font-normal tracking-300">

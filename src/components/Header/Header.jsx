@@ -124,7 +124,7 @@ const Header = ({ addBg }) => {
       </Link>
 
       {/* <DropDown /> */}
-      <Search />
+      {/* <Search /> */}
       <Button_Details />
       <ProfileButton />
     </div>
