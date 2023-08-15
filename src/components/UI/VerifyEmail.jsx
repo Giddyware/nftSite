@@ -21,7 +21,7 @@ const VerifyEmail = () => {
   return (
     <div className="max-h-[50%] max-w-[800px] border-solid border mt-[5%] mx-auto shadow-lg font-poppins text-[1rem] flex flex-col px-8 py-8  rounded-[10px] bg-gray-100">
       <header className="mx-auto">
-        <img className="w-72" alt="Artmint" src={logo} />
+        <img className="w-72" alt="Omega" src={logo} />
       </header>
       <main className="flex flex-col items-center text-3xl gap-7">
         {/* <BsEnvelopeExclamation size={94}/> */}

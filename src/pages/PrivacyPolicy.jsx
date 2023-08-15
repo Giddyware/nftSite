@@ -11,9 +11,9 @@ const PrivacyPolicy = () => {
         <div className="">
           <div className="mx-10">
             Last Updated: 20/01/2023 This Privacy Policy describes how
-            ARTMINT.shop ("we," "us," or "our") collects, uses, shares, and
+            Omega.shop ("we," "us," or "our") collects, uses, shares, and
             protects the personal information of users ("you" or "your") who
-            access and use our NFT marketplace platform, ARTMINT.shop (the
+            access and use our NFT marketplace platform, Omega.shop (the
             "Platform"). We are committed to protecting your privacy and
             ensuring the security of your personal information. By accessing and
             using the Platform, you consent to the collection, use, and
@@ -112,10 +112,9 @@ const PrivacyPolicy = () => {
               8.Contact Us If you have any questions, concerns, or requests
               regarding this Privacy Policy or our privacy practices, please
               contact us at [contact email]. We will make every effort to
-              address your inquiries in a timely manner. By using the
-              ARTMINT.shop platform, you acknowledge that you have read,
-              understood, and agree to the terms and conditions of this Privacy
-              Policy.
+              address your inquiries in a timely manner. By using the Omega.shop
+              platform, you acknowledge that you have read, understood, and
+              agree to the terms and conditions of this Privacy Policy.
             </h1>
           </div>
         </div>
