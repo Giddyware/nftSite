@@ -205,7 +205,7 @@ const Dashboard = () => {
               <h1 className="text-lg">{t("dashboard.home")}</h1>
             </div>
             <div className="flex items-center justify-center min-w-[20%]">
-              <div>
+              {/* <div>
                 <select
                   name="devices"
                   onChange={(e) => i18next.changeLanguage(e.target.value)}
@@ -214,7 +214,7 @@ const Dashboard = () => {
                     <option value={lag.code}> {lag.name} </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
               <div
                 className="flex justify-center px-4 py-2 bg-gray-100 rounded-lg item-center"
                 onClick={toggleOpen}
