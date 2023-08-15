@@ -10,15 +10,14 @@ const PrivacyPolicy = () => {
 
         <div className="">
           <div className="mx-10">
-            Last Updated: 20/01/2023 This Privacy Policy describes how
-            Omega.shop ("we," "us," or "our") collects, uses, shares, and
-            protects the personal information of users ("you" or "your") who
-            access and use our NFT marketplace platform, Omega.shop (the
-            "Platform"). We are committed to protecting your privacy and
-            ensuring the security of your personal information. By accessing and
-            using the Platform, you consent to the collection, use, and
-            disclosure of your personal information as described in this Privacy
-            Policy.
+            Last Updated: 20/01/2023 This Privacy Policy describes how Omage.net
+            ("we," "us," or "our") collects, uses, shares, and protects the
+            personal information of users ("you" or "your") who access and use
+            our NFT marketplace platform, Omage.net (the "Platform"). We are
+            committed to protecting your privacy and ensuring the security of
+            your personal information. By accessing and using the Platform, you
+            consent to the collection, use, and disclosure of your personal
+            information as described in this Privacy Policy.
             <h1 className="mt-8 mb-4 text-2xl font-bold">
               1.Information We Collect
             </h1>
@@ -112,7 +111,7 @@ const PrivacyPolicy = () => {
               8.Contact Us If you have any questions, concerns, or requests
               regarding this Privacy Policy or our privacy practices, please
               contact us at [contact email]. We will make every effort to
-              address your inquiries in a timely manner. By using the Omega.shop
+              address your inquiries in a timely manner. By using the Omage.net
               platform, you acknowledge that you have read, understood, and
               agree to the terms and conditions of this Privacy Policy.
             </h1>
