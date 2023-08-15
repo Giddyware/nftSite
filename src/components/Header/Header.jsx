@@ -118,7 +118,7 @@ const Header = ({ addBg }) => {
     >
       <Link
         to="/"
-        className="border-right-solid border-right-[1px] border-right-black w-48 md:w-52"
+        className="border-right-solid border-right-[1px] border-right-black w-48 md:w-52 mr-auto"
       >
         <img className="w-full" src={Logo} alt="" />
       </Link>
