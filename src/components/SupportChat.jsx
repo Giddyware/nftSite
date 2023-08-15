@@ -153,7 +153,7 @@ const SupportChat = () => {
         <div className="fixed z-10 bg-white min-h-[546px] min-w-[400px] rounded-3xl shadow-lg right-4 bottom-16 w-80">
           <div className="flex flex-col py-10 px-12 rounded-t-3xl text-white bg-[hsl(207,_50%,_54%)]">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-3xl font-bold">Artmint Customer service</h2>
+              <h2 className="text-3xl font-bold">Omega Customer service</h2>
               <button
                 className="text-white hover:text-white focus:outline-none"
                 onClick={toggleChat}
@@ -163,15 +163,15 @@ const SupportChat = () => {
             </div>
 
             <p className="max-w-[280px]">
-              Welcome to Artmint live chat, Drop your message, our team will get
+              Welcome to Omega live chat, Drop your message, our team will get
               in touch asap.
             </p>
           </div>
           <div className="flex items-center gap-2 py-10 border px-11 border-b-[1px] border-[hsla(0,_0%,_88%,_1)]">
             <RiErrorWarningLine className="self-start w-20 h-20" />
             <p className="text-base">
-              Artmint reminds you to pay attention to account security, please
-              do not disclose your account, password, verification code, PIKEY
+              Omega reminds you to pay attention to account security, please do
+              not disclose your account, password, verification code, PIKEY
               Identity authentication kev and other security Information to
               anyone.
             </p>
